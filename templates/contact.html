@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block body %}
+{% load static %}
+
+<!-- contact section -->
+<br>
+<br>
+<section class="contact_section layout_padding_contact ">
+  <div class="container">
+    <div class="heading_container">
+      <h2>
+        Any Problems <br>
+        Any Questions
+      </h2>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-5  offset-md-1">
+        {% comment %} <div class="contact_form">
+          <h4>
+            Get In touch
+          </h4>
+          <form action="{% url 'sendmail_contact' %}" method="post">
+            {% csrf_token %}
+            <input type="text" placeholder="Name" name="name" required pattern="[a-zA-Z\s]+"
+              title="Please enter a valid characters, only letters and spaces)" />
+            <input type="text" placeholder="Phone Number" name="mobail" required pattern="[0-9]{10}"
+              title="Please enter a 10-digit mobile number" />
+            <input type="text" placeholder="Message" class="message_input" name="message" required />
+            <button>Send</button>
+          </form>
+          {% for i in messages %}
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Message : </strong>{{ i }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          {% endfor %}
+        </div> {% endcomment %}
+        <div class="contact_form" style="background-color: #333; padding: 30px; border-radius: 10px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);">
+          <h4 style="font-size: 2rem; color: #fff; margin-bottom: 20px;">Get In Touch</h4>
+          <form action="{% url 'sendmail_contact' %}" method="post">
+            {% csrf_token %}
+            <input type="text" placeholder="Name" name="name" required pattern="[a-zA-Z\s]+" title="Please enter a valid characters, only letters and spaces)" style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #555; border-radius: 5px; font-size: 1rem; color: #333; background-color: #fff;">
+            <br>
+            <input type="text" placeholder="Phone Number" name="mobail" required pattern="[0-9]{10}" title="Please enter a 10-digit mobile number" style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #555; border-radius: 5px; font-size: 1rem; color: #333; background-color: #fff;">
+            <br>
+            <input type="text" placeholder="Message" class="message_input" name="message" required style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #555; border-radius: 5px; font-size: 1rem; color: #333; background-color: #fff;">
+            <br>
+            <button type="submit" style="background-color: #ff9800; color: #fff; border: none; padding: 12px 20px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease;">Send</button>
+          </form>
+          {% for i in messages %}
+          <div class="alert alert-warning alert-dismissible fade show" role="alert" style="background-color: #444; color: #ffc107; border-color: #333; padding: 15px; margin-top: 20px; border-radius: 5px;">
+            <strong>Message:</strong> {{ i }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="position: relative; top: -2px; right: -21px; color: inherit;">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          {% endfor %}
+        </div>
+        
+      </div>
+      <div class="col-md-6 px-0">
+        <div class="img-box">
+          <img src="{% static 'images/f.png' %}" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end contact section -->
+
+
+
+
+
+
+{% endblock body %}

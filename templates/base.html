@@ -1,0 +1,291 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Devanshi Tour and Travels</title>
+
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css"
+    href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css' %}" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+</head>
+
+<body class="sub_page">
+
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container" style="padding-top: 20px;>
+          
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
+              <ul class="navbar-nav  ">
+                <li class="nav-item active">
+                  <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'about' %}"> About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'service' %}"> Services </a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+                </li>
+                {% comment %} <li class="nav-item">
+                  <a class="nav-link" href="#">Login</a>
+                </li> {% endcomment %}
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+  </div>
+
+
+  {% block body %}
+
+  {% endblock body %}
+
+   <!-- info section -->
+
+   <!DOCTYPE html>
+   <html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Footer Design</title>
+       <style>
+           /* CSS styles */
+           .footer-container {
+               background: #121212;
+               color: #fff;
+               padding: 60px 0;
+               box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+               border-top: 3px solid #ffca28;
+           }
+   
+           .footer-container h4 {
+               font-size: 22px;
+               margin-bottom: 20px;
+               color: #ffca28;
+           }
+   
+           .footer-container .footer-col {
+               width: 23%;
+               float: left;
+               margin: 1%;
+               padding: 20px;
+               background: #1e1e1e;
+               border-radius: 10px;
+               box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+           }
+   
+           .footer-container .footer-col ul {
+               list-style: none;
+               padding: 0;
+               margin: 0;
+           }
+   
+           .footer-container .footer-col ul li {
+               margin-bottom: 15px;
+           }
+   
+           .footer-container .footer-col ul li a {
+               color: #ccc;
+               text-decoration: none;
+               transition: color 0.3s;
+           }
+   
+           .footer-container .footer-col ul li a:hover {
+               color: #ffca28;
+           }
+   
+           .footer-container .footer-social {
+               margin-top: 20px;
+               display: flex;
+               gap: 10px;
+           }
+   
+           .footer-container .footer-social a {
+               color: #fff;
+               background-color: #ffca28;
+               border-radius: 50%;
+               padding: 12px;
+               text-align: center;
+               width: 40px;
+               height: 40px;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               transition: background-color 0.3s;
+           }
+   
+           .footer-container .footer-social a:hover {
+               background-color: #ffc107;
+           }
+   
+           .footer-container .footer-subscribe {
+               margin-top: 20px;
+           }
+   
+           .footer-container .footer-subscribe form input[type="text"] {
+               padding: 12px;
+               border-radius: 5px;
+               border: none;
+               width: calc(100% - 0px);
+               margin-right: 10px;
+               box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+           }
+   
+           .footer-container .footer-subscribe form button {
+               padding: 12px 25px;
+               margin: 15px;
+               margin-left :  43px;
+               background-color: #ffca28;
+               border: none;
+               border-radius: 5px;
+               color: #282828;
+               cursor: pointer;
+               transition: background-color 0.3s;
+           }
+   
+           .footer-container .footer-subscribe form button:hover {
+               background-color: #ffc107;
+           }
+   
+           .footer-container::after {
+               content: "";
+               display: table;
+               clear: both;
+           }
+   
+           @media (max-width: 768px) {
+               .footer-container .footer-col {
+                   width: 100%;
+                   margin-bottom: 20px;
+               }
+           }
+       </style>
+   </head>
+   <body>
+       <footer class="footer-container">
+           <div class="container">
+               <div class="footer-col">
+                   <img src="/static/images/DEVANSHI-EPS.png" alt="" style="height: 174px; margin: -60px 0 -30px 20px;">
+                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum.</p>
+               </div>
+               <div class="footer-col">
+                   <h4>Quick Links</h4>
+                   <ul>
+                       <li><a href="#">Home</a></li>
+                       <li><a href="#">About</a></li>
+                       <li><a href="#">Services</a></li>
+                       <li><a href="#">Contact</a></li>
+                   </ul>
+               </div>
+               <div class="footer-col">
+                   <h4>Follow Us</h4>
+                   <div class="footer-social">
+                       <a href="#"><img src="{% static 'images/fb.png' %}" alt="Facebook" /></a>
+                       <a href="#"><img src="{% static 'images/twitter.png' %}" alt="Twitter" /></a>
+                       <a href="#"><img src="{% static 'images/linkedin.png' %}" alt="LinkedIn" /></a>
+                       <a href="#"><img src="{% static 'images/instagram.png' %}" alt="Instagram" /></a>
+                   </div>
+               </div>
+               <div class="footer-col">
+                   <h4>Subscribe</h4>
+                   <div class="footer-subscribe">
+                       <form action="#">
+                           <input type="text" placeholder="Enter your email">
+                           <button type="submit">Subscribe</button>
+                       </form>
+                   </div>
+               </div>
+           </div>
+       </footer>
+   </body>
+   </html>
+
+  <!-- end info section -->
+
+  <!-- footer section -->
+  <section class="container-fluid footer_section">
+    <div class="container">
+      <p>
+        &copy; 2024 All Rights Reserved By Rk design
+      </p>
+    </div>
+  </section>
+  <!-- footer section -->
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+  <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+  </script>
+
+
+  <!-- owl carousel script -->
+  <script type="text/javascript">
+    $(".owl-carousel").owlCarousel({
+      loop: true,
+      margin: 20,
+      navText: [],
+      autoplay: true,
+      autoplayHoverPause: true,
+      responsive: {
+        0: {
+          items: 1
+        },
+        768: {
+          items: 2
+        },
+        1000: {
+          items: 2
+        }
+      }
+    });
+  </script>
+  <!-- end owl carousel script -->
+
+</body>
+
+</html>
