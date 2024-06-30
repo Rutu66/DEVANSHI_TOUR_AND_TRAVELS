@@ -1,0 +1,31 @@
+/* contact-responsive.css */
+
+/* Adjustments for smaller screens */
+@media (max-width: 991px) {
+    .about_section .row {
+        flex-direction: column-reverse;
+    }
+
+    .about_section .col-lg-4 {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .about_section .col-md-6 {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Further adjustments for even smaller screens, like phones */
+@media (max-width: 767px) {
+    .about_section .col-lg-4, .about_section .col-md-6 {
+        margin: 0;
+    }
+
+    .about_section .col-lg-4, .about_section .col-md-5 {
+        offset-lg-2: 0;
+        offset-md-1: 0;
+    }
+}

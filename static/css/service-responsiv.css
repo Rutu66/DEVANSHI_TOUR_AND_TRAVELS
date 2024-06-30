@@ -1,0 +1,81 @@
+/* Responsive styles for Tour Packages section */
+
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    font-family: 'Roboto', sans-serif; /* Apply Roboto font to the entire page */
+  }
+  
+  .package-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .package-card {
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px #d9d9d9, -5px -5px 10px #ffffff;
+    overflow: hidden;
+    width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 20px;
+  }
+  
+  .package-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 20px 20px 60px #cccccc, -20px -20px 60px #ffffff;
+  }
+  
+  .package-card-image img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .package-card-content {
+    padding: 20px;
+  }
+  
+  .package-card-content-heading h3 {
+    margin: 0 0 10px;
+  }
+  
+  .package-car-wrapper {
+    margin-top: 10px;
+  }
+  
+  .package-car {
+    border-top: 1px solid #ddd;
+    padding: 10px 0;
+  }
+  
+  .package-car-content {
+    text-align: left;
+  }
+  
+  .package-card-content-btn .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff9800;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .package-card-content-btn .btn:hover {
+    background-color: #e68900;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  @media (max-width: 768px) {
+    .package-card {
+      width: calc(100% - 20px);
+    }
+  }
+  

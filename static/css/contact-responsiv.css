@@ -1,0 +1,84 @@
+/* Responsive styles for contact section */
+
+.contact_section {
+    padding: 50px 0;
+  }
+  
+  .contact_form {
+    background-color: #333;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    color: #fff;
+  }
+  
+  .contact_form h4 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .contact_form input[type="text"],
+  .contact_form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #333;
+    background-color: #fff;
+  }
+  
+  .contact_form button[type="submit"] {
+    background-color: #ff9800;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .contact_form button[type="submit"]:hover {
+    background-color: #e68900;
+  }
+  
+  .img-box img {
+    width: 100%;
+    height: auto;
+  }
+  
+  @media (max-width: 992px) {
+    .contact_form {
+      padding: 20px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .contact_section {
+      padding-bottom: 30px;
+    }
+  
+    .contact_form {
+      margin-bottom: 30px;
+    }
+  
+    .col-md-5 {
+      order: 2; /* Change the order of the columns on smaller screens */
+    }
+  
+    .col-md-6 {
+      order: 1; /* Change the order of the columns on smaller screens */
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .contact_form {
+      padding: 15px;
+    }
+  
+    .contact_form h4 {
+      font-size: 1.5rem;
+    }
+  }
+  
