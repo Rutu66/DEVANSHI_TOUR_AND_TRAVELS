@@ -68,7 +68,7 @@ body {
   width: 3px;
   height: 100%;
   top: 50%;
-  right: 900px;
+  right: 875px;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
   z-index: 1;
@@ -103,8 +103,8 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  height: 120%;
-  width: 65%;
+  height: 318%;
+  width: 96%;
   background-image: url(../images/hero-bg2.png);
   background-size: 100%;
   background-repeat: no-repeat;
@@ -116,8 +116,8 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  height: 930%;
-  width: 65%;
+  height: 975%;
+  width: 98%;
   background-image: url(../images/hero-bg2.png);
   background-size: 100%;
   background-repeat: no-repeat;
