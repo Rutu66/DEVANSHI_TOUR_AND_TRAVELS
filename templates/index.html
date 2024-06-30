@@ -394,7 +394,9 @@
               <div class="card-body-custom">
                   <h5 class="card-title-custom">{{ car.name }}</h5>
                   <p class="card-text-custom">A brief description about the car.</p>
-                  <a href="#" class="btn-custom">Book Now</a>
+                  <div class="package-card-content-btn">
+                        <a href="tel:+919876543210" class="btn">Call Now</a>
+                    </div>
                   <p class="price-custom mt-3">Rs. {{ car.price }}/km</p>
               </div>
           </div>
@@ -603,7 +605,7 @@
                     <div class="package-card-content-heading">
                         <h3>{{ package_data.package.name }}</h3>
                     </div>
-                    <div class="package-car-wrapper">
+                    {% comment %} <div class="package-car-wrapper">
                         {% for package_car in package_data.cars %}
                         <div class="package-car">
                             <img src="{{ package_car.car.image.url }}" alt="{{ package_car.car.name }}">
@@ -613,9 +615,9 @@
                             </div>
                         </div>
                         {% endfor %}
-                    </div>
+                    </div> {% endcomment %}
                     <div class="package-card-content-btn">
-                        <a href="tel:+919876543210" class="btn">Book Now</a>
+                        <a href="tel:+919876543210" class="btn">Call Now</a>
                     </div>
                 </div>
             </div>
