@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block body %}
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Taxi Company</title>
+    <!-- Load your CSS here -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  
+
+    <!-- About Section -->
+    <br>
+    <section class="about_section layout_padding">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4 col-md-5 offset-lg-2 offset-md-1">
+                    <div class="detail-box">
+                        <h2>
+                            About <br>
+                            Taxi Company
+                        </h2>
+                        <p>
+                            Taxi service is an important transportation option that meets a variety of needs, including basic mobility in emergencies, general transportation for non-drivers, and mobility for tourists and visitors.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="img-box">
+                        <img src="{% static 'images/e.png' %}" alt="Taxi Image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End About Section -->
+
+    
+</body>
+</html>
+
+{% endblock body %} 

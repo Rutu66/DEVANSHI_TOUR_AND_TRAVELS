@@ -1,0 +1,195 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body %}
+
+
+  <!-- service section -->
+
+  <section class="service_section layout_padding">
+    <div class="container">
+      <div class="service_heading_container">
+        <h2>
+          Our <br>
+          Taxi Services
+        </h2>
+      </div>
+
+      <div class="service_container">
+        <div class="box">
+          <div class="img-box">
+            <img src="{% static 'images/delivery-man-black1.png' %}" alt="">
+          </div>
+          <div class="detail-box">
+            <h5>
+              Private Driver
+            </h5>
+            <p>
+              The primary function of a Personal<br>
+               Driver is to provide transportation<br> 
+                for passengers from one location to<br> 
+                 another. It is essential that they<br> 
+                  drive their passengers in a safe,<br> 
+                  comfortable and professional manner<br> 
+                   while simultaneously keeping track<br> 
+                    of navigation, traffic and timing. <br> 
+            </p>
+           
+          </div>
+        </div>
+        <div class="box">
+          <div class="img-box">
+            <img src="{% static 'images/airplane.black.png' %}" alt="">
+          </div>
+          <div class="detail-box">
+            <h5>
+              Airport Transfer
+            </h5>
+            <p>
+              Airport transfers are pre-booked<br>
+              methods of transport for picking-up<br>
+              travellers from an airport and dropping <br>
+              them off at their chosen destination, <br>
+              whether it be accommodation, cruise <br>
+              port or another local point of interest,<br>
+              for a set price.
+            </p>
+            
+          </div>
+        </div>
+        <div class="box">
+          <div class="img-box">
+            <img src="{% static 'images/backpack-black.png' %}" alt="">
+          </div>
+          <div class="detail-box">
+            <h5>
+              Luggage Transfer
+            </h5>
+            <p>
+              Luggage delivery services provide<br>
+              a door-to-door luggage delivery service,<br>
+              where your luggage or sports equipment <br>
+              is picked-up from your home, office or <br>
+              any physical address and delivered to <br>
+              your hotel, resort or any other physical <br>
+              address. Luggage allowances are decreasing<br> 
+              and excess luggage fees increasing.
+            </p>
+           
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tour Packages</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    /* Updated CSS with new font styles */
+    .main-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+      font-family: 'Roboto', sans-serif; /* Apply Roboto font to the entire page */
+    }
+    .package-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .package-card {
+      background: linear-gradient(145deg, #ffffff, #e6e6e6);
+      border-radius: 20px;
+      box-shadow: 5px 5px 10px #d9d9d9, -5px -5px 10px #ffffff;
+      overflow: hidden;
+      margin: 20px;
+      width: 300px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .package-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 20px 20px 60px #cccccc, -20px -20px 60px #ffffff;
+    }
+    .package-card-image img {
+      width: 100%;
+      height: auto;
+      border-bottom: 1px solid #ddd;
+    }
+    .package-card-content {
+      padding: 20px;
+    }
+    .package-card-content-heading h3 {
+      margin: 0 0 10px;
+      font-family: auto; /* Apply Pacifico font to headings */
+    }
+    .package-card-content-text p {
+      margin: 0 0 20px;
+    }
+    .package-card-content-btn .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #ff9800;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .package-card-content-btn .btn:hover {
+      background-color: #e68900;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+    @media (max-width: 768px) {
+      .package-card {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+  </style>
+  </head>
+  <body>
+    <div class="main-container">
+      <h1>Tour Packages</h1>
+      <div class="package-wrapper">
+          {% for package_data in package_list %}
+          <div class="package-card">
+              <div class="package-card-image">
+                  <img src="{{ package_data.package.image.url }}" alt="{{ package_data.package.name }}">
+              </div>
+              <div class="package-card-content">
+                  <div class="package-card-content-heading">
+                      <h3>{{ package_data.package.name }}</h3>
+                  </div>
+                  <div class="package-car-wrapper">
+                      {% for package_car in package_data.cars %}
+                      <div class="package-car">
+                         
+                          <div class="package-car-content">
+                              <h4>{{ package_car.car.name }}</h4>
+                              <p>Price: {{ package_car.price }}</p>
+                          </div>
+                      </div>
+                      {% endfor %}
+                  </div>
+                  <div class="package-card-content-btn">
+                      <a href="tel:1234567890" class="btn">Book Now</a>
+                  </div>
+              </div>
+          </div>
+          {% endfor %}
+      </div>
+  </div>
+  </body>
+  </html>
+  
+
+
+  <!-- end service section -->
+
+{% endblock body %}
