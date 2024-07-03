@@ -127,7 +127,7 @@ body {
 .sub_page .hero_area {
   min-height: auto;
   background-image: none;
-  background-color: #e1f3fd;
+  background-color: #f7c621
 }
 
 .sub_page .service_section {
@@ -144,7 +144,7 @@ body {
 }
 
 .custom_nav-container .navbar-nav .nav-item .nav-link {
-  margin: 10px 20px;
+  margin: 20px 20px;
   padding: 0;
   color: #282828;
   text-align: center;
@@ -392,7 +392,7 @@ a:focus {
   content: "";
   position: absolute;
   width: 3px;
-  height: 65%;
+  height: 90%;
   top: 10%;
   right: 25px;
   z-index: 1;
@@ -1000,5 +1000,36 @@ a:focus {
 
 
 
-/* Get a taxi now design */
+/* General Styles */
 
+
+
+
+
+.footer-section {
+background: #151414;
+position: relative;
+}
+.footer-cta {
+border-bottom: 1px solid #373636;
+}
+.single-cta i {
+color: #ff5e14;
+font-size: 30px;
+float: left;
+margin-top: 8px;
+}
+.cta-text {
+padding-left: 15px;
+display: inline-block;
+}
+.cta-text h4 {
+color: #fff;
+font-size: 20px;
+font-weight: 600;
+margin-bottom: 2px;
+}
+.cta-text span {
+color: #757575;
+font-size: 15px;
+}

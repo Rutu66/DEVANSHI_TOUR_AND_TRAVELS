@@ -109,6 +109,41 @@ def index(request):
     return render(request, 'index.html', data)
 
 
+def cars(request):
+    """ For cars page...."""
+    
+
+    # Pass the data to the template
+    trip_type = request.GET.get('trip_type', '')
+    travel_type = request.GET.get('travel_type', '')
+    pickup_location = request.GET.get('pickup', '')
+    drop_location = request.GET.get('drop', '')
+    pickup_date = request.GET.get('pickup_date', '')
+    pickup_time = request.GET.get('pickup_time', '')
+    return_date = request.GET.get('return_date', '')
+
+    # Pass the data to the template
+    return render(request, 'cars.html', {
+        'trip_type': trip_type,
+        'travel_type' : travel_type,
+        'pickup_location': pickup_location,
+        'drop_location': drop_location,
+        'pickup_date': pickup_date,
+        'pickup_time': pickup_time,
+        'return_date': return_date,
+    })
+    
+    
+    
+    
+
+def checkout(request):
+    """ For about page...."""
+    
+    
+    
+    return render(request, 'checkout.html')
+
 
 def about(request):
     """ For about page...."""

@@ -1,0 +1,292 @@
+{% extends "base.html" %}
+{% block body %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .booking-container {
+            width: 90%;
+            margin: 30px auto;
+            background-color: #ffffff; /* White background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .booking-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .booking-header-item {
+            flex: 1;
+            text-align: center;
+        }
+
+        .booking-header-item p {
+            margin: 5px 0;
+            color: #333; /* Dark text color */
+        }
+
+        .booking-modify-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+            box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
+        }
+
+        .booking-modify-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .booking-route {
+            text-align: center;
+            margin-bottom: 20px;
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .booking-car-options {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .booking-car-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+
+        .booking-car-option:hover {
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .booking-car-info {
+            display: flex;
+            align-items: center;
+            flex: 2;
+        }
+
+        .booking-car-info img {
+            width: 100px;
+            margin-right: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .booking-car-info h3, .booking-car-info p {
+            margin: 0;
+            color: #333; /* Dark text color */
+        }
+
+        .booking-facilities {
+            flex: 3;
+        }
+
+        .booking-facilities ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .booking-facilities li {
+            background-color: #e9ecef;
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: #555; /* Medium dark text color */
+        }
+
+        .booking-fare, .booking-book-now {
+            text-align: center;
+            flex: 1;
+        }
+
+        .booking-fare p, .booking-book-now p {
+            margin: 5px 0;
+            color: #333; /* Dark text color */
+        }
+
+        .booking-book-now button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        .booking-book-now button:hover {
+            background-color: #218838;
+        }
+
+        @media (max-width: 768px) {
+            .booking-header {
+                flex-direction: column;
+            }
+            
+            .booking-car-option {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .booking-car-info {
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="booking-container">
+        <div class="booking-header">
+            <div class="booking-header-item">
+                <p>Booking Type</p>
+                <p>{{ travel_type }}</p>
+            </div>
+            <div class="booking-header-item">
+                <p>Pick-up Date & Time</p>
+                <p>{{ pickup_date }} {{ pickup_time }}</p>
+            </div>
+            <div class="booking-header-item">
+                
+                {% if return_date %}
+                <p>Return Date:</p>
+                <p>{{ return_date }}</p>
+                {% endif %}
+            </div>
+            <div class="booking-header-item">
+                <p>Trip Type</p>
+                <p>{{ trip_type }}</p>
+            </div>
+            <button class="booking-modify-btn">MODIFY</button>
+        </div>
+        <div class="booking-route">
+            <p>Route: Ahmedabad, Gujarat, India -> Amreli, Gujarat, India</p>
+        </div>
+        <div class="booking-car-options">
+            <!-- Car Option 1 -->
+            <div class="booking-car-option">
+                <div class="booking-car-info">
+                    <img src="{% static 'images/car1.png' %}" alt="Wagon R Or Similar">
+                    <div>
+                        <h3>Wagon R Or Similar (4+1)</h3>
+                        <p>Wagon R Or Similar (4+1) (Hatchback)</p>
+                    </div>
+                </div>
+                <div class="booking-facilities">
+                    <p>Facilities:</p>
+                    <ul>
+                        <li>Water Bottle</li>
+                        <li>On Time Guarantee</li>
+                        <li>Invoice Gst</li>
+                        <li>Sanitized Cab</li>
+                    </ul>
+                </div>
+                <div class="booking-fare">
+                    <p>Fare/KM</p>
+                    <p>₹ 10.64</p>
+                </div>
+                <div class="booking-book-now">
+                    <p>₹ 10954.80</p>
+                    <button>BOOK NOW</button>
+                    <a href="#">Fare Summary »</a>
+                </div>
+            </div>
+            <!-- Car Option 2 -->
+            <div class="booking-car-option">
+                <div class="booking-car-info">
+                    <img src="{% static 'images/car2.png' %}" alt="Swift Dzire Or Similar">
+                    <div>
+                        <h3>Swift Dzire Or Similar (4+1)</h3>
+                        <p>Swift Dzire Or Similar (4+1) (Sedan)</p>
+                    </div>
+                </div>
+                <div class="booking-facilities">
+                    <p>Facilities:</p>
+                    <ul>
+                        <li>Water Bottle</li>
+                        <li>On Time Guarantee</li>
+                        <li>Invoice Gst</li>
+                        <li>Sanitized Cab</li>
+                    </ul>
+                </div>
+                <div class="booking-fare">
+                    <p>Fare/KM</p>
+                    <p>₹ 11.2</p>
+                </div>
+                <div class="booking-book-now">
+                    <p>₹ 11484.00</p>
+                    <button>BOOK NOW</button>
+                    <a href="#">Fare Summary »</a>
+                </div>
+            </div>
+            <!-- Car Option 3 -->
+            <div class="booking-car-option">
+                <div class="booking-car-info">
+                    <img src="{% static 'images/car3.png' %}" alt="Maruti Suzuki Ertiga Or Similar">
+                    <div>
+                        <h3>Maruti Suzuki Ertiga Or Similar (6+1)</h3>
+                        <p>Maruti Suzuki Ertiga Or Similar (6+1) (SUV)</p>
+                    </div>
+                </div>
+                <div class="booking-facilities">
+                    <p>Facilities:</p>
+                    <ul>
+                        <li>Water Bottle</li>
+                        <li>On Time Guarantee</li>
+                        <li>Invoice Gst</li>
+                        <li>Sanitized Cab</li>
+                    </ul>
+                </div>
+                <div class="booking-fare">
+                    <p>Fare/KM</p>
+                    <p>₹ 14.56</p>
+                </div>
+                <div class="booking-book-now">
+                    <p>₹ 14659.20</p>
+                    <button>BOOK NOW</button>
+                    <a href="#">Fare Summary »</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+{% endblock body %}

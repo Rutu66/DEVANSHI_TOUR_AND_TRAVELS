@@ -75,7 +75,7 @@
                                     <style>
                                         .phone-box {
                                             display: inline-block;
-                                            padding: 15px 25px;
+                                            padding: 10px 25px;
                                             border: 2px solid #333;
                                             border-radius: 10px;
                                             background-color: #fff;
@@ -88,11 +88,11 @@
                                         }
   
                                         .phone-box:hover {
-                                            background-color: #ffcc00;
-                                            color: #fff;
-                                            border-color: #ffcc00;
-                                            cursor: pointer;
-                                        }
+                                          background-color: #d7d7d7;
+                                          color: #000000;
+                                          border-color: #000000;
+                                          cursor: pointer;
+                                      }
   
                                         .phone-box .icon {
                                             margin-right: 10px;
@@ -101,8 +101,8 @@
                                 </head>
                                 <body>
   
-                                <a href="tel:+919227091009" class="phone-box">
-                                    <span class="icon">📞</span> +91 92270 91009
+                                <a href="tel:+919727238220" class="phone-box">
+                                    <span class="icon">📞</span> +91 9727238220
                                 </a>
   
                                 </body>
@@ -117,12 +117,12 @@
         
 
         <!-- slider section -->
-        <section class="slider_section">
+        {% comment %} <section class="slider_section">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-7">
                         <div class="box">
-                          <h4 style="color: #ffffff; font-weight: bold;">Devanshi Tour And Travels</h4>
+                          <h4 style="color: #000000; font-weight: bold;">Devanshi Tour And Travels</h4>
 
                             <div class="detail-box">
                                 <h1> Enjoy Your Comfortable Trip. </h1>
@@ -133,7 +133,8 @@
                               </button>
                               <div style="padding: 10px 20px; border-radius: 5px; font-size: 16px; font-weight: bold; text-align: center; text-decoration: none; background-color: #000; color: #fff; border: none; display: flex; align-items: center;">
                                   <span style="margin-right: 10px;">📞</span>
-                                  <span>+91 92270 91009</span>
+                                  <a href="tel:+919727238220" class="">+91 9727238220</a>
+
                               </div>
                           </div>
                           <br>
@@ -182,10 +183,9 @@
                                             style="background-color: #333333; color: #ffffff; border-color: #444444; border-radius: 20px; font-family: inherit;"
                                             required>
                                             <option value="">Select a car</option>
-                                            <option value="volvo">Volvo</option>
-                                            <option value="saab">Saab</option>
-                                            <option value="fiat">Fiat</option>
-                                            <option value="audi">Audi</option>
+                                            {% for car in car_list %}
+                                                <option value="{{ car.id }}">{{ car.name }}</option>
+                                            {% endfor %}
                                         </select>
                                     </div>
                                     <div class="form-row">
@@ -232,7 +232,199 @@
                     </div>
                 </div>  
             </div>
-        </section>
+        </section>  {% endcomment %}
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Title Here</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            background-color: #f0f0f0; /* Example background color */
+        }
+        .slider_section {
+            padding: 50px 0; /* Adjust padding as needed */
+        }
+        .box {
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+        }
+        .form-control {
+            background-color: #333333;
+            color: #ffffff;
+            border-color: #444444;
+            border-radius: 20px;
+            font-family: inherit;
+        }
+        .btn-warning {
+            background-color: #ffc107;
+            border-color: #ffc107;
+            border-radius: 20px;
+            font-family: inherit;
+        }
+    </style>
+</head>
+<body>
+
+<section class="slider_section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="box">
+                    <h4 style="color: #000000; font-weight: bold;">Devanshi Tour And Travels</h4>
+                    <div class="detail-box">
+                        <h1>Enjoy Your Trip.</h1>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <button style="padding: 10px 20px; border-radius: 5px; font-size: 16px; font-weight: bold; text-align: center; text-decoration: none; background-color: #FFA500; color: #fff; border: none; cursor: pointer;">
+                            INQUIRY NOW
+                        </button>
+                        <div style="padding: 10px 20px; border-radius: 5px; font-size: 16px; font-weight: bold; text-align: center; text-decoration: none; background-color: #000; color: #fff; border: none; display: flex; align-items: center;">
+                            <span style="margin-right: 10px;">📞</span>
+                            <a href="tel:+919727238220" class="">+91 9727238220</a>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="img-box">
+                                    <img src="{% static 'images/b.png' %}" class="img-fluid" alt="" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-5" style="margin-top: -100px;">
+              <div class="card" style="border-radius: 20px; background-color: #000000; color: #ffffff; box-shadow: 0 4px 8px rgba(0,0,0,0.1); font-family: Arial, sans-serif;">
+                  <div class="card-body">
+                      <h4 class="card-title text-center mb-4">Search Cab</h4>
+                      <form action="{% url 'cars' %}" method="get">
+                          {% csrf_token %}
+                          <div class="form-group">
+                              <label>Trip Type:</label><br>
+                              <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="trip_type" id="outstanding" value="outstation" required>
+                                  <label class="form-check-label" for="outstanding">Outstation</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="trip_type" id="local" value="local" required>
+                                  <label class="form-check-label" for="local">Local</label>
+                              </div>
+                          </div>
+          
+                          <div class="form-group">
+                              <label>Travel Type:</label><br>
+                              <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="travel_type" id="one_way" value="one_way" required>
+                                  <label class="form-check-label" for="one_way">One Way</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="travel_type" id="round_trip" value="round_trip" required>
+                                  <label class="form-check-label" for="round_trip">Round Trip</label>
+                              </div>
+                          </div>
+          
+                          <div class="form-row">
+                              <div class="form-group col-md-6">
+                                  <label for="pickup">Pickup Location</label>
+                                  <input type="text" class="form-control" id="pickup" name="pickup" placeholder="Enter pickup location" required>
+                              </div>
+                              <div class="form-group col-md-6">
+                                  <label for="drop">Drop Location</label>
+                                  <input type="text" class="form-control" id="drop" name="drop" placeholder="Enter drop location" required>
+                              </div>
+                          </div>
+          
+                          <div class="form-row">
+                              <div class="form-group col-md-6">
+                                  <label for="pickup_date">Pickup Date</label>
+                                  <input type="date" class="form-control" id="pickup_date" name="pickup_date" required>
+                              </div>
+                              <div class="form-group col-md-6">
+                                  <label for="pickup_time">Pickup Time</label>
+                                  <input type="time" class="form-control" id="pickup_time" name="pickup_time" required>
+                              </div>
+                          </div>
+          
+                          <div id="return-date-group" style="display: none;">
+                              <div class="form-row">
+                                  <div class="form-group col-md-6">
+                                      <label for="return_date">Return Date</label>
+                                      <input type="date" class="form-control" id="return_date" name="return_date">
+                                  </div>
+                              </div>
+                          </div>  
+          
+                          <script>
+                              document.addEventListener('DOMContentLoaded', function () {
+                                  const roundTripRadio = document.getElementById('round_trip');
+                                  const returnDateGroup = document.getElementById('return-date-group');
+          
+                                  roundTripRadio.addEventListener('change', function () {
+                                      if (roundTripRadio.checked) {
+                                          returnDateGroup.style.display = 'block';
+                                          document.getElementById('return_date').setAttribute('required', '');
+                                      } else {
+                                          returnDateGroup.style.display = 'none';
+                                          document.getElementById('return_date').removeAttribute('required');
+                                      }
+                                  });
+          
+                                  if (roundTripRadio.checked) {
+                                      returnDateGroup.style.display = 'block';
+                                      document.getElementById('return_date').setAttribute('required', '');
+                                  } else {
+                                      returnDateGroup.style.display = 'none';
+                                      document.getElementById('return_date').removeAttribute('required');
+                                  }
+          
+                                  const travelTypeRadios = document.querySelectorAll('input[name="travel_type"]');
+                                  travelTypeRadios.forEach(radio => {
+                                      radio.addEventListener('change', function () {
+                                          if (radio.value !== 'round_trip') {
+                                              returnDateGroup.style.display = 'none';
+                                              document.getElementById('return_date').removeAttribute('required');
+                                          }
+                                      });
+                                  });
+                              });
+                          </script>
+          
+                          <button type="submit" class="btn btn-warning btn-block" style="border-radius: 20px;">Search</button>
+                      </form>
+                  </div>
+              </div>
+          </div>
+          
+          
+        </div>
+    </div>
+</section>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-Jg8Kv1O8pjfvyz1PE9SssYDwiB+6bjcOx2ig+0E4x0Pfs9Z+g7xkXgIVl+8aezjq" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+Wr+8fIKy5eR8MGhywP4zs+3fFpSFwnz/fi" crossorigin="anonymous"></script>
+
+</body>
+</html>
+
+        
+        
         <!-- end slider section -->
     </div>
 </body>
@@ -259,10 +451,10 @@
               Taxi Company
             </h2>
             <p> 
-              Taxi service is an important Transportation Option that meets a
-              variety of needs, including Basic Mobility in emergencies,
-              general transportation for non-drivers, and mobility for
-              Tourists and visitors.
+            Welcome to Devanshi Tour And Travels
+
+            At Devanshi Tour And Travels, we are committed to providing reliable, safe, and comfortable transportation solutions. With years of experience in the industry, we have become a trusted name in the community for our dedication to customer satisfaction and quality service.
+
             </p>
             <a href="{% url 'about' %}"> Read More </a>
           </div>
@@ -394,7 +586,8 @@
               <div class="card-body-custom">
                   <h5 class="card-title-custom">{{ car.name }}</h5>
                   <p class="card-text-custom">A brief description about the car.</p>
-                  <a href="#" class="btn-custom">Book Now</a>
+                 <a href="tel:+1234567890" class="btn-custom">Call Now</a>
+
                   <p class="price-custom mt-3">Rs. {{ car.price }}/km</p>
               </div>
           </div>
@@ -412,6 +605,78 @@
  <!-- end Car section -->
 
  <!-- service section -->
+ <style>
+  /* General Styles */
+  .a_service_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+  }
+  
+  .a_box {
+    background: linear-gradient(135deg, #00000, #000000);
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    flex: 1 1 300px;
+    max-width: 300px;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .a_box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  }
+  
+  .a_img-box {
+    text-align: center;
+    padding: 20px;
+    background-color: #ffc107;
+  }
+  
+  .a_img-box img {
+    max-width: 20%;
+    height: auto;
+  }
+  
+  .a_detail-box {
+    padding: 20px;
+    text-align: center;
+    background-color: #fff;
+  }
+  
+  .a_detail-box h5 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  .a_detail-box p {
+    font-size: 1em;
+    line-height: 1.8;
+    color: #666;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .a_service_container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .a_box {
+      max-width: 100%; /* Allow box to take full width of the viewport */
+    }
+  
+    .a_detail-box {
+      max-width: 100%; /* Ensure detail-box can expand to full width */
+      overflow: visible; /* Override overflow:hidden to allow content to be visible */
+    }
+  }
+  </style>
+  
+
 <section class="service_section layout_padding">
   <div class="container">
     <div class="service_heading_container">
@@ -421,56 +686,55 @@
       </h2>
     </div>
 
-    <div class="service_container">
-      <div class="box">
-        <div class="img-box">
+    <div class="a_service_container">
+      <div class="a_box">
+        <div class="a_img-box">
           <img src="{% static 'images/delivery-man-black1.png' %}" alt="">
         </div>
-        <div class="detail-box">
+        <div class="a_detail-box">
           <h5>Private Driver</h5>
           <p>
-            The primary function of a Personal<br>
-            Driver is to provide transportation<br> 
-            for passengers from one location to<br> 
-            another. It is essential that they<br> 
-            drive their passengers in a safe,<br> 
-            comfortable and professional manner<br> 
-            while simultaneously keeping track<br> 
+            The primary function of a Personal
+            Driver is to provide transportation 
+            for passengers from one location to 
+            another. It is essential that they 
+            drive their passengers in a safe, 
+            comfortable and professional manner 
+            while simultaneously keeping track 
             of navigation, traffic and timing.
           </p>
         </div>
       </div>
-      <div class="box">
-        <div class="img-box">
-          <img src="{% static 'images/airplane.black.png' %}" alt="">
+      <div class="a_box">
+        <div class="a_img-box">
+          <img src="{% static 'images/City.png' %}" alt="">
         </div>
-        <div class="detail-box">
-          <h5>Airport Transfer</h5>
+        <div class="a_detail-box">
+          <h5>City Tour</h5>
           <p>
-            Airport transfers are pre-booked<br>
-            methods of transport for picking-up<br>
-            travellers from an airport and dropping <br>
-            them off at their chosen destination,<br>
-            whether it be accommodation, cruise<br>
-            port or another local point of interest,<br>
-            for a set price.
+            We are a specialist in providing Taxi service,
+            Car Rental Service and Tour Package service from 
+            city to city routes for business travelers and 
+            local tourist.We are committed to serve the best 
+            hassle free Taxi services, Cab services, Car hire
+             services in the major cities across the Gujarat.
           </p>
         </div>
       </div>
-      <div class="box">
-        <div class="img-box">
+      <div class="a_box">
+        <div class="a_img-box">
           <img src="{% static 'images/backpack-black.png' %}" alt="">
         </div>
-        <div class="detail-box">
+        <div class="a_detail-box">
           <h5>Luggage Transfer</h5>
           <p>
-            Luggage delivery services provide<br>
-            a door-to-door luggage delivery service,<br>
-            where your luggage or sports equipment<br>
-            is picked-up from your home, office or<br>
-            any physical address and delivered to<br>
-            your hotel, resort or any other physical<br>
-            address. Luggage allowances are decreasing<br> 
+            Luggage delivery services provide
+            a door-to-door luggage delivery service,
+            where your luggage or sports equipment
+            is picked-up from your home, office or
+            any physical address and delivered to
+            your hotel, resort or any other physical
+            address. Luggage allowances are decreasing 
             and excess luggage fees increasing.
           </p>
         </div>
@@ -687,6 +951,184 @@
   </section>
   <!-- end contact section -->
 
+
+
+<style>
+  /* CSS for Contact Form and Reviews Section */
+  
+
+ 
+  .review-section {
+    background-image: url("{% static 'images/f1.jpg' %}"); /* Replace with your actual background image path */
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .review-content {
+    background-color: rgba(211, 211, 211, 0.8); /* Add this line to give the review content a white background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+  }
+  
+  .review-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .review-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 15px;
+  }
+
+  .review-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .review-text {
+    font-size: 1rem;
+    color: #555;
+  }
+
+  .review-author {
+    margin-top: 10px;
+    font-size: 1.1rem;
+    color: #333;
+  }
+
+  .review-rating {
+    font-size: 1.5rem;
+    color: #ff9800;
+  }
+
+  .review-rating .star {
+    margin-right: 2px;
+  }
+
+  @media (max-width: 767px) {
+    .review-content {
+      margin-bottom: 20px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .contact-form {
+      margin-bottom: 30px;
+    }
+
+    .info-card {
+      margin-bottom: 30px;
+    }
+
+    .review-card {
+      margin-bottom: 30px;
+    }
+  }
+
+  
+</style>
+<div class="container">
+<div class="heading_container">
+  <h2>
+    Customer <br />
+    reviews
+  </h2>
+</div>
+</div>
+
+<section class="review-section py-5">
+  <div class="container">
+   
+     
+    <div class="row mt-5">
+      <div class="col-md-12">
+        <div id="customerReviews" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <!-- First Review -->
+            <div class="carousel-item active">
+              <div class="review-content">
+                <div class="review-image mx-auto">
+                  <img src="{% static 'images/c1.jpeg' %}" alt="Customer Image">
+                </div>
+                <p class="review-text mt-3 mb-0">"Excellent service! Highly recommend."</p>
+                <div class="review-author mt-2">
+                  <strong>- John Doe</strong>
+                </div>
+                <div class="review-rating mt-2">
+                  <span class="star">&#9733;</span>
+                  <span class="star">&#9733;</span>
+                  <span class="star">&#9733;</span>
+                  <span class="star">&#9733;</span>
+                  <span class="star">&#9734;</span>
+                </div>
+              </div>
+            </div>
+            <!-- Second Review -->
+            <div class="carousel-item">
+              <div class="review-content">
+                <div class="review-image mx-auto">
+                  <img src="{% static 'images/c2.jpeg' %}" alt="Customer Image">
+                </div>
+                <p class="review-text mt-3 mb-0">"Very professional and reliable."</p>
+                <div class="review-author mt-2">
+                  <strong>- Jane Smith</strong>
+                </div>
+                <div class="review-rating mt-2">
+                  <span class="star">&#9733;</span>
+                  <span class="star">&#9733;</span>
+                  <span class="star">&#9733;</span>
+                  <span class="star">&#9733;</span>
+                  <span class="star">&#9734;</span>
+                </div>
+              </div>
+            </div>
+            <!-- Third Review -->
+            <div class="carousel-item">
+              <div class="review-content">
+                <div class="review-image mx-auto">
+                  <img src="{% static 'images/c3.jpeg' %}" alt="Customer Image">
+                </div>
+                <p class="review-text mt-3 mb-0">"Great experience, will use again."</p>
+                <div class="review-author mt-2">
+                  <strong>- Mark Wilson</strong>
+                </div>
+                <div class="review-rating mt-2">
+                  <span class="star">&#9733;</span>
+                  <span class="star">&#9733;</span>
+                  <span class="star">&#9733;</span>
+                  <span class="star">&#9733;</span>
+                  <span class="star">&#9734;</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Carousel Controls -->
+          <a class="carousel-control-prev" href="#customerReviews" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#customerReviews" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
  
 
   <!-- why section -->
@@ -750,15 +1192,247 @@
 
   <!-- footer section -->
  
-
-  <section class="container-fluid footer_section">
-    <div class="container">
-      <p>
-        &copy; 2024 All Rights Reserved By Rk design
-      </p>
-    </div>
-  </section>
-
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Modern Responsive Footer</title>
+      <style>
+          /* Basic Reset */
+          
+  
+          
+  
+          /* Footer Styling */
+          .footer {
+              background-color: #2c3e50; /* Dark blue-gray background */
+              color: #ffffff; /* White text */
+              padding: 20px;
+              box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+          }
+  
+          .footer-container {
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: space-between;
+              max-width: 1200px;
+              margin: 0 auto;
+          }
+  
+          .footer-logo {
+              flex: 1;
+              text-align: center;
+              margin-bottom: 20px;
+          }
+  
+          .footer-logo img {
+              max-width: 150px;
+              margin-bottom: 10px;
+          }
+  
+          .footer-links,
+          .footer-social,
+          .footer-contact,
+          .footer-newsletter {
+              flex: 1 1 250px;
+              margin: 10px 20px;
+              text-align: center;
+          }
+  
+          .footer h3 {
+              font-size: 1.4em;
+              margin-bottom: 15px;
+              color: #f39c12; /* Orange accent */
+          }
+  
+          .footer-links ul {
+              list-style-type: none;
+              padding: 0;
+          }
+  
+          .footer-links ul li {
+              margin-bottom: 10px;
+          }
+  
+          .footer-links ul li a {
+              color: #ffffff; /* White links */
+              text-decoration: none;
+              transition: color 0.3s;
+          }
+  
+          .footer-links ul li a:hover {
+              color: #f39c12; /* Lighter orange on hover */
+          }
+  
+          .footer-social .social-icons {
+              display: flex;
+              justify-content: center;
+              gap: 20px;
+          }
+  
+          .footer-social .social-icons a {
+              display: inline-block;
+              width: 40px;
+              height: 40px;
+              background-color: #f39c12; /* Orange */
+              border-radius: 50%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              color: #ffffff; /* White icon color */
+              text-decoration: none;
+              transition: background-color 0.3s, transform 0.3s;
+          }
+  
+          .footer-social .social-icons a:hover {
+              background-color: #e67e22; /* Darker orange on hover */
+              transform: scale(1.1);
+          }
+  
+          .footer-social .social-icons a img {
+              width: 20px;
+              height: 20px;
+              filter: invert(1);
+          }
+  
+          .footer-contact p {
+              margin-bottom: 10px;
+              color: #b0b0b0; /* Light grey */
+          }
+  
+          .footer-newsletter form {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              gap: 10px;
+          }
+  
+          .footer-newsletter input[type="email"] {
+              padding: 10px;
+              border: 1px solid #ccc;
+              border-radius: 25px;
+              font-size: 1em;
+              width: 80%;
+              max-width: 300px;
+          }
+  
+          .footer-newsletter button {
+              padding: 10px 20px;
+              border: none;
+              border-radius: 25px;
+              background-color: #f39c12; /* Orange */
+              color: #ffffff; /* White text */
+              cursor: pointer;
+              transition: background-color 0.3s;
+          }
+  
+          .footer-newsletter button:hover {
+              background-color: #e67e22; /* Darker orange on hover */
+          }
+  
+          .footer-bottom {
+              margin-top: 30px;
+              border-top: 1px solid #444;
+              padding-top: 20px;
+              text-align: center;
+          }
+  
+          .footer-bottom p {
+              color: #b0b0b0; /* Light grey */
+          }
+  
+          .footer-legal {
+              margin-top: 10px;
+          }
+  
+          .footer-legal a {
+              color: #ffffff; /* White links */
+              text-decoration: none;
+              margin: 0 10px;
+              transition: color 0.3s;
+          }
+  
+          .footer-legal a:hover {
+              color: #f39c12; /* Orange hover */
+          }
+  
+          /* Responsive Styling */
+          @media (max-width: 768px) {
+              .footer-container {
+                  flex-direction: column;
+                  align-items: center;
+              }
+  
+              .footer-logo,
+              .footer-links,
+              .footer-social,
+              .footer-contact,
+              .footer-newsletter {
+                  text-align: center;
+                  margin: 20px 0;
+              }
+  
+              .footer-newsletter form {
+                  width: 100%;
+                  max-width: 400px;
+                  margin: 0 auto;
+              }
+  
+              .footer-legal {
+                  flex-direction: column;
+              }
+          }
+      </style>
+  </head>
+  <body>
+      <!-- Other content of your website goes here -->
+  
+      <!-- Footer Section -->
+      <footer class="footer">
+          <div class="footer-container">
+              <div class="footer-logo">
+                  <span>
+                      <img src="/static/images/DEVANSHI-EPS.png"
+                          alt="" style="height: 174px; margin: -60px; margin-left: -27px;">
+                      
+                  </span> 
+                  
+              </div>
+              <div class="footer-links">
+                  <h3>Quick Links</h3>
+                  <ul>
+                      <li><a href="{% url 'index' %}">Home</a></li>
+                      <li><a href="{% url 'about' %}">About Us</a></li>
+                      <li><a href="{% url 'service' %}">Services</a></li>
+                      <li><a href="{% url 'contact' %}">Contact</a></li>
+                     
+                  </ul>
+              </div>
+              <div class="footer-social">
+                  <h3>Follow Us</h3>
+                  <div class="social-icons">
+                      <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
+                      <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
+                      <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
+                      <a href="#"><img src="linkedin-icon.png" alt="LinkedIn"></a>
+                  </div>
+              </div>
+              <div class="footer-contact">
+                  <h3>Contact Us</h3>
+                  <p>123 Street Name, Rajkot, Gujarat, 12345</p>
+                  <p>Phone: +91 9727238220</p>
+                  <p>Email: info@yourcompany.com</p>
+              </div>
+                  
+          </div>
+          <div class="footer-bottom">
+              <p>&copy; 2024 Your Company. All rights reserved.</p>
+             
+          </div>
+      </footer>
+  </body>
+  </html>
 
 
 
