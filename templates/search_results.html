@@ -1,0 +1,54 @@
+<!-- search_results.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <!-- Add any necessary CSS styles or link to your stylesheet -->
+    <style>
+        /* Example styles, adjust as needed */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Search Results</h1>
+    
+    {% if cars %}
+        <h3>Showing available cabs for {{ pickup }} to {{ drop }} on {{ pickup_datetime }}</h3>
+        <ul>
+            {% for car in cars %}
+                <li>
+                    <h4>{{ car.name }}</h4>
+                    <!-- Display other details of the car as needed -->
+                    <p>Pickup Location: {{ pickup }}</p>
+                    <p>Drop Location: {{ drop }}</p>
+                    <p>Pickup Date/Time: {{ pickup_datetime }}</p>
+                    {% if return_date %}
+                        <p>Return Date: {{ return_date }}</p>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No cabs found for the specified criteria.</p>
+    {% endif %}
+</body>
+</html>

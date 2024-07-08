@@ -12,16 +12,17 @@
           <form action="{% url 'sendmail_contact' %}" method="post">
             {% csrf_token %}
             <div class="form-group">
-              <input type="text" class="form-control form-control-lg" placeholder="Your Name" name="name" required>
+                <input type="text" class="form-control form-control-lg" placeholder="Your Name" name="name" required>
+            </div>
+           
+            <div class="form-group">
+                <input type="text" class="form-control form-control-lg"  placeholder="Phone Number" name="mobail" required pattern="[0-9]{10}" title="Please enter a 10-digit mobile number"  >
             </div>
             <div class="form-group">
-              <input type="tel" class="form-control form-control-lg" placeholder="Phone Number" name="mobile" pattern="[0-9]{10}" title="Please enter a 10-digit mobile number" required>
-            </div>
-            <div class="form-group">
-              <textarea class="form-control form-control-lg" rows="5" placeholder="Message" name="message" required></textarea>
+                <textarea class="form-control form-control-lg" rows="5" placeholder="Message" name="message" required></textarea>
             </div>
             <button type="submit" class="btn btn-orange btn-block btn-lg">Send Message</button>
-          </form>
+        </form>
           {% for message in messages %}
           <div class="alert alert-warning alert-dismissible fade show mt-4" role="alert">
             <strong>Message:</strong> {{ message }}

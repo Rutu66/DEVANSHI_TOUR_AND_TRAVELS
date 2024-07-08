@@ -51,9 +51,13 @@ def sendmail_booking(request):
 def sendmail_contact(request):
     
     if request.method == "POST":
-        name = request.POST['name']
-        mobail = request.POST['mobail']
-        message = request.POST['message']
+       
+       
+        
+        name = request.POST.get('name', '')
+        
+        mobile = request.POST.get('mobile', '')  # Use the correct key here
+        message = request.POST.get('message', '')
         
     full_message = f"""
         Received message below from {name}
@@ -61,8 +65,8 @@ def sendmail_contact(request):
         .....................................
         
         massage : {message}
-        mobail no : {mobail}
-    """
+        mobail no : {mobile}
+    """ 
     send_mail(
         "Receve contact details from yashtaxi",
         full_message,
@@ -77,32 +81,15 @@ def sendmail_contact(request):
     
 
 
-    
 
 def index(request):
     
     
     car_list = Car.objects.all()
-    packages = Package.objects.all()
-    
-    
-    package_list = []   
-    for package in packages:
-        package_car_relationships = PackageCarRelationship.objects.filter(package=package)
-        package_cars = []
-        for relationship in package_car_relationships:
-            package_cars.append({
-                'car': relationship.car,
-                'price': relationship.price,
-            })
-        package_list.append({
-            'package': package,
-            'cars': package_cars,
-        })
     
     data = {
-        'car_list': car_list,
-        'package_list': package_list,
+        'car_list': car_list
+       
         
     }
     
@@ -111,10 +98,11 @@ def index(request):
 
 def cars(request):
     """ For cars page...."""
-    
+    car_list = Car.objects.all()
+
 
     # Pass the data to the template
-    trip_type = request.GET.get('trip_type', '')
+    # trip_type = request.GET.get('trip_type', '')
     travel_type = request.GET.get('travel_type', '')
     pickup_location = request.GET.get('pickup', '')
     drop_location = request.GET.get('drop', '')
@@ -124,14 +112,18 @@ def cars(request):
 
     # Pass the data to the template
     return render(request, 'cars.html', {
-        'trip_type': trip_type,
+        # 'trip_type': trip_type,
         'travel_type' : travel_type,
         'pickup_location': pickup_location,
         'drop_location': drop_location,
         'pickup_date': pickup_date,
         'pickup_time': pickup_time,
         'return_date': return_date,
+        'car_list': car_list,
     })
+    
+        
+
     
     
     
@@ -161,24 +153,50 @@ def contact(request):
 def service(request):
     """ For service page..."""
     
-    packages = Package.objects.all()
+   
     
-    package_list = []
-    for package in packages:
-        package_car_relationships = PackageCarRelationship.objects.filter(package=package)
-        package_cars = []
-        for relationship in package_car_relationships:
-            package_cars.append({
-                'car': relationship.car,
-                'price': relationship.price,
-            })
-        package_list.append({
-            'package': package,
-            'cars': package_cars,
-        })
-    
-    data = {
-        'package_list': package_list
-    }
-    
-    return render(request, 'service.html', data)
+    return render(request, 'service.html')
+
+
+
+# **************************************************************************
+
+# views.py
+
+from django.shortcuts import render
+from .models import Car, Price
+from datetime import datetime
+
+def search_cabs_view(request):
+    if request.method == 'GET':
+        travel_type = request.GET.get('travel_type')
+        pickup = request.GET.get('pickup')
+        drop = request.GET.get('drop')
+        pickup_date = request.GET.get('pickup_date')
+        pickup_time = request.GET.get('pickup_time')
+        return_date = request.GET.get('return_date')
+        
+        # Parse pickup date and time into a datetime object
+        pickup_datetime = datetime.strptime(pickup_date + ' ' + pickup_time, '%Y-%m-%d %H:%M')
+        
+        # Adjust return date format if available
+        formatted_return_date = datetime.strptime(return_date, '%Y-%m-%d').strftime('%d/%m/%y') if return_date else None
+        
+        # Query based on trip type and travel type
+        cars = Car.objects.filter(prices__pickup_location=pickup, prices__drop_location=drop)
+        
+        if travel_type == 'one_way':
+            cars = cars.filter(prices__pickup_location=pickup, prices__drop_location=drop)
+        elif travel_type == 'round_trip':
+            cars = cars.filter(prices__pickup_location=pickup, prices__drop_location=drop)
+        
+        context = {
+            'cars': cars.distinct(),  # Ensure each car appears only once
+            'pickup': pickup,
+            'drop': drop,
+            'pickup_datetime': pickup_datetime,
+            'return_date': formatted_return_date,
+            'travel_type': travel_type,
+        }
+        
+        return render(request, 'cars.html', context)

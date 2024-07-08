@@ -1,4 +1,12 @@
 /* General styles */
+
+@media (max-width: 768px) {
+  .col-md-7 {
+    margin-left: -4px;
+  }
+}
+
+
 @media (max-width: 992px) {
   .slider_section .slider_form {
     width: 100%;
@@ -85,6 +93,7 @@
 
   .why_section .box .img-box {
     margin-bottom: 25px;
+    margin-left: 15%;
   }
 }
 
@@ -100,3 +109,4 @@
     max-width: 1170px;
   }
 }
+

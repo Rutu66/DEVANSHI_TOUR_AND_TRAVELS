@@ -17,7 +17,7 @@
     <title>Devanshi Tour and Travels</title>
 
     <!-- slider stylesheet -->
-    <link rel="stylesheet" type="text/css" href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
 
     <!-- bootstrap core css -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
@@ -129,209 +129,7 @@
     <br>
     <br>
     <br>
-    {% comment %} <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Rental Website</title>
-    <style>
-        /* Basic Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-        }
-
-        /* Footer Styling */
-        .footer {
-            background: linear-gradient(135deg, #333, #444);
-            color: #fff;
-            
-            text-align: center;
-        }
-
-        .footer-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .footer-column {
-            flex: 1 1 200px;
-            margin: 20px;
-            padding: 20px;
-            border: 1px solid #555;
-            border-radius: 10px;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .footer-column:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .footer-column h3 {
-            margin-bottom: 20px;
-            font-size: 22px;
-            border-bottom: 3px solid #f39c12;
-            display: inline-block;
-            padding-bottom: 5px;
-            color: #f39c12;
-            transition: color 0.3s, border-color 0.3s;
-        }
-
-        .footer-column h3:hover {
-            color: #ff5733;
-            border-color: #ff5733;
-        }
-
-        .footer-column p, .footer-column ul {
-            margin-bottom: 20px;
-        }
-
-        .footer-column ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .footer-column ul li {
-            margin-bottom: 10px;
-        }
-
-        .footer-column ul li a {
-            color: #fff;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-column ul li a:hover {
-            color: #f39c12;
-        }
-
-        .footer-column .social-links {
-            display: flex;
-            justify-content: center;
-        }
-
-        .footer-column .social-links li {
-            margin: 0 10px;
-        }
-
-        .footer-column .social-links li a {
-            font-size: 24px;
-            color: #fff;
-            background: #f39c12;
-            padding: 10px;
-            border-radius: 10%;
-            transition: color 0.3s, background 0.3s;
-        }   
-
-        .footer-column .social-links li a:hover {
-            color: #fff;
-            background: #ff5733;
-        }
-
-        .footer-bottom {
-            margin-top: 20px;
-            border-top: 1px solid #555;
-            padding-top: 10px;
-            font-size: 14px;
-        }
-
-        .footer-logo {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .footer-logo img {
-            max-width: 200px;
-            border-radius: 50%;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-
-        .footer-logo img:hover {
-            transform: scale(1.1) rotate(10deg);
-        }
-
-        @media (max-width: 768px) {
-            .footer-container {
-                flex-direction: column;
-                text-align: left;
-            }
-            .footer-column {
-                flex: 1 1 100%;
-                margin: 20px 0;
-            }
-            .footer-column .social-links {
-                justify-content: flex-start; /* Adjust alignment of social links */
-            }
-            .footer-logo img {
-                max-width: 150px;
-            }
-        }
-        
-    </style>
-    <!-- Font Awesome for Social Media Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMd2KxGhA4KPrR6Qo6B5CH9dKdb8m5U5nVw5J5F" crossorigin="anonymous">
-</head>
-<body>
-    <!-- Other content of the website -->
-
-    <footer class="footer">
-        <div class="footer-logo">
-            <img src="/static/images/DEVANSHI-EPS.png" alt="" style="background-color: honeydew;height: 174px;margin: -60px;">
-           
-        </div>
-        <div class="footer-container">
-            <div class="footer-column">
-                <h3>About Us</h3>
-                <p>Welcome to Devanshi Tour And Travels At Devanshi Tour And Travels, we are committed to providing reliable, safe, and comfortable transportation solutions.</p>
-            </div>
-            <div class="footer-column">
-                <h3>Contact Us</h3>
-                <ul>
-                    <li>Phone: +91 9727238220</li>
-                    <li>Email: devanshiinfo.com</li>
-                    <li>Address: 123 Main St, Rajkot, India</li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="{% url 'index' %}">Home</a></li>
-                    <li><a href="{% url 'about' %}">About</a></li>
-                    <li><a href="{% url 'service' %}">Service</a></li>
-                    <li><a href="{% url 'contact' %}">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3>Follow Us</h3>
-                <ul class="social-links">
-                    <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                    <li><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
-                    <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
-                    
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Car Rental. All Rights Reserved.</p>
-        </div>
-    </footer>
-
-    <!-- Font Awesome for Social Media Icons -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMd2KxGhA4KPrR6Qo6B5CH9dKdb8m5U5nVw5J5F" crossorigin="anonymous"></script>
-</body>
-</html> {% endcomment %}
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -346,7 +144,7 @@
         .footer {
             background-color: #2c3e50; /* Dark blue-gray background */
             color: #ffffff; /* White text */
-            padding: 20px;
+            padding: 1px;
             box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
         }
 
@@ -528,6 +326,7 @@
 
     <!-- Footer Section -->
     <footer class="footer">
+        <br>
         <div class="footer-container">
             <div class="footer-logo">
                 <span>
@@ -550,11 +349,12 @@
             <div class="footer-social">
                 <h3>Follow Us</h3>
                 <div class="social-icons">
-                    <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
-                    <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
-                    <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
-                    <a href="#"><img src="linkedin-icon.png" alt="LinkedIn"></a>
+                    <a href="#"><img src="{% static 'images/facebook-icon.png' %}" alt="Facebook"></a>
+                    <a href="#"><img src="{% static 'images/twitter-icon.png' %}" alt="Twitter"></a>
+                    <a href="#"><img src="{% static 'images/instagram-icon.png' %}" alt="Instagram"></a>
+                    <a href="#"><img src="{% static 'images/linkedin-icon.png' %}" alt="LinkedIn"></a>
                 </div>
+                
             </div>
             <div class="footer-contact">
                 <h3>Contact Us</h3>

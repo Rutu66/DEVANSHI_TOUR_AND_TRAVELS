@@ -31,881 +31,1306 @@
     <!-- responsive style -->
     <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
 </head>
-
-<body>
-    <div class="hero_area_index">
-        <!-- header section starts -->
-        <header class="header_section">
-            <div class="container-fluid">
-                <nav class="navbar navbar-expand-lg custom_nav-container" style="padding-top: 20px;">
-                    <a class="navbar-brand" href="{% url 'index' %}">
-                        <span>
-                            <img src="/static/images/DEVANSHI-EPS.png"
-                                alt="" style="height: 174px; margin: -60px; margin-left: -27px;">
-                        </span>
-                    </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
-                            <ul class="navbar-nav">
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="{% url 'index' %}">Home <span
-                                            class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'about' %}">About</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'service' %}">Services</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
-                                </li>
-                                <!DOCTYPE html>
-                                <html lang="en">
-                                <head>
-                                    <meta charset="UTF-8">
-                                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                                    <title>Clickable Phone Number</title>
-                                    <style>
-                                        .phone-box {
-                                            display: inline-block;
-                                            padding: 10px 25px;
-                                            border: 2px solid #333;
-                                            border-radius: 10px;
-                                            background-color: #fff;
-                                            color: #333;
-                                            font-size: 18px;
-                                            text-align: center;
-                                            text-decoration: none;
-                                            font-family: Arial, sans-serif;
-                                            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-                                        }
-  
-                                        .phone-box:hover {
-                                          background-color: #d7d7d7;
-                                          color: #000000;
-                                          border-color: #000000;
-                                          cursor: pointer;
-                                      }
-  
-                                        .phone-box .icon {
-                                            margin-right: 10px;
-                                        }
-                                    </style>
-                                </head>
-                                <body>
-  
-                                <a href="tel:+919727238220" class="phone-box">
-                                    <span class="icon">📞</span> +91 9727238220
-                                </a>
-  
-                                </body>
-                                </html>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-        </header>
-        <!-- end header section -->
-        
-
-        <!-- slider section -->
-        {% comment %} <section class="slider_section">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-7">
-                        <div class="box">
-                          <h4 style="color: #000000; font-weight: bold;">Devanshi Tour And Travels</h4>
-
-                            <div class="detail-box">
-                                <h1> Enjoy Your Comfortable Trip. </h1>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 10px;">
-                              <button style="padding: 10px 20px; border-radius: 5px; font-size: 16px; font-weight: bold; text-align: center; text-decoration: none; background-color: #FFA500; color: #fff; border: none; cursor: pointer;">
-                                  INQUIRY NOW
-                              </button>
-                              <div style="padding: 10px 20px; border-radius: 5px; font-size: 16px; font-weight: bold; text-align: center; text-decoration: none; background-color: #000; color: #fff; border: none; display: flex; align-items: center;">
-                                  <span style="margin-right: 10px;">📞</span>
-                                  <a href="tel:+919727238220" class="">+91 9727238220</a>
-
-                              </div>
-                          </div>
-                          <br>
-                           
-
-                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <div class="img-box">
-                                            <img src="{% static 'images/b.png' %}" alt="" />
-                                        </div>
-                                    </div>
-
-                                    
+</html>
 
 
-                                </div>
+<!-- header section starts -->
 
-                                
-                            </div>
-
-                            
-
-
-                        </div>
-                        
-
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card"
-                            style="border-radius: 20px; background-color: #000000; color: #ffffff; box-shadow: 0 4px 8px rgba(0,0,0,0.1); font-family: Arial, sans-serif;">
-                            <div class="card-body">
-                                <h4 class="card-title text-center mb-4">Taxi Booking</h4>
-                                <form action="{% url 'sendmail_booking' %}" method="post">
-                                    {% csrf_token %}
-                                    <div class="form-group">
-                                        <label for="name">Your Name</label>
-                                        <input type="text" class="form-control" id="name" name="name"
-                                            placeholder="Enter your name"
-                                            style="background-color: #333333; color: #ffffff; border-color: #444444; border-radius: 20px; font-family: inherit;"
-                                            required>
-                                    </div>
-                                    <div class="form-group">
-                                        
-                                        <select class="form-control" id="cars" name="cars"
-                                            style="background-color: #333333; color: #ffffff; border-color: #444444; border-radius: 20px; font-family: inherit;"
-                                            required>
-                                            <option value="">Select a car</option>
-                                            {% for car in car_list %}
-                                                <option value="{{ car.id }}">{{ car.name }}</option>
-                                            {% endfor %}
-                                        </select>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="pickup">From</label>
-                                            <input type="text" class="form-control" id="pickup" name="pickup"
-                                                placeholder="Pickup location"
-                                                style="background-color: #333333; color: #ffffff; border-color: #444444; border-radius: 20px; font-family: inherit;"
-                                                required>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="drop">To</label>
-                                            <input type="text" class="form-control" id="drop" name="drop"
-                                                placeholder="Drop location"
-                                                style="background-color: #333333; color: #ffffff; border-color: #444444; border-radius: 20px; font-family: inherit;"
-                                                required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="mobail">Your Phone Number</label>
-                                        <input type="text" class="form-control" id="mobail" name="mobail"
-                                            placeholder="Enter your phone number"
-                                            style="background-color: #333333; color: #ffffff; border-color: #444444; border-radius: 20px; font-family: inherit;"
-                                            required pattern="[0-9]{10}"
-                                            title="Please enter a 10-digit mobile number">
-                                    </div>
-                                    <button type="submit" class="btn btn-warning btn-block"
-                                        style="background-color: #ffc107; border-color: #ffc107; border-radius: 20px; font-family: inherit;">
-                                        Book Now
-                                    </button>
-                                    {% for message in messages %}
-                                    <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert"
-                                        style="background-color: #444444; color: #ffffff; border-radius: 20px; font-family: inherit;">
-                                        <strong>Message:</strong> {{ message }}
-                                        <button type="button" class="close" data-dismiss="alert"
-                                            aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    {% endfor %}
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>  
-            </div>
-        </section>  {% endcomment %}
-        <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Title Here</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-pzjw8f+ua7Kw1TIqjwHcyvh/lovb1LPF+2byDYf7Sg5CG1sFPA3R8VKcPjPY3H+6" crossorigin="anonymous">
+
     <!-- Custom CSS -->
     <style>
-        body {
-            overflow-x: hidden; /* Prevent horizontal scrolling */
-            background-color: #f0f0f0; /* Example background color */
+        /* Header Styling */
+        .header_section {
+            background-color: #f7c621;
+           
         }
-        .slider_section {
-            padding: 50px 0; /* Adjust padding as needed */
+
+        .navbar-brand img {
+            height: 174px;
+            margin: -60px 0 -60px -27px;
         }
-        .box {
-            background-color: #ffffff;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+
+        .navbar-nav .nav-item .nav-link {
+            color: #000;
+            font-size: 18px;
+            padding: 10px 20px;
+            transition: color 0.3s ease;
         }
-        .img-fluid {
-            max-width: 100%;
-            height: auto;
+
+        .navbar-nav .nav-item .nav-link:hover {
+            color: #0056b3;
         }
-        .form-control {
-            background-color: #333333;
-            color: #ffffff;
-            border-color: #444444;
-            border-radius: 20px;
-            font-family: inherit;
+
+        /* Clickable Phone Box */
+        .phone-box {
+            display: inline-block;
+            padding: 10px 25px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            background-color: #fff;
+            color: #333;
+            font-size: 18px;
+            text-align: center;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
         }
-        .btn-warning {
-            background-color: #ffc107;
-            border-color: #ffc107;
-            border-radius: 20px;
-            font-family: inherit;
+
+        .phone-box:hover {
+            background-color: #d7d7d7;
+            color: #000;
+            border-color: #000;
+            cursor: pointer;
+        }
+
+        .phone-box .icon {
+            margin-right: 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar-brand img {
+                height: 100px;
+                margin: -30px 0 -30px -15px;
+            }
+
+            .navbar-nav .nav-item .nav-link {
+                font-size: 16px;
+                padding: 8px 15px;
+            }
+
+            .phone-box {
+                padding: 8px 20px;
+                font-size: 16px;
+            }
         }
     </style>
 </head>
+
 <body>
+    <!-- Header Section -->
+    <header class="header_section">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg custom_nav-container">
+                <a class="navbar-brand" href="{% url 'index' %}">
+                    <img src="/static/images/DEVANSHI-EPS.png" alt="Devanshi Tour And Travels Logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-<section class="slider_section">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-7">
-                <div class="box">
-                    <h4 style="color: #000000; font-weight: bold;">Devanshi Tour And Travels</h4>
-                    <div class="detail-box">
-                        <h1>Enjoy Your Trip.</h1>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="ml-auto d-flex flex-column flex-lg-row align-items-center">
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'about' %}">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'service' %}">Services</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+                            </li>
+                        </ul>
+                        <a href="tel:+919227091009" class="phone-box ml-lg-3 mt-3 mt-lg-0">
+                            <span class="icon">📞</span> +91 92270 91009
+                        </a>
                     </div>
-                    <div style="display: flex; align-items: center; gap: 10px;">
-                        <button style="padding: 10px 20px; border-radius: 5px; font-size: 16px; font-weight: bold; text-align: center; text-decoration: none; background-color: #FFA500; color: #fff; border: none; cursor: pointer;">
-                            INQUIRY NOW
-                        </button>
-                        <div style="padding: 10px 20px; border-radius: 5px; font-size: 16px; font-weight: bold; text-align: center; text-decoration: none; background-color: #000; color: #fff; border: none; display: flex; align-items: center;">
-                            <span style="margin-right: 10px;">📞</span>
-                            <a href="tel:+919727238220" class="">+91 9727238220</a>
-                        </div>
-                    </div>
-                    <br>
+                </div>
+            </nav>
+        </div>
+    </header>
 
-                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <div class="img-box">
-                                    <img src="{% static 'images/b.png' %}" class="img-fluid" alt="" />
+    <!-- Optional JavaScript and Bootstrap Bundle with Popper -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-pzjw8f+ua7Kw1TIqDQIGfhUT7yM97wxgAXjDUyY/i3Vyb5X9KT1b7BlLZJLm4XK7" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgT9GOBmYFf5kR/nBbn4TVsbA68p11Dykp1JTvwFvQzFfymhHln" crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+
+<!-- end header section -->
+
+<!-- Slider Section -->
+
+   <!DOCTYPE html>
+   <html lang="en">
+   
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Your Title Here</title>
+       <!-- Bootstrap CSS -->
+       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+       <!-- Custom CSS -->
+       <style>
+           /* General Body Styling */
+           body {
+               overflow-x: hidden; /* Prevent horizontal scrolling */
+               background-color: #f8f9fa; /* Example background color */
+               font-family: Arial, sans-serif;
+           }
+   
+           /* Slider Section */
+           .slider_section {
+               padding: 50px 0; /* Adjust padding as needed */
+           }
+   
+           .box {
+               background-color: #ffffff;
+               border-radius: 15px;
+               padding: 30px;
+               box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+           }
+   
+           .img-fluid {
+               max-width: 100%;
+               height: auto;
+           }
+   
+           /* Inquiry Button and Phone Display */
+           .inquiry-container {
+               display: flex;
+               align-items: center;
+               gap: 15px;
+               padding: 10px;
+           }
+   
+           .inquiry-button {
+               padding: 12px 24px;
+               border-radius: 8px;
+               font-size: 18px;
+               font-weight: bold;
+               text-align: center;
+               background-color: #FFA500;
+               color: #fff;
+               border: none;
+               cursor: pointer;
+               transition: background-color 0.3s ease, transform 0.3s ease;
+           }
+   
+           .inquiry-button:hover {
+               background-color: #e69500;
+               transform: scale(1.05);
+           }
+   
+           .phone-display {
+               display: flex;
+               align-items: center;
+               padding: 12px 24px;
+               border-radius: 8px;
+               font-size: 18px;
+               font-weight: bold;
+               text-align: center;
+               background-color: #333;
+               color: #fff;
+           }
+   
+           .phone-icon {
+               margin-right: 12px;
+               font-size: 20px;
+           }
+   
+           .phone-number {
+               color: #fff;
+               text-decoration: none;
+               font-size: 18px;
+           }
+   
+           .phone-number:hover {
+               text-decoration: underline;
+           }
+   
+           /* Card and Form Styling */
+           .card {
+               border-radius: 20px;
+               background-color: #000;
+               color: #fff;
+               box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+           }
+   
+           .card-title {
+               font-size: 24px;
+               margin-bottom: 20px;
+               text-align: center;
+               font-weight: bold;
+           }
+   
+           .form-control {
+               background-color: #333;
+               color: #fff;
+               border-color: #444;
+               border-radius: 20px;
+               font-family: inherit;
+               padding: 10px;
+           }
+   
+           .btn-warning {
+               background-color: #ffc107;
+               border-color: #ffc107;
+               border-radius: 20px;
+               font-family: inherit;
+               padding: 10px 20px;
+               transition: background-color 0.3s ease, transform 0.3s ease;
+           }
+   
+           .btn-warning:hover {
+               background-color: #e0a800;
+               transform: scale(1.05);
+           }
+   
+           /* Responsive Design */
+           @media (max-width: 768px) {
+               .inquiry-container {
+                   margin-right: 60px;
+                   flex-direction: column;
+                   gap: 10px;
+               }
+   
+               .inquiry-button,
+               .phone-display {
+                   width: 100%;
+                   text-align: center;
+                   padding: 10px;
+               }
+   
+               .phone-icon {
+                   margin-right: 8px;
+               }
+   
+               .phone-number {
+                   font-size: 16px;
+               }
+           }
+   
+           @media (max-width: 480px) {
+               .inquiry-button {
+                   font-size: 16px;
+                   padding: 10px 20px;
+               }
+   
+               .phone-display {
+                   font-size: 16px;
+                   padding: 10px 20px;
+               }
+   
+               .phone-icon {
+                   font-size: 18px;
+                   margin-right: 6px;
+               }
+           }
+       </style>
+   </head>
+   
+   <body>
+       <section class="slider_section">
+           <div class="container-fluid">
+               <div class="row">
+                   <!-- Main Box Section -->
+                   <div class="col-md-7">
+                       <div class="box">
+                           <h4 style="color: #000; font-weight: bold;">Devanshi Tour And Travels</h4>
+                           <div class="detail-box">
+                               <h1>Enjoy Your Trip.</h1>
+                           </div>
+                           <!-- Inquiry Button and Phone Display -->
+                           <div class="inquiry-container">
+                               <button class="inquiry-button">INQUIRY NOW</button>
+                               <div class="phone-display">
+                                   <span class="phone-icon">📞</span>
+                                   <a href="tel:+919727238220" class="phone-number">+91 9727238220</a>
+                               </div>
+                           </div>
+   
+                           <!-- Carousel -->
+                           <div id="carouselExampleIndicators" class="carousel slide mt-4" data-ride="carousel">
+                               <div class="carousel-inner">
+                                   <div class="carousel-item active">
+                                       <div class="img-box">
+                                           <img src="{% static 'images/b.png' %}" class="img-fluid" alt="Carousel Image" />
+                                       </div>
+                                   </div>
+                                   <!-- Add more carousel items as needed -->
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+   
+                   <!-- Form Section -->
+                   <div class="col-lg-4 col-md-5" style="margin-top: -100px;">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title text-center mb-4">Search Cab</h4>
+                            <form action="{% url 'search_cabs' %}" method="get">
+                                {% csrf_token %}
+                
+                                <!-- Travel Type Selection -->
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Travel Type:</label><br>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="travel_type" id="one_way" value="one_way" 
+                                               {% if travel_type == "one_way" %} checked {% endif %} required>
+                                        <label class="form-check-label" for="one_way">One Way</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="travel_type" id="round_trip" value="round_trip" 
+                                               {% if travel_type == "round_trip" %} checked {% endif %} required>
+                                        <label class="form-check-label" for="round_trip">Round Trip</label>
+                                    </div>
                                 </div>
-                            </div>
+                
+                                <!-- Pickup and Drop Locations -->
+                                <div class="form-row mb-3">
+                                    <div class="form-group col-md-6">
+                                        <label for="pickup" class="form-label">Pickup Location</label>
+                                        <input type="text" class="form-control" id="pickup" name="pickup" placeholder="Enter pickup location" 
+                                               value="{{ pickup }}" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="drop" class="form-label">Drop Location</label>
+                                        <input type="text" class="form-control" id="drop" name="drop" placeholder="Enter drop location" 
+                                               value="{{ drop }}" required>
+                                    </div>
+                                </div>
+                
+                                <!-- Pickup Date and Time -->
+                                <div class="form-row mb-3">
+                                    <div class="form-group col-md-6">
+                                        <label for="pickup_date" class="form-label">Pickup Date</label>
+                                        <input type="date" class="form-control" id="pickup_date" name="pickup_date" 
+                                               value="{{ pickup_date }}" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="pickup_time" class="form-label">Pickup Time</label>
+                                        <input type="time" class="form-control" id="pickup_time" name="pickup_time" 
+                                               value="{{ pickup_time }}" required>
+                                    </div>
+                                </div>
+                
+                                <!-- Return Date (for Round Trip) -->
+                                <div id="return-date-group" class="mb-3" style="display: {% if travel_type == 'round_trip' %}block{% else %}none{% endif %};">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="return_date" class="form-label">Return Date</label>
+                                            <input type="date" class="form-control" id="return_date" name="return_date" 
+                                                   value="{{ return_date }}" required>
+                                        </div>
+                                    </div>
+                                </div>
+                
+                                <!-- JavaScript to Handle Return Date Visibility -->
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', function () {
+                                        const roundTripRadio = document.getElementById('round_trip');
+                                        const returnDateGroup = document.getElementById('return-date-group');
+                
+                                        roundTripRadio.addEventListener('change', function () {
+                                            if (roundTripRadio.checked) {
+                                                returnDateGroup.style.display = 'block';
+                                                document.getElementById('return_date').setAttribute('required', '');
+                                            } else {
+                                                returnDateGroup.style.display = 'none';
+                                                document.getElementById('return_date').removeAttribute('required');
+                                            }
+                                        });
+                
+                                        // Initialize based on the current state
+                                        if (roundTripRadio.checked) {
+                                            returnDateGroup.style.display = 'block';
+                                            document.getElementById('return_date').setAttribute('required', '');
+                                        } else {
+                                            returnDateGroup.style.display = 'none';
+                                            document.getElementById('return_date').removeAttribute('required');
+                                        }
+                
+                                        // Listen for changes in travel type radio buttons
+                                        const travelTypeRadios = document.querySelectorAll('input[name="travel_type"]');
+                                        travelTypeRadios.forEach(radio => {
+                                            radio.addEventListener('change', function () {
+                                                if (radio.value !== 'round_trip') {
+                                                    returnDateGroup.style.display = 'none';
+                                                    document.getElementById('return_date').removeAttribute('required');
+                                                }
+                                            });
+                                        });
+                                    });
+                                </script>
+                
+                                <!-- Submit Button -->
+                                <button type="submit" class="btn btn-warning btn-block">Search</button>
+                            </form>
                         </div>
                     </div>
                 </div>
+                
+                
+
+               </div>
+           </div>
+       </section>
+   
+       <!-- Optional JavaScript and Bootstrap Bundle with Popper -->
+       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-pzjw8f+ua7Kw1TIqDQIGfhUT7yM97wxgAXjDUyY/i3Vyb5X9KT1b7BlLZJLm4XK7" crossorigin="anonymous"></script>
+       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgT9GOBmYFf5kR/nBbn4TVsbA68p11Dykp1JTvwFvQzFfymhHln" crossorigin="anonymous"></script>
+   </body>
+   
+   </html>
+
+   
+
+<!-- end slider section -->
+
+
+<!-- about section -->
+  
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Taxi Company</title>
+    <style>
+        /* Add your custom CSS styles here */
+    </style>
+</head>
+
+<body>
+    <!-- About Section -->
+    <section class="about_section index_layout_padding">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4 col-md-5 offset-lg-2 offset-md-1">
+                    <div class="detail-box">
+                        <h2>
+                            About <br />
+                            Taxi Company
+                        </h2>
+                        <p>Welcome to Devanshi Tour And Travels.</p>
+                        <p>At Devanshi Tour And Travels, we are committed to providing reliable, safe, and comfortable transportation solutions. With years of experience in the industry, we have become a trusted name in the community for our dedication to customer satisfaction and quality service.</p>
+                        <a href="{% url 'about' %}">Read More</a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="img-box">
+                        <img src="{% static 'images/e.png' %}" alt="Image description">
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-4 col-md-5" style="margin-top: -100px;">
-              <div class="card" style="border-radius: 20px; background-color: #000000; color: #ffffff; box-shadow: 0 4px 8px rgba(0,0,0,0.1); font-family: Arial, sans-serif;">
-                  <div class="card-body">
-                      <h4 class="card-title text-center mb-4">Search Cab</h4>
-                      <form action="{% url 'cars' %}" method="get">
-                          {% csrf_token %}
-                          <div class="form-group">
-                              <label>Trip Type:</label><br>
-                              <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="radio" name="trip_type" id="outstanding" value="outstation" required>
-                                  <label class="form-check-label" for="outstanding">Outstation</label>
-                              </div>
-                              <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="radio" name="trip_type" id="local" value="local" required>
-                                  <label class="form-check-label" for="local">Local</label>
-                              </div>
-                          </div>
-          
-                          <div class="form-group">
-                              <label>Travel Type:</label><br>
-                              <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="radio" name="travel_type" id="one_way" value="one_way" required>
-                                  <label class="form-check-label" for="one_way">One Way</label>
-                              </div>
-                              <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="radio" name="travel_type" id="round_trip" value="round_trip" required>
-                                  <label class="form-check-label" for="round_trip">Round Trip</label>
-                              </div>
-                          </div>
-          
-                          <div class="form-row">
-                              <div class="form-group col-md-6">
-                                  <label for="pickup">Pickup Location</label>
-                                  <input type="text" class="form-control" id="pickup" name="pickup" placeholder="Enter pickup location" required>
-                              </div>
-                              <div class="form-group col-md-6">
-                                  <label for="drop">Drop Location</label>
-                                  <input type="text" class="form-control" id="drop" name="drop" placeholder="Enter drop location" required>
-                              </div>
-                          </div>
-          
-                          <div class="form-row">
-                              <div class="form-group col-md-6">
-                                  <label for="pickup_date">Pickup Date</label>
-                                  <input type="date" class="form-control" id="pickup_date" name="pickup_date" required>
-                              </div>
-                              <div class="form-group col-md-6">
-                                  <label for="pickup_time">Pickup Time</label>
-                                  <input type="time" class="form-control" id="pickup_time" name="pickup_time" required>
-                              </div>
-                          </div>
-          
-                          <div id="return-date-group" style="display: none;">
-                              <div class="form-row">
-                                  <div class="form-group col-md-6">
-                                      <label for="return_date">Return Date</label>
-                                      <input type="date" class="form-control" id="return_date" name="return_date">
-                                  </div>
-                              </div>
-                          </div>  
-          
-                          <script>
-                              document.addEventListener('DOMContentLoaded', function () {
-                                  const roundTripRadio = document.getElementById('round_trip');
-                                  const returnDateGroup = document.getElementById('return-date-group');
-          
-                                  roundTripRadio.addEventListener('change', function () {
-                                      if (roundTripRadio.checked) {
-                                          returnDateGroup.style.display = 'block';
-                                          document.getElementById('return_date').setAttribute('required', '');
-                                      } else {
-                                          returnDateGroup.style.display = 'none';
-                                          document.getElementById('return_date').removeAttribute('required');
-                                      }
-                                  });
-          
-                                  if (roundTripRadio.checked) {
-                                      returnDateGroup.style.display = 'block';
-                                      document.getElementById('return_date').setAttribute('required', '');
-                                  } else {
-                                      returnDateGroup.style.display = 'none';
-                                      document.getElementById('return_date').removeAttribute('required');
-                                  }
-          
-                                  const travelTypeRadios = document.querySelectorAll('input[name="travel_type"]');
-                                  travelTypeRadios.forEach(radio => {
-                                      radio.addEventListener('change', function () {
-                                          if (radio.value !== 'round_trip') {
-                                              returnDateGroup.style.display = 'none';
-                                              document.getElementById('return_date').removeAttribute('required');
-                                          }
-                                      });
-                                  });
-                              });
-                          </script>
-          
-                          <button type="submit" class="btn btn-warning btn-block" style="border-radius: 20px;">Search</button>
-                      </form>
-                  </div>
-              </div>
-          </div>
-          
-          
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Bootstrap JS and dependencies -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-Jg8Kv1O8pjfvyz1PE9SssYDwiB+6bjcOx2ig+0E4x0Pfs9Z+g7xkXgIVl+8aezjq" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+Wr+8fIKy5eR8MGhywP4zs+3fFpSFwnz/fi" crossorigin="anonymous"></script>
+    <!-- Your other HTML content goes here -->
 
-</body>
-</html>
-
-        
-        
-        <!-- end slider section -->
-    </div>
+    <!-- Optional JavaScript and Bootstrap Bundle with Popper -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
+        integrity="sha384-pzjw8f+ua7Kw1TIqDQIGfhUT7yM97wxgAXjDUyY/i3Vyb5X9KT1b7BlLZJLm4XK7"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgT9GOBmYFf5kR/nBbn4TVsbA68p11Dykp1JTvwFvQzFfymhHln"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
 
 
+<!-- end about section -->
+
+<!-- Car section -->
   
-  
+<section class="contact_section index_layout_padding-bottom"><div class="container"><div class="heading_container"><h2> Rented <br /> Cars </h2></div></div></section>
 
 
-
-  <!-- about section -->
-  
-  
-
-  <section class="about_section index_layout_padding">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-lg-4 col-md-5 offset-lg-2 offset-md-1">
-          <div class="detail-box">
-            <h2>
-              About <br />
-              Taxi Company
-            </h2>
-            <p> 
-            Welcome to Devanshi Tour And Travels
-
-            At Devanshi Tour And Travels, we are committed to providing reliable, safe, and comfortable transportation solutions. With years of experience in the industry, we have become a trusted name in the community for our dedication to customer satisfaction and quality service.
-
-            </p>
-            <a href="{% url 'about' %}"> Read More </a>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="img-box">
-            <img src="{% static 'images/e.png' %}" alt="" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- end about section -->
-
-  <!-- Car section -->
-  <section class="contact_section index_layout_padding-bottom"><div class="container"><div class="heading_container"><h2> Rented <br /> Cars </h2></div></div></section>
-
-     
-
-
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Choose Your Car</title>
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-      <style>
-          .container-custom {
-              max-width: 1200px;
-              margin: 40px auto;
-              padding: 30px;
-              background-color: #343a40;
-              border-radius: 15px;
-              box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-              color: #fff;
-          }
-  
-          .title-custom {
-            color: #fdd835;
-            padding: 15px;
-            text-align: center;
-            font-size: 28px;
-            font-weight: bold;
-            margin-bottom: 30px;
-            border-radius: 10px;
-        }
-        
-  
-          .card-custom {
-              border: none;
-              border-radius: 20px;
-              overflow: hidden;
-              transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-              background-color: #fff;
-              box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-              position: relative;
-              margin: 20px; /* Add margin for spacing between cards */
-          }
-  
-          .card-custom:hover {
-              transform: translateY(-10px);
-              box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-          }
-  
-          .card-img-top-custom {
-              width: 100%;
-              height: 200px;
-              object-fit: cover;
-          }
-  
-          .card-body-custom {
-              padding: 25px;
-              text-align: center;
-          }
-  
-          .card-title-custom {
-              font-size: 1.8em;
-              margin-bottom: 15px;
-              color: #343a40;
-          }
-  
-          .card-text-custom {
-              font-size: 1em;
-              color: #666;
-              margin-bottom: 20px;
-          }
-  
-          .btn-custom {
-              background-color: #fdd835;
-              color: #333;
-              border: none;
-              padding: 12px 25px;
-              border-radius: 30px;
-              transition: background-color 0.3s ease-in-out;
-              text-transform: uppercase;
-              font-weight: bold;
-              letter-spacing: 1px;
-          }
-  
-          .btn-custom:hover {
-              background-color: #ffc107;
-              color: #333;
-          }
-  
-          .price-custom {
-              font-size: 1.2em;
-              color: #333;
-              margin-top: 15px;
-          }
-  
-          .card-container-custom {
-              display: flex;
-              flex-wrap: wrap;
-              justify-content: center;
-          }
-      </style>
-  </head>
-  <body>
-  
-    <div class="container-custom">
-      
-      <div class="card-container-custom">
-          {% for car in car_list %}
-          <div class="card-custom" style="width: 18rem;">
-              <img src="{{ car.image.url }}" class="card-img-top-custom" alt="{{ car.name }}">
-              <div class="card-body-custom">
-                  <h5 class="card-title-custom">{{ car.name }}</h5>
-                  <p class="card-text-custom">A brief description about the car.</p>
-                 <a href="tel:+1234567890" class="btn-custom">Call Now</a>
-
-                  <p class="price-custom mt-3">Rs. {{ car.price }}/km</p>
-              </div>
-          </div>
-          {% endfor %}
-      </div>
-    </div>
-  
-  </body>
-  </html>
-  
-
-
-
-
- <!-- end Car section -->
-
- <!-- service section -->
- <style>
-  /* General Styles */
-  .a_service_container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 20px;
-  }
-  
-  .a_box {
-    background: linear-gradient(135deg, #00000, #000000);
-    border-radius: 15px;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-    margin: 20px;
-    flex: 1 1 300px;
-    max-width: 300px;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  
-  .a_box:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-  }
-  
-  .a_img-box {
-    text-align: center;
-    padding: 20px;
-    background-color: #ffc107;
-  }
-  
-  .a_img-box img {
-    max-width: 20%;
-    height: auto;
-  }
-  
-  .a_detail-box {
-    padding: 20px;
-    text-align: center;
-    background-color: #fff;
-  }
-  
-  .a_detail-box h5 {
-    font-size: 1.5em;
-    color: #333;
-    margin-bottom: 15px;
-  }
-  
-  .a_detail-box p {
-    font-size: 1em;
-    line-height: 1.8;
-    color: #666;
-  }
-  
-  /* Responsive Styles */
-  @media (max-width: 768px) {
-    .a_service_container {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .a_box {
-      max-width: 100%; /* Allow box to take full width of the viewport */
-    }
-  
-    .a_detail-box {
-      max-width: 100%; /* Ensure detail-box can expand to full width */
-      overflow: visible; /* Override overflow:hidden to allow content to be visible */
-    }
-  }
-  </style>
-  
-
-<section class="service_section layout_padding">
-  <div class="container">
-    <div class="service_heading_container">
-      <h2>
-        Our <br>
-        Taxi Services
-      </h2>
-    </div>
-
-    <div class="a_service_container">
-      <div class="a_box">
-        <div class="a_img-box">
-          <img src="{% static 'images/delivery-man-black1.png' %}" alt="">
-        </div>
-        <div class="a_detail-box">
-          <h5>Private Driver</h5>
-          <p>
-            The primary function of a Personal
-            Driver is to provide transportation 
-            for passengers from one location to 
-            another. It is essential that they 
-            drive their passengers in a safe, 
-            comfortable and professional manner 
-            while simultaneously keeping track 
-            of navigation, traffic and timing.
-          </p>
-        </div>
-      </div>
-      <div class="a_box">
-        <div class="a_img-box">
-          <img src="{% static 'images/City.png' %}" alt="">
-        </div>
-        <div class="a_detail-box">
-          <h5>City Tour</h5>
-          <p>
-            We are a specialist in providing Taxi service,
-            Car Rental Service and Tour Package service from 
-            city to city routes for business travelers and 
-            local tourist.We are committed to serve the best 
-            hassle free Taxi services, Cab services, Car hire
-             services in the major cities across the Gujarat.
-          </p>
-        </div>
-      </div>
-      <div class="a_box">
-        <div class="a_img-box">
-          <img src="{% static 'images/backpack-black.png' %}" alt="">
-        </div>
-        <div class="a_detail-box">
-          <h5>Luggage Transfer</h5>
-          <p>
-            Luggage delivery services provide
-            a door-to-door luggage delivery service,
-            where your luggage or sports equipment
-            is picked-up from your home, office or
-            any physical address and delivered to
-            your hotel, resort or any other physical
-            address. Luggage allowances are decreasing 
-            and excess luggage fees increasing.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
- <!-- end service section -->
-
-
-
-
-  
-
-  <!-- Packege section -->
-
- 
-
-  <!DOCTYPE html>
+{% comment %} <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tour Packages</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Responsive Car Rental Slider with Updated Design</title>
     <style>
-        /* Updated CSS with improved list design */
-        .main-container {
+        /* General Styles */
+        .c-slider-container {
             max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            text-align: center;
-        }
-        .package-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .package-card {
-            background: linear-gradient(145deg, #ffffff, #e6e6e6);
-            border-radius: 20px;
-            box-shadow: 5px 5px 10px #d9d9d9, -5px -5px 10px #ffffff;
+            margin: auto;
             overflow: hidden;
-            margin: 20px;
-            width: 300px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding: 20px 0;
         }
-        .package-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 20px 20px 60px #cccccc, -20px -20px 60px #ffffff;
-        }
-        .package-card-image img {
-            width: 100%;
-            height: auto;
-            border-bottom: 1px solid #ddd;
-        }
-        .package-card-content {
-            padding: 20px;
-        }
-        .package-card-content-heading h3 {
-            margin: 0 0 10px;
-            font-size: 1.5em;
-            font-weight: 700;
-        }
-        .package-car-wrapper {
-            text-align: left; /* Align list of cars to the left */
-            margin-top: 15px; /* Add margin on top */
-        }
-        .package-car {
+
+        .c-slider {
             display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-            padding: 10px;
-            background-color: #f9f9f9;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s ease-in-out;
         }
-        .package-car img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 10px;
+
+        .c-car-card {
+            flex: 0 0 calc(33.33% - 20px); /* Show 3 cards at a time with margin */
+            margin: 0 10px; /* Adjust margin between cards */
+            box-sizing: border-box;
+            background: linear-gradient(145deg, #ffffff, #e6e6e6);
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+            /* Improved typography and padding */
+            padding: 20px;
+            font-size: 16px;
+            line-height: 1.6;
+            text-align: center; /* Center align content */
         }
-        .package-car-content {
-            flex: 1;
+
+        .c-car-card:hover {
+            transform: translateY(-5px);
         }
-        .package-car-content h4 {
-            margin: 0;
+
+        .c-car-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .c-car-details {
+            text-align: center; /* Center align car details */
+            padding: 15px;
+        }
+
+        .c-car-name {
+            font-size: 1.2em;
+            color: #333; /* Dark text color */
+            margin-bottom: 5px;
+        }
+
+        .c-price {
             font-size: 1.1em;
-            font-weight: 400;
+            color: #e83e8c; /* Updated price color */
+            margin-bottom: 5px;
         }
-        .package-car-content p {
-            margin: 5px 0 0;
-            font-size: 0.9em;
+
+        .c-description {
             color: #666;
+            margin-bottom: 10px;
         }
-        .package-card-content-btn .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #ff9800;
+
+        .c-book-now {
+            padding: 8px 20px;
+            background-color: #ff9800; /* Button background color (green) */
             color: #fff;
-            text-decoration: none;
+            border: none;
             border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
-        .package-card-content-btn .btn:hover {
-            background-color: #e68900;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+
+        .c-book-now:hover {
+            background-color: #218838; /* Button hover background color (darker green) */
         }
+
+        /* Navigation dots */
+        .c-navigation-dots {
+            text-align: center;
+            padding-top: 20px;
+        }
+
+        .c-dot {
+            height: 15px;
+            width: 15px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .c-dot.active {
+            background-color: #007bff;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .c-car-card {
+                flex: 0 0 calc(50% - 20px); /* Show 2 cards at a time on medium screens */
+            }
+        }
+
         @media (max-width: 768px) {
-            .package-card {
-                width: 100%;
-                max-width: 300px;
+            .c-car-card {
+                flex: 1 0 calc(100% - 20px); /* Show 1 card at a time on small screens */
+                margin: 0 10px 20px; /* Adjust margin for single card */
             }
         }
     </style>
 </head>
 <body>
-    <div class="main-container">
-        <h1>Tour Packages</h1>
-        <div class="package-wrapper">
-            {% for package_data in package_list %}
-            <div class="package-card">
-                <div class="package-card-image">
-                    <img src="{{ package_data.package.image.url }}" alt="{{ package_data.package.name }}">
-                </div>
-                <div class="package-card-content">
-                    <div class="package-card-content-heading">
-                        <h3>{{ package_data.package.name }}</h3>
-                    </div>
-                    <div class="package-car-wrapper">
-                        {% for package_car in package_data.cars %}
-                        <div class="package-car">
-                            <img src="{{ package_car.car.image.url }}" alt="{{ package_car.car.name }}">
-                            <div class="package-car-content">
-                                <h4>{{ package_car.car.name }}</h4>
-                                <p>Price: ₹{{ package_car.price }}</p>
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-                    <div class="package-card-content-btn">
-                        <a href="tel:+919876543210" class="btn">Book Now</a>
-                    </div>
+    <div class="c-slider-container">
+        <div class="c-slider">
+            {% for car in car_list %}
+            <div class="c-car-card">
+                <img class="c-car-image" src="{{ car.image.url }}" alt="{{ car.name }}">
+                <div class="c-car-details">
+                    <h3 class="c-car-name">{{ car.name }}</h3>
+                    <p class="c-price">Price per km: ${{ car.price }}</p>
+                    <p class="c-description">{{ car.description }}</p>
+                    <button class="c-book-now">Book Now</button>
                 </div>
             </div>
             {% endfor %}
         </div>
+        <div class="c-navigation-dots">
+            <!-- Navigation dots will be dynamically added here -->
+        </div>
     </div>
+
+    <script>
+        // JavaScript to handle the slider functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            const slider = document.querySelector('.c-slider');
+            const carCards = document.querySelectorAll('.c-car-card');
+            const dotsContainer = document.querySelector('.c-navigation-dots');
+            const totalCards = carCards.length;
+            let cardsPerSlide = 3; // Default to showing 3 cards at a time
+            let currentIndex = 0;
+            let startX;
+            let endX;
+            let autoplayInterval;
+
+            // Adjust cards per slide based on screen width
+            function adjustCardsPerSlide() {
+                if (window.innerWidth > 1024) {
+                    cardsPerSlide = 3; // Show 3 cards at a time on large screens
+                    startAutoplay(); // Start autoplay on larger screens
+                } else if (window.innerWidth > 768) {
+                    cardsPerSlide = 2; // Show 2 cards at a time on medium screens
+                    startAutoplay(); // Start autoplay on medium screens
+                } else {
+                    cardsPerSlide = 1; // Show 1 card at a time on small screens
+                    startAutoplay(); // start autoplay on small screens
+                }
+                createNavigationDots();
+                goToSlide(0); // Reset to the first slide
+            }
+
+            // Create navigation dots
+            function createNavigationDots() {
+                dotsContainer.innerHTML = ''; // Clear existing dots
+                const totalSlides = Math.ceil(totalCards / cardsPerSlide);
+                for (let i = 0; i < totalSlides; i++) {
+                    const dot = document.createElement('span');
+                    dot.classList.add('c-dot');
+                    if (i === 0) {
+                        dot.classList.add('active');
+                    }
+                    dotsContainer.appendChild(dot);
+                    dot.addEventListener('click', () => {
+                        goToSlide(i);
+                    });
+                }
+            }
+
+            function goToSlide(index) {
+                slider.style.transform = `translateX(-${index * 100 / cardsPerSlide}%)`;
+                document.querySelector('.c-dot.active').classList.remove('active');
+                dotsContainer.children[index].classList.add('active');
+                currentIndex = index;
+            }
+
+            function startAutoplay() {
+                autoplayInterval = setInterval(() => {
+                    currentIndex = (currentIndex + 1) % Math.ceil(totalCards / cardsPerSlide);
+                    goToSlide(currentIndex);
+                }, 3000); // Change slide every 3 seconds
+            }
+
+            function resetAutoplay() {
+                clearInterval(autoplayInterval);
+            }
+
+            // Swipe handling
+            function handleTouchStart(event) {
+                startX = event.touches[0].clientX;
+            }
+
+            function handleTouchMove(event) {
+                endX = event.touches[0].clientX;
+            }
+
+            function handleTouchEnd() {
+                if (startX && endX) {
+                    const diffX = startX - endX;
+                    if (diffX > 50) {
+                        // Swipe left (next slide)
+                        if (currentIndex < Math.ceil(totalCards / cardsPerSlide) - 1) {
+                            goToSlide(currentIndex + 1);
+                        } else {
+                            goToSlide(0); // Wrap around to the first slide
+                        }
+                    } else if (diffX < -50) {
+                        // Swipe right (previous slide)
+                        if (currentIndex > 0) {
+                            goToSlide(currentIndex - 1);
+                        } else {
+                            goToSlide(Math.ceil(totalCards / cardsPerSlide) - 1); // Wrap around to the last slide
+                        }
+                    }
+                }
+                startX = null;
+                endX = null;
+                resetAutoplay(); // Reset autoplay after swipe
+            }
+
+            // Add event listeners for touch events
+            slider.addEventListener('touchstart', handleTouchStart);
+            slider.addEventListener('touchmove', handleTouchMove);
+            slider.addEventListener('touchend', handleTouchEnd);
+
+            window.addEventListener('resize', adjustCardsPerSlide);
+            adjustCardsPerSlide(); // Initial setup
+        });
+    </script>
+</body>
+</html> {% endcomment %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Product Card Slider</title>
+  <style>
+    
+    .c-slider-container {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      margin: 20px auto;
+      overflow: hidden;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .c-slider-wrapper {
+      display: flex;
+      justify-content: center;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .c-slider {
+      display: flex;
+      transition: transform 0.3s ease;
+      padding-left: 10px; /* Adjusted left padding */
+      margin-left: -10px; /* Offset for left margin */
+      touch-action: pan-y; /* Allow vertical scrolling */
+    }
+
+    .c-product-card {
+      flex: 0 0 calc(33.33% - 20px); /* Adjusted width calculation */
+      max-width: calc(33.33% - 20px); /* Adjusted max-width calculation */
+      padding: 10px; /* Adjusted padding */
+      margin: 10px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .c-product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .c-product-card img {
+      width: 100%; /* Ensures image fills its container */
+      height: auto; /* Maintains aspect ratio */
+      border-radius: 10px;
+    }
+
+    .c-product-card h3 {
+      margin: 10px 0; /* Adjusted margin */
+      font-size: 1.2em; /* Adjusted font size */
+      color: #333;
+    }
+
+    .c-product-card p {
+      font-size: 1em;
+      color: #666;
+      margin-bottom: 10px; /* Adjusted margin */
+    }
+
+    .c-product-card span {
+      display: block;
+      margin-top: 10px;
+      font-size: 1em; /* Adjusted font size */
+      color: #000;
+      font-weight: bold;
+    }
+
+    .c-book-now {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 8px 16px; /* Adjusted padding */
+      font-size: 1em;
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .c-book-now:hover {
+      background-color: #0056b3;
+    }
+
+    .c-navigation-dots {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .c-navigation-dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      margin: 0 5px;
+      background-color: #ccc;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .c-navigation-dot.active,
+    .c-navigation-dot:hover {
+      background-color: #333;
+    }
+
+    @media (max-width: 768px) {
+      .c-product-card {
+        flex: 0 0 50%;
+        max-width: 50%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .c-product-card {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+    }
+
+    /* Additional responsive adjustments */
+    @media (max-width: 768px) {
+      .c-product-card h3 {
+        font-size: 1em; /* Adjusted font size */
+      }
+      
+      .c-product-card p {
+        font-size: 0.9em; /* Adjusted font size */
+      }
+
+      .c-product-card span {
+        font-size: 1em; /* Adjusted font size */
+      }
+
+      .c-book-now {
+        padding: 8px 12px; /* Adjusted padding */
+        font-size: 0.9em; /* Adjusted font size */
+      }
+    }
+
+    @media (max-width: 480px) {
+      .c-product-card h3 {
+        font-size: 0.9em; /* Further adjusted font size */
+      }
+      
+      .c-product-card p {
+        font-size: 0.8em; /* Further adjusted font size */
+      }
+
+      .c-product-card span {
+        font-size: 1em; /* Retain font size */
+      }
+
+      .c-book-now {
+        padding: 6px 10px; /* Further adjusted padding */
+        font-size: 0.8em; /* Further adjusted font size */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="c-slider-container">
+    <div class="c-slider-wrapper">
+      <div class="c-slider" id="slider">
+        <!-- Example dynamic content with Django template tags -->
+        <!-- Replace with your actual Django template syntax -->
+        {% for car in car_list %}
+          <div class="c-product-card">
+            <img src="{{ car.image.url }}" alt="{{ car.name }}">
+            <h3>{{ car.name }}</h3>
+            <p>{{ car.description }}</p>
+            <span>{{ car.price }}</span>
+            <a href="#" class="c-book-now">Book Now</a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="c-navigation-dots" id="navigation-dots">
+      <!-- Example dynamic content with Django template tags -->
+      <!-- Replace with your actual Django template syntax -->
+      {% for car in car_list %}
+        <span class="c-navigation-dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.counter0 }}"></span>
+      {% endfor %}
+    </div>
+  </div>
+  <script>
+    const slider = document.querySelector('.c-slider');
+    const dots = document.querySelectorAll('.c-navigation-dot');
+    let currentIndex = 0;
+    let startX = 0;
+    let currentX = 0;
+    let isDragging = false;
+
+    // Function to update slider position
+    function updateSliderPosition() {
+      const cardWidth = document.querySelector('.c-product-card').offsetWidth + 20; // 20 is the left and right margin
+      slider.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+    }
+
+    // Function to update active navigation dots
+    function updateActiveDot() {
+      dots.forEach((dot, index) => {
+        if (index === currentIndex) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    }
+
+    // Function to handle touch start for touch devices
+    function handleTouchStart(e) {
+      startX = e.touches[0].clientX;
+      isDragging = true;
+    }
+
+    // Function to handle touch move for touch devices
+    function handleTouchMove(e) {
+      if (!isDragging) return;
+      currentX = e.touches[0].clientX;
+      const diff = startX - currentX;
+      slider.style.transform = `translateX(calc(-${currentIndex * 100}% + ${-diff}px))`;
+    }
+
+    // Function to handle touch end for touch devices
+    function handleTouchEnd() {
+      isDragging = false;
+      const diff = startX - currentX;
+      const cardWidth = document.querySelector('.c-product-card').offsetWidth;
+      if (Math.abs(diff) > cardWidth / 3) {
+        if (diff > 0) {
+          currentIndex = Math.min(currentIndex + 1, dots.length - 1);
+        } else {
+          currentIndex = Math.max(currentIndex - 1, 0);
+        }
+      }
+      updateSliderPosition();
+      updateActiveDot();
+    }
+
+    // Event listeners
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        currentIndex = index;
+        updateSliderPosition();
+        updateActiveDot();
+      });
+    });
+
+    slider.addEventListener('touchstart', handleTouchStart);
+    slider.addEventListener('touchmove', handleTouchMove);
+    slider.addEventListener('touchend', handleTouchEnd);
+    window.addEventListener('resize', updateSliderPosition);
+    document.addEventListener('DOMContentLoaded', () => {
+      updateSliderPosition();
+    });
+  </script>
 </body>
 </html>
 
+ <!--end car section -->
 
-<br>  
+<div class="container">
+      <div class="heading_container">
+        <h2>
+          Any Problems <br />
+          Any Questions
+        </h2>
+      </div>
+    </div>
 
-
+ <!-- service section -->
+ <br>
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Taxi Services Section</title>
+   <style>
+     /* General Styles */
+     .a_service_container {
+       display: flex;
+       flex-wrap: wrap;
+       justify-content: space-around;
+       padding: 20px;
+     }
+     
+     .a_box {
+       background: linear-gradient(135deg, #00000, #000000);
+       border-radius: 15px;
+       box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+       margin: 20px;
+       flex: 1 1 300px;
+       max-width: 300px;
+       transition: transform 0.3s, box-shadow 0.3s;
+     }
+     
+     .a_box:hover {
+       transform: translateY(-10px);
+       box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+     }
+     
+     .a_img-box {
+       text-align: center;
+       padding: 20px;
+       background-color: #ffc107;
+     }
+     
+     .a_img-box img {
+       max-width: 20%;
+       height: auto;
+     }
+     
+     .a_detail-box {
+       padding: 20px;
+       text-align: center;
+       background-color: #fff;
+     }
+     
+     .a_detail-box h5 {
+       font-size: 1.5em;
+       color: #333;
+       margin-bottom: 15px;
+     }
+     
+     .a_detail-box p {
+       font-size: 1em;
+       line-height: 1.8;
+       color: #666;
+     }
+     
+     /* Responsive Styles */
+     @media (max-width: 768px) {
+       .a_service_container {
+         flex-direction: column;
+         align-items: center;
+       }
+     
+       .a_box {
+         max-width: 100%; /* Allow box to take full width of the viewport */
+       }
+     
+       .a_detail-box {
+         max-width: 100%; /* Ensure detail-box can expand to full width */
+         overflow: visible; /* Override overflow:hidden to allow content to be visible */
+       }
+     }
+   </style>
+ </head>
+ <body>
+ 
+ <section class="service_section layout_padding">
   
-  
+     <div class="a_service_container">
+       <div class="a_box">
+         <div class="a_img-box">
+           <img src="{% static 'images/delivery-man-black1.png' %}" alt="">
+         </div>
+         <div class="a_detail-box">
+           <h5>Private Driver</h5>
+           <p>
+             The primary function of a Personal
+             Driver is to provide transportation 
+             for passengers from one location to 
+             another. It is essential that they 
+             drive their passengers in a safe, 
+             comfortable and professional manner 
+             while simultaneously keeping track 
+             of navigation, traffic and timing.
+           </p>
+         </div>
+       </div>
+       <div class="a_box">
+         <div class="a_img-box">
+           <img src="{% static 'images/City.png' %}" alt="">
+         </div>
+         <div class="a_detail-box">
+           <h5>City Tour</h5>
+           <p>
+             We are a specialist in providing Taxi service,
+             Car Rental Service and Tour Package service from 
+             city to city routes for business travelers and 
+             local tourist.We are committed to serve the best 
+             hassle free Taxi services, Cab services, Car hire
+              services in the major cities across the Gujarat.
+           </p>
+         </div>
+       </div>
+       <div class="a_box">
+         <div class="a_img-box">
+           <img src="{% static 'images/backpack-black.png' %}" alt="">
+         </div>
+         <div class="a_detail-box">
+           <h5>Luggage Transfer</h5>
+           <p>
+             Luggage delivery services provide
+             a door-to-door luggage delivery service,
+             where your luggage or sports equipment
+             is picked-up from your home, office or
+             any physical address and delivered to
+             your hotel, resort or any other physical
+             address. Luggage allowances are decreasing 
+             and excess luggage fees increasing.
+           </p>
+         </div>
+       </div>
+     </div>
+   </div>
+ </section>
+ 
+ </body>
+ </html>
+ 
+ <!-- end service section -->
+
+
+
+  <!-- Packege section -->
+
 
   <!--end Packege section -->
 
 
 
-
-  
-  
-
   <!-- contact section -->
 
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+      /* General Styles */
+      .contact_section {
+        padding: 60px 0;
+        background-color: #f8f9fa;
+      }
+      
+      .contact_form {
+        background-color: #333;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        color: #fff;
+      }
+      
+      .contact_form h4 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+      }
+      
+      .contact_form input, 
+      .contact_form textarea {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 1px solid #555;
+        border-radius: 5px;
+        font-size: 1rem;
+        color: #333;
+        background-color: #fff;
+      }
+      
+      .contact_form button {
+        background-color: #ff9800;
+        color: #fff;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      
+      .contact_form button:hover {
+        background-color: #f57c00;
+      }
+      
+      .alert {
+        background-color: #444;
+        color: #ffc107;
+        border-color: #333;
+        padding: 15px;
+        margin-top: 20px;
+        border-radius: 5px;
+      }
+      
+      .alert button.close {
+        position: relative;
+        top: -2px;
+        right: -21px;
+        color: inherit;
+      }
+      
+      .img-box {
+        text-align: center;
+      }
+      
+      .img-box img {
+        max-width: 100%;
+        height: auto;
+      }
+      
+      /* Responsive Styles */
+      @media (max-width: 768px) {
+        .contact_form {
+          max-width: 100%; /* Adjusted for smaller screens */
+          overflow: visible; /* Override to ensure content is visible */
+        }
+      }
+    </style>
+  </head>
+  <body>
+  
   <section class="contact_section index_layout_padding-bottom">
     <div class="container">
       <div class="heading_container">
@@ -914,27 +1339,26 @@
           Any Questions
         </h2>
       </div>
-      <br>
     </div>
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-5 offset-md-1">
-          <div class="contact_form" style="background-color: #333; padding: 30px; border-radius: 10px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);">
-            <h4 style="font-size: 2rem; color: #fff; margin-bottom: 20px;">Get In Touch</h4>
+          <div class="contact_form">
+            <h4>Get In Touch</h4>
             <form action="{% url 'sendmail_contact' %}" method="post">
               {% csrf_token %}
-              <input type="text" placeholder="Name" name="name" required pattern="[a-zA-Z\s]+" title="Please enter a valid characters, only letters and spaces)" style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #555; border-radius: 5px; font-size: 1rem; color: #333; background-color: #fff;">
+              <input type="text" placeholder="Name" name="name" required pattern="[a-zA-Z\s]+" title="Please enter a valid characters, only letters and spaces)">
               <br>
-              <input type="text" placeholder="Phone Number" name="mobail" required pattern="[0-9]{10}" title="Please enter a 10-digit mobile number" style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #555; border-radius: 5px; font-size: 1rem; color: #333; background-color: #fff;">
+              <input type="text" placeholder="Phone Number" name="mobail" required pattern="[0-9]{10}" title="Please enter a 10-digit mobile number">
               <br>
-              <input type="text" placeholder="Message" class="message_input" name="message" required style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #555; border-radius: 5px; font-size: 1rem; color: #333; background-color: #fff;">
+              <input type="text" placeholder="Message" class="message_input" name="message" required>
               <br>
-              <button type="submit" style="background-color: #ff9800; color: #fff; border: none; padding: 12px 20px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease;">Send</button>
+              <button type="submit">Send</button>
             </form>
             {% for i in messages %}
-            <div class="alert alert-warning alert-dismissible fade show" role="alert" style="background-color: #444; color: #ffc107; border-color: #333; padding: 15px; margin-top: 20px; border-radius: 5px;">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
               <strong>Message:</strong> {{ i }}
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="position: relative; top: -2px; right: -21px; color: inherit;">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -949,229 +1373,314 @@
       </div>
     </div>
   </section>
+  
+  </body>
+  </html>
+  
   <!-- end contact section -->
 
 
-
-<style>
-  /* CSS for Contact Form and Reviews Section */
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Reviews</title>
+    <style>
+      /* General Styles */
+      .review-section {
+        background-image: url("{% static 'images/f1.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+      
+      .review-content {
+        background-color: rgba(211, 211, 211, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-align: center;
+      }
+      
+      .review-content:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      }
+      
+      .review-image {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto 15px;
+      }
+      
+      .review-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      
+      .review-text {
+        font-size: 1rem;
+        color: #555;
+      }
+      
+      .review-author {
+        margin-top: 10px;
+        font-size: 1.1rem;
+        color: #333;
+      }
+      
+      .review-rating {
+        font-size: 1.5rem;
+        color: #ff9800;
+      }
+      
+      .review-rating .star {
+        margin-right: 2px;
+      }
+      
+      @media (max-width: 767px) {
+        .review-content {
+          margin-bottom: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
   
-
- 
-  .review-section {
-    background-image: url("{% static 'images/f1.jpg' %}"); /* Replace with your actual background image path */
-    background-size: cover;
-    background-position: center;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  }
-
-  .review-content {
-    background-color: rgba(211, 211, 211, 0.8); /* Add this line to give the review content a white background */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-align: center;
-  }
-  
-  .review-content:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-  }
-
-  .review-image {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin: 0 auto 15px;
-  }
-
-  .review-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .review-text {
-    font-size: 1rem;
-    color: #555;
-  }
-
-  .review-author {
-    margin-top: 10px;
-    font-size: 1.1rem;
-    color: #333;
-  }
-
-  .review-rating {
-    font-size: 1.5rem;
-    color: #ff9800;
-  }
-
-  .review-rating .star {
-    margin-right: 2px;
-  }
-
-  @media (max-width: 767px) {
-    .review-content {
-      margin-bottom: 20px;
-    }
-  }
-
-  @media (max-width: 767px) {
-    .contact-form {
-      margin-bottom: 30px;
-    }
-
-    .info-card {
-      margin-bottom: 30px;
-    }
-
-    .review-card {
-      margin-bottom: 30px;
-    }
-  }
-
-  
-</style>
-<div class="container">
-<div class="heading_container">
-  <h2>
-    Customer <br />
-    reviews
-  </h2>
-</div>
-</div>
-
-<section class="review-section py-5">
   <div class="container">
-   
-     
-    <div class="row mt-5">
-      <div class="col-md-12">
-        <div id="customerReviews" class="carousel slide" data-ride="carousel">
-          <div class="carousel-inner">
-            <!-- First Review -->
-            <div class="carousel-item active">
-              <div class="review-content">
-                <div class="review-image mx-auto">
-                  <img src="{% static 'images/c1.jpeg' %}" alt="Customer Image">
+    <div class="heading_container">
+      <h2>
+        Customer <br />
+        reviews
+      </h2>
+    </div>
+  </div>
+  
+  <section class="review-section py-5">
+    <div class="container">
+      <div class="row mt-5">
+        <div class="col-md-12">
+          <div id="customerReviews" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <!-- First Review -->
+              <div class="carousel-item active">
+                <div class="review-content">
+                  <div class="review-image mx-auto">
+                    <img src="{% static 'images/c1.jpeg' %}" alt="Customer Image">
+                  </div>
+                  <p class="review-text mt-3 mb-0">"Excellent service! Highly recommend."</p>
+                  <div class="review-author mt-2">
+                    <strong>- John Doe</strong>
+                  </div>
+                  <div class="review-rating mt-2">
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9734;</span>
+                  </div>
                 </div>
-                <p class="review-text mt-3 mb-0">"Excellent service! Highly recommend."</p>
-                <div class="review-author mt-2">
-                  <strong>- John Doe</strong>
+              </div>
+              <!-- Second Review -->
+              <div class="carousel-item">
+                <div class="review-content">
+                  <div class="review-image mx-auto">
+                    <img src="{% static 'images/c2.jpeg' %}" alt="Customer Image">
+                  </div>
+                  <p class="review-text mt-3 mb-0">"Very professional and reliable."</p>
+                  <div class="review-author mt-2">
+                    <strong>- Jane Smith</strong>
+                  </div>
+                  <div class="review-rating mt-2">
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9734;</span>
+                  </div>
                 </div>
-                <div class="review-rating mt-2">
-                  <span class="star">&#9733;</span>
-                  <span class="star">&#9733;</span>
-                  <span class="star">&#9733;</span>
-                  <span class="star">&#9733;</span>
-                  <span class="star">&#9734;</span>
+              </div>
+              <!-- Third Review -->
+              <div class="carousel-item">
+                <div class="review-content">
+                  <div class="review-image mx-auto">
+                    <img src="{% static 'images/c3.jpeg' %}" alt="Customer Image">
+                  </div>
+                  <p class="review-text mt-3 mb-0">"Great experience, will use again."</p>
+                  <div class="review-author mt-2">
+                    <strong>- Mark Wilson</strong>
+                  </div>
+                  <div class="review-rating mt-2">
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9734;</span>
+                  </div>
                 </div>
               </div>
             </div>
-            <!-- Second Review -->
-            <div class="carousel-item">
-              <div class="review-content">
-                <div class="review-image mx-auto">
-                  <img src="{% static 'images/c2.jpeg' %}" alt="Customer Image">
-                </div>
-                <p class="review-text mt-3 mb-0">"Very professional and reliable."</p>
-                <div class="review-author mt-2">
-                  <strong>- Jane Smith</strong>
-                </div>
-                <div class="review-rating mt-2">
-                  <span class="star">&#9733;</span>
-                  <span class="star">&#9733;</span>
-                  <span class="star">&#9733;</span>
-                  <span class="star">&#9733;</span>
-                  <span class="star">&#9734;</span>
-                </div>
-              </div>
-            </div>
-            <!-- Third Review -->
-            <div class="carousel-item">
-              <div class="review-content">
-                <div class="review-image mx-auto">
-                  <img src="{% static 'images/c3.jpeg' %}" alt="Customer Image">
-                </div>
-                <p class="review-text mt-3 mb-0">"Great experience, will use again."</p>
-                <div class="review-author mt-2">
-                  <strong>- Mark Wilson</strong>
-                </div>
-                <div class="review-rating mt-2">
-                  <span class="star">&#9733;</span>
-                  <span class="star">&#9733;</span>
-                  <span class="star">&#9733;</span>
-                  <span class="star">&#9733;</span>
-                  <span class="star">&#9734;</span>
-                </div>
-              </div>
-            </div>
+            <!-- Carousel Controls -->
+            <a class="carousel-control-prev" href="#customerReviews" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#customerReviews" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
           </div>
-          <!-- Carousel Controls -->
-          <a class="carousel-control-prev" href="#customerReviews" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#customerReviews" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-
-
- 
+  </section>
+  
+  </body>
+  </html>
+  
 
   <!-- why section -->
 
-  <section class="why_section index_layout_padding">
+  <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Rental Website</title>
+  <style>
+    /* General Styles */
+    .w-why_section {
+      padding: 80px 0;
+    }
+
+    .w-heading_container {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .w-heading_container h2 {
+      font-size: 2.5rem;
+      color: #333;
+    }
+
+    .w-why_container {
+      display: flex;
+      justify-content: space-around;
+      align-items: stretch;
+      flex-wrap: wrap;
+    }
+
+    .w-box {
+      background: linear-gradient(135deg, #ffffff, #ffffff);
+      border-radius: 15px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+      margin: 20px;
+      flex: 1 1 300px;
+      max-width: 300px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .w-box:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .w-img-box {
+      text-align: center;
+      padding: 20px;
+      background-color: #ffc107;
+    }
+
+    .w-img-box img {
+      max-width: 20%;
+      height: auto;
+    }
+
+    .w-detail-box {
+      padding: 20px;
+      text-align: center;
+      background-color: #fff;
+    }
+
+    .w-detail-box h5 {
+      font-size: 1.5rem;
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    .w-detail-box p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #666;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .w-why_container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .w-box {
+        max-width: 100%; /* Allow box to take full width of the viewport */
+      }
+
+      .w-detail-box {
+        max-width: 100%; /* Ensure detail-box can expand to full width */
+        overflow: visible; /* Override overflow:hidden to allow content to be visible */
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section class="w-why_section">
     <div class="container">
-      <div class="heading_container">
+      <div class="w-heading_container">
         <h2>
           Why <br />
           Choose Us ?
         </h2>
       </div>
-      <div class="why_container">
-        <div class="box">
-          <div class="img-box">
-            <img src="{% static 'images/delivery-man-white.png' %}" alt="" class="img-1" />
-            <img src="{% static 'images/delivery-man-black.png' %}" alt="" class="img-2" />
+      <div class="w-why_container">
+        <div class="w-box">
+          <div class="w-img-box">
+            <img src="{% static 'images/delivery-man-white.png' %}" alt="" class="w-img-1" />
+            <img src="{% static 'images/delivery-man-black.png' %}" alt="" class="w-img-2" />
           </div>
-          <div class="detail-box">
+          <div class="w-detail-box">
             <h5>Best Drivers</h5>
             <p>
               Our drivers are highly skilled, professional, and dedicated to providing you with a safe and comfortable journey.
             </p>
           </div>
         </div>
-        <div class="box">
-          <div class="img-box">
-            <img src="{% static 'images/shield-white.png' %}" alt="" class="img-1" />
-            <img src="{% static 'images/shield-black.png' %}" alt="" class="img-2" />
+        <div class="w-box">
+          <div class="w-img-box">
+            <img src="{% static 'images/shield-white.png' %}" alt="" class="w-img-1" />
+            <img src="{% static 'images/shield-black.png' %}" alt="" class="w-img-2" />
           </div>
-          <div class="detail-box">
+          <div class="w-detail-box">
             <h5>Safe and Secure</h5>
             <p>
               We prioritize your safety and security with our reliable and thoroughly vetted drivers, ensuring a worry-free journey every time.
             </p>
           </div>
         </div>
-        <div class="box">
-          <div class="img-box">
-            <img src="{% static 'images/repairing-service-white.png' %}" alt="" class="img-1" />
-            <img src="{% static 'images/repairing-service-black.png' %}" alt="" class="img-2" />
+        <div class="w-box">
+          <div class="w-img-box">
+            <img src="{% static 'images/repairing-service-white.png' %}" alt="" class="w-img-1" />
+            <img src="{% static 'images/repairing-service-black.png' %}" alt="" class="w-img-2" />
           </div>
-          <div class="detail-box">
+          <div class="w-detail-box">
             <h5>24x7 support</h5>
             <p>
               Our taxi service is available round the clock, ensuring you have access to reliable transportation anytime, day or night.
@@ -1181,6 +1690,10 @@
       </div>
     </div>
   </section>
+</body>
+
+</html>
+
 
   <!-- end why section -->
 
@@ -1200,15 +1713,12 @@
       <title>Modern Responsive Footer</title>
       <style>
           /* Basic Reset */
-          
-  
-          
   
           /* Footer Styling */
           .footer {
               background-color: #2c3e50; /* Dark blue-gray background */
               color: #ffffff; /* White text */
-              padding: 20px;
+              padding: 1px;
               box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
           }
   
@@ -1390,11 +1900,12 @@
   
       <!-- Footer Section -->
       <footer class="footer">
+      <br>
           <div class="footer-container">
               <div class="footer-logo">
                   <span>
                       <img src="/static/images/DEVANSHI-EPS.png"
-                          alt="" style="height: 174px; margin: -60px; margin-left: -27px;">
+                          alt="" style="height: 174px; margin: -60px; margin-left: -60px;">
                       
                   </span> 
                   
@@ -1412,11 +1923,11 @@
               <div class="footer-social">
                   <h3>Follow Us</h3>
                   <div class="social-icons">
-                      <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
-                      <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
-                      <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
-                      <a href="#"><img src="linkedin-icon.png" alt="LinkedIn"></a>
-                  </div>
+                    <a href="#"><img src="{% static 'images/facebook-icon.png' %}" alt="Facebook"></a>
+                    <a href="#"><img src="{% static 'images/twitter-icon.png' %}" alt="Twitter"></a>
+                    <a href="#"><img src="{% static 'images/instagram-icon.png' %}" alt="Instagram"></a>
+                    <a href="#"><img src="{% static 'images/linkedin-icon.png' %}" alt="LinkedIn"></a>
+                </div>
               </div>
               <div class="footer-contact">
                   <h3>Contact Us</h3>
@@ -1433,14 +1944,6 @@
       </footer>
   </body>
   </html>
-
-
-
-  
-
-  
-
-
 
 
   <!-- footer section -->
@@ -1472,6 +1975,3 @@
     });
   </script>
   <!-- end owl carousel script -->
-</body>
-
-</html>

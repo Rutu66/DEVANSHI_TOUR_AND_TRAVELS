@@ -13,5 +13,8 @@ urlpatterns = [
     path('sendmail_contact/', views.sendmail_contact, name='sendmail_contact'),
     
     
+    path('search/', views.search_cabs_view, name='search_cabs')
+    
+    
 
 ]
