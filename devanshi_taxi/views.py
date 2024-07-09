@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from devanshi_taxi.models import *
 from django.http import HttpResponseRedirect
@@ -129,12 +129,11 @@ def cars(request):
     
     
 
-def checkout(request):
+def checkout(request, car_id):
     """ For about page...."""
-    
-    
-    
-    return render(request, 'checkout.html')
+    car = get_object_or_404(Car, id=car_id)
+    # Pass the data to the template
+    return render(request, 'checkout.html', {'car': car})
 
 
 def about(request):

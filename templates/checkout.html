@@ -200,22 +200,20 @@
         <div class="col-md-4">
             <div class="summary-box">
                 <h4>Overall Fare Summary</h4>
-                <img src="path/to/your/image.jpg" class="summary-image" alt="Car Image">
-                <p>Vehicle Type: <strong>Sedan (4+1)</strong></p>
-                <p>Total Trip Fare: ₹2686.88</p>
-                <p>GST Charges: ₹134</p>
-                <p>Payment Due: ₹0</p>
-                {% comment %} <p>Coupon Discount: ₹0</p> {% endcomment %}
-                <p class="total-amount">Full Payable Amount: ₹2821.22</p>
-                {% comment %} <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Enter Coupon Code" aria-label="Coupon Code" aria-describedby="button-addon2">
-                    <div class="input-group-append">
-                        <button class="btn btn-warning" type="button" id="button-addon2">Check Coupon</button>
-                    </div>
-                </div> {% endcomment %}
-                <button id="payNowBtn" class="btn btn-warning btn-block">Book Now</button>
+                <img src="{{ car.image.url }}" class="summary-image" alt="Car Image">
+                <p>Vehicle Type: <strong>{{ car.type }}</strong></p>
+                <p>Total Trip Fare: ₹{{ car.total_fare }}</p>
+                <p>GST Charges: ₹{{ car.gst }}</p>
+                <p>Payment Due: ₹{{ car.payment_due }}</p>
+                <p class="total-amount">Full Payable Amount: ₹{{ car.total_amount }}</p>
+                {% comment %} <form action="{% url 'book_car' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="car_id" value="{{ car.id }}">
+                    <button type="submit" class="btn btn-warning btn-block">Book Now</button>
+                </form> {% endcomment %}
             </div>
         </div>
+        
     </div>
     
     <script>
@@ -242,4 +240,4 @@
 </body>
 </html>
 
-{% endblock body %}
+{% endblock body %} 

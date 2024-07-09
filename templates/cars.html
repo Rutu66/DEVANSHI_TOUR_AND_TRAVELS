@@ -8,11 +8,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking Page</title>
+   
     <style>
         .modal {
             display: none;
             position: fixed;
-            z-index: 1000;
+            z-index: 1;
             left: 0;
             top: 0;
             width: 100%;
@@ -21,26 +22,34 @@
             background-color: rgba(0, 0, 0, 0.4);
             padding-top: 60px;
         }
-    
+
         .modal-content {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             background-color: #fefefe;
-            margin: 5% auto;
             padding: 20px;
             border: 1px solid #888;
-            width: 80%;
-            max-width: 600px;
-            border-radius: 10px;
+            width: 30%;
+            max-height: 80%;
+            overflow-y: auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            border-radius: 8px;
         }
-    
-        .close {
+
+        .modal-content .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
             color: #aaa;
-            float: right;
             font-size: 28px;
             font-weight: bold;
+            cursor: pointer;
         }
-    
-        .close:hover,
-        .close:focus {
+
+        .modal-content .close:hover,
+        .modal-content .close:focus {
             color: black;
             text-decoration: none;
             cursor: pointer;
@@ -187,10 +196,15 @@
         }
 
         @media (max-width: 768px) {
+            .modal-content {
+                width: 90%;
+                margin: 10% auto;
+            }
+
             .booking-header {
                 flex-direction: column;
             }
-            
+
             .booking-car-option {
                 flex-direction: column;
                 align-items: flex-start;
@@ -199,45 +213,6 @@
             .booking-car-info {
                 margin-bottom: 15px;
             }
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0, 0, 0);
-            background-color: rgba(0, 0, 0, 0.4);
-            padding-top: 60px;
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: 5% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 60%; /* Reduced width */
-            max-width: 500px; /* Reduced max width */
-            border-radius: 10px;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
         }
     </style>
 </head>
@@ -378,25 +353,88 @@
         </div>
     </div>
 
-    {% comment %} window.location.href = "/checkout/" + carId + "/"; {% endcomment %}
+    window.location.href = "/checkout/" + carId + "/";
 
-    <script>
+  
+<script>
 
-        document.addEventListener("DOMContentLoaded", function () {
-            document.querySelectorAll(".book-now-btn").forEach(function (button) {
-                button.addEventListener("click", function () {
-                    var carId = this.getAttribute("data-car-id");
-                    window.location.href = "/checkout/" ;
-
-                });
-            });
-        });
+        document.addEventListener('DOMContentLoaded', function () {
+            // Handle Modify Modal
+            const modifyButton = document.getElementById('modify-btn');
+            const modifyModal = document.getElementById('modifyModal');
+            const closeModifyModalButton = modifyModal.querySelector('.close');
         
-
-        document.addEventListener("DOMContentLoaded", function () {
-            var modal = document.getElementById("myModal");
-            var span = document.getElementsByClassName("close")[0];
-
+            modifyButton.addEventListener('click', function () {
+                modifyModal.style.display = 'block';
+        
+                // Pre-fill modal form with current search parameters
+                document.getElementById('modal_pickup').value = "{{ pickup }}";
+                document.getElementById('modal_drop').value = "{{ drop }}";
+                document.getElementById('modal_pickup_date').value = "{{ pickup_datetime|date:'Y-m-d' }}";
+                document.getElementById('modal_pickup_time').value = "{{ pickup_datetime|date:'H:i' }}";
+                
+                // Determine the travel type and handle accordingly
+                const travelType = "{{ travel_type }}";
+                if (travelType === "one_way") {
+                    document.getElementById('modal_one_way').checked = true;
+                    document.getElementById('modal_return_date_group').style.display = 'none';
+                    document.getElementById('modal_return_date').value = ""; // Clear return date if it's one way
+                } else if (travelType === "round_trip") {
+                    document.getElementById('modal_round_trip').checked = true;
+                    document.getElementById('modal_return_date_group').style.display = 'block';
+                    
+                    // Check if return date is available
+                    const returnDate = "{{ return_date }}";
+                    if (returnDate) {
+                        document.getElementById('modal_return_date').value = "{{ return_date|date:'Y-m-d' }}"; // Set return date if it's round trip and available
+                    } else {
+                        document.getElementById('modal_return_date').value = ""; // Default to empty if return date is not available
+                    }
+                }
+            });
+        
+            // Close the modify modal on clicking the close button
+            closeModifyModalButton.addEventListener('click', function () {
+                modifyModal.style.display = 'none';
+            });
+        
+            // Close the modify modal when clicking outside of it
+            window.addEventListener('click', function (event) {
+                if (event.target === modifyModal) {
+                    modifyModal.style.display = 'none';
+                }
+            });
+        
+            // Handle travel type changes within the modify modal
+            const modalRoundTripRadio = document.getElementById('modal_round_trip');
+            modalRoundTripRadio.addEventListener('change', function () {
+                if (modalRoundTripRadio.checked) {
+                    document.getElementById('modal_return_date_group').style.display = 'block';
+                    document.getElementById('modal_return_date').setAttribute('required', '');
+                    
+                    // Check if return date is available
+                    const returnDate = "{{ return_date }}";
+                    if (returnDate) {
+                        document.getElementById('modal_return_date').value = "{{ return_date|date:'Y-m-d' }}"; // Set return date if switching to round trip and available
+                    } else {
+                        document.getElementById('modal_return_date').value = ""; // Default to empty if return date is not available
+                    }
+                }
+            });
+        
+            const modalOneWayRadio = document.getElementById('modal_one_way');
+            modalOneWayRadio.addEventListener('change', function () {
+                if (modalOneWayRadio.checked) {
+                    document.getElementById('modal_return_date_group').style.display = 'none';
+                    document.getElementById('modal_return_date').removeAttribute('required');
+                    document.getElementById('modal_return_date').value = ""; // Clear the return date if switching to one way
+                }
+            });
+        
+            // Handle Fare Summary Modal
+            const fareModal = document.getElementById('myModal');
+            const closeFareModalButton = fareModal.querySelector('.close');
+        
             document.querySelectorAll(".fare-summary-link").forEach(function (link) {
                 link.onclick = function (event) {
                     event.preventDefault();
@@ -406,8 +444,7 @@
                     // For this example, let's assume you have fetched the details and are setting the modal content.
                     var modalContent = document.getElementById("modalContent");
                     modalContent.innerHTML = `
-                        <p>Fare Breakup:</p>
-                        <p>Estimated Amount: ₹ 5320</p>
+                        <p>Fare Breakup:   &nbsp Estimated Amount: ₹ 5320</p>
                         <p>Covered Kms: 500 Km</p>
                         <p>Driver Allowance: ₹ 300</p>
                         <p>GST (5%): ₹ 266</p>
@@ -425,97 +462,39 @@
                         <p>AC would be switched off in hilly areas</p>
                         <p>Balance amount needs to be paid at the beginning of the journey.</p>
                     `;
-
-                    modal.style.display = "block";
+        
+                    fareModal.style.display = "block";
                 };
             });
-
-            span.onclick = function () {
-                modal.style.display = "none";
-            };
-
-            window.onclick = function (event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            };
-        });
-    </script>
-    <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const modifyButton = document.getElementById('modify-btn');
-    const modifyModal = document.getElementById('modifyModal');
-    const closeModifyModal = document.getElementsByClassName('close')[0];
-
-    modifyButton.addEventListener('click', function () {
-        modifyModal.style.display = 'block';
-
-        // Pre-fill modal form with current search parameters
-        document.getElementById('modal_pickup').value = "{{ pickup }}";
-        document.getElementById('modal_drop').value = "{{ drop }}";
-        document.getElementById('modal_pickup_date').value = "{{ pickup_datetime|date:'Y-m-d' }}";
-        document.getElementById('modal_pickup_time').value = "{{ pickup_datetime|date:'H:i' }}";
         
-        // Determine the travel type and handle accordingly
-        const travelType = "{{ travel_type }}";
-        if (travelType === "one_way") {
-            document.getElementById('modal_one_way').checked = true;
-            document.getElementById('modal_return_date_group').style.display = 'none';
-            document.getElementById('modal_return_date').value = ""; // Clear return date if it's one way
-        } else if (travelType === "round_trip") {
-            document.getElementById('modal_round_trip').checked = true;
-            document.getElementById('modal_return_date_group').style.display = 'block';
+            // Close the fare summary modal on clicking the close button
+            closeFareModalButton.addEventListener('click', function () {
+                fareModal.style.display = 'none';
+            });
+        
+            // Close the fare summary modal when clicking outside of it
+            window.addEventListener('click', function (event) {
+                if (event.target === fareModal) {
+                    fareModal.style.display = 'none';
+                }
+            });
+        });
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.book-now-btn');
             
-            // Check if return date is available
-            const returnDate = "{{ return_date }}";
-            if (returnDate) {
-                document.getElementById('modal_return_date').value = "{{ return_date|date:'Y-m-d' }}"; // Set return date if it's round trip and available
-            } else {
-                document.getElementById('modal_return_date').value = ""; // Default to empty if return date is not available
-            }
-        }
-    });
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const carId = this.getAttribute('data-car-id');
+                    const url = `/checkout/${carId}/`;  // Construct your URL here
+                    window.location.href = url;  // Redirect to the constructed URL
+                });
+            });
+        });
+        
 
-    // Close the modal on clicking the close button
-    closeModifyModal.addEventListener('click', function () {
-        modifyModal.style.display = 'none';
-    });
-
-    // Close the modal when clicking outside of it
-    window.addEventListener('click', function (event) {
-        if (event.target === modifyModal) {
-            modifyModal.style.display = 'none';
-        }
-    });
-
-    // Handle travel type changes within the modal
-    const modalRoundTripRadio = document.getElementById('modal_round_trip');
-    modalRoundTripRadio.addEventListener('change', function () {
-        if (modalRoundTripRadio.checked) {
-            document.getElementById('modal_return_date_group').style.display = 'block';
-            document.getElementById('modal_return_date').setAttribute('required', '');
-            
-            // Check if return date is available
-            const returnDate = "{{ return_date }}";
-            if (returnDate) {
-                document.getElementById('modal_return_date').value = "{{ return_date|date:'Y-m-d' }}"; // Set return date if switching to round trip and available
-            } else {
-                document.getElementById('modal_return_date').value = ""; // Default to empty if return date is not available
-            }
-        }
-    });
-
-    const modalOneWayRadio = document.getElementById('modal_one_way');
-    modalOneWayRadio.addEventListener('change', function () {
-        if (modalOneWayRadio.checked) {
-            document.getElementById('modal_return_date_group').style.display = 'none';
-            document.getElementById('modal_return_date').removeAttribute('required');
-            document.getElementById('modal_return_date').value = ""; // Clear the return date if switching to one way
-        }
-    });
-});
 </script>
-
     
     
     
