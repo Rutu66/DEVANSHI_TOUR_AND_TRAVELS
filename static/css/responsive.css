@@ -7,6 +7,21 @@
 }
 
 
+@media (max-width: 768px) {
+  .slider_section .box {
+    margin-bottom: 150px;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .card {
+    margin-bottom: 50px; /* Adjusted margin-bottom for responsiveness */
+  }
+}
+
+
+
 @media (max-width: 992px) {
   .slider_section .slider_form {
     width: 100%;

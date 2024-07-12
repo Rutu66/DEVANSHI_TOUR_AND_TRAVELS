@@ -25,7 +25,7 @@
 
         .modal-content {
             position: fixed;
-            top: 50%;
+            top: 60%;
             left: 50%;
             transform: translate(-50%, -50%);
             background-color: #fefefe;
@@ -114,73 +114,101 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
+            margin: 20px;
         }
-
+        
         .booking-car-option {
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            background-color: #ffffff;
+            background-color: #f9f9f9;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            transition: box-shadow 0.3s, transform 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-
+        
         .booking-car-option:hover {
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
             transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
-
-        .booking-car-info {
-            display: flex;
-            align-items: center;
+        
+        .car-image img {
+            width: 120px;
+            height: auto;
+            border-radius: 8px;
+        }
+        
+        .car-details {
             flex: 2;
+            margin-left: 20px;
         }
-
-        .booking-car-info img {
-            width: 100px;
-            margin-right: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .booking-car-info h3, .booking-car-info p {
+        
+        .car-details h3 {
             margin: 0;
             color: #333;
+            font-size: 18px;
+            font-weight: bold;
         }
-
-        .booking-facilities {
-            flex: 3;
+        
+        .car-details .car-type, .car-details .car-capacity {
+            margin: 5px 0;
+            color: #666;
+            font-size: 14px;
         }
-
-        .booking-facilities ul {
+        
+        .facilities {
+            margin-top: 10px;
+        }
+        
+        .facilities span {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .facilities ul {
             list-style: none;
             padding: 0;
             margin: 0;
             display: flex;
-            flex-wrap: wrap;
             gap: 10px;
+            flex-wrap: wrap;
         }
-
-        .booking-facilities li {
+        
+        .facilities li {
             background-color: #e9ecef;
             padding: 5px 10px;
             border-radius: 5px;
             color: #555;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
-
-        .booking-fare, .booking-book-now {
+        
+        .car-fare, .book-now {
             text-align: center;
             flex: 1;
+            min-width: 150px;
         }
-
-        .booking-fare p, .booking-book-now p {
+        
+        .car-fare p, .book-now p {
             margin: 5px 0;
             color: #333;
         }
-
-        .booking-book-now button {
+        
+        .fare-per-km {
+            font-weight: bold;
+            color: #007bff;
+        }
+        
+        .total-fare {
+            font-weight: bold;
+            color: #000;
+            font-size: 18px;
+        }
+        
+        .book-now-btn {
             background-color: #28a745;
             color: white;
             padding: 10px 20px;
@@ -190,15 +218,44 @@
             transition: background-color 0.3s;
             margin-top: 10px;
         }
-
-        .booking-book-now button:hover {
+        
+        .book-now-btn:hover {
             background-color: #218838;
         }
+        
+        .fare-summary-link {
+            display: block;
+            margin-top: 10px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        
+        .fare-summary-link:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .booking-car-option {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        
+            .car-details {
+                margin-left: 0;
+                margin-top: 15px;
+            }
+        
+            .car-fare, .book-now {
+                margin-top: 10px;
+            }
+        }
+        
+        
 
         @media (max-width: 768px) {
             .modal-content {
                 width: 90%;
-                margin: 10% auto;
+                margin: -30% auto;
             }
 
             .booking-header {
@@ -214,6 +271,58 @@
                 margin-bottom: 15px;
             }
         }
+
+        #modalContent {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .fare-breakup, .additional-charges, .terms-usage, .notes {
+            margin-bottom: 20px;
+        }
+        
+        .fare-breakup p, .additional-charges p, .terms-usage p, .notes p {
+            margin: 5px 0;
+        }
+        
+        .amount {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .total {
+            color: #d9534f;
+        }
+        
+        ul {
+            margin-left: 20px;
+            list-style-type: disc;
+        }
+        
+        ul li {
+            margin: 5px 0;
+        }
+        
+        strong {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            color: #555;
+        }
+        
+        p {
+            margin: 0 0 10px;
+        }
+        
+        p:last-child {
+            margin-bottom: 0;
+        }
+        
     </style>
 </head>
 <body>
@@ -242,65 +351,64 @@
 
 
         <!-- Modify Form Modal -->
-    <div id="modifyModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h4 class="modal-title">Modify Search</h4>
-            <form id="modifyForm" action="{% url 'search_cabs' %}" method="get">
-                {% csrf_token %}
-                <!-- Travel Type Selection -->
-                <div class="form-group">
-                    <label>Travel Type:</label><br>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="travel_type" id="modal_one_way" value="one_way" required>
-                        <label class="form-check-label" for="modal_one_way">One Way</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="travel_type" id="modal_round_trip" value="round_trip" required>
-                        <label class="form-check-label" for="modal_round_trip">Round Trip</label>
-                    </div>
-                </div>
-                
-                <!-- Pickup and Drop Locations -->
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="modal_pickup">Pickup Location</label>
-                        <input type="text" class="form-control" id="modal_pickup" name="pickup" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="modal_drop">Drop Location</label>
-                        <input type="text" class="form-control" id="modal_drop" name="drop" required>
-                    </div>
-                </div>
-                
-                <!-- Pickup Date and Time -->
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="modal_pickup_date">Pickup Date</label>
-                        <input type="date" class="form-control" id="modal_pickup_date" name="pickup_date" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="modal_pickup_time">Pickup Time</label>
-                        <input type="time" class="form-control" id="modal_pickup_time" name="pickup_time" required>
-                    </div>
-                </div>
-                
-                <!-- Return Date (for Round Trip) -->
-                <div id="modal_return_date_group" style="display: none;">
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="modal_return_date">Return Date</label>
-                            <input type="date" class="form-control" id="modal_return_date" name="return_date" required>
+        <div id="modifyModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h4 class="modal-title">Modify Search</h4>
+                <form id="modifyForm" action="{% url 'search_cabs' %}" method="get">
+                    {% csrf_token %}
+                    <!-- Travel Type Selection -->
+                    <div class="form-group">
+                        <label>Travel Type:</label><br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="travel_type" id="modal_one_way" value="one_way" required>
+                            <label class="form-check-label" for="modal_one_way">One Way</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="travel_type" id="modal_round_trip" value="round_trip" required>
+                            <label class="form-check-label" for="modal_round_trip">Round Trip</label>
                         </div>
                     </div>
-                </div>
-
-                <!-- Submit Button -->
-                <button type="submit" class="btn btn-primary btn-block">Search</button>
-            </form>
+                    
+                    <!-- Pickup and Drop Locations -->
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="modal_pickup">Pickup Location</label>
+                            <input type="text" class="form-control" id="modal_pickup" name="pickup" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="modal_drop">Drop Location</label>
+                            <input type="text" class="form-control" id="modal_drop" name="drop" required>
+                        </div>
+                    </div>
+                    
+                    <!-- Pickup Date and Time -->
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="modal_pickup_date">Pickup Date</label>
+                            <input type="date" class="form-control" id="modal_pickup_date" name="pickup_date" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="modal_pickup_time">Pickup Time</label>
+                            <input type="time" class="form-control" id="modal_pickup_time" name="pickup_time" required>
+                        </div>
+                    </div>
+                    
+                    <!-- Return Date (for Round Trip) -->
+                    <div id="modal_return_date_group" style="display: none;">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="modal_return_date">Return Date</label>
+                                <input type="date" class="form-control" id="modal_return_date" name="return_date">
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary btn-block">Search</button>
+                </form>
+            </div>
         </div>
-    </div>
-
 
 
 
@@ -308,39 +416,46 @@
             {% if cars %}
             {% for car in cars %}
             <div class="booking-car-option">
-                <div class="booking-car-info">
+                <div class="car-image">
                     <img src="{{ car.image.url }}" alt="{{ car.name }}">
-                    <div>
-                        <h3>{{ car.name }}</h3>
-                        <p>{{ car.description }}</p>
+                    <br>
+                    <br>
+                    <h3>{{ car.name }}</h3>
+                </div>
+                <div class="car-details">
+                   
+                    <p class="car-type">{{ car.type }}</p>
+                    <p class="car-capacity">{{ car.capacity }}</p>
+                    <div class="facilities">
+                       
+                        <span>Facilities:</span>
+                        <br>
+                        <br>
+                        <ul>
+                            <li><i class="fa fa-tint"></i> Water Bottle</li>
+                            <li><i class="fa fa-clock"></i> On Time Guarantee</li>
+                            <li><i class="fa fa-file-invoice"></i> Invoice GST</li>
+                            <li><i class="fa fa-car"></i> Sanitized Cab</li>
+                        </ul>
                     </div>
                 </div>
-                <div class="booking-facilities">
-                    <p>Facilities:</p>
-                    <ul>
-                        <li>Water Bottle</li>
-                        <li>On Time Guarantee</li>
-                        <li>Invoice Gst</li>
-                        <li>Sanitized Cab</li>
-                    </ul>
+                <div class="car-fare">
+                    <p>Fare/ KM</p>
+                    <p class="fare-per-km">₹ {{ car.fare_per_km }}</p>
                 </div>
-                <div class="booking-fare">
-                    <p>Fare/KM</p>
-                    <p>₹ {{ car.price }}</p>
-                </div>
-                <div class="booking-book-now">
-                    <p>₹ {{ car.total_fare }}</p>
+                <div class="book-now">
+                    <p class="total-fare">₹ {{ car.total_fare }}</p>
                     <button class="book-now-btn" data-car-id="{{ car.id }}">BOOK NOW</button>
                     <a href="#" class="fare-summary-link" data-car-id="{{ car.id }}">Fare Summary »</a>
                 </div>
-                
-                
             </div>
             {% endfor %}
             {% else %}
             <p>No cabs found for the specified criteria.</p>
             {% endif %}
         </div>
+        
+        
     </div>
 
     <!-- Modal -->
@@ -353,7 +468,7 @@
         </div>
     </div>
 
-    window.location.href = "/checkout/" + carId + "/";
+    
 
   
 <script>
@@ -444,23 +559,32 @@
                     // For this example, let's assume you have fetched the details and are setting the modal content.
                     var modalContent = document.getElementById("modalContent");
                     modalContent.innerHTML = `
-                        <p>Fare Breakup:   &nbsp Estimated Amount: ₹ 5320</p>
-                        <p>Covered Kms: 500 Km</p>
-                        <p>Driver Allowance: ₹ 300</p>
-                        <p>GST (5%): ₹ 266</p>
-                        <p>Total Cost: ₹ 5866</p>
-                        <p>Additional Charges (if any):</p>
-                        <ul>
-                            <li>Usable Roundtrip Limit 500 Kms</li>
-                            <li>After 500 Extra Charges @. 11 Per KM</li>
-                        </ul>
-                        <p>Terms Of Usage:</p>
-                        <p>One day means one calendar day (12 midnight to 12 midnight).</p>
-                        <p>Inclusion: Driver, Vehicle, and Fuel</p>
-                        <p>Exclusion: Night Charges (INR 250/Night after 10 PM), Parking (if any), Airport Charges (if any), State Tax, Toll, and Parking</p>
-                        <p>Notes:</p>
-                        <p>AC would be switched off in hilly areas</p>
-                        <p>Balance amount needs to be paid at the beginning of the journey.</p>
+                        <div class="fare-breakup">
+                            <p><strong>Fare Breakup:</strong></p>
+                            <p>Estimated Amount: <span class="amount">₹ 5320</span></p>
+                            <p>Covered Kms: <span class="amount">500 Km</span></p>
+                            <p>Driver Allowance: <span class="amount">₹ 300</span></p>
+                            <p>GST (5%): <span class="amount">₹ 266</span></p>
+                            <p>Total Cost: <span class="amount total">₹ 5866</span></p>
+                        </div>
+                        <div class="additional-charges">
+                            <p><strong>Additional Charges (if any):</strong></p>
+                            <ul>
+                                <li>Usable Roundtrip Limit 500 Kms</li>
+                                <li>After 500 Extra Charges @ ₹ 11 Per KM</li>
+                            </ul>
+                        </div>
+                        <div class="terms-usage">
+                            <p><strong>Terms Of Usage:</strong></p>
+                            <p>One day means one calendar day (12 midnight to 12 midnight).</p>
+                            <p>Inclusion: Driver, Vehicle, and Fuel</p>
+                            <p>Exclusion: Night Charges (₹ 250/Night after 10 PM), Parking (if any), Airport Charges (if any), State Tax, Toll, and Parking</p>
+                        </div>
+                        <div class="notes">
+                            <p><strong>Notes:</strong></p>
+                            <p>AC would be switched off in hilly areas</p>
+                            <p>Balance amount needs to be paid at the beginning of the journey.</p>
+                        </div>
                     `;
         
                     fareModal.style.display = "block";

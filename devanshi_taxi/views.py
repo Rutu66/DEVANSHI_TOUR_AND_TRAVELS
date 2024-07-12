@@ -85,7 +85,7 @@ def sendmail_contact(request):
 def index(request):
     
     
-    car_list = Car.objects.all()
+    car_list = Cars.objects.all()
     
     data = {
         'car_list': car_list
@@ -98,7 +98,7 @@ def index(request):
 
 def cars(request):
     """ For cars page...."""
-    car_list = Car.objects.all()
+    car_list = Cars.objects.all()
 
 
     # Pass the data to the template
@@ -131,7 +131,7 @@ def cars(request):
 
 def checkout(request, car_id):
     """ For about page...."""
-    car = get_object_or_404(Car, id=car_id)
+    car = get_object_or_404(Cars, id=car_id)
     # Pass the data to the template
     return render(request, 'checkout.html', {'car': car})
 
@@ -163,7 +163,7 @@ def service(request):
 # views.py
 
 from django.shortcuts import render
-from .models import Car, Price
+from .models import Cars, Price
 from datetime import datetime
 
 def search_cabs_view(request):
@@ -182,7 +182,7 @@ def search_cabs_view(request):
         formatted_return_date = datetime.strptime(return_date, '%Y-%m-%d').strftime('%d/%m/%y') if return_date else None
         
         # Query based on trip type and travel type
-        cars = Car.objects.filter(prices__pickup_location=pickup, prices__drop_location=drop)
+        cars = Cars.objects.filter(prices__pickup_location=pickup, prices__drop_location=drop)
         
         if travel_type == 'one_way':
             cars = cars.filter(prices__pickup_location=pickup, prices__drop_location=drop)

@@ -2,7 +2,9 @@
 {% block body %}
 {% load static %}
 
-<!-- header section starts -->
+<!-- header section starts -->  
+
+
 
 
 
@@ -192,7 +194,7 @@
                                <button class="inquiry-button">INQUIRY NOW</button>
                                <div class="phone-display">
                                    <span class="phone-icon">📞</span>
-                                   <a href="tel:+919727238220" class="phone-number">+91 9727238220</a>
+                                   <a href="tel:+919727238220" class="phone-number">+91 82388 00034</a>
                                </div>
                            </div>
    
@@ -210,6 +212,8 @@
                        </div>
                    </div>
                    <br>
+                   <br>
+                   <br> 
                    <br>
                    <!-- Form Section -->
                    <div class="col-lg-4 col-md-5" style="margin-top: -100px;">
@@ -351,21 +355,28 @@
     </style>
 </head>
 
+<div class="container">
+  <div class="heading_container">
+    <h2 style="margin-left:4%;">
+      About <br />
+      Devanshi Taxi
+    </h2>
+  </div>
+</div>
 <body>
     <!-- About Section -->
-    <section class="about_section index_layout_padding">
+    <section class="about_section">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-4 col-md-5 offset-lg-2 offset-md-1">
-                    <div class="detail-box">
-                        <h2>
-                            About <br />
-                            Taxi Company
-                        </h2>
-                        <p>Welcome to Devanshi Tour And Travels.</p>
-                        <p>At Devanshi Tour And Travels, we are committed to providing reliable, safe, and comfortable transportation solutions. With years of experience in the industry, we have become a trusted name in the community for our dedication to customer satisfaction and quality service.</p>
-                        <a href="{% url 'about' %}">Read More</a>
-                    </div>
+                  <div class="detail-box">
+                    <br>
+                    <br>
+                    <br>
+                    <p>Welcome to Devanshi Tour And Travels.</p>
+                    <p>At Devanshi Tour And Travels, we are committed to providing reliable, safe, and comfortable transportation solutions. With years of experience in the industry, we have become a trusted name in the community for our dedication to customer satisfaction and quality service.</p>
+                    <a href="{% url 'about' %}">Read More</a>
+                  </div>
                 </div>
                 <div class="col-md-6">
                     <div class="img-box">
@@ -399,1025 +410,450 @@
 <br>
 <br>
 <br>
-<section class="contact_section index_layout_padding-bottom"><div class="container"><div class="heading_container"><h2> Rented <br /> Cars </h2></div></div></section>
+<section class="contact_section index_layout_padding-bottom"><div class="container"><div class="heading_container"><h2 style="margin-left:4%;"> Rented <br /> Cars </h2></div></div></section>
 <br>
 
-
-{% comment %} <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Responsive Product Card Slider</title>
-  <style>
-    
-    .c-slider-container {
-      position: relative;
-      width: 100%;
-      max-width: 1200px;
-      margin: 20px auto;
-      overflow: hidden;
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .c-slider-wrapper {
-      display: flex;
-      justify-content: center;
-      overflow: hidden;
-      width: 100%;
-    }
-
-    .c-slider {
-      display: flex;
-      transition: transform 0.3s ease;
-      padding-left: 10px; /* Adjusted left padding */
-      margin-left: -10px; /* Offset for left margin */
-      touch-action: pan-y; /* Allow vertical scrolling */
-    }
-
-    .c-product-card {
-      flex: 0 0 calc(33.33% - 20px); /* Adjusted width calculation */
-      max-width: calc(33.33% - 20px); /* Adjusted max-width calculation */
-      padding: 10px; /* Adjusted padding */
-      margin: 10px;
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .c-product-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
-
-    .c-product-card img {
-      width: 100%; /* Ensures image fills its container */
-      height: auto; /* Maintains aspect ratio */
-      border-radius: 10px;
-    }
-
-    .c-product-card h3 {
-      margin: 10px 0; /* Adjusted margin */
-      font-size: 1.2em; /* Adjusted font size */
-      color: #333;
-    }
-
-    .c-product-card p {
-      font-size: 1em;
-      color: #666;
-      margin-bottom: 10px; /* Adjusted margin */
-    }
-
-    .c-product-card span {
-      display: block;
-      margin-top: 10px;
-      font-size: 1em; /* Adjusted font size */
-      color: #000;
-      font-weight: bold;
-    }
-
-    .c-book-now {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 8px 16px; /* Adjusted padding */
-      font-size: 1em;
-      color: #fff;
-      background-color: #007bff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background-color 0.3s ease;
-    }
-
-    .c-book-now:hover {
-      background-color: #0056b3;
-    }
-
-    .c-navigation-dots {
-      text-align: center;
-      margin-top: 15px;
-    }
-
-    .c-navigation-dot {
-      display: inline-block;
-      width: 12px;
-      height: 12px;
-      margin: 0 5px;
-      background-color: #ccc;
-      border-radius: 50%;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .c-navigation-dot.active,
-    .c-navigation-dot:hover {
-      background-color: #333;
-    }
-
-    @media (max-width: 768px) {
-      .c-product-card {
-        flex: 0 0 50%;
-        max-width: 50%;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .c-product-card {
-        flex: 0 0 100%;
-        max-width: 100%;
-      }
-    }
-
-    /* Additional responsive adjustments */
-    @media (max-width: 768px) {
-      .c-product-card h3 {
-        font-size: 1em; /* Adjusted font size */
-      }
-      
-      .c-product-card p {
-        font-size: 0.9em; /* Adjusted font size */
-      }
-
-      .c-product-card span {
-        font-size: 1em; /* Adjusted font size */
-      }
-
-      .c-book-now {
-        padding: 8px 12px; /* Adjusted padding */
-        font-size: 0.9em; /* Adjusted font size */
-      }
-    }
-
-    @media (max-width: 480px) {
-      .c-product-card h3 {
-        font-size: 0.9em; /* Further adjusted font size */
-      }
-      
-      .c-product-card p {
-        font-size: 0.8em; /* Further adjusted font size */
-      }
-
-      .c-product-card span {
-        font-size: 1em; /* Retain font size */
-      }
-
-      .c-book-now {
-        padding: 6px 10px; /* Further adjusted padding */
-        font-size: 0.8em; /* Further adjusted font size */
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="c-slider-container">
-    <div class="c-slider-wrapper">
-      <div class="c-slider" id="slider">
-        <!-- Example dynamic content with Django template tags -->
-        <!-- Replace with your actual Django template syntax -->
-        {% for car in car_list %}
-          <div class="c-product-card">
-            <img src="{{ car.image.url }}" alt="{{ car.name }}">
-            <h3>{{ car.name }}</h3>
-            <p>{{ car.description }}</p>
-            <span>{{ car.price }}</span>
-            <a href="#" class="c-book-now">Book Now</a>
-          </div>
-        {% endfor %}
-      </div>
-    </div>
-    <div class="c-navigation-dots" id="navigation-dots">
-      <!-- Example dynamic content with Django template tags -->
-      <!-- Replace with your actual Django template syntax -->
-      {% for car in car_list %}
-        <span class="c-navigation-dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.counter0 }}"></span>
-      {% endfor %}
-    </div>
-  </div>
-  <script>
-    const slider = document.querySelector('.c-slider');
-    const dots = document.querySelectorAll('.c-navigation-dot');
-    let currentIndex = 0;
-    let startX = 0;
-    let currentX = 0;
-    let isDragging = false;
-
-    // Function to update slider position
-    function updateSliderPosition() {
-      const cardWidth = document.querySelector('.c-product-card').offsetWidth + 20; // 20 is the left and right margin
-      slider.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-    }
-
-    // Function to update active navigation dots
-    function updateActiveDot() {
-      dots.forEach((dot, index) => {
-        if (index === currentIndex) {
-          dot.classList.add('active');
-        } else {
-          dot.classList.remove('active');
-        }
-      });
-    }
-
-    // Function to handle touch start for touch devices
-    function handleTouchStart(e) {
-      startX = e.touches[0].clientX;
-      isDragging = true;
-    }
-
-    // Function to handle touch move for touch devices
-    function handleTouchMove(e) {
-      if (!isDragging) return;
-      currentX = e.touches[0].clientX;
-      const diff = startX - currentX;
-      slider.style.transform = `translateX(calc(-${currentIndex * 100}% + ${-diff}px))`;
-    }
-
-    // Function to handle touch end for touch devices
-    function handleTouchEnd() {
-      isDragging = false;
-      const diff = startX - currentX;
-      const cardWidth = document.querySelector('.c-product-card').offsetWidth;
-      if (Math.abs(diff) > cardWidth / 3) {
-        if (diff > 0) {
-          currentIndex = Math.min(currentIndex + 1, dots.length - 1);
-        } else {
-          currentIndex = Math.max(currentIndex - 1, 0);
-        }
-      }
-      updateSliderPosition();
-      updateActiveDot();
-    }
-
-    // Event listeners
-    dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
-        currentIndex = index;
-        updateSliderPosition();
-        updateActiveDot();
-      });
-    });
-
-    slider.addEventListener('touchstart', handleTouchStart);
-    slider.addEventListener('touchmove', handleTouchMove);
-    slider.addEventListener('touchend', handleTouchEnd);
-    window.addEventListener('resize', updateSliderPosition);
-    document.addEventListener('DOMContentLoaded', () => {
-      updateSliderPosition();
-    });
-  </script>
-</body>
-</html> {% endcomment %}
-
 {% comment %} <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Rental Slider</title>
+    <title>Car Rental</title>
     <style>
-      
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-        .c-slider-container {
-            position: relative;
-            max-width: 1000px;
-            margin: auto;
-            overflow: hidden;
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
         }
-
-        .c-slider {
+        .car-slider {
+            max-width: 1200px;
+            margin: 40px auto;
+            overflow: hidden;
+            position: relative;
+        }
+        .car-slider-track {
             display: flex;
             transition: transform 0.5s ease;
         }
-
-        .c-car-card {
-            min-width: 33.33%;
+        .car-card {
             box-sizing: border-box;
             padding: 20px;
-        }
-
-        .c-car-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-
-        .c-car-details {
-            padding: 20px;
             background: white;
-            border-radius: 10px;
-            margin-top: -20px;
+            margin: 0 10px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+            flex: 0 0 calc(33.333% - 20px); /* Adjusted width calculation */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s, box-shadow 0.3s;
+            overflow: hidden;
+            position: relative;
         }
-
-        .c-car-details h2 {
-            margin: 0;
-            font-size: 24px;
+        .car-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+        .car-card img {
+            width: 100%;
+            height: 180px; /* Set a fixed height for images */
+            object-fit: cover; /* Ensure the aspect ratio is maintained */
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+        .car-card:hover img {
+            transform: scale(1.05);
+        }
+        .car-card h3 {
+            margin: 15px 0 10px;
+            font-size: 1.4em;
             color: #333;
         }
-
-        .c-price {
-            font-size: 18px;
-            color: #888;
+        .car-card p {
+            color: #666;
+            line-height: 1.6;
         }
-
-        .c-description {
-            font-size: 16px;
-            color: #555;
+        .review {
             margin: 10px 0;
+            color: #666;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
         }
-
-        .c-book-btn {
-            background-color: #ff5a5f;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+        .review .stars {
+            color: #ffcc00;
+            margin-bottom: 5px;
         }
-
-        .c-book-btn:hover {
-            background-color: #ff3b3f;
+        .review p {
+            font-style: italic;
+            margin: 0;
         }
-
-        .c-dots {
-            text-align: center;
-            padding: 20px;
-            background: #fff;
-            border-top: 1px solid #ddd;
+        .car-card .price {
+            font-size: 1.5em;
+            color: #333;
+            margin-top: auto; /* Push price and button to the bottom */
         }
-
-        .c-dot {
-            height: 15px;
-            width: 15px;
-            margin: 0 5px;
-            background-color: #bbb;
-            border-radius: 50%;
+        .car-card .book-now {
             display: inline-block;
-            transition: background-color 0.6s ease;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: linear-gradient(45deg, #ff6600, #ff9900);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            align-self: flex-end;
+            transition: background 0.3s;
+        }
+        .car-card .book-now:hover {
+            background: linear-gradient(45deg, #e65c00, #e68a00);
+        }
+        .dots-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin: 5px;
+            background: #ccc;
+            border-radius: 50%;
             cursor: pointer;
+            transition: background 0.3s;
         }
-
-        .c-active {
-            background-color: #717171;
+        .dot.active {
+            background: #ff6600;
         }
-
-        @media (max-width: 768px) {
-            .c-car-card {
-                min-width: 100%;
+        .dot:hover {
+            background: #ff9900;
+        }
+        @media (max-width: 767px) {
+            .car-card {
+                flex: 0 0 calc(100% - 20px); /* Full width on mobile */
             }
         }
     </style>
 </head>
 <body>
-    <div class="c-slider-container">
-        <div class="c-slider">
-            <!-- Repeat this block for each car -->
-            <div class="c-car-card">
-                <img src="car1.jpg" alt="Car Image">
-                <div class="c-car-details">
-                    <h2>Car Name 1</h2>
-                    <p class="c-price">Price per km: $0.50</p>
-                    <p class="c-description">This is a brief description of the car. It includes some key features and benefits.</p>
-                    <button class="c-book-btn">Book Now</button>
+    <div class="car-slider">
+        <div class="car-slider-track">
+            {% for car in car_list %}
+            <div class="car-card">
+                <img src="{{ car.image_url }}" alt="{{ car.name }}">
+                <h3>{{ car.name }}</h3>
+                <div class="review">
+                    <div class="stars">⭐⭐⭐⭐☆</div>
+                    <p>"Great experience! Will rent again."</p>
                 </div>
+                <p class="price">${{ car.price_per_km }} per km</p>
+                <a href="#" class="book-now">Book Now</a>
             </div>
-            <div class="c-car-card">
-                <img src="car2.jpg" alt="Car Image">
-                <div class="c-car-details">
-                    <h2>Car Name 2</h2>
-                    <p class="c-price">Price per km: $0.60</p>
-                    <p class="c-description">This is a brief description of the car. It includes some key features and benefits.</p>
-                    <button class="c-book-btn">Book Now</button>
+            {% endfor %}
+            <!-- Duplicate the first set of cars for infinite scrolling -->
+            {% for car in cars %}
+            <div class="car-card">
+                <img src="{{ car.image_url }}" alt="{{ car.name }}">
+                <h3>{{ car.name }}</h3>
+                <div class="review">
+                    <div class="stars">⭐⭐⭐⭐☆</div>
+                    <p>"Great experience! Will rent again."</p>
                 </div>
+                <p class="price">${{ car.price_per_km }} per km</p>
+                <a href="#" class="book-now">Book Now</a>
             </div>
-            <div class="c-car-card">
-                <img src="car3.jpg" alt="Car Image">
-                <div class="c-car-details">
-                    <h2>Car Name 3</h2>
-                    <p class="c-price">Price per km: $0.70</p>
-                    <p class="c-description">This is a brief description of the car. It includes some key features and benefits.</p>
-                    <button class="c-book-btn">Book Now</button>
-                </div>
-            </div>
-            <div class="c-car-card">
-                <img src="car4.jpg" alt="Car Image">
-                <div class="c-car-details">
-                    <h2>Car Name 4</h2>
-                    <p class="c-price">Price per km: $0.80</p>
-                    <p class="c-description">This is a brief description of the car. It includes some key features and benefits.</p>
-                    <button class="c-book-btn">Book Now</button>
-                </div>
-            </div>
-            <div class="c-car-card">
-                <img src="car5.jpg" alt="Car Image">
-                <div class="c-car-details">
-                    <h2>Car Name 5</h2>
-                    <p class="c-price">Price per km: $0.90</p>
-                    <p class="c-description">This is a brief description of the car. It includes some key features and benefits.</p>
-                    <button class="c-book-btn">Book Now</button>
-                </div>
-            </div>
-            <div class="c-car-card">
-                <img src="car6.jpg" alt="Car Image">
-                <div class="c-car-details">
-                    <h2>Car Name 6</h2>
-                    <p class="c-price">Price per km: $1.00</p>
-                    <p class="c-description">This is a brief description of the car. It includes some key features and benefits.</p>
-                    <button class="c-book-btn">Book Now</button>
-                </div>
-            </div>
-            <div class="c-car-card">
-                <img src="car7.jpg" alt="Car Image">
-                <div class="c-car-details">
-                    <h2>Car Name 7</h2>
-                    <p class="c-price">Price per km: $1.10</p>
-                    <p class="c-description">This is a brief description of the car. It includes some key features and benefits.</p>
-                    <button class="c-book-btn">Book Now</button>
-                </div>
-            </div>
-            <div class="c-car-card">
-                <img src="car8.jpg" alt="Car Image">
-                <div class="c-car-details">
-                    <h2>Car Name 8</h2>
-                    <p class="c-price">Price per km: $1.20</p>
-                    <p class="c-description">This is a brief description of the car. It includes some key features and benefits.</p>
-                    <button class="c-book-btn">Book Now</button>
-                </div>
-            </div>
-        </div>
-        <div class="c-dots">
-            <span class="c-dot" onclick="currentSlide(0)"></span>
-            <span class="c-dot" onclick="currentSlide(1)"></span>
-            <span class="c-dot" onclick="currentSlide(2)"></span>
-            <span class="c-dot" onclick="currentSlide(3)"></span>
-            <span class="c-dot" onclick="currentSlide(4)"></span>
-            <span class="c-dot" onclick="currentSlide(5)"></span>
-            <span class="c-dot" onclick="currentSlide(6)"></span>
-            <span class="c-dot" onclick="currentSlide(7)"></span>
+            {% endfor %}
         </div>
     </div>
-
+    <div class="dots-container">
+        <!-- Dots will be generated dynamically -->
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
     <script>
-        let slideIndex = 0;
-        const slides = document.querySelectorAll('.c-car-card');
-        const dots = document.querySelectorAll('.c-dot');
-        const slider = document.querySelector('.c-slider');
+        let currentIndex = 0;
+        const sliderTrack = document.querySelector('.car-slider-track');
+        const carCards = document.querySelectorAll('.car-card');
+        const dotsContainer = document.querySelector('.dots-container');
+        const totalCars = {{ cars|length }};  // Number of unique cars
 
-        function showSlide(index) {
-            const isMobile = window.innerWidth <= 768;
-            const cardsPerView = isMobile ? 1 : 3;
-            if (index >= slides.length - cardsPerView + 1) {
-                slideIndex = slides.length - cardsPerView;
-            } else if (index < 0) {
-                slideIndex = 0;
-            } else {
-                slideIndex = index;
+        function generateDots() {
+            for (let i = 0; i < totalCars; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => moveSlider(i));
+                dotsContainer.appendChild(dot);
             }
-
-            const slideWidth = isMobile ? 100 : 33.33;
-            slider.style.transform = `translateX(-${slideIndex * slideWidth}%)`;
-
-            dots.forEach(dot => dot.classList.remove('c-active'));
-            dots[slideIndex].classList.add('c-active');
         }
 
-        function currentSlide(index) {
-            showSlide(index);
+        function moveSlider(index) {
+            const cardWidth = document.querySelector('.car-card').offsetWidth + 20; // Include margin
+            sliderTrack.style.transition = 'transform 0.5s ease';
+            sliderTrack.style.transform = `translateX(-${index * cardWidth}px)`;
+
+            // Handle active dot
+            document.querySelector('.dot.active').classList.remove('active');
+            dotsContainer.children[index % totalCars].classList.add('active');
+            currentIndex = index;
+
+            // Check if we're at the end and reset position
+            if (currentIndex >= carCards.length - totalCars) {
+                setTimeout(() => {
+                    sliderTrack.style.transition = 'none';
+                    sliderTrack.style.transform = `translateX(-${(currentIndex % totalCars) * cardWidth}px)`;
+                    currentIndex = currentIndex % totalCars;
+                }, 500);
+            }
+        }
+
+        function swipeHandler(event) {
+            if (event.direction === Hammer.DIRECTION_LEFT) {
+                currentIndex = (currentIndex + 1) % carCards.length;
+            } else if (event.direction === Hammer.DIRECTION_RIGHT) {
+                currentIndex = (currentIndex - 1 + carCards.length) % carCards.length;
+            }
+            moveSlider(currentIndex);
         }
 
         window.addEventListener('resize', () => {
-            showSlide(slideIndex);
+            moveSlider(currentIndex);
         });
 
-        showSlide(slideIndex);
+        generateDots();
+
+        const hammer = new Hammer(sliderTrack);
+        hammer.on('swipeleft swiperight', swipeHandler);
+
+        // Uncomment the line below to enable auto looping every 3 seconds
+        // setInterval(() => moveSlider(currentIndex + 1), 3000);
     </script>
 </body>
 </html> {% endcomment %}
-
-{% comment %} <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Rental Slider</title>
-    <style>
-        .c-slider-container {
-            position: relative;
-            max-width: 1000px;
-            margin: auto;
-            overflow: hidden;
-        }
-
-        .c-slider {
-            display: flex;
-            flex-wrap: nowrap; /* Ensure cards are in a single row */
-            transition: transform 0.5s ease;
-        }
-
-        .c-car-card {
-            min-width: 33.33%;
-            box-sizing: border-box;
-            padding: 20px;
-        }
-
-        .c-car-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-
-        .c-car-details {
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            margin-top: -20px;
-        }
-
-        .c-car-details h2 {
-            margin: 0;
-            font-size: 24px;
-            color: #333;
-        }
-
-        .c-price {
-            font-size: 18px;
-            color: #888;
-        }
-
-        .c-description {
-            font-size: 16px;
-            color: #555;
-            margin: 10px 0;
-        }
-
-        .c-book-btn {
-            background-color: #ff5a5f;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .c-book-btn:hover {
-            background-color: #ff3b3f;
-        }
-
-        .c-dots {
-            text-align: center;
-            padding: 20px;
-            background: #fff;
-            border-top: 1px solid #ddd;
-        }
-
-        .c-dot {
-            height: 15px;
-            width: 15px;
-            margin: 0 5px;
-            background-color: #bbb;
-            border-radius: 50%;
-            display: inline-block;
-            transition: background-color 0.6s ease;
-            cursor: pointer;
-        }
-
-        .c-active {
-            background-color: #717171;
-        }
-
-        @media (max-width: 768px) {
-            .c-car-card {
-                min-width: 100%;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="c-slider-container">
-        <div class="c-slider">
-            <!-- Repeat this block for each car -->
-            <div class="c-car-card">
-                <img src="car1.jpg" alt="Car Image">
-                <div class="c-car-details">
-                    <h2>Car Name 1</h2>
-                    <p class="c-price">Price per km: $0.50</p>
-                    <p class="c-description">This is a brief description of the car. It includes some key features and benefits.</p>
-                    <button class="c-book-btn">Book Now</button>
-                </div>
-            </div>
-            <div class="c-car-card">
-                <img src="car2.jpg" alt="Car Image">
-                <div class="c-car-details">
-                    <h2>Car Name 2</h2>
-                    <p class="c-price">Price per km: $0.60</p>
-                    <p class="c-description">This is a brief description of the car. It includes some key features and benefits.</p>
-                    <button class="c-book-btn">Book Now</button>
-                </div>
-            </div>
-            <div class="c-car-card">
-                <img src="car3.jpg" alt="Car Image">
-                <div class="c-car-details">
-                    <h2>Car Name 3</h2>
-                    <p class="c-price">Price per km: $0.70</p>
-                    <p class="c-description">This is a brief description of the car. It includes some key features and benefits.</p>
-                    <button class="c-book-btn">Book Now</button>
-                </div>
-            </div>
-            <div class="c-car-card">
-                <img src="car4.jpg" alt="Car Image">
-                <div class="c-car-details">
-                    <h2>Car Name 4</h2>
-                    <p class="c-price">Price per km: $0.80</p>
-                    <p class="c-description">This is a brief description of the car. It includes some key features and benefits.</p>
-                    <button class="c-book-btn">Book Now</button>
-                </div>
-            </div>
-            <div class="c-car-card">
-                <img src="car5.jpg" alt="Car Image">
-                <div class="c-car-details">
-                    <h2>Car Name 5</h2>
-                    <p class="c-price">Price per km: $0.90</p>
-                    <p class="c-description">This is a brief description of the car. It includes some key features and benefits.</p>
-                    <button class="c-book-btn">Book Now</button>
-                </div>
-            </div>
-            <div class="c-car-card">
-                <img src="car6.jpg" alt="Car Image">
-                <div class="c-car-details">
-                    <h2>Car Name 6</h2>
-                    <p class="c-price">Price per km: $1.00</p>
-                    <p class="c-description">This is a brief description of the car. It includes some key features and benefits.</p>
-                    <button class="c-book-btn">Book Now</button>
-                </div>
-            </div>
-            <div class="c-car-card">
-                <img src="car7.jpg" alt="Car Image">
-                <div class="c-car-details">
-                    <h2>Car Name 7</h2>
-                    <p class="c-price">Price per km: $1.10</p>
-                    <p class="c-description">This is a brief description of the car. It includes some key features and benefits.</p>
-                    <button class="c-book-btn">Book Now</button>
-                </div>
-            </div>
-            <div class="c-car-card">
-                <img src="car8.jpg" alt="Car Image">
-                <div class="c-car-details">
-                    <h2>Car Name 8</h2>
-                    <p class="c-price">Price per km: $1.20</p>
-                    <p class="c-description">This is a brief description of the car. It includes some key features and benefits.</p>
-                    <button class="c-book-btn">Book Now</button>
-                </div>
-            </div>
-        </div>
-        <div class="c-dots">
-            <span class="c-dot" onclick="currentSlide(0)"></span>
-            <span class="c-dot" onclick="currentSlide(1)"></span>
-            <span class="c-dot" onclick="currentSlide(2)"></span>
-            <span class="c-dot" onclick="currentSlide(3)"></span>
-            <span class="c-dot" onclick="currentSlide(4)"></span>
-            <span class="c-dot" onclick="currentSlide(5)"></span>
-            <span class="c-dot" onclick="currentSlide(6)"></span>
-            <span class="c-dot" onclick="currentSlide(7)"></span>
-        </div>
-    </div>
-
-    <script>
-        let slideIndex = 0;
-        const slides = document.querySelectorAll('.c-car-card');
-        const dots = document.querySelectorAll('.c-dot');
-        const slider = document.querySelector('.c-slider');
-
-        function showSlide(index) {
-            const isMobile = window.innerWidth <= 768;
-            const cardsPerView = isMobile ? 1 : 3;
-            if (index >= slides.length - cardsPerView + 1) {
-                slideIndex = slides.length - cardsPerView;
-            } else if (index < 0) {
-                slideIndex = 0;
-            } else {
-                slideIndex = index;
-            }
-
-            const slideWidth = isMobile ? 100 : 100 / cardsPerView;
-            slider.style.transform = `translateX(-${slideIndex * slideWidth}%)`;
-
-            dots.forEach(dot => dot.classList.remove('c-active'));
-            dots[slideIndex].classList.add('c-active');
-        }
-
-        function currentSlide(index) {
-            showSlide(index);
-        }
-
-        window.addEventListener('resize', () => {
-            showSlide(slideIndex);
-        });
-
-        showSlide(slideIndex);
-    </script>
-</body>
-</html> {% endcomment %}
-
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Rental Slider</title>
+    <title>Car Rental</title>
     <style>
-        .c-slider-container {
-            position: relative;
-            max-width: 1000px;
-            margin: auto;
-            overflow: hidden;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-        .c-slider {
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .car-slider {
+            max-width: 1200px;
+            margin: 40px auto;
+            overflow: hidden;
+            position: relative;
+        }
+        .car-slider-track {
             display: flex;
-            flex-wrap: nowrap;
             transition: transform 0.5s ease;
         }
-
-        .c-car-card {
-            min-width: 33.33%;
+        .car-card {
             box-sizing: border-box;
             padding: 20px;
-        }
-
-        .c-car-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-
-        .c-car-details {
-            padding: 20px;
             background: white;
-            border-radius: 10px;
-            margin-top: -20px;
+            margin: 0 10px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+            flex: 0 0 calc(33.333% - 20px); /* Adjusted width calculation */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s, box-shadow 0.3s;
+            overflow: hidden;
+            position: relative;
         }
-
-        .c-car-details h2 {
-            margin: 0;
-            font-size: 24px;
+        .car-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+        .car-card img {
+            width: 100%;
+            height: 180px; /* Set a fixed height for images */
+            object-fit: cover; /* Ensure the aspect ratio is maintained */
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+        .car-card:hover img {
+            transform: scale(1.05);
+        }
+        .car-card h3 {
+            margin: 15px 0 10px;
+            font-size: 1.4em;
             color: #333;
         }
-
-        .c-price {
-            font-size: 18px;
-            color: #888;
+        .car-card p {
+            color: #666;
+            line-height: 1.6;
         }
-
-        .c-description {
-            font-size: 16px;
-            color: #555;
+        .review {
             margin: 10px 0;
+            color: #666;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
         }
-
-        .c-book-btn {
-            background-color: #ff5a5f;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+        .review .stars {
+            color: #ffcc00;
+            margin-bottom: 5px;
         }
-
-        .c-book-btn:hover {
-            background-color: #ff3b3f;
+        .review p {
+            font-style: italic;
+            margin: 0;
         }
-
-        .c-dots {
-            text-align: center;
-            padding: 20px;
-            background: #fff;
-            border-top: 1px solid #ddd;
+        .car-card .price {
+            font-size: 1.5em;
+            color: #333;
+            margin-top: auto; /* Push price and button to the bottom */
         }
-
-        .c-dot {
-            height: 15px;
-            width: 15px;
-            margin: 0 5px;
-            background-color: #bbb;
-            border-radius: 50%;
+        .car-card .book-now {
             display: inline-block;
-            transition: background-color 0.6s ease;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: linear-gradient(45deg, #ff6600, #ff9900);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            align-self: flex-end;
+            transition: background 0.3s;
+        }
+        .car-card .book-now:hover {
+            background: linear-gradient(45deg, #e65c00, #e68a00);
+        }
+        .dots-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin: 5px;
+            background: #ccc;
+            border-radius: 50%;
             cursor: pointer;
+            transition: background 0.3s;
         }
-
-        .c-active {
-            background-color: #717171;
+        .dot.active {
+            background: #ff6600;
         }
-
-        @media (max-width: 768px) {
-            .c-car-card {
-                min-width: 100%;
+        .dot:hover {
+            background: #ff9900;
+        }
+        @media (max-width: 767px) {
+            .car-card {
+                flex: 0 0 calc(100% - 20px); /* Full width on mobile */
             }
         }
     </style>
 </head>
 <body>
-    <div class="c-slider-container">
-        <div class="c-slider">
-            <!-- Duplicate the last few car cards at the beginning for seamless loop -->
-            <div class="c-car-card">
-                <img src="car7.jpg" alt="Car Image">
-                <div class="c-car-details">
-                    <h2>Car Name 7</h2>
-                    <p class="c-price">Price per km: $1.10</p>
-                    <p class="c-description">This is a brief description of the car. It includes some key features and benefits.</p>
-                    <button class="c-book-btn">Book Now</button>
+    <div class="car-slider">
+        <div class="car-slider-track">
+            {% for car in car_list %}
+            <div class="car-card">
+                <img src="{{ car.image.url }}" alt="{{ car.name }}">
+                <h3>{{ car.name }}</h3>
+                <div class="review">
+                    <div class="stars">⭐⭐⭐⭐☆</div>
+                    <p>"Great experience! Will rent again."</p>
                 </div>
+                <p class="price">${{ car.price_per_km }} per km</p>
+                <a href="#" class="book-now">Book Now</a>
             </div>
-            <div class="c-car-card">
-                <img src="car8.jpg" alt="Car Image">
-                <div class="c-car-details">
-                    <h2>Car Name 8</h2>
-                    <p class="c-price">Price per km: $1.20</p>
-                    <p class="c-description">This is a brief description of the car. It includes some key features and benefits.</p>
-                    <button class="c-book-btn">Book Now</button>
+            {% endfor %}
+            <!-- Duplicate the first set of cars for infinite scrolling -->
+            {% for car in car_list %}
+            <div class="car-card">
+                <img src="{{ car.image.url }}" alt="{{ car.name }}">
+                <h3>{{ car.name }}</h3>
+                <div class="review">
+                    <div class="stars">⭐⭐⭐⭐☆</div>
+                    <p>"Great experience! Will rent again."</p>
                 </div>
+                <p class="price">${{ car.price_per_km }} per km</p>
+                <a href="#" class="book-now">Book Now</a>
             </div>
-            <!-- Original car cards -->
-            <div class="c-car-card">
-                <img src="car1.jpg" alt="Car Image">
-                <div class="c-car-details">
-                    <h2>Car Name 1</h2>
-                    <p class="c-price">Price per km: $0.50</p>
-                    <p class="c-description">This is a brief description of the car. It includes some key features and benefits.</p>
-                    <button class="c-book-btn">Book Now</button>
-                </div>
-            </div>
-            <div class="c-car-card">
-                <img src="car2.jpg" alt="Car Image">
-                <div class="c-car-details">
-                    <h2>Car Name 2</h2>
-                    <p class="c-price">Price per km: $0.60</p>
-                    <p class="c-description">This is a brief description of the car. It includes some key features and benefits.</p>
-                    <button class="c-book-btn">Book Now</button>
-                </div>
-            </div>
-            <div class="c-car-card">
-                <img src="car3.jpg" alt="Car Image">
-                <div class="c-car-details">
-                    <h2>Car Name 3</h2>
-                    <p class="c-price">Price per km: $0.70</p>
-                    <p class="c-description">This is a brief description of the car. It includes some key features and benefits.</p>
-                    <button class="c-book-btn">Book Now</button>
-                </div>
-            </div>
-            <div class="c-car-card">
-                <img src="car4.jpg" alt="Car Image">
-                <div class="c-car-details">
-                    <h2>Car Name 4</h2>
-                    <p class="c-price">Price per km: $0.80</p>
-                    <p class="c-description">This is a brief description of the car. It includes some key features and benefits.</p>
-                    <button class="c-book-btn">Book Now</button>
-                </div>
-            </div>
-            <div class="c-car-card">
-                <img src="car5.jpg" alt="Car Image">
-                <div class="c-car-details">
-                    <h2>Car Name 5</h2>
-                    <p class="c-price">Price per km: $0.90</p>
-                    <p class="c-description">This is a brief description of the car. It includes some key features and benefits.</p>
-                    <button class="c-book-btn">Book Now</button>
-                </div>
-            </div>
-            <div class="c-car-card">
-                <img src="car6.jpg" alt="Car Image">
-                <div class="c-car-details">
-                    <h2>Car Name 6</h2>
-                    <p class="c-price">Price per km: $1.00</p>
-                    <p class="c-description">This is a brief description of the car. It includes some key features and benefits.</p>
-                    <button class="c-book-btn">Book Now</button>
-                </div>
-            </div>
-            <div class="c-car-card">
-                <img src="car7.jpg" alt="Car Image">
-                <div class="c-car-details">
-                    <h2>Car Name 7</h2>
-                    <p class="c-price">Price per km: $1.10</p>
-                    <p class="c-description">This is a brief description of the car. It includes some key features and benefits.</p>
-                    <button class="c-book-btn">Book Now</button>
-                </div>
-            </div>
-            <div class="c-car-card">
-                <img src="car8.jpg" alt="Car Image">
-                <div class="c-car-details">
-                    <h2>Car Name 8</h2>
-                    <p class="c-price">Price per km: $1.20</p>
-                    <p class="c-description">This is a brief description of the car. It includes some key features and benefits.</p>
-                    <button class="c-book-btn">Book Now</button>
-                </div>
-            </div>
-            <!-- Duplicate the first few car cards at the end for seamless loop -->
-            <div class="c-car-card">
-                <img src="car1.jpg" alt="Car Image">
-                <div class="c-car-details">
-                    <h2>Car Name 1</h2>
-                    <p class="c-price">Price per km: $0.50</p>
-                    <p class="c-description">This is a brief description of the car. It includes some key features and benefits.</p>
-                    <button class="c-book-btn">Book Now</button>
-                </div>
-            </div>
-            <div class="c-car-card">
-                <img src="car2.jpg" alt="Car Image">
-                <div class="c-car-details">
-                    <h2>Car Name 2</h2>
-                    <p class="c-price">Price per km: $0.60</p>
-                    <p class="c-description">This is a brief description of the car. It includes some key features and benefits.</p>
-                    <button class="c-book-btn">Book Now</button>
-                </div>
-            </div>
-        </div>
-        <div class="c-dots">
-            <span class="c-dot" onclick="currentSlide(1)"></span>
-            <span class="c-dot" onclick="currentSlide(2)"></span>
-            <span class="c-dot" onclick="currentSlide(3)"></span>
-            <span class="c-dot" onclick="currentSlide(4)"></span>
-            <span class="c-dot" onclick="currentSlide(5)"></span>
-            <span class="c-dot" onclick="currentSlide(6)"></span>
-            <span class="c-dot" onclick="currentSlide(7)"></span>
-            <span class="c-dot" onclick="currentSlide(8)"></span>
+            {% endfor %}
         </div>
     </div>
-
+    <div class="dots-container"></div>
+    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
     <script>
-        let slideIndex = 1;
-        const slides = document.querySelectorAll('.c-car-card');
-        const dots = document.querySelectorAll('.c-dot');
-        const slider = document.querySelector('.c-slider');
+        let currentIndex = 0;
+        const sliderTrack = document.querySelector('.car-slider-track');
+        const carCards = document.querySelectorAll('.car-card');
+        const dotsContainer = document.querySelector('.dots-container');
+        const totalCars = {{ car_list|length }};  // Number of unique cars
 
-        function showSlide(index) {
-            const isMobile = window.innerWidth <= 768;
-            const cardsPerView = isMobile ? 1 : 3;
-
-            if (index >= slides.length - cardsPerView) {
-                slideIndex = slides.length - cardsPerView - 1;
-                slider.style.transition = 'none';
-                slider.style.transform = `translateX(-${(slideIndex - cardsPerView) * (100 / cardsPerView)}%)`;
-                setTimeout(() => {
-                    slider.style.transition = 'transform 0.5s ease';
-                    slideIndex++;
-                    slider.style.transform = `translateX(-${slideIndex * (100 / cardsPerView)}%)`;
-                }, 50);
-            } else if (index <= 0) {
-                slideIndex = 1;
-                slider.style.transition = 'none';
-                slider.style.transform = `translateX(-${slideIndex * (100 / cardsPerView)}%)`;
-                setTimeout(() => {
-                    slider.style.transition = 'transform 0.5s ease';
-                    slideIndex--;
-                    slider.style.transform = `translateX(-${slideIndex * (100 / cardsPerView)}%)`;
-                }, 50);
-            } else {
-                slideIndex = index;
-                slider.style.transform = `translateX(-${slideIndex * (100 / cardsPerView)}%)`;
+        function generateDots() {
+            for (let i = 0; i < totalCars; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => moveSlider(i));
+                dotsContainer.appendChild(dot);
             }
-
-            dots.forEach(dot => dot.classList.remove('c-active'));
-            dots[(slideIndex - 1) % dots.length].classList.add('c-active');
         }
 
-        function currentSlide(index) {
-            showSlide(index);
+        function moveSlider(index) {
+            const cardWidth = document.querySelector('.car-card').offsetWidth + 20; // Include margin
+            sliderTrack.style.transition = 'transform 0.5s ease';
+            sliderTrack.style.transform = `translateX(-${index * cardWidth}px)`;
+
+            // Handle active dot
+            document.querySelector('.dot.active').classList.remove('active');
+            dotsContainer.children[index % totalCars].classList.add('active');
+            currentIndex = index;
+
+            // Check if we're at the end and reset position
+            if (currentIndex >= carCards.length - totalCars) {
+                setTimeout(() => {
+                    sliderTrack.style.transition = 'none';
+                    sliderTrack.style.transform = `translateX(-${(currentIndex % totalCars) * cardWidth}px)`;
+                    currentIndex = currentIndex % totalCars;
+                }, 500);
+            }
+        }
+
+        function swipeHandler(event) {
+            if (event.direction === Hammer.DIRECTION_LEFT) {
+                currentIndex = (currentIndex + 1) % carCards.length;
+            } else if (event.direction === Hammer.DIRECTION_RIGHT) {
+                currentIndex = (currentIndex - 1 + carCards.length) % carCards.length;
+            }
+            moveSlider(currentIndex);
         }
 
         window.addEventListener('resize', () => {
-            showSlide(slideIndex);
+            moveSlider(currentIndex);
         });
 
-        // Touch swipe functionality
-        let startX;
-        slider.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
-        });
+        generateDots();
 
-        slider.addEventListener('touchend', (e) => {
-            const endX = e.changedTouches[0].clientX;
-            if (startX > endX + 50) {
-                showSlide(slideIndex + 1);
-            } else if (startX < endX - 50) {
-                showSlide(slideIndex - 1);
-            }
-        });
+        const hammer = new Hammer(sliderTrack);
+        hammer.on('swipeleft', () => swipeHandler({ direction: Hammer.DIRECTION_LEFT }));
+        hammer.on('swiperight', () => swipeHandler({ direction: Hammer.DIRECTION_RIGHT }));
 
-        showSlide(slideIndex);
+        // Uncomment the line below to enable auto looping every 3 seconds
+        // setInterval(() => moveSlider(currentIndex + 1), 3000);
     </script>
 </body>
 </html>
+
+
+
+
+
 
 
  <!--end car section -->
@@ -1426,7 +862,7 @@
 <br>
 <div class="container">
       <div class="heading_container">
-        <h2>
+        <h2 style="margin-left:4%;">
           Our<br />
           Services
         </h2>
@@ -1454,6 +890,7 @@
        flex-wrap: wrap;
        justify-content: space-around;
        padding: 20px;
+       
      }
      
      .a_box {
@@ -1486,6 +923,7 @@
        padding: 20px;
        text-align: center;
        background-color: #fff;
+       text-align: left;
      }
      
      .a_detail-box h5 {
@@ -1681,10 +1119,10 @@
   <body>
  <br>
  <br>
-  <section class="contact_section index_layout_padding-bottom">
+ <section class="contact_section index_layout_padding-bottom" style="margin-left: 10px;">
     <div class="container">
       <div class="heading_container">
-        <h2>
+        <h2 style="margin-left:4%;"> 
           Any Problems <br />
           Any Questions
         </h2>
@@ -1732,173 +1170,171 @@
   <!-- end contact section -->
 <br>
 <br>
-
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Reviews</title>
-    <style>
-      /* General Styles */
-      .review-section {
-        background-image: url("{% static 'images/f1.jpg' %}");
-        background-size: cover;
-        background-position: center;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      }
-      
-      .review-content {
-        background-color: rgba(211, 211, 211, 0.8);
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        text-align: center;
-      }
-      
-      .review-content:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-      }
-      
-      .review-image {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        overflow: hidden;
-        margin: 0 auto 15px;
-      }
-      
-      .review-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-      
-      .review-text {
-        font-size: 1rem;
-        color: #555;
-      }
-      
-      .review-author {
-        margin-top: 10px;
-        font-size: 1.1rem;
-        color: #333;
-      }
-      
-      .review-rating {
-        font-size: 1.5rem;
-        color: #ff9800;
-      }
-      
-      .review-rating .star {
-        margin-right: 2px;
-      }
-      
-      @media (max-width: 767px) {
-        .review-content {
-          margin-bottom: 20px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-  
-  <div class="container">
-    <div class="heading_container">
-      <h2>
-        Customer <br />
-        reviews
-      </h2>
-    </div>
+<div class="container">
+  <div class="heading_container">
+    <h2 style="margin-left:4%;">
+      Customer<br />
+      Reviews
+    </h2>
   </div>
-  <br>
-  <br>
-  
-  <section class="review-section py-5">
-    <div class="container">
-      <div class="row mt-5">
-        <div class="col-md-12">
-          <div id="customerReviews" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-              <!-- First Review -->
-              <div class="carousel-item active">
-                <div class="review-content">
-                  <div class="review-image mx-auto">
-                    <img src="{% static 'images/c1.jpeg' %}" alt="Customer Image">
-                  </div>
-                  <p class="review-text mt-3 mb-0">"Excellent service! Highly recommend."</p>
-                  <div class="review-author mt-2">
-                    <strong>- John Doe</strong>
-                  </div>
-                  <div class="review-rating mt-2">
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9734;</span>
-                  </div>
-                </div>
+</div>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Reviews</title>
+  <style>
+    /* CSS Styles */
+    .a-review-section {
+      background-image: url("{% static 'images/f1.jpg' %}");
+      background-size: cover;
+      background-position: center;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .a-review-content {
+      background-color: rgba(211, 211, 211, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+      width: 95%%; /* Fixed width */
+      height: 250px; /* Fixed height */
+      margin: 0 auto; /* Center the content */
+    }
+
+    .a-review-content:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .a-review-image {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 15px;
+    }
+
+    .a-review-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .a-review-text {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    .a-review-author {
+      margin-top: 10px;
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    .a-review-rating {
+      font-size: 1.5rem;
+      color: #ff9800;
+    }
+
+    .a-review-rating .star {
+      margin-right: 2px;
+    }
+
+    @media (max-width: 767px) {
+      .a-review-content {
+        margin-bottom: -100px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HTML Content -->
+<div class="container">
+  <div class="row mt-5 a-review-section">
+    <div class="col-md-12">
+      <div id="customerReviews" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="a-review-content">
+              <div class="a-review-image mx-auto">
+                <img src="{% static 'images/c1.jpeg' %}" alt="Customer Image">
               </div>
-              <!-- Second Review -->
-              <div class="carousel-item">
-                <div class="review-content">
-                  <div class="review-image mx-auto">
-                    <img src="{% static 'images/c2.jpeg' %}" alt="Customer Image">
-                  </div>
-                  <p class="review-text mt-3 mb-0">"Very professional and reliable."</p>
-                  <div class="review-author mt-2">
-                    <strong>- Jane Smith</strong>
-                  </div>
-                  <div class="review-rating mt-2">
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9734;</span>
-                  </div>
-                </div>
+              <p class="a-review-text mt-3 mb-0">"Excellent service! Highly recommend."</p>
+              <div class="a-review-author mt-2">
+                <strong>- John Doe</strong>
               </div>
-              <!-- Third Review -->
-              <div class="carousel-item">
-                <div class="review-content">
-                  <div class="review-image mx-auto">
-                    <img src="{% static 'images/c3.jpeg' %}" alt="Customer Image">
-                  </div>
-                  <p class="review-text mt-3 mb-0">"Great experience, will use again."</p>
-                  <div class="review-author mt-2">
-                    <strong>- Mark Wilson</strong>
-                  </div>
-                  <div class="review-rating mt-2">
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9734;</span>
-                  </div>
-                </div>
+              <div class="a-review-rating mt-2">
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9734;</span>
               </div>
             </div>
-            <!-- Carousel Controls -->
-            <a class="carousel-control-prev" href="#customerReviews" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#customerReviews" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
-            </a>
+          </div>
+          <div class="carousel-item">
+            <div class="a-review-content">
+              <div class="a-review-image mx-auto">
+                <img src="{% static 'images/c2.jpeg' %}" alt="Customer Image">
+              </div>
+              <p class="a-review-text mt-3 mb-0">"Very professional and reliable."</p>
+              <div class="a-review-author mt-2">
+                <strong>- Jane Smith</strong>
+              </div>
+              <div class="a-review-rating mt-2">
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9734;</span>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="a-review-content">
+              <div class="a-review-image mx-auto">
+                <img src="{% static 'images/c3.jpeg' %}" alt="Customer Image">
+              </div>
+              <p class="a-review-text mt-3 mb-0">"Great experience, will use again."</p>
+              <div class="a-review-author mt-2">
+                <strong>- Mark Wilson</strong>
+              </div>
+              <div class="a-review-rating mt-2">
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9734;</span>
+              </div>
+            </div>
           </div>
         </div>
+        <a class="carousel-control-prev" href="#customerReviews" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#customerReviews" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
       </div>
     </div>
-  </section>
-  
-  </body>
-  </html>
+  </div>
+</div>
+
+</body>
+</html>
+
+
   
 
   <!-- why section -->
@@ -1912,89 +1348,94 @@
       <title>Car Rental Website</title>
       <style>
           /* General Styles */
-          .w-why_section {
+          .a-why_section {
               padding: 80px 0;
           }
   
-          .w-heading_container {
+          .a-heading_container {
               text-align: center;
               margin-bottom: 50px;
           }
   
-          .w-heading_container h2 {
+          .a-heading_container h2 {
               font-size: 2.5rem;
               color: #333;
           }
   
-          .w-why_container {
+          .a-why_container {
               display: flex;
               justify-content: space-around;
               align-items: stretch;
               flex-wrap: wrap;
+              
           }
   
-          .w-box {
+          .a-box {
               background: linear-gradient(135deg, #ffffff, #ffffff);
               box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
               margin: 20px;
               width: 300px;
-              height: 400px;
               box-sizing: border-box;
               transition: transform 0.3s, box-shadow 0.3s;
+              display: flex;
+              flex-direction: column;
           }
   
-          .w-box:hover {
+          .a-box:hover {
               transform: translateY(-10px);
               box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
           }
   
-          .w-img-box {
+          .a-img-box {
               text-align: center;
               padding: 20px;
               background-color: #ffc107;
-              width: 100%;
-              height: 80px;
               box-sizing: border-box;
           }
   
-          .w-img-box img {
+          .a-img-box img {
               max-width: 50px;
               height: auto;
           }
   
-          .w-detail-box {
+          .a-detail-box {
               padding: 20px;
               text-align: center;
               background-color: #fff;
-              height: calc(100% - 150px);
               box-sizing: border-box;
+              flex: 1;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
           }
   
-          .w-detail-box h5 {
+          .a-detail-box h5 {
               font-size: 1.5rem;
               color: #333;
               margin-bottom: 15px;
           }
   
-          .w-detail-box p {
+          .a-detail-box p {
               font-size: 1rem;
               line-height: 1.8;
               color: #666;
+              text-align: left;
+              margin-bottom: 20px;
           }
   
           /* Responsive Styles */
           @media (max-width: 768px) {
-              .w-why_container {
+              .a-why_container {
                   flex-direction: column;
                   align-items: center;
               }
   
-              .w-box {
+              .a-box {
                   width: calc(100% - 40px); /* Adjusting width to leave margin on both sides */
                   margin: 20px auto; /* Centering the box */
               }
   
-              .w-detail-box {
+              .a-detail-box {
                   width: 100%;
                   overflow: visible;
               }
@@ -2003,42 +1444,44 @@
   </head>
   
   <body>
-      <section class="w-why_section">
-          <div class="container">
+      <section class="a-why_section">
+          <div class="a-container">
+            <div class="container">
               <div class="heading_container">
-                  <h2>
-                      Why <br />
-                      Choose Us ?
-                  </h2>
+                <h2 style="margin-left:4%;">
+                  Why<br />
+                  Choose us ?
+                </h2>
               </div>
-              <div class="w-why_container">
-                  <div class="w-box">
-                      <div class="w-img-box">
-                          <img src="{% static 'images/delivery-man-black.png' %}" alt="" class="w-img-2" />
+            </div>
+              <div class="a-why_container">
+                  <div class="a-box">
+                      <div class="a-img-box">
+                          <img src="{% static 'images/delivery-man-black.png' %}" alt="" class="a-img-2" />
                       </div>
-                      <div class="w-detail-box">
+                      <div class="a-detail-box">
                           <h5>Best Drivers</h5>
                           <p>
                               Our drivers are highly skilled, professional, and dedicated to providing you with a safe and comfortable journey.
                           </p>
                       </div>
                   </div>
-                  <div class="w-box">
-                      <div class="w-img-box">
-                          <img src="{% static 'images/shield-black.png' %}" alt="" class="w-img-2" />
+                  <div class="a-box">
+                      <div class="a-img-box">
+                          <img src="{% static 'images/shield-black.png' %}" alt="" class="a-img-2" />
                       </div>
-                      <div class="w-detail-box">
+                      <div class="a-detail-box">
                           <h5>Safe and Secure</h5>
                           <p>
                               We prioritize your safety and security with our reliable and thoroughly vetted drivers, ensuring a worry-free journey every time.
                           </p>
                       </div>
                   </div>
-                  <div class="w-box">
-                      <div class="w-img-box">
-                          <img src="{% static 'images/repairing-service-black.png' %}" alt="" class="w-img-2" />
+                  <div class="a-box">
+                      <div class="a-img-box">
+                          <img src="{% static 'images/repairing-service-black.png' %}" alt="" class="a-img-2" />
                       </div>
-                      <div class="w-detail-box">
+                      <div class="a-detail-box">
                           <h5>24x7 support</h5>
                           <p>
                               Our taxi service is available round the clock, ensuring you have access to reliable transportation anytime, day or night.
@@ -2068,10 +1511,10 @@
 
   <!-- footer section -->
 
-  <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+  {% comment %} <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
   <script type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script> {% endcomment %}
 
   <!-- owl carousel script -->
   <script type="text/javascript">
