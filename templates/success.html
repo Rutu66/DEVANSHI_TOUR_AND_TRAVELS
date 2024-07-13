@@ -32,19 +32,28 @@
             position: relative;
         }
 
-        .tick-svg {
-            width: 100%;
-            height: 100%;
-            transform: rotate(45deg);
+        .tick-circle {
+            stroke: #000;
+            stroke-width: 2;
+            fill: none;
+            stroke-dasharray: 150;
+            stroke-dashoffset: 150;
+            animation: draw-circle 0.8s ease-out forwards;
         }
 
         .tick-path {
-            stroke: #4CAF50;
+            stroke: #000;
             stroke-width: 3;
             fill: none;
-            stroke-dasharray: 40;
-            stroke-dashoffset: 40;
-            animation: draw-check 0.5s forwards;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: draw-check 0.5s 0.8s ease forwards;
+        }
+
+        @keyframes draw-circle {
+            to {
+                stroke-dashoffset: 0;
+            }
         }
 
         @keyframes draw-check {
@@ -116,14 +125,17 @@
         }
     </style>
 </head>
+<br>
+<br>
 
 <body>
     <div class="success-container">
         <div class="success-message">
             <div class="tick-mark">
                 <!-- Animation for tick mark -->
-                <svg class="tick-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path class="tick-path" d="M20 6L9 17l-5-5"/>
+                <svg class="tick-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                    <circle class="tick-circle" cx="26" cy="26" r="25"/>
+                    <path class="tick-path" d="M16 30l10 10L36 20"/>
                 </svg>
             </div>
             <h2 style="color: #4CAF50;">Booking Successful!</h2>

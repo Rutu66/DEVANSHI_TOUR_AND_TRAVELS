@@ -157,6 +157,14 @@ def service(request):
     return render(request, 'service.html')
 
 
+def success(request):
+    """ For service page..."""
+    
+   
+    
+    return render(request, 'success.html')
+
+
 
 # **************************************************************************
 

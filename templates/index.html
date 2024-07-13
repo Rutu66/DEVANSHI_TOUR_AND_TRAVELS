@@ -537,226 +537,9 @@
 <section class="contact_section index_layout_padding-bottom"><div class="container"><div class="heading_container"><h2 style="margin-left:4%;"> Rented <br /> Cars </h2></div></div></section>
 <br>
 
+
+
 {% comment %} <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Rental</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        .car-slider {
-            max-width: 1200px;
-            margin: 40px auto;
-            overflow: hidden;
-            position: relative;
-        }
-        .car-slider-track {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-        .car-card {
-            box-sizing: border-box;
-            padding: 20px;
-            background: white;
-            margin: 0 10px;
-            border-radius: 12px;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-            flex: 0 0 calc(33.333% - 20px); /* Adjusted width calculation */
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.3s, box-shadow 0.3s;
-            overflow: hidden;
-            position: relative;
-        }
-        .car-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-        }
-        .car-card img {
-            width: 100%;
-            height: 180px; /* Set a fixed height for images */
-            object-fit: cover; /* Ensure the aspect ratio is maintained */
-            border-radius: 8px;
-            transition: transform 0.3s;
-        }
-        .car-card:hover img {
-            transform: scale(1.05);
-        }
-        .car-card h3 {
-            margin: 15px 0 10px;
-            font-size: 1.4em;
-            color: #333;
-        }
-        .car-card p {
-            color: #666;
-            line-height: 1.6;
-        }
-        .review {
-            margin: 10px 0;
-            color: #666;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-        .review .stars {
-            color: #ffcc00;
-            margin-bottom: 5px;
-        }
-        .review p {
-            font-style: italic;
-            margin: 0;
-        }
-        .car-card .price {
-            font-size: 1.5em;
-            color: #333;
-            margin-top: auto; /* Push price and button to the bottom */
-        }
-        .car-card .book-now {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 20px;
-            background: linear-gradient(45deg, #ff6600, #ff9900);
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            align-self: flex-end;
-            transition: background 0.3s;
-        }
-        .car-card .book-now:hover {
-            background: linear-gradient(45deg, #e65c00, #e68a00);
-        }
-        .dots-container {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .dot {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            margin: 5px;
-            background: #ccc;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .dot.active {
-            background: #ff6600;
-        }
-        .dot:hover {
-            background: #ff9900;
-        }
-        @media (max-width: 767px) {
-            .car-card {
-                flex: 0 0 calc(100% - 20px); /* Full width on mobile */
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="car-slider">
-        <div class="car-slider-track">
-            {% for car in car_list %}
-            <div class="car-card">
-                <img src="{{ car.image_url }}" alt="{{ car.name }}">
-                <h3>{{ car.name }}</h3>
-                <div class="review">
-                    <div class="stars">⭐⭐⭐⭐☆</div>
-                    <p>"Great experience! Will rent again."</p>
-                </div>
-                <p class="price">${{ car.price_per_km }} per km</p>
-                <a href="#" class="book-now">Book Now</a>
-            </div>
-            {% endfor %}
-            <!-- Duplicate the first set of cars for infinite scrolling -->
-            {% for car in cars %}
-            <div class="car-card">
-                <img src="{{ car.image_url }}" alt="{{ car.name }}">
-                <h3>{{ car.name }}</h3>
-                <div class="review">
-                    <div class="stars">⭐⭐⭐⭐☆</div>
-                    <p>"Great experience! Will rent again."</p>
-                </div>
-                <p class="price">${{ car.price_per_km }} per km</p>
-                <a href="#" class="book-now">Book Now</a>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-    <div class="dots-container">
-        <!-- Dots will be generated dynamically -->
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
-    <script>
-        let currentIndex = 0;
-        const sliderTrack = document.querySelector('.car-slider-track');
-        const carCards = document.querySelectorAll('.car-card');
-        const dotsContainer = document.querySelector('.dots-container');
-        const totalCars = {{ cars|length }};  // Number of unique cars
-
-        function generateDots() {
-            for (let i = 0; i < totalCars; i++) {
-                const dot = document.createElement('div');
-                dot.classList.add('dot');
-                if (i === 0) dot.classList.add('active');
-                dot.addEventListener('click', () => moveSlider(i));
-                dotsContainer.appendChild(dot);
-            }
-        }
-
-        function moveSlider(index) {
-            const cardWidth = document.querySelector('.car-card').offsetWidth + 20; // Include margin
-            sliderTrack.style.transition = 'transform 0.5s ease';
-            sliderTrack.style.transform = `translateX(-${index * cardWidth}px)`;
-
-            // Handle active dot
-            document.querySelector('.dot.active').classList.remove('active');
-            dotsContainer.children[index % totalCars].classList.add('active');
-            currentIndex = index;
-
-            // Check if we're at the end and reset position
-            if (currentIndex >= carCards.length - totalCars) {
-                setTimeout(() => {
-                    sliderTrack.style.transition = 'none';
-                    sliderTrack.style.transform = `translateX(-${(currentIndex % totalCars) * cardWidth}px)`;
-                    currentIndex = currentIndex % totalCars;
-                }, 500);
-            }
-        }
-
-        function swipeHandler(event) {
-            if (event.direction === Hammer.DIRECTION_LEFT) {
-                currentIndex = (currentIndex + 1) % carCards.length;
-            } else if (event.direction === Hammer.DIRECTION_RIGHT) {
-                currentIndex = (currentIndex - 1 + carCards.length) % carCards.length;
-            }
-            moveSlider(currentIndex);
-        }
-
-        window.addEventListener('resize', () => {
-            moveSlider(currentIndex);
-        });
-
-        generateDots();
-
-        const hammer = new Hammer(sliderTrack);
-        hammer.on('swipeleft swiperight', swipeHandler);
-
-        // Uncomment the line below to enable auto looping every 3 seconds
-        // setInterval(() => moveSlider(currentIndex + 1), 3000);
-    </script>
-</body>
-</html> {% endcomment %}
-
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -967,7 +750,213 @@
         // setInterval(() => moveSlider(currentIndex + 1), 3000);
     </script>
 </body>
+</html> {% endcomment %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Rental</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        .car-slider {
+            max-width: 1200px;
+            margin: 40px auto;
+            overflow: hidden;
+            position: relative;
+        }
+        .car-slider-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .car-card {
+            box-sizing: border-box;
+            padding: 20px;
+            background: white;
+            margin: 0 10px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+            flex: 0 0 calc(33.333% - 20px); /* Adjusted width calculation */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s, box-shadow 0.3s;
+            overflow: hidden;
+            position: relative;
+        }
+        .car-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+        .car-card img {
+            width: 100%;
+            height: 180px; /* Set a fixed height for images */
+            object-fit: cover; /* Ensure the aspect ratio is maintained */
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+        .car-card:hover img {
+            transform: scale(1.05);
+        }
+        .car-card h3 {
+            margin: 15px 0 10px;
+            font-size: 1.4em;
+            color: #333;
+        }
+        .car-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        .review {
+            margin: 10px 0;
+            color: #666;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .review .stars {
+            color: #ffcc00;
+            margin-bottom: 5px;
+        }
+        .review p {
+            font-style: italic;
+            margin: 0;
+        }
+        .car-card .price {
+            font-size: 1.5em;
+            color: #333;
+            margin-top: auto; /* Push price and button to the bottom */
+        }
+        .car-card .book-now {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: linear-gradient(45deg, #ff6600, #ff9900);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            align-self: flex-end;
+            transition: background 0.3s;
+        }
+        .car-card .book-now:hover {
+            background: linear-gradient(45deg, #e65c00, #e68a00);
+        }
+        .dots-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin: 5px;
+            background: #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .dot.active {
+            background: #ff6600;
+        }
+        .dot:hover {
+            background: #ff9900;
+        }
+        @media (max-width: 767px) {
+            .car-card {
+                flex: 0 0 calc(100% - 20px); /* Full width on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="car-slider">
+        <div class="car-slider-track">
+            {% for car in car_list %}
+            <div class="car-card">
+                <img src="{{ car.image.url }}" alt="{{ car.name }}">
+                <h3>{{ car.name }}</h3>
+                <div class="review">
+                    <div class="stars">⭐⭐⭐⭐☆</div>
+                    <p>"Great experience! Will rent again."</p>
+                </div>
+                <p class="price">${{ car.price_per_km }} per km</p>
+                <a href="#" class="book-now">Book Now</a>
+            </div>
+            {% endfor %}
+            <!-- Duplicate the first set of cars for infinite scrolling -->
+            {% for car in car_list %}
+            <div class="car-card">
+                <img src="{{ car.image.url }}" alt="{{ car.name }}">
+                <h3>{{ car.name }}</h3>
+                <div class="review">
+                    <div class="stars">⭐⭐⭐⭐☆</div>
+                    <p>"Great experience! Will rent again."</p>
+                </div>
+                <p class="price">${{ car.price_per_km }} per km</p>
+                <a href="#" class="book-now">Book Now</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="dots-container"></div>
+    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
+    <script>
+        let currentIndex = 0;
+        const sliderTrack = document.querySelector('.car-slider-track');
+        const carCards = document.querySelectorAll('.car-card');
+        const dotsContainer = document.querySelector('.dots-container');
+        const totalCars = {{ car_list|length }};  // Number of unique cars
+
+        function generateDots() {
+            for (let i = 0; i < totalCars; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => moveSlider(i));
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        function moveSlider(index) {
+            const cardWidth = document.querySelector('.car-card').offsetWidth + 20; // Include margin
+            sliderTrack.style.transition = 'transform 0.5s ease';
+            sliderTrack.style.transform = `translateX(-${index * cardWidth}px)`;
+
+            // Handle active dot
+            document.querySelector('.dot.active').classList.remove('active');
+            dotsContainer.children[index % totalCars].classList.add('active');
+            currentIndex = index;
+        }
+
+        function swipeHandler(event) {
+            const cardWidth = document.querySelector('.car-card').offsetWidth + 20; // Include margin
+            if (event.direction === Hammer.DIRECTION_LEFT && currentIndex < totalCars - 1) {
+                currentIndex++;
+            } else if (event.direction === Hammer.DIRECTION_RIGHT && currentIndex > 0) {
+                currentIndex--;
+            }
+            moveSlider(currentIndex);
+        }
+
+        window.addEventListener('resize', () => {
+            moveSlider(currentIndex);
+        });
+
+        generateDots();
+
+        const hammer = new Hammer(sliderTrack);
+        hammer.on('swipeleft', swipeHandler);
+        hammer.on('swiperight', swipeHandler);
+
+        // Uncomment the line below to enable auto looping every 3 seconds
+        // setInterval(() => moveSlider(currentIndex + 1), 3000);
+    </script>
+</body>
 </html>
+
 
 
 
