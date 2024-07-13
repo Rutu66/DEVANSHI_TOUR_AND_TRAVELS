@@ -138,7 +138,8 @@
            /* Responsive Design */
            @media (max-width: 768px) {
                .inquiry-container {
-                   margin-right: 60px;
+                   margin-right: 30px;
+                   margin-left: 0px;
                    flex-direction: column;
                    gap: 10px;
                }
@@ -175,156 +176,279 @@
                    margin-right: 6px;
                }
            }
+
+           /* Default styles for larger screens */
+#pickup_date::placeholder,
+#pickup_time::placeholder {
+    color: #6c757d; /* Default placeholder color */
+}
+
+/* Styles for smaller screens */
+@media (max-width: 768px) {
+    #pickup_date::placeholder,
+    #pickup_time::placeholder {
+        color: transparent; /* Hide placeholder text on smaller screens */
+    }
+}
+
        </style>
    </head>
    
    <body>
        <section class="slider_section">
            <div class="container-fluid">
-               <div class="row">
-                   <!-- Main Box Section -->
-                   <div class="col-md-7">
-                       <div class="box">
-                           <h4 style="color: #000; font-weight: bold;">Devanshi Tour And Travels</h4>
-                           <div class="detail-box">
-                               <h1>Enjoy Your Trip.</h1>
-                           </div>
-                           <!-- Inquiry Button and Phone Display -->
-                           <div class="inquiry-container">
-                               <button class="inquiry-button">INQUIRY NOW</button>
-                               <div class="phone-display">
-                                   <span class="phone-icon">📞</span>
-                                   <a href="tel:+919727238220" class="phone-number">+91 82388 00034</a>
-                               </div>
-                           </div>
-   
-                           <!-- Carousel -->
-                           <div id="carouselExampleIndicators" class="carousel slide mt-4" data-ride="carousel">
-                               <div class="carousel-inner">
-                                   <div class="carousel-item active">
-                                       <div class="img-box">
-                                           <img src="{% static 'images/b.png' %}" class="img-fluid" alt="Carousel Image" />
-                                       </div>
-                                   </div>
-                                   <!-- Add more carousel items as needed -->
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-                   <br>
-                   <br>
-                   <br> 
-                   <br>
-                   <!-- Form Section -->
-                   <div class="col-lg-4 col-md-5" style="margin-top: -100px;">
-                    <div class="card shadow-sm">
-                        <div class="card-body">
-                            <h4 class="card-title text-center mb-4">Search Cab</h4>
-                            <form action="{% url 'search_cabs' %}" method="get">
-                                {% csrf_token %}
-                
-                                <!-- Travel Type Selection -->
-                                <div class="form-group mb-3">
-                                    <label class="form-label">Travel Type:</label><br>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="travel_type" id="one_way" value="one_way" 
-                                               {% if travel_type == "one_way" %} checked {% endif %} required>
-                                        <label class="form-check-label" for="one_way">One Way</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="travel_type" id="round_trip" value="round_trip" 
-                                               {% if travel_type == "round_trip" %} checked {% endif %} required>
-                                        <label class="form-check-label" for="round_trip">Round Trip</label>
-                                    </div>
-                                </div>
-                
-                                <!-- Pickup and Drop Locations -->
-                                <div class="form-row mb-3">
-                                    <div class="form-group col-md-6">
-                                        <label for="pickup" class="form-label">Pickup Location</label>
-                                        <input type="text" class="form-control" id="pickup" name="pickup" placeholder="Enter pickup location" 
-                                               value="{{ pickup }}" required>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="drop" class="form-label">Drop Location</label>
-                                        <input type="text" class="form-control" id="drop" name="drop" placeholder="Enter drop location" 
-                                               value="{{ drop }}" required>
-                                    </div>
-                                </div>
-                
-                                <!-- Pickup Date and Time -->
-                                <div class="form-row mb-3">
-                                    <div class="form-group col-md-6">
-                                        <label for="pickup_date" class="form-label">Pickup Date</label>
-                                        <input type="date" class="form-control" id="pickup_date" name="pickup_date" 
-                                               value="{{ pickup_date }}" required>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="pickup_time" class="form-label">Pickup Time</label>
-                                        <input type="time" class="form-control" id="pickup_time" name="pickup_time" 
-                                               value="{{ pickup_time }}" required>
-                                    </div>
-                                </div>
-                
-                                <!-- Return Date (for Round Trip) -->
-                                <div id="return-date-group" class="mb-3" style="display: {% if travel_type == 'round_trip' %}block{% else %}none{% endif %};">
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="return_date" class="form-label">Return Date</label>
-                                            <input type="date" class="form-control" id="return_date" name="return_date" 
-                                                   value="{{ return_date }}" required>
-                                        </div>
-                                    </div>
-                                </div>
-                
-                                <!-- JavaScript to Handle Return Date Visibility -->
-                                <script>
-                                    document.addEventListener('DOMContentLoaded', function () {
-                                        const roundTripRadio = document.getElementById('round_trip');
-                                        const returnDateGroup = document.getElementById('return-date-group');
-                
-                                        roundTripRadio.addEventListener('change', function () {
-                                            if (roundTripRadio.checked) {
-                                                returnDateGroup.style.display = 'block';
-                                                document.getElementById('return_date').setAttribute('required', '');
-                                            } else {
-                                                returnDateGroup.style.display = 'none';
-                                                document.getElementById('return_date').removeAttribute('required');
-                                            }
-                                        });
-                
-                                        // Initialize based on the current state
-                                        if (roundTripRadio.checked) {
-                                            returnDateGroup.style.display = 'block';
-                                            document.getElementById('return_date').setAttribute('required', '');
-                                        } else {
-                                            returnDateGroup.style.display = 'none';
-                                            document.getElementById('return_date').removeAttribute('required');
-                                        }
-                
-                                        // Listen for changes in travel type radio buttons
-                                        const travelTypeRadios = document.querySelectorAll('input[name="travel_type"]');
-                                        travelTypeRadios.forEach(radio => {
-                                            radio.addEventListener('change', function () {
-                                                if (radio.value !== 'round_trip') {
-                                                    returnDateGroup.style.display = 'none';
-                                                    document.getElementById('return_date').removeAttribute('required');
-                                                }
-                                            });
-                                        });
-                                    });
-                                </script>
-                
-                                <!-- Submit Button -->
-                                <button type="submit" class="btn btn-warning btn-block">Search</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                
-                
+                <div class="row">
+                    <!-- Main Box Section -->
+                    <div class="col-md-7 custom-col">
+                      <div class="box">
+                          <h4 style="color: #4a4a4a; font-weight: bold;">
+                              <span style="font-size: 1.8em; color: #0056b3; font-weight: bold;">Devanshi</span><br>
+                              <span style="font-size: 1.2em; color: #ff6f61; font-style: italic;">Tour And Travels</span>
+                          </h4>
+                          <br>
+                          <div class="detail-box">
+                              <h1>Enjoy Your Trip.</h1>  
+                          </div>
+                          <!-- Inquiry Button and Phone Display -->
+                          <div class="inquiry-container">
+                              <button class="inquiry-button">INQUIRY NOW</button>
+                              <div class="phone-display">
+                                  <span class="phone-icon">📞</span>
+                                  <a href="tel:+919727238220" class="phone-number">+91 82388 00034</a>
+                              </div>
+                          </div>
+              
+                          <!-- Carousel -->
+                          <div id="carouselExampleIndicators" class="carousel slide mt-4" data-ride="carousel">
+                              <div class="carousel-inner">
+                                  <div class="carousel-item active">
+                                      <div class="img-box">
+                                          <img src="{% static 'images/b.png' %}" class="img-fluid" alt="Carousel Image" />
+                                      </div>
+                                  </div>
+                                  <!-- Add more carousel items as needed -->
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  
+                  <!-- Form Section -->
+                  <div class="col-md-5 c-responsive-margin-top">
 
-               </div>
+                      <div class="card shadow-sm">
+                          <div class="card-body">
+                              <h4 class="card-title text-center mb-4">Search Cab</h4>
+                              <form action="{% url 'search_cabs' %}" method="get">
+                                  {% csrf_token %}
+                  
+                                  <!-- Travel Type Selection -->
+                                  <div class="form-group mb-3">
+                                      <label class="form-label">Travel Type:</label><br>
+                                      <div class="form-check form-check-inline">
+                                          <input class="form-check-input" type="radio" name="travel_type" id="one_way" value="one_way" 
+                                                 {% if travel_type == "one_way" %} checked {% endif %} required>
+                                          <label class="form-check-label" for="one_way">One Way</label>
+                                      </div>
+                                      <div class="form-check form-check-inline">
+                                          <input class="form-check-input" type="radio" name="travel_type" id="round_trip" value="round_trip" 
+                                                 {% if travel_type == "round_trip" %} checked {% endif %} required>
+                                          <label class="form-check-label" for="round_trip">Round Trip</label>
+                                      </div>
+                                  </div>
+                  
+                                  <!-- Pickup and Drop Locations -->
+                                  <div class="form-row mb-3">
+                                      <div class="form-group col-md-6">
+                                          <label for="pickup" class="form-label">Pickup Location</label>
+                                          <input type="text" class="form-control" id="pickup" name="pickup" placeholder="Enter pickup location" 
+                                                 value="{{ pickup }}" required>
+                                      </div>
+                                      <div class="form-group col-md-6">
+                                          <label for="drop" class="form-label">Drop Location</label>
+                                          <input type="text" class="form-control" id="drop" name="drop" placeholder="Enter drop location" 
+                                                 value="{{ drop }}" required>
+                                      </div>
+                                  </div>
+                  
+                                  <!-- Pickup Date and Time -->
+                                  <div class="form-row mb-3">
+                                      <div class="form-group col-md-6">
+                                          <label for="pickup_date" class="form-label">Pickup Date</label>
+                                          <input type="date" class="form-control" id="pickup_date" name="pickup_date" placeholder="Pickup Date" value="{{ pickup_date }}" required>
+
+                                      </div>
+                                      <div class="form-group col-md-6">
+                                          <label for="pickup_time" class="form-label">Pickup Time</label>
+                                          <input type="time" class="form-control" id="pickup_time" name="pickup_time" placeholder="Pickup Time" value="{{ pickup_time }}" required>
+
+                                      </div>
+                                  </div>
+                  
+                                  <!-- Return Date (for Round Trip) -->
+                                  <div id="return-date-group" class="mb-3" style="display: {% if travel_type == 'round_trip' %}block{% else %}none{% endif %};">
+                                      <div class="form-row">
+                                          <div class="form-group col-md-6">
+                                              <label for="return_date" class="form-label">Return Date</label>
+                                              <input type="date" class="form-control" id="return_date" name="return_date" 
+                                                     value="{{ return_date }}" required>
+                                          </div>
+                                      </div>
+                                  </div>
+                  
+                                  <!-- JavaScript to Handle Return Date Visibility -->
+                                  <script>
+                                      document.addEventListener('DOMContentLoaded', function () {
+                                          const roundTripRadio = document.getElementById('round_trip');
+                                          const returnDateGroup = document.getElementById('return-date-group');
+                  
+                                          roundTripRadio.addEventListener('change', function () {
+                                              if (roundTripRadio.checked) {
+                                                  returnDateGroup.style.display = 'block';
+                                                  document.getElementById('return_date').setAttribute('required', '');
+                                              } else {
+                                                  returnDateGroup.style.display = 'none';
+                                                  document.getElementById('return_date').removeAttribute('required');
+                                              }
+                                          });
+                  
+                                          // Initialize based on the current state
+                                          if (roundTripRadio.checked) {
+                                              returnDateGroup.style.display = 'block';
+                                              document.getElementById('return_date').setAttribute('required', '');
+                                          } else {
+                                              returnDateGroup.style.display = 'none';
+                                              document.getElementById('return_date').removeAttribute('required');
+                                          }
+                  
+                                          // Listen for changes in travel type radio buttons
+                                          const travelTypeRadios = document.querySelectorAll('input[name="travel_type"]');
+                                          travelTypeRadios.forEach(radio => {
+                                              radio.addEventListener('change', function () {
+                                                  if (radio.value !== 'round_trip') {
+                                                      returnDateGroup.style.display = 'none';
+                                                      document.getElementById('return_date').removeAttribute('required');
+                                                  }
+                                              });
+                                          });
+                                      });
+                                  </script>
+                  
+                                  <!-- Submit Button -->
+                                  <button type="submit" class="btn btn-warning btn-block">Search</button>
+                              </form>
+                          </div>
+                      </div>
+                  </div>  
+                    <!-- Form Section -->
+                    {% comment %} <div class="col-lg-4 col-md-5" style="margin-top: -100px;">
+                      <div class="card shadow-sm">
+                          <div class="card-body">
+                              <h4 class="card-title text-center mb-4">Search Cab</h4>
+                              <form action="{% url 'search_cabs' %}" method="get">
+                                  {% csrf_token %}
+                  
+                                  <!-- Travel Type Selection -->
+                                  <div class="form-group mb-3">
+                                      <label class="form-label">Travel Type:</label><br>
+                                      <div class="form-check form-check-inline">
+                                          <input class="form-check-input" type="radio" name="travel_type" id="one_way" value="one_way" 
+                                                {% if travel_type == "one_way" %} checked {% endif %} required>
+                                          <label class="form-check-label" for="one_way">One Way</label>
+                                      </div>
+                                      <div class="form-check form-check-inline">
+                                          <input class="form-check-input" type="radio" name="travel_type" id="round_trip" value="round_trip" 
+                                                {% if travel_type == "round_trip" %} checked {% endif %} required>
+                                          <label class="form-check-label" for="round_trip">Round Trip</label>
+                                      </div>
+                                  </div>
+                  
+                                  <!-- Pickup and Drop Locations -->
+                                  <div class="form-row mb-3">
+                                      <div class="form-group col-md-6">
+                                          <label for="pickup" class="form-label">Pickup Location</label>
+                                          <input type="text" class="form-control" id="pickup" name="pickup" placeholder="Enter pickup location" 
+                                                value="{{ pickup }}" required>
+                                      </div>
+                                      <div class="form-group col-md-6">
+                                          <label for="drop" class="form-label">Drop Location</label>
+                                          <input type="text" class="form-control" id="drop" name="drop" placeholder="Enter drop location" 
+                                                value="{{ drop }}" required>
+                                      </div>
+                                  </div>
+                  
+                                  <!-- Pickup Date and Time -->
+                                  <div class="form-row mb-3">
+                                      <div class="form-group col-md-6">
+                                          <label for="pickup_date" class="form-label">Pickup Date</label>
+                                          <input type="date" class="form-control" id="pickup_date" name="pickup_date" 
+                                                value="{{ pickup_date }}" required>
+                                      </div>
+                                      <div class="form-group col-md-6">
+                                          <label for="pickup_time" class="form-label">Pickup Time</label>
+                                          <input type="time" class="form-control" id="pickup_time" name="pickup_time" 
+                                                value="{{ pickup_time }}" required>
+                                      </div>
+                                  </div>
+                  
+                                  <!-- Return Date (for Round Trip) -->
+                                  <div id="return-date-group" class="mb-3" style="display: {% if travel_type == 'round_trip' %}block{% else %}none{% endif %};">
+                                      <div class="form-row">
+                                          <div class="form-group col-md-6">
+                                              <label for="return_date" class="form-label">Return Date</label>
+                                              <input type="date" class="form-control" id="return_date" name="return_date" 
+                                                    value="{{ return_date }}" required>
+                                          </div>
+                                      </div>
+                                  </div>
+                  
+                                  <!-- JavaScript to Handle Return Date Visibility -->
+                                  <script>
+                                      document.addEventListener('DOMContentLoaded', function () {
+                                          const roundTripRadio = document.getElementById('round_trip');
+                                          const returnDateGroup = document.getElementById('return-date-group');
+                  
+                                          roundTripRadio.addEventListener('change', function () {
+                                              if (roundTripRadio.checked) {
+                                                  returnDateGroup.style.display = 'block';
+                                                  document.getElementById('return_date').setAttribute('required', '');
+                                              } else {
+                                                  returnDateGroup.style.display = 'none';
+                                                  document.getElementById('return_date').removeAttribute('required');
+                                              }
+                                          });
+                  
+                                          // Initialize based on the current state
+                                          if (roundTripRadio.checked) {
+                                              returnDateGroup.style.display = 'block';
+                                              document.getElementById('return_date').setAttribute('required', '');
+                                          } else {
+                                              returnDateGroup.style.display = 'none';
+                                              document.getElementById('return_date').removeAttribute('required');
+                                          }
+                  
+                                          // Listen for changes in travel type radio buttons
+                                          const travelTypeRadios = document.querySelectorAll('input[name="travel_type"]');
+                                          travelTypeRadios.forEach(radio => {
+                                              radio.addEventListener('change', function () {
+                                                  if (radio.value !== 'round_trip') {
+                                                      returnDateGroup.style.display = 'none';
+                                                      document.getElementById('return_date').removeAttribute('required');
+                                                  }
+                                              });
+                                          });
+                                      });
+                                  </script>
+                  
+                                  <!-- Submit Button -->
+                                  <button type="submit" class="btn btn-warning btn-block">Search</button>
+                              </form>
+                          </div>
+                      </div>
+                  </div> {% endcomment %}
+                  
+                  
+
+                </div>
            </div>
        </section>
    
@@ -348,7 +472,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scae=1.0">
     <title>About Taxi Company</title>
     <style>
         /* Add your custom CSS styles here */
@@ -359,7 +483,7 @@
   <div class="heading_container">
     <h2 style="margin-left:4%;">
       About <br />
-      Devanshi Taxi
+      Devanshi Tour And Travels 
     </h2>
   </div>
 </div>
@@ -374,7 +498,7 @@
                     <br>
                     <br>
                     <p>Welcome to Devanshi Tour And Travels.</p>
-                    <p>At Devanshi Tour And Travels, we are committed to providing reliable, safe, and comfortable transportation solutions. With years of experience in the industry, we have become a trusted name in the community for our dedication to customer satisfaction and quality service.</p>
+                    <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;At Devanshi Tour And Travels, we are committed to providing reliable, safe, and comfortable transportation solutions. With years of experience in the industry, we have become a trusted name in the community for our dedication to customer satisfaction and quality service.</p>
                     <a href="{% url 'about' %}">Read More</a>
                   </div>
                 </div>
@@ -641,12 +765,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
+        
         .car-slider {
             max-width: 1200px;
             margin: 40px auto;
@@ -1114,6 +1233,20 @@
           overflow: visible; /* Override to ensure content is visible */
         }
       }
+
+      
+
+      .heading_container h2 {
+        margin-left: 4%;
+      }
+      
+      /* Media query for mobile view */
+      @media (max-width: 768px) {
+        .heading_container h2 {
+          margin-left: 1%;
+        }
+      }
+      
     </style>
   </head>
   <body>
@@ -1122,11 +1255,12 @@
  <section class="contact_section index_layout_padding-bottom" style="margin-left: 10px;">
     <div class="container">
       <div class="heading_container">
-        <h2 style="margin-left:4%;"> 
+        <h2> 
           Any Problems <br />
           Any Questions
         </h2>
       </div>
+      
     </div>
   <br>
   <br>

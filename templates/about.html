@@ -7,39 +7,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - Taxi Company</title>
-    <!-- Load your CSS here -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        
+
+        
+        .layout_padding {
+            padding: 40px 0;
+        }
+
+        .about_section {
+            background-color: #f9f9f9;
+        }
+
+        .detail-box {
+            padding: 20px;
+        }
+
+        .detail-box p {
+            font-size: 1em;
+            width: 150%;
+            line-height: 1.5;
+            color: #333;
+            margin-left: -37%;
+        }
+
+        .img-box {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .img-box img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .detail-box-container, .img-box-container {
+                margin: 0 auto;
+                text-align: center;
+            }
+
+            .detail-box-container {
+                order: 2;
+                width: 60%;
+            }
+
+            .img-box-container {
+                order: 1;
+            }
+
+            
+
+            .detail-box p {
+                margin-top:40px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
 </head>
 <body>
-    <br>
-    <br>
-    <br>
-  
     <div class="container">
-        <div class="heading_container">
-          <h2>
-            About <br />
-            Devanshi Taxi
-          </h2>
+        <div class="container">
+            <div class="heading_container" style="
+        margin-left: -4px;
+        margin-top: 70px;
+    ">
+            <h2>About <br />Devanshi Tour And Travels</h2>
         </div>
-      </div>
-    <!-- About Section -->
-    <br>
+    </div>
     <section class="about_section layout_padding">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-4 col-md-5 offset-lg-2 offset-md-1">
+                <div class="col-lg-4 col-md-5 offset-lg-2 offset-md-1 detail-box-container">
                     <div class="detail-box">
-                        
-                        <br>
                         <p>
-                            If you require reliable transportation, hiring a cab from anywhere in a convenient and hassle-free option. Whether you're a tourist exploring the city or a local resident looking for comfortable travel solutions, cab hire with Devanshi Tour And Travels  is a convenient way to explore the city's bustling streets and reach your destination with comfort.<br><br>
-
-We are committed to delivering exceptional services to ensure seamless travel experiences for every passenger. Whether you're a curious explorer or a busy traveller, we guarantee convenience and efficiency as you navigate the city's wonders. Devanshi Tour And Travels provides easy taxi booking and reliable drivers. Let us be your guide as you uncover the treasures of this captivating city.
+                            If you require reliable transportation, hiring a cab from anywhere in a convenient and hassle-free option. Whether you're a tourist exploring the city or a local resident looking for comfortable travel solutions, cab hire with Devanshi Tour And Travels is a convenient way to explore the city's bustling streets and reach your destination with comfort.<br><br>
+                            We are committed to delivering exceptional services to ensure seamless travel experiences for every passenger. Whether you're a curious explorer or a busy traveller, we guarantee convenience and efficiency as you navigate the city's wonders. Devanshi Tour And Travels provides easy taxi booking and reliable drivers. Let us be your guide as you uncover the treasures of this captivating city.
                         </p>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 img-box-container">
                     <div class="img-box">
                         <img src="{% static 'images/e.png' %}" alt="Taxi Image">
                     </div>
@@ -47,9 +102,11 @@ We are committed to delivering exceptional services to ensure seamless travel ex
             </div>
         </div>
     </section>
+</body>
+</html>
+
     <!-- End About Section -->
-    <br>
-    <br>
+   
 
     <!DOCTYPE html>
     <html lang="en">
@@ -172,6 +229,7 @@ We are committed to delivering exceptional services to ensure seamless travel ex
                 }
     
                 .text {
+
                     font-size: 0.9em;
                 }
     

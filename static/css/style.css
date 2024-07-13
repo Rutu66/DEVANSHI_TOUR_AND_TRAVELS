@@ -50,6 +50,13 @@ body {
   margin-bottom: 45px;
 }
 
+.a-heading_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 45px;
+}
+
 .service_heading_container h2 {
   position: relative;
   margin-top: -90px;
@@ -375,7 +382,7 @@ a:focus {
   font-size: 1.1em;
   line-height: 1.8;
   color: #000000;
-  text-align: justify;
+  text-align: left;
   margin-bottom: 20px;
 }
 

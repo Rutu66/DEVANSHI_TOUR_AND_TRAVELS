@@ -2,14 +2,14 @@
 
 @media (max-width: 768px) {
   .col-md-7 {
-    margin-left: -4px;
+    margin-left: 0px;
   }
 }
 
 
 @media (max-width: 768px) {
   .slider_section .box {
-    margin-bottom: 150px;
+    margin-bottom: 50px;
   }
 }
 
@@ -19,6 +19,19 @@
     margin-bottom: 50px; /* Adjusted margin-bottom for responsiveness */
   }
 }
+
+/* Default styles for larger screens */
+.c-responsive-margin-top {
+  margin-top: -115px;
+}
+
+/* Styles for smaller screens */
+@media (max-width: 768px) {
+  .c-responsive-margin-top {
+      margin-top: 0; /* Adjust this value as needed for smaller screens */
+  }
+}
+
 
 
 
@@ -85,7 +98,7 @@
   }
 
   .contact_section .img-box {
-    padding-left: 25px;
+    padding-left: 0px;
     margin-top: 35px;
   }
 
