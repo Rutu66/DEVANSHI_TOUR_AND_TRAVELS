@@ -30,12 +30,12 @@
               </div>
             
               <div class="form-group">
-                  <input type="text" class="form-control form-control-lg"  placeholder="Phone Number" name="mobail" required pattern="[0-9]{10}" title="Please enter a 10-digit mobile number"  >
+                  <input type="text" class="form-control form-control-lg"  placeholder="Your Phone Number" name="mobail" required pattern="[0-9]{10}" title="Please enter a 10-digit mobile number"  >
               </div>
               <div class="form-group">
-                  <textarea class="form-control form-control-lg" rows="5" placeholder="Message" name="message" required></textarea>
+                  <textarea class="form-control form-control-lg" rows="5" placeholder="Your Feedback" name="message" required></textarea>
               </div>
-              <button type="submit" class="btn btn-orange btn-block btn-lg">Send Message</button>
+              <button type="submit" class="btn btn-orange btn-block btn-lg">Send</button>
           </form>
             {% for message in messages %}
             <div class="alert alert-warning alert-dismissible fade show mt-4" role="alert">
@@ -57,7 +57,7 @@
       
       </div>
       <!-- Additional Contact Information Section -->
-      <div class="row mt-5">
+      {% comment %} <div class="row mt-5">
         <div class="col-lg-12 text-center">
           <h2 class="mb-4">Additional Contact Information</h2>
         </div>
@@ -94,11 +94,11 @@
             </div>
           </a>
         </div>
-      </div>
+      </div> {% endcomment %}
 
       <!-- Customer Reviews Section -->
       <br>  
-      <div class="col-lg-12 text-center">
+      {% comment %} <div class="col-lg-12 text-center">
         <h2 class="mb-4">Customer Reviews</h2>
       </div>
       <div class="row mt-5 review-section">
@@ -171,7 +171,7 @@
             </a>
           </div>
         </div>
-      </div>
+      </div> {% endcomment %}
     </div>
   </section>
 
@@ -204,19 +204,23 @@
       color: #bbb;
     }
 
-    .btn-orange {
-      background-color: #ff9800;
-      color: #fff;
-      border: none;
-      padding: 15px;
-      font-size: 1.1rem;
-      border-radius: 10px;
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    }
+   
 
+    .btn-orange {
+      background-color: #ffc107;
+      border-color: #ffc107;
+      border-radius: 20px;
+      font-family: inherit;
+      padding: 10px 20px;
+      transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
+      color: #000; /* Default font color */
+    }
+    
     .btn-orange:hover {
-      background-color: #e68a00;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      background-color: #e0a800; /* Darker shade for hover */
+      color: #fff; /* Font color change on hover */
+      font-weight: bold; /* Font weight change on hover */
+      transform: scale(1.05); /* Slightly increase the size */
     }
 
     .alert {
@@ -372,7 +376,7 @@
 
     @media (max-width: 767px) {
       .contact-form {
-        margin-bottom: 30px;
+        margin-bottom: 5px;
       }
 
       .info-card {
@@ -390,21 +394,9 @@
       transition: all 0.3s ease;
     }
 
-    .btn-orange::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 200%;
-      height: 100%;
-      background-color: rgba(255, 255, 255, 0.2);
-      transition: all 0.3s ease;
-      transform: skewX(-20deg);
-    }
+   
 
-    .btn-orange:hover::before {
-      left: 100%;
-    }
+    
   </style>
 
   {% endblock body %}

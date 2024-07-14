@@ -1,126 +1,134 @@
 {% extends "base.html" %}
-{% load static %}
 {% block body %}
+{% load static %}
 
-<style>
-  /* General Styles */
-  .service_container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 20px;
-  }
-  
-  .box {
-    background: linear-gradient(135deg, #ffffff, #ffffff);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-    margin: 20px;
-    flex: 1 1 300px;
-    max-width: 300px;
-    transition: transform 0.3s, box-shadow 0.3s;
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  
-  .box:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-  }
-  
-  .img-box {
-    text-align: center;
-    padding: 20px;
-    background-color: #ffc107;
-  }
-  
-  .img-box img {
-    max-width: 50%;
-    height: auto;
-  }
-  
-  .detail-box {
-    padding: 20px;
-    text-align: center;
-    background-color: #fff;
-  }
-  
-  .detail-box h5 {
-    font-size: 1.5em;
-    color: #333;
-    margin-bottom: 15px;
-  }
-  
-  .detail-box p {
-    font-size: 1em;
-    line-height: 1.8;
-    color: #666;
-    text-align: left;
-  }
-  
-  /* Responsive Styles */
-  @media (max-width: 768px) {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Services Page</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
     .service_container {
-      flex-direction: column;
-      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      padding: 20px;
+      margin: 0 auto; /* Centers the container */
     }
-  
+    
     .box {
-      max-width: 100%;
+      background: linear-gradient(135deg, #ffffff, #ffffff);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+      margin: 20px;
+      flex: 1 1 calc(33.33% - 40px); /* Three boxes per row, with margin */
+      max-width: calc(33.33% - 40px); /* Three boxes per row, with margin */
+      transition: transform 0.3s, box-shadow 0.3s;
+      border-radius: 10px;
+      overflow: hidden;
     }
-  
+    
+    .box:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    }
+    
+    .img-box {
+      text-align: center;
+      padding: 20px;
+      background-color: #ffc107;
+    }
+    
+    .img-box img {
+      max-width: 20%;
+      height: auto;
+    }
+    
     .detail-box {
-      max-width: 100%;
-      overflow: visible;
+      padding: 20px;
+      text-align: center;
+      background-color: #fff;
     }
-  }
-</style>
+    
+    .detail-box h5 {
+      font-size: 1.5em;
+      color: #333;
+      margin-bottom: 15px;
+    }
+    
+    .detail-box p {
+      font-size: 1em;
+      line-height: 1.8;
+      color: #666;
+      text-align: left;
+    }
+    
+    /* Media Queries */
+    @media (max-width: 768px) {
+      .box {
+        flex: 1 1 100%; /* Full width on smaller screens */
+        max-width: 100%; /* Full width on smaller screens */
+      }
+    }
+  </style>
+</head>
+<body>
+  <br>
+  <br>
+  <br>
+  <!-- Service Section -->
+  <div class="container">
+    <div class="heading_container" style="margin-left: 10px;">
+      <h2>
+        Our <br /> Services
+      </h2>
+    </div>
+  </div>
 
-<br>
-<br>
-<br>
-<!-- Service Section -->
-<div class="container">
-  <div class="heading_container" style="margin-left: 10px;">
-    <h2>
-      Our <br /> Services
-    </h2>
+  <div class="service_container">
+    <div class="box">
+      <div class="img-box">
+        <img src="{% static 'images/delivery-man-black1.png' %}" alt="Private Driver">
+      </div>
+      <div class="detail-box">
+        <h5>Private Driver</h5>
+        <p>
+          The primary function of a Personal Driver is to provide transportation for passengers from one location to another. It is essential that they drive their passengers in a safe, comfortable, and professional manner while simultaneously keeping track of navigation, traffic, and timing.
+        </p>
+      </div>
+    </div>
+    <div class="box">
+      <div class="img-box">
+        <img src="{% static 'images/City.png' %}" alt="City Tour">
+      </div>
+      <div class="detail-box">
+        <h5>City Tour</h5>
+        <p>
+          We specialize in providing Taxi service, Car Rental Service, and Tour Package service from city to city routes for business travelers and local tourists. We are committed to offering the best hassle-free Taxi services, Cab services, and Car hire services in major cities across Gujarat.
+        </p>
+      </div>
+    </div>
+    <div class="box">
+      <div class="img-box">
+        <img src="{% static 'images/backpack-black.png' %}" alt="Luggage Transfer">
+      </div>
+      <div class="detail-box">
+        <h5>Luggage Transfer</h5>
+        <p>
+          Luggage delivery services provide door-to-door luggage delivery, where your luggage or sports equipment is picked up from your home, office, or any physical address and delivered to your hotel, resort, or any other location. With decreasing luggage allowances and increasing excess luggage fees, our service ensures convenient and stress-free travel.
+        </p>
+      </div>
+    </div>
   </div>
-</div>
 
-<div class="service_container">
-  <div class="box">
-    <div class="img-box">
-      <img src="{% static 'images/delivery-man-black1.png' %}" alt="Private Driver">
-    </div>
-    <div class="detail-box">
-      <h5>Private Driver</h5>
-      <p>
-        The primary function of a Personal Driver is to provide transportation for passengers from one location to another. It is essential that they drive their passengers in a safe, comfortable, and professional manner while simultaneously keeping track of navigation, traffic, and timing.
-      </p>
-    </div>
-  </div>
-  <div class="box">
-    <div class="img-box">
-      <img src="{% static 'images/City.png' %}" alt="City Tour">
-    </div>
-    <div class="detail-box">
-      <h5>City Tour</h5>
-      <p>
-        We specialize in providing Taxi service, Car Rental Service, and Tour Package service from city to city routes for business travelers and local tourists. We are committed to offering the best hassle-free Taxi services, Cab services, and Car hire services in major cities across Gujarat.
-      </p>
-    </div>
-  </div>
-  <div class="box">
-    <div class="img-box">
-      <img src="{% static 'images/backpack-black.png' %}" alt="Luggage Transfer">
-    </div>
-    <div class="detail-box">
-      <h5>Luggage Transfer</h5>
-      <p>
-        Luggage delivery services provide door-to-door luggage delivery, where your luggage or sports equipment is picked up from your home, office, or any physical address and delivered to your hotel, resort, or any other location. With decreasing luggage allowances and increasing excess luggage fees, our service ensures convenient and stress-free travel.
-      </p>
-    </div>
-  </div>
-</div>
+</body>
+</html>
 
 {% endblock body %}

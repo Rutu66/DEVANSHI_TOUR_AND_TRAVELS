@@ -11,12 +11,13 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('service/', views.service, name='service'),
     path('success/', views.success, name='success'),
+    path('search/', views.search_cabs, name='search_cabs'),
     
     path('sendmail_booking/', views.sendmail_booking, name='sendmail_booking'),
     path('sendmail_contact/', views.sendmail_contact, name='sendmail_contact'),
     
     
-    path('search/', views.search_cabs_view, name='search_cabs')
+    
     
     
 

@@ -85,7 +85,7 @@ def sendmail_contact(request):
 def index(request):
     
     
-    car_list = Cars.objects.all()
+    car_list = Car.objects.all()
     
     data = {
         'car_list': car_list
@@ -122,18 +122,23 @@ def cars(request):
         'car_list': car_list,
     })
     
-        
 
-    
-    
-    
-    
 
 def checkout(request, car_id):
-    """ For about page...."""
-    car = get_object_or_404(Cars, id=car_id)
-    # Pass the data to the template
-    return render(request, 'checkout.html', {'car': car})
+    cost_instance = get_object_or_404(Cost, id=car_id)
+    # You can access all fields of Cost model here
+    car = cost_instance.car
+    route = cost_instance.route
+    total_fare = cost_instance.total_fare
+    extra_fare = cost_instance.extra_fare
+    
+    # Pass all data to the template
+    return render(request, 'checkout.html', {
+        'car': car,
+        'route': route,
+        'total_fare': total_fare,
+        'extra_fare': extra_fare,
+    })
 
 
 def about(request):
@@ -168,13 +173,18 @@ def success(request):
 
 # **************************************************************************
 
+
+# views.py
+
 # views.py
 
 from django.shortcuts import render
-from .models import Cars, Price
-from datetime import datetime
+from .models import Cost
 
-def search_cabs_view(request):
+from django.shortcuts import render
+from .models import Cost  # Import relevant models
+
+def search_cabs(request):
     if request.method == 'GET':
         travel_type = request.GET.get('travel_type')
         pickup = request.GET.get('pickup')
@@ -182,28 +192,25 @@ def search_cabs_view(request):
         pickup_date = request.GET.get('pickup_date')
         pickup_time = request.GET.get('pickup_time')
         return_date = request.GET.get('return_date')
-        
-        # Parse pickup date and time into a datetime object
-        pickup_datetime = datetime.strptime(pickup_date + ' ' + pickup_time, '%Y-%m-%d %H:%M')
-        
-        # Adjust return date format if available
-        formatted_return_date = datetime.strptime(return_date, '%Y-%m-%d').strftime('%d/%m/%y') if return_date else None
-        
-        # Query based on trip type and travel type
-        cars = Cars.objects.filter(prices__pickup_location=pickup, prices__drop_location=drop)
-        
-        if travel_type == 'one_way':
-            cars = cars.filter(prices__pickup_location=pickup, prices__drop_location=drop)
-        elif travel_type == 'round_trip':
-            cars = cars.filter(prices__pickup_location=pickup, prices__drop_location=drop)
-        
+
+        # Ensure required fields are filled
+        if not (travel_type and pickup and drop and pickup_date and pickup_time):
+            return render(request, 'your_template.html', {'error_message': 'Please fill all required fields.'})
+
+        # Filter cars based on pickup and drop locations and travel type
+        cars = Cost.objects.filter(
+            route__pickup__icontains=pickup,
+            route__drop__icontains=drop,
+        )
+
         context = {
-            'cars': cars.distinct(),  # Ensure each car appears only once
+            'cars': cars,
+            'travel_type': travel_type,
             'pickup': pickup,
             'drop': drop,
-            'pickup_datetime': pickup_datetime,
-            'return_date': formatted_return_date,
-            'travel_type': travel_type,
+            'pickup_date': pickup_date,
+            'pickup_time': pickup_time,
+            'return_date': return_date,
         }
-        
+
         return render(request, 'cars.html', context)

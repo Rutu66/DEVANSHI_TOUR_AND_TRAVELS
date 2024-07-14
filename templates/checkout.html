@@ -201,17 +201,18 @@
             <div class="summary-box">
                 <h4>Overall Fare Summary</h4>
                 <img src="{{ car.image.url }}" class="summary-image" alt="Car Image">
-                <p>Vehicle Type: <strong>{{ car.type }}</strong></p>
-                <p>Total Trip Fare: ₹{{ car.total_fare }}</p>
-                <p>GST Charges: ₹{{ car.gst }}</p>
-                <p>Payment Due: ₹{{ car.payment_due }}</p>
-                <p class="total-amount">Full Payable Amount: ₹{{ car.total_amount }}</p>
+                {% comment %} <p>Vehicle Type: <strong>{{ car.type }}</strong></p> {% endcomment %}
+                <p>Total Trip Fare: ₹</p>
+                <p>GST Charges: ₹{{ gst }}</p>
+                <p>Payment Due: ₹ 0 </p>
+                <p class="total-amount">Full Payable Amount: ₹{{ total_fare }}</p>
                 {% comment %} <form action="{% url 'book_car' %}" method="post">
                     {% csrf_token %}
                     <input type="hidden" name="car_id" value="{{ car.id }}">
                     <button type="submit" class="btn btn-warning btn-block">Book Now</button>
                 </form> {% endcomment %}
-                <button type="submit" class="btn btn-warning btn-block">Book Now</button>
+                <a href="{% url 'success' %}" class="btn btn-warning btn-block">Book Now</a>
+
             </div>
         </div>
         
