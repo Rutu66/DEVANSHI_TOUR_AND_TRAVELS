@@ -10,6 +10,11 @@
     <title>Booking Page</title>
    
     <style>
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
         .modal {
             display: none;
             position: fixed;
@@ -25,7 +30,7 @@
     
         .modal-content {
             position: fixed;
-            top: 50%;
+            top: 60%;
             left: 50%;
             transform: translate(-50%, -50%);
             background-color: #fff;
@@ -257,7 +262,7 @@
             .modal-content {
                 width: 90%;
                 margin: -30% auto;
-                top: 60%;
+                top: 80%;
             }
     
             .booking-header {
@@ -328,6 +333,7 @@
     
 </head>
 <body>
+    
     <div class="booking-container">
         <div class="booking-header">
             <div class="booking-header-item">
@@ -352,67 +358,174 @@
         </div>
 
 
-        <!-- Modify Form Modal -->
-        <div id="modifyModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h4 class="modal-title">Modify Search</h4>
-                <form id="modifyForm" action="{% url 'search_cabs' %}" method="get">
-                    {% csrf_token %}
-                    <!-- Travel Type Selection -->
-                    <div class="form-group">
-                        <label>Travel Type:</label><br>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="travel_type" id="modal_one_way" value="one_way" required>
-                            <label class="form-check-label" for="modal_one_way">One Way</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="travel_type" id="modal_round_trip" value="round_trip" required>
-                            <label class="form-check-label" for="modal_round_trip">Round Trip</label>
-                        </div>
-                    </div>
-                    
-                    <!-- Pickup and Drop Locations -->
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="modal_pickup">Pickup Location</label>
-                            <input type="text" class="form-control" id="modal_pickup" name="pickup" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="modal_drop">Drop Location</label>
-                            <input type="text" class="form-control" id="modal_drop" name="drop" required>
-                        </div>
-                    </div>
-                    
-                    <!-- Pickup Date and Time -->
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="modal_pickup_date">Pickup Date</label>
-                            <input type="date" class="form-control" id="modal_pickup_date" name="pickup_date" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="modal_pickup_time">Pickup Time</label>
-                            <input type="time" class="form-control" id="modal_pickup_time" name="pickup_time" required>
-                        </div>
-                    </div>
-                    
-                    <!-- Return Date (for Round Trip) -->
-                    <div id="modal_return_date_group" style="display: none;">
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="modal_return_date">Return Date</label>
-                                <input type="date" class="form-control" id="modal_return_date" name="return_date">
-                            </div>
-                        </div>
-                    </div>
-    
-                    <!-- Submit Button -->
-                    <button type="submit" class="btn btn-primary btn-block">Search</button>
-                </form>
+        <!-- Include Awesomplete CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.css" />
+
+<!-- Include Awesomplete JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.js"></script>
+
+<div id="modifyModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h4 class="modal-title">Modify Search</h4>
+        <form id="modifyForm" action="{% url 'search_cabs' %}" method="get">
+            {% csrf_token %}
+            <!-- Travel Type Selection -->
+            <div class="form-group">
+                <label>Travel Type:</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="travel_type" id="modal_one_way" value="one_way" required>
+                    <label class="form-check-label" for="modal_one_way">One Way</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="travel_type" id="modal_round_trip" value="round_trip" required>
+                    <label class="form-check-label" for="modal_round_trip">Round Trip</label>
+                </div>
             </div>
-        </div>
+            
+            <!-- Pickup and Drop Locations -->
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="modal_pickup">Pickup Location</label>
+                    <input type="text" class="form-control" id="modal_pickup" name="pickup" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="modal_drop">Drop Location</label>
+                    <input type="text" class="form-control" id="modal_drop" name="drop" required>
+                </div>
+            </div>
+            
+            <!-- Pickup Date and Time -->
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="modal_pickup_date">Pickup Date</label>
+                    <input type="date" class="form-control" id="modal_pickup_date" name="pickup_date" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="modal_pickup_time">Pickup Time</label>
+                    <input type="time" class="form-control" id="modal_pickup_time" name="pickup_time" required>
+                </div>
+            </div>
+            
+            <!-- Return Date (for Round Trip) -->
+            <div id="modal_return_date_group" style="display: none;">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="modal_return_date">Return Date</label>
+                        <input type="date" class="form-control" id="modal_return_date" name="return_date">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary btn-block">Search</button>
+        </form>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const cities = ["City1", "City2", "City3", "City4"]; // Add your city names here
+
+    // Initialize Awesomplete for modal pickup and drop locations
+    new Awesomplete(document.getElementById("modal_pickup"), {
+        list: cities,
+        minChars: 1 // Show suggestions only when at least 1 character is typed
+    });
+    new Awesomplete(document.getElementById("modal_drop"), {
+        list: cities,
+        minChars: 1 // Show suggestions only when at least 1 character is typed
+    });
+
+    // Add custom styles to Awesomplete list
+    const style = document.createElement('style');
+    style.innerHTML = `
+        .awesomplete ul {
+            background-color: #ffffff; /* White background */
+            color: #333333; /* Dark gray font color */
+            border: 1px solid #cccccc; /* Light gray border */
+            border-radius: 8px; /* Slightly rounded corners */
+            max-height: 200px; /* Set max height for scroll */
+            overflow-y: auto; /* Enable vertical scrolling */
+            padding: 0;
+            margin: 0;
+            list-style-type: none; /* Remove default list styles */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+        .awesomplete li {
+            padding: 10px 15px; /* More padding for a better touch target */
+            cursor: pointer;
+            color: #333333; /* Dark gray font color */
+            font-weight: bold; /* Bold font weight */
+            transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+        }
+        .awesomplete li:hover, .awesomplete li[aria-selected="true"] {
+            background-color: #007bff; /* Blue hover background */
+            color: #ffffff; /* White font color */
+        }
+    `;
+    document.head.appendChild(style);
+
+    const pickupDateInput = document.getElementById('modal_pickup_date');
+    const pickupTimeInput = document.getElementById('modal_pickup_time');
+    const returnDateInput = document.getElementById('modal_return_date');
+    const travelTypeInputs = document.querySelectorAll('input[name="travel_type"]');
+    const returnDateGroup = document.getElementById('modal_return_date_group');
+    const form = document.getElementById('modifyForm');
+
+    function setMinDateAndTime() {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+
+        const minDate = `${year}-${month}-${day}`;
+        const minTime = `${hours}:${minutes}`;
+
+        pickupDateInput.min = minDate;
+        pickupTimeInput.min = minTime;
+        returnDateInput.min = minDate;
+    }
+
+    function updateReturnDateMin() {
+        const pickupDateValue = pickupDateInput.value;
+        returnDateInput.min = pickupDateValue;
+        if (returnDateInput.value < pickupDateValue) {
+            returnDateInput.value = '';
+        }
+    }
+
+    function toggleReturnDate() {
+        if (document.getElementById('modal_round_trip').checked) {
+            returnDateGroup.style.display = 'block';
+            returnDateInput.required = true;
+            updateReturnDateMin();
+        } else {
+            returnDateGroup.style.display = 'none';
+            returnDateInput.required = false;
+        }
+    }
+
+    travelTypeInputs.forEach(input => {
+        input.addEventListener('change', toggleReturnDate);
+    });
+
+    pickupDateInput.addEventListener('change', updateReturnDateMin);
+
+    setMinDateAndTime();
+});
+</script>
 
 
+
+
+        
+  
+
+
+    
 
         <div class="booking-car-options">
             {% if cars %}
@@ -437,7 +550,12 @@
                 </div>
                 <div class="book-now">
                     <p class="total-fare">₹ {{ car.total_fare }}</p>
-                    <button class="book-now-btn" data-car-id="{{ car.id }}">BOOK NOW</button>
+                    <a href="{% url 'checkout' car.id %}?trip_type={{ travel_type }}&pickup_date={{ pickup_date }}&pickup_time={{ pickup_time }}{% if travel_type == 'round_trip' %}&return_date={{ return_date }}{% endif %}"class="btn btn-primary book-now-btn">BOOK NOW</a>
+
+
+
+                    
+
                     <a href="#" class="fare-summary-link" data-car-id="{{ car.id }}">Fare Summary »</a>
                 </div>
             </div>
@@ -607,6 +725,37 @@
             });
         });
         </script>
+        <script>
+            // Get the modal
+            var modal = document.getElementById("myModal");
+        
+            // Get the button that opens the modal
+            var btn = document.getElementById("myBtn");
+        
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+        
+            // When the user clicks the button, open the modal 
+            btn.onclick = function() {
+                modal.style.display = "block";
+                document.body.classList.add('modal-open'); // Disable body scroll
+            }
+        
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+                modal.style.display = "none";
+                document.body.classList.remove('modal-open'); // Enable body scroll
+            }
+        
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                    document.body.classList.remove('modal-open'); // Enable body scroll
+                }
+            }
+        </script>
+        
         
     
     

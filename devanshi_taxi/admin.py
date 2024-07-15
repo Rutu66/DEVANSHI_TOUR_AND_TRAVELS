@@ -5,6 +5,7 @@ from .models import *
 admin.site.register(Car)
 admin.site.register(Route)
 admin.site.register(Cost)
+admin.site.register(Booking)
 
 
 

@@ -108,115 +108,157 @@
 </head>
 <body>
 
-<div class="container">
-    
-    <div class="row">
-        <div class="col-md-8">
-            <div class="box">
-                <h4>Guest Details</h4>
-                <form id="bookingForm" action="" method="post" novalidate>
-                    {% csrf_token %}
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="username">User Name</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fa fa-user"></i></span>
-                                </div>
-                                <input type="text" class="form-control" id="username" name="username" placeholder="Enter Name" required pattern="[A-Za-z\s]+">
-                                <div class="invalid-feedback">Please enter a valid name (letters and spaces only).</div>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="email">Email Address</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-                                </div>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required>
-                                <div class="invalid-feedback">Please enter a valid email address.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="mobile">Mobile No</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fa fa-phone"></i></span>
-                                </div>
-                                <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Enter Mobile Number" required pattern="\d{10}">
-                                <div class="invalid-feedback">Please enter a valid 10-digit mobile number.</div>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="alt_mobile">Alternate Mobile Number</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fa fa-phone"></i></span>
-                                </div>
-                                <input type="text" class="form-control" id="alt_mobile" name="alt_mobile" placeholder="Enter Alternate Mobile Number" pattern="\d{10}">
-                                <div class="invalid-feedback">Please enter a valid 10-digit mobile number.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="pickup">Pickup Location</label>
-                            <input type="text" class="form-control" id="pickup" name="pickup" placeholder="Enter pickup location" required>
-                            <div class="invalid-feedback">Please enter a pickup location.</div>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="drop">Drop Location</label>
-                            <input type="text" class="form-control" id="drop" name="drop" placeholder="Enter drop location" required>
-                            <div class="invalid-feedback">Please enter a drop location.</div>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="num_passengers">Number of Passengers</label>
-                            <select class="form-control" id="num_passengers" name="num_passengers" required>
-                                <option value="" disabled selected>Number of Passengers</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                            <div class="invalid-feedback">Please select the number of passengers.</div>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="pickup_date_time">Pickup Date & Time</label>
-                            <div class="input-group">
-                                <input type="date" class="form-control" id="pickup_date" name="pickup_date" required>
-                                <input type="time" class="form-control" id="pickup_time" name="pickup_time" required>
-                                <div class="invalid-feedback">Please enter both pickup date and time.</div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+    <form id="bookingForm" method="post" action="{% url 'booking' %}" novalidate>
+        <div class="container">
+            <div class="booking-header">
+                <div class="booking-header-item">
+                    <p>Trip Type</p>
+                    <p>{{ travel_type }}</p>
+                </div>
+                <div class="booking-header-item">
+                    <p>Pick-up Date & Time</p>
+                    <p>{{ pickup_date }}&nbsp&nbsp{{ pickup_time }}</p>
+                </div>
+                <div class="booking-header-item">
+                    <p>Return Date</p>
+                    {% if return_date %}
+                        <p>{{ return_date }}</p>
+                    {% endif %}
+                </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="summary-box">
-                <h4>Overall Fare Summary</h4>
-                <img src="{{ car.image.url }}" class="summary-image" alt="Car Image">
-                {% comment %} <p>Vehicle Type: <strong>{{ car.type }}</strong></p> {% endcomment %}
-                <p>Total Trip Fare: ₹</p>
-                <p>GST Charges: ₹{{ gst }}</p>
-                <p>Payment Due: ₹ 0 </p>
-                <p class="total-amount">Full Payable Amount: ₹{{ total_fare }}</p>
-                {% comment %} <form action="{% url 'book_car' %}" method="post">
-                    {% csrf_token %}
-                    <input type="hidden" name="car_id" value="{{ car.id }}">
-                    <button type="submit" class="btn btn-warning btn-block">Book Now</button>
-                </form> {% endcomment %}
-                <a href="{% url 'success' %}" class="btn btn-warning btn-block">Book Now</a>
+            <div class="booking-route">
+                <p>Route: {{ route }}</p>
+            </div>
+            <br>
 
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="box">
+                        <h4>Guest Details</h4>
+                        {% csrf_token %}
+                        
+                        <!-- User Name and Email Address -->
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="username">User Name</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter Name" required pattern="[A-Za-z\s]+">
+                                    <div class="invalid-feedback">Please enter a valid name (letters and spaces only).</div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="email">Email Address</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                    </div>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required>
+                                    <div class="invalid-feedback">Please enter a valid email address.</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Mobile Numbers and Locations -->
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="mobile">Mobile No</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Enter Mobile Number" required pattern="\d{10}">
+                                    <div class="invalid-feedback">Please enter a valid 10-digit mobile number.</div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="alt_mobile">Alternate Mobile Number</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" id="alt_mobile" name="alt_mobile" placeholder="Enter Alternate Mobile Number" pattern="\d{10}">
+                                    <div class="invalid-feedback">Please enter a valid 10-digit mobile number.</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Pickup and Drop Locations, Number of Passengers -->
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="pickup">Pickup Location</label>
+                                <input type="text" class="form-control" id="pickup" name="pickup" placeholder="Enter pickup location" required>
+                                <div class="invalid-feedback">Please enter a pickup location.</div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="drop">Drop Location</label>
+                                <input type="text" class="form-control" id="drop" name="drop" placeholder="Enter drop location" required>
+                                <div class="invalid-feedback">Please enter a drop location.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="num_passengers">Number of Passengers</label>
+                                <select class="form-control" id="num_passengers" name="num_passengers" required>
+                                    <option value="" disabled selected>Number of Passengers</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                                <div class="invalid-feedback">Please select the number of passengers.</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Hidden Fields for Pickup Date, Pickup Time, Travel Type, Return Date, Route, and Total Fare -->
+                        <input type="hidden" id="pickup_date" name="pickup_date" value="{{ pickup_date }}">
+                        <input type="hidden" id="pickup_time" name="pickup_time" value="{{ pickup_time }}">
+                        <input type="hidden" id="travel_type" name="travel_type" value="{{ travel_type }}">
+                        <input type="hidden" id="route" name="route" value="{{ route }}">
+                        <input type="hidden" id="return_date" name="return_date" value="{{ return_date|default_if_none:'' }}">
+                        <input type="hidden" id="full_payable_amount" name="full_payable_amount" value="{{ total_fare }}">
+                        
+                    </div>
+                </div>
+                
+                <!-- Fare Summary -->
+                <div class="col-md-4">
+                    <div class="summary-box">
+                        <h4>Overall Fare Summary</h4>
+                        <!-- Replace with actual car image URL -->
+                        <img src="{{ car.image.url }}" class="summary-image" alt="Car Image">
+                        <p>Total Trip Fare: ₹{{ total_fare }}</p>
+                        <p>GST Charges: ₹{{ gst }}</p>
+                        <p class="total-amount">Full Payable Amount: ₹{{ total_fare }}</p>
+                    </div>
+                    <button type="button" id="bookNowBtn" class="btn btn-warning btn-block mt-3">Book Now</button>
+                </div>
             </div>
         </div>
-        
-    </div>
+    </form>
+    
+    
+    
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('bookingForm');
+            const bookNowBtn = document.getElementById('bookNowBtn');
+    
+            bookNowBtn.addEventListener('click', function() {
+                if (form.checkValidity()) {
+                    form.submit();
+                } else {
+                    // Trigger HTML5 form validation to display error messages
+                    form.reportValidity();
+                }
+            });
+        });
+    </script>   
     
     <script>
         document.getElementById('payNowBtn').addEventListener('click', function(event) {

@@ -29,5 +29,23 @@ class Cost(models.Model):
     def __str__(self):
         return f"Cost for {self.car} on {self.route}"
     
+class Booking(models.Model):
+    username = models.CharField(max_length=100)
+    email = models.EmailField()
+    mobile = models.CharField(max_length=10)
+    alt_mobile = models.CharField(max_length=10, blank=True, null=True)
+    pickup = models.CharField(max_length=255)
+    drop = models.CharField(max_length=255)
+    num_passengers = models.IntegerField()
+    travel_type = models.CharField(max_length=20)  # New field for travel type
+    pickup_date = models.DateField()
+    pickup_time = models.TimeField()
+    return_date = models.DateField(blank=True, null=True)  # New field for return date
+    route = models.CharField(max_length=255, blank=True, null=True)  # New field for route
+    full_payable_amount = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return f"{self.username} - {self.pickup} to {self.drop}"
+
 
 

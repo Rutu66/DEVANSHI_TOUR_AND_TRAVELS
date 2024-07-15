@@ -27,6 +27,12 @@
 <!-- jQuery UI -->
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+<!-- Include Awesomplete CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.css" />
+
+<!-- Include Awesomplete JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.js"></script>
+
 
       <style>
           /* General Body Styling */
@@ -239,7 +245,6 @@ body {
                           <h4 class="card-title text-center mb-4">Search Cab</h4>
                           <form action="{% url 'search_cabs' %}" method="get" id="searchForm">
                               {% csrf_token %}
-              
                               <!-- Travel Type Selection -->
                               <div class="form-group mb-3">
                                   <label class="form-label">Travel Type:</label><br>
@@ -252,19 +257,17 @@ body {
                                       <label class="form-check-label" for="round_trip">Round Trip</label>
                                   </div>
                               </div>
-              
                               <!-- Pickup and Drop Locations -->
                               <div class="form-row mb-3">
                                   <div class="form-group col-md-6">
                                       <label for="pickup" class="form-label">Pickup Location</label>
-                                      <input type="text" class="form-control" id="pickup" name="pickup" placeholder="Enter pickup location" value="{{ pickup }}" required>
+                                      <input type="text" class="form-control" id="pickup" name="pickup" placeholder="Enter pickup location" required>
                                   </div>
                                   <div class="form-group col-md-6">
                                       <label for="drop" class="form-label">Drop Location</label>
-                                      <input type="text" class="form-control" id="drop" name="drop" placeholder="Enter drop location" value="{{ drop }}" required>
+                                      <input type="text" class="form-control" id="drop" name="drop" placeholder="Enter drop location" required>
                                   </div>
                               </div>
-              
                               <!-- Pickup Date and Time -->
                               <div class="form-row mb-3">
                                   <div class="form-group col-md-6">
@@ -276,7 +279,6 @@ body {
                                       <input type="time" class="form-control" id="pickup_time" name="pickup_time" placeholder="Pickup Time" value="{{ pickup_time }}" required>
                                   </div>
                               </div>
-              
                               <!-- Return Date (hidden by default) -->
                               <div id="return_date_row" style="display: none;">
                                   <div class="form-group mb-3">
@@ -284,7 +286,6 @@ body {
                                       <input type="date" class="form-control" id="return_date" name="return_date" placeholder="Return Date" value="{{ return_date }}">
                                   </div>
                               </div>
-              
                               <!-- Submit Button -->
                               <div class="form-group text-center">
                                   <button type="submit" class="btn btn-warning btn-block">Search Cabs</button>
@@ -294,8 +295,79 @@ body {
                   </div>
               </div>
               
+              
+              <!-- Include Awesomplete CSS -->
+              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.css" />
+              
+              <!-- Include Awesomplete JS -->
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.js"></script>
+              
               <script>
-              document.addEventListener('DOMContentLoaded', function() {
+                document.addEventListener('DOMContentLoaded', function() {
+                  var cities = [
+                      "Ahmedabad", "Surat", "Vadodara", "Rajkot", "Bhavnagar", "Jamnagar", "Junagadh", 
+                      "Gandhinagar", "Gandhidham", "Nadiad", "Mehsana", "Anand", "Bharuch", "Porbandar", 
+                      "Godhra", "Valsad", "Navsari", "Veraval", "Dahod", "Morbi", "Surendranagar", "Botad", 
+                      "Amreli", "Palanpur", "Vapi", "Ankleshwar", "Bhuj", "Modasa", "Gondal", "Jetpur", 
+                      "Deesa", "Kadi", "Dhoraji", "Visnagar", "Navagadh", "Rajula", "Patan", "Sidhpur", 
+                      "Unjha", "Mangrol", "Mandvi", "Vyara", "Wadhwan", "Dwarka", "Limbdi", "Keshod", 
+                      "Bardoli", "Savarkundla", "Mahesana", "Palitana", "Sihor", "Kapadvanj", "Viramgam", 
+                      "Una", "Upleta", "Kutiyana", "Wankaner", "Thangadh", "Padra", "Manavadar", "Kadi", 
+                      "Lunawada", "Mahuva", "Rapar", "Umreth", "Vijapur", "Sanand", "Siddhpur", "Savarkundla"
+                      // Add more cities as needed
+                  ];
+              
+                  var pickupInput = document.getElementById("pickup");
+                  var dropInput = document.getElementById("drop");
+              
+                  // Initialize Awesomplete for pickup and drop locations with dynamic filtering
+                  var pickupAwesomplete = new Awesomplete(pickupInput, {
+                      list: cities,
+                      minChars: 1,
+                      filter: function(text, input) {
+                          return Awesomplete.FILTER_STARTSWITH(text, input.match(/[^,]*$/)[0]);
+                      }
+                  });
+              
+                  var dropAwesomplete = new Awesomplete(dropInput, {
+                      list: cities,
+                      minChars: 1,
+                      filter: function(text, input) {
+                          return Awesomplete.FILTER_STARTSWITH(text, input.match(/[^,]*$/)[0]);
+                      }
+                  });
+              
+                  // Add custom styles to Awesomplete list
+                  var style = document.createElement('style');
+                  style.innerHTML = `
+                      .awesomplete ul {
+                          background-color: #ffffff; /* White background */
+                          color: #333333; /* Dark gray font color */
+                          border: 1px solid #ccc;
+                          border-radius: 4px;
+                          max-height: 200px;
+                          overflow-y: auto;
+                          padding: 0;
+                          margin: 0;
+                          list-style-type: none; /* Remove default list styles */
+                          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+                      }
+                      .awesomplete li {
+                          padding: 8px 12px;
+                          cursor: pointer;
+                          color: #333333; /* Dark gray font color */
+                          font-weight: normal; /* Use normal font weight */
+                      }
+                      .awesomplete li:hover, .awesomplete li[aria-selected="true"] {
+                          background-color: #f0f0f0; /* Light gray hover background */
+                      }
+                  `;
+              
+                  
+                  // Append the style to the document head
+                  document.head.appendChild(style);
+
+              
                   var pickupDateInput = document.getElementById('pickup_date');
                   var pickupTimeInput = document.getElementById('pickup_time');
                   var returnDateRow = document.getElementById('return_date_row');
@@ -327,12 +399,11 @@ body {
               
                   // Function to validate dates on form submission
                   function validateDates(event) {
-                      var selectedPickupDate = new Date(pickupDateInput.value + 'T00:00:00');
-                      var selectedPickupTime = pickupTimeInput.value ? new Date('1970-01-01T' + pickupTimeInput.value) : null;
+                      var selectedPickupDate = new Date(pickupDateInput.value + 'T' + pickupTimeInput.value);
                       var currentDate = new Date();
               
                       // Compare pickup date and time with current date and time
-                      if (selectedPickupDate < currentDate || (selectedPickupDate.getTime() === currentDate.getTime() && selectedPickupTime && selectedPickupTime < currentDate)) {
+                      if (selectedPickupDate <= currentDate) {
                           alert('Please select a future date and time for pickup.');
                           if (event) event.preventDefault(); // Prevent form submission
                           return false;
@@ -343,7 +414,7 @@ body {
                           var selectedReturnDate = new Date(returnDateInput.value + 'T00:00:00');
               
                           // Compare return date with current date and time
-                          if (selectedReturnDate < currentDate) {
+                          if (selectedReturnDate <= currentDate) {
                               alert('Return date must be a future date.');
                               if (event) event.preventDefault(); // Prevent form submission
                               return false;
@@ -360,29 +431,39 @@ body {
                       return true;
                   }
               
+                  
+                
+              
                   // Attach form submission event listener
-                  form.addEventListener('submit', validateDates);
+                  form.addEventListener('submit', function(event) {
+                      // Validate dates
+                      if (!validateDates(event)) {
+                          return;
+                      }
+              
+                      // Validate city inputs
+                      validateCityInputs(event);
+                  });
               
                   // Ensure return date cannot be set to past dates using HTML5 min attribute
                   returnDateInput.min = new Date().toISOString().split("T")[0];
+              
+                  // Function to handle pickup date and time change
+                  function handlePickupDateTimeChange() {
+                      // Validate dates
+                      validateDates();
+                      // Set the min attribute of the return date to the selected pickup date
+                      returnDateInput.min = pickupDateInput.value;
+                  }
+              
+                  // Attach change event listeners to pickup date and time inputs
+                  pickupDateInput.addEventListener('change', handlePickupDateTimeChange);
+                  pickupTimeInput.addEventListener('change', handlePickupDateTimeChange);
               });
               </script>
-              <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    // Define cities data (can be fetched from backend or hardcoded)
-                    var cities = [
-                        "New York", "Los Angeles", "Chicago", "Houston", "Phoenix", "Philadelphia", "San Antonio", "San Diego", "Dallas", "San Jose"
-                        // Add more cities as needed
-                    ];
-                
-                    // Initialize autocomplete for pickup and drop inputs
-                    $("#pickup, #drop").autocomplete({
-                        source: cities,
-                        minLength: 0 // Show suggestions on focus
-                    });
-                });
-                </script>
-                
+              
+              
+             
               
                 
                 
