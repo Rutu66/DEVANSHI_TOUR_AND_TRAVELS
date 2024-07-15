@@ -125,7 +125,7 @@ def sendmail_contact(request):
         name = request.POST.get('name', '')
         
         mobile = request.POST.get('mobile', '')  # Use the correct key here
-        message = request.POST.get('message', '')
+        message = request   .POST.get('message', '')
         
     full_message = f"""
         Received message below from {name}
@@ -254,3 +254,22 @@ def success(request, pk):
     
     booking = Booking.objects.get(pk=pk)
     return render(request, 'success.html', {'booking': booking})
+
+
+from django.http import JsonResponse
+
+
+def get_fare_summary(request, car_id):
+    cost = get_object_or_404(Cost, id=car_id)
+    distance = cost.route.distance
+    gst = cost.total_fare * 5 / 100
+    estimated_amount = cost.total_fare - gst
+    
+    data = {
+        'estimated_amount': estimated_amount,
+        'covered_kms': distance,
+        'gst': gst,
+        'total_cost': cost.total_fare
+    }
+
+    return JsonResponse(data)

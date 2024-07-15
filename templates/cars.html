@@ -358,7 +358,8 @@
         </div>
 
 
-        <!-- Include Awesomplete CSS -->
+        <!-- Modify Form Modal -->
+       <!-- Include Awesomplete CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.css" />
 
 <!-- Include Awesomplete JS -->
@@ -492,9 +493,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateReturnDateMin() {
         const pickupDateValue = pickupDateInput.value;
         returnDateInput.min = pickupDateValue;
-        if (returnDateInput.value < pickupDateValue) {
-            returnDateInput.value = '';
-        }
     }
 
     function toggleReturnDate() {
@@ -517,10 +515,6 @@ document.addEventListener('DOMContentLoaded', function() {
     setMinDateAndTime();
 });
 </script>
-
-
-
-
         
   
 

@@ -18,6 +18,8 @@ urlpatterns = [
 
     
     path('sendmail_contact/', views.sendmail_contact, name='sendmail_contact'),
+    path('get_fare_summary/<int:car_id>/', views.get_fare_summary, name='get_fare_summary'),
+    
     
     
     
