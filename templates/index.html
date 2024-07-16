@@ -27,12 +27,6 @@
 <!-- jQuery UI -->
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
-<!-- Include Awesomplete CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.css" />
-
-<!-- Include Awesomplete JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.js"></script>
-
 
       <style>
           /* General Body Styling */
@@ -240,229 +234,146 @@ body {
                 <!-- Form Section -->
 
                 <div class="col-md-5 c-responsive-margin-top">
-                  <div class="card shadow-sm">
-                      <div class="card-body">
-                          <h4 class="card-title text-center mb-4">Search Cab</h4>
-                          <form action="{% url 'search_cabs' %}" method="get" id="searchForm">
-                              {% csrf_token %}
-                              <!-- Travel Type Selection -->
-                              <div class="form-group mb-3">
-                                  <label class="form-label">Travel Type:</label><br>
-                                  <div class="form-check form-check-inline">
-                                      <input class="form-check-input" type="radio" name="travel_type" id="one_way" value="one_way" checked>
-                                      <label class="form-check-label" for="one_way">One Way</label>
-                                  </div>
-                                  <div class="form-check form-check-inline">
-                                      <input class="form-check-input" type="radio" name="travel_type" id="round_trip" value="round_trip">
-                                      <label class="form-check-label" for="round_trip">Round Trip</label>
-                                  </div>
-                              </div>
-                              <!-- Pickup and Drop Locations -->
-                              <div class="form-row mb-3">
-                                  <div class="form-group col-md-6">
-                                      <label for="pickup" class="form-label">Pickup Location</label>
-                                      <input type="text" class="form-control" id="pickup" name="pickup" placeholder="Enter pickup location" required>
-                                  </div>
-                                  <div class="form-group col-md-6">
-                                      <label for="drop" class="form-label">Drop Location</label>
-                                      <input type="text" class="form-control" id="drop" name="drop" placeholder="Enter drop location" required>
-                                  </div>
-                              </div>
-                              <!-- Pickup Date and Time -->
-                              <div class="form-row mb-3">
-                                  <div class="form-group col-md-6">
-                                      <label for="pickup_date" class="form-label">Pickup Date</label>
-                                      <input type="date" class="form-control" id="pickup_date" name="pickup_date" placeholder="Pickup Date" value="{{ pickup_date }}" required>
-                                  </div>
-                                  <div class="form-group col-md-6">
-                                      <label for="pickup_time" class="form-label">Pickup Time</label>
-                                      <input type="time" class="form-control" id="pickup_time" name="pickup_time" placeholder="Pickup Time" value="{{ pickup_time }}" required>
-                                  </div>
-                              </div>
-                              <!-- Return Date (hidden by default) -->
-                              <div id="return_date_row" style="display: none;">
-                                  <div class="form-group mb-3">
-                                      <label for="return_date" class="form-label">Return Date</label>
-                                      <input type="date" class="form-control" id="return_date" name="return_date" placeholder="Return Date" value="{{ return_date }}">
-                                  </div>
-                              </div>
-                              <!-- Submit Button -->
-                              <div class="form-group text-center">
-                                  <button type="submit" class="btn btn-warning btn-block">Search Cabs</button>
-                              </div>
-                          </form>
-                      </div>
-                  </div>
-              </div>
-              
-              
-              <!-- Include Awesomplete CSS -->
-              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.css" />
-              
-              <!-- Include Awesomplete JS -->
-              <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.js"></script>
-              
-              <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                  var cities = [
-                      "Ahmedabad", "Surat", "Vadodara", "Rajkot", "Bhavnagar", "Jamnagar", "Junagadh", 
-                      "Gandhinagar", "Gandhidham", "Nadiad", "Mehsana", "Anand", "Bharuch", "Porbandar", 
-                      "Godhra", "Valsad", "Navsari", "Veraval", "Dahod", "Morbi", "Surendranagar", "Botad", 
-                      "Amreli", "Palanpur", "Vapi", "Ankleshwar", "Bhuj", "Modasa", "Gondal", "Jetpur", 
-                      "Deesa", "Kadi", "Dhoraji", "Visnagar", "Navagadh", "Rajula", "Patan", "Sidhpur", 
-                      "Unjha", "Mangrol", "Mandvi", "Vyara", "Wadhwan", "Dwarka", "Limbdi", "Keshod", 
-                      "Bardoli", "Savarkundla", "Mahesana", "Palitana", "Sihor", "Kapadvanj", "Viramgam", 
-                      "Una", "Upleta", "Kutiyana", "Wankaner", "Thangadh", "Padra", "Manavadar", "Kadi", 
-                      "Lunawada", "Mahuva", "Rapar", "Umreth", "Vijapur", "Sanand", "Siddhpur", "Savarkundla"
-                      // Add more cities as needed
-                  ];
-              
-                  var pickupInput = document.getElementById("pickup");
-                  var dropInput = document.getElementById("drop");
-              
-                  // Initialize Awesomplete for pickup and drop locations with dynamic filtering
-                  var pickupAwesomplete = new Awesomplete(pickupInput, {
-                      list: cities,
-                      minChars: 1,
-                      filter: function(text, input) {
-                          return Awesomplete.FILTER_STARTSWITH(text, input.match(/[^,]*$/)[0]);
-                      }
-                  });
-              
-                  var dropAwesomplete = new Awesomplete(dropInput, {
-                      list: cities,
-                      minChars: 1,
-                      filter: function(text, input) {
-                          return Awesomplete.FILTER_STARTSWITH(text, input.match(/[^,]*$/)[0]);
-                      }
-                  });
-              
-                  // Add custom styles to Awesomplete list
-                  var style = document.createElement('style');
-                  style.innerHTML = `
-                      .awesomplete ul {
-                          background-color: #ffffff; /* White background */
-                          color: #333333; /* Dark gray font color */
-                          border: 1px solid #ccc;
-                          border-radius: 4px;
-                          max-height: 200px;
-                          overflow-y: auto;
-                          padding: 0;
-                          margin: 0;
-                          list-style-type: none; /* Remove default list styles */
-                          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
-                      }
-                      .awesomplete li {
-                          padding: 8px 12px;
-                          cursor: pointer;
-                          color: #333333; /* Dark gray font color */
-                          font-weight: normal; /* Use normal font weight */
-                      }
-                      .awesomplete li:hover, .awesomplete li[aria-selected="true"] {
-                          background-color: #f0f0f0; /* Light gray hover background */
-                      }
-                  `;
-              
-                  
-                  // Append the style to the document head
-                  document.head.appendChild(style);
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h4 class="card-title text-center mb-4">Search Cab</h4>
+            <form action="{% url 'search_cabs' %}" method="get" id="searchForm">
+                {% csrf_token %}
+                <!-- Travel Type Selection -->
+                <div class="form-group mb-3">
+                    <label class="form-label">Travel Type:</label><br>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="travel_type" id="one_way" value="one_way" checked>
+                        <label class="form-check-label" for="one_way">One Way</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="travel_type" id="round_trip" value="round_trip">
+                        <label class="form-check-label" for="round_trip">Round Trip</label>
+                    </div>
+                </div>
+                <!-- Pickup and Drop Locations -->
+                <div class="form-row mb-3">
+                    <div class="form-group col-md-6">
+                        <label for="pickup" class="form-label">Pickup Location</label>
+                        <input type="text" class="form-control" id="pickup" name="pickup" placeholder="Enter pickup location" value="{{ pickup }}" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="drop" class="form-label">Drop Location</label>
+                        <input type="text" class="form-control" id="drop" name="drop" placeholder="Enter drop location" value="{{ drop }}" required>
+                    </div>
+                </div>
+                <!-- Pickup Date and Time -->
+                <div class="form-row mb-3">
+                    <div class="form-group col-md-6">
+                        <label for="pickup_date" class="form-label">Pickup Date</label>
+                        <input type="date" class="form-control" id="pickup_date" name="pickup_date" placeholder="Pickup Date" value="{{ pickup_date }}" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="pickup_time" class="form-label">Pickup Time</label>
+                        <input type="time" class="form-control" id="pickup_time" name="pickup_time" placeholder="Pickup Time" value="{{ pickup_time }}" required>
+                    </div>
+                </div>
+                <!-- Return Date (hidden by default) -->
+                <div id="return_date_row" style="display: none;">
+                    <div class="form-group mb-3">
+                        <label for="return_date" class="form-label">Return Date</label>
+                        <input type="date" class="form-control" id="return_date" name="return_date" placeholder="Return Date" value="{{ return_date }}">
+                    </div>
+                </div>
+                <!-- Submit Button -->
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-warning btn-block">Search Cabs</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
-              
-                  var pickupDateInput = document.getElementById('pickup_date');
-                  var pickupTimeInput = document.getElementById('pickup_time');
-                  var returnDateRow = document.getElementById('return_date_row');
-                  var returnDateInput = document.getElementById('return_date');
-                  var travelTypeRadios = document.querySelectorAll('input[name="travel_type"]');
-                  var form = document.getElementById('searchForm');
-              
-                  // Set minimum value for pickup date to today
-                  pickupDateInput.min = new Date().toISOString().split("T")[0];
-              
-                  // Function to handle travel type change and return date visibility
-                  function handleTravelTypeChange() {
-                      if (this.value === 'round_trip') {
-                          returnDateRow.style.display = 'block';
-                          returnDateInput.required = true; // Make return date required
-                      } else {
-                          returnDateRow.style.display = 'none';
-                          returnDateInput.required = false; // Make return date not required
-                      }
-                  }
-              
-                  // Attach change event listener to travel type radios
-                  travelTypeRadios.forEach(function(radio) {
-                      radio.addEventListener('change', handleTravelTypeChange);
-                  });
-              
-                  // Initial state based on default selection
-                  handleTravelTypeChange.call(document.querySelector('input[name="travel_type"]:checked'));
-              
-                  // Function to validate dates on form submission
-                  function validateDates(event) {
-                      var selectedPickupDate = new Date(pickupDateInput.value + 'T' + pickupTimeInput.value);
-                      var currentDate = new Date();
-              
-                      // Compare pickup date and time with current date and time
-                      if (selectedPickupDate <= currentDate) {
-                          alert('Please select a future date and time for pickup.');
-                          if (event) event.preventDefault(); // Prevent form submission
-                          return false;
-                      }
-              
-                      // Validate return date if Round Trip is selected
-                      if (returnDateRow.style.display !== 'none') {
-                          var selectedReturnDate = new Date(returnDateInput.value + 'T00:00:00');
-              
-                          // Compare return date with current date and time
-                          if (selectedReturnDate <= currentDate) {
-                              alert('Return date must be a future date.');
-                              if (event) event.preventDefault(); // Prevent form submission
-                              return false;
-                          }
-              
-                          // Compare return date with pickup date
-                          if (selectedReturnDate < selectedPickupDate) {
-                              alert('Return date cannot be before pickup date.');
-                              if (event) event.preventDefault(); // Prevent form submission
-                              return false;
-                          }
-                      }
-              
-                      return true;
-                  }
-              
-                  
-                
-              
-                  // Attach form submission event listener
-                  form.addEventListener('submit', function(event) {
-                      // Validate dates
-                      if (!validateDates(event)) {
-                          return;
-                      }
-              
-                      // Validate city inputs
-                      validateCityInputs(event);
-                  });
-              
-                  // Ensure return date cannot be set to past dates using HTML5 min attribute
-                  returnDateInput.min = new Date().toISOString().split("T")[0];
-              
-                  // Function to handle pickup date and time change
-                  function handlePickupDateTimeChange() {
-                      // Validate dates
-                      validateDates();
-                      // Set the min attribute of the return date to the selected pickup date
-                      returnDateInput.min = pickupDateInput.value;
-                  }
-              
-                  // Attach change event listeners to pickup date and time inputs
-                  pickupDateInput.addEventListener('change', handlePickupDateTimeChange);
-                  pickupTimeInput.addEventListener('change', handlePickupDateTimeChange);
-              });
-              </script>
-              
-              
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var pickupDateInput = document.getElementById('pickup_date');
+    var pickupTimeInput = document.getElementById('pickup_time');
+    var returnDateRow = document.getElementById('return_date_row');
+    var returnDateInput = document.getElementById('return_date');
+    var travelTypeRadios = document.querySelectorAll('input[name="travel_type"]');
+    var form = document.getElementById('searchForm');
+
+    // Set minimum value for pickup date to today
+    pickupDateInput.min = new Date().toISOString().split("T")[0];
+
+    // Function to handle travel type change and return date visibility
+    function handleTravelTypeChange() {
+        if (this.value === 'round_trip') {
+            returnDateRow.style.display = 'block';
+            returnDateInput.required = true; // Make return date required
+        } else {
+            returnDateRow.style.display = 'none';
+            returnDateInput.required = false; // Make return date not required
+        }
+    }
+
+    // Attach change event listener to travel type radios
+    travelTypeRadios.forEach(function(radio) {
+        radio.addEventListener('change', handleTravelTypeChange);
+    });
+
+    // Initial state based on default selection
+    handleTravelTypeChange.call(document.querySelector('input[name="travel_type"]:checked'));
+
+    // Function to validate dates on form submission
+    function validateDates(event) {
+        var selectedPickupDate = new Date(pickupDateInput.value + 'T' + pickupTimeInput.value);
+        var currentDate = new Date();
+
+        // Compare pickup date and time with current date and time
+        if (selectedPickupDate <= currentDate) {
+            alert('Please select a future date and time for pickup.');
+            if (event) event.preventDefault(); // Prevent form submission
+            return false;
+        }
+
+        // Validate return date if Round Trip is selected
+        if (returnDateRow.style.display !== 'none') {
+            var selectedReturnDate = new Date(returnDateInput.value + 'T00:00:00');
+
+            // Compare return date with current date and time
+            if (selectedReturnDate <= currentDate) {
+                alert('Return date must be a future date.');
+                if (event) event.preventDefault(); // Prevent form submission
+                return false;
+            }
+
+            // Compare return date with pickup date
+            if (selectedReturnDate < selectedPickupDate) {
+                alert('Return date cannot be before pickup date.');
+                if (event) event.preventDefault(); // Prevent form submission
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    // Attach form submission event listener
+    form.addEventListener('submit', validateDates);
+
+    // Ensure return date cannot be set to past dates using HTML5 min attribute
+    returnDateInput.min = new Date().toISOString().split("T")[0];
+
+    // Function to handle pickup date and time change
+    function handlePickupDateTimeChange() {
+        // Validate dates
+        validateDates();
+        // Set the min attribute of the return date to the selected pickup date
+        returnDateInput.min = pickupDateInput.value;
+    }
+
+    // Attach change event listeners to pickup date and time inputs
+    pickupDateInput.addEventListener('change', handlePickupDateTimeChange);
+    pickupTimeInput.addEventListener('change', handlePickupDateTimeChange);
+});
+</script>
+
              
               
                 
@@ -472,7 +383,10 @@ body {
     </section>
 
     <!-- Bootstrap JS and dependencies -->
-   
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-FIflK1xb3DSHvU4fD+1xlK4mXSMzZoY1p6MAp0ua8N8odJ8fpT0FGyFqb5pAriIo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh/jFcNMJNGmZaTKYGj5tc+0hbd2Ousak" crossorigin="anonymous"></script>
+</body>
 </html>
 
 
@@ -548,7 +462,15 @@ document.getElementById('readMoreLink').addEventListener('mouseout', function() 
     <!-- Your other HTML content goes here -->
 
     <!-- Optional JavaScript and Bootstrap Bundle with Popper -->
-     
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
+        integrity="sha384-pzjw8f+ua7Kw1TIqDQIGfhUT7yM97wxgAXjDUyY/i3Vyb5X9KT1b7BlLZJLm4XK7"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgT9GOBmYFf5kR/nBbn4TVsbA68p11Dykp1JTvwFvQzFfymhHln"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
@@ -1483,7 +1405,7 @@ document.getElementById('readMoreLink').addEventListener('mouseout', function() 
     src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script> {% endcomment %}
 
   <!-- owl carousel script -->
-  {% comment %} <script type="text/javascript">
+  <script type="text/javascript">
     $(".owl-carousel").owlCarousel({
       loop: true,
       margin: 20,
@@ -1502,6 +1424,10 @@ document.getElementById('readMoreLink').addEventListener('mouseout', function() 
         },
       },
     });
-  </script> {% endcomment %}
+  </script>
+
+
+
+  
   <!-- end owl carousel script -->
   {% endblock body %}

@@ -1,110 +1,54 @@
 {% extends "base.html" %}
 {% block body %}
 {% load static %} 
+
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - Taxi Company</title>
+    <meta name="viewport" content="width=device-width, initial-scae=1.0">
+    <title>About Taxi Company</title>
     <style>
-        /* General styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
         
-
-        
-        .layout_padding {
-            padding: 40px 0;
-        }
-
-        .about_section {
-            background-color: #f9f9f9;
-        }
-
-        .detail-box {
-            padding: 20px;
-        }
-
-        .detail-box p {
-            font-size: 1em;
-            width: 150%;
-            line-height: 1.5;
-            color: #333;
-            margin-left: -37%;
-        }
-
-        .img-box {
-            text-align: center;
-            padding: 20px;
-        }
-
-        .img-box img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        /* Responsive styles */
-        @media (max-width: 768px) {
-            .detail-box-container, .img-box-container {
-                margin: 0 auto;
-                text-align: center;
-            }
-
-            .detail-box-container {
-                order: 2;
-                width: 60%;
-            }
-
-            .img-box-container {
-                order: 1;
-            }
-
-            
-
-            .detail-box p {
-                margin-top:40px;
-                font-size: 0.9em;
-            }
-        }
     </style>
 </head>
-<body>
-    <div class="container">
-        <div class="container">
-            <div class="heading_container" style="
-        margin-left: -4px;
-        margin-top: 70px;
-    ">
-            <h2>About Us</h2>
-        </div>
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="heading_container" style="margin-left: 10px;">
+      <h2>
+        About Us
+      </h2>
     </div>
-    <section class="about_section layout_padding">
+  </div>
+<body>
+    <!-- About Section -->
+    <section class="about_section">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-4 col-md-5 offset-lg-2 offset-md-1 detail-box-container">
-                    <div class="detail-box">
-                        <p>
-                            If you require reliable transportation, hiring a cab from anywhere in a convenient and hassle-free option. Whether you're a tourist exploring the city or a local resident looking for comfortable travel solutions, cab hire with Devanshi Tour And Travels is a convenient way to explore the city's bustling streets and reach your destination with comfort.<br><br>
-                            We are committed to delivering exceptional services to ensure seamless travel experiences for every passenger. Whether you're a curious explorer or a busy traveller, we guarantee convenience and efficiency as you navigate the city's wonders. Devanshi Tour And Travels provides easy taxi booking and reliable drivers. Let us be your guide as you uncover the treasures of this captivating city.
-                        </p>
-                    </div>
+                <div class="col-lg-4 col-md-5 offset-lg-2 offset-md-1">
+                  <div class="detail-box">
+                    <br>
+                    <br>
+                    <br>
+                   
+                    <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;At Devanshi Tour And Travels, we are committed to providing reliable, safe, and comfortable transportation solutions. With years of experience in the industry, we have become a trusted name in the community for our dedication to customer satisfaction and quality service.</p>
+                    
+
+
+                  </div>
                 </div>
-                <div class="col-md-6 img-box-container">
+                <div class="col-md-6">
                     <div class="img-box">
-                        <img src="{% static 'images/e.png' %}" alt="Taxi Image">
+                        <img src="{% static 'images/e.png' %}" alt="Image description">
                     </div>
                 </div>
             </div>
         </div>
     </section>
-</body>
-</html>
-
     <!-- End About Section -->
     <br>
     <br>
@@ -298,6 +242,8 @@
         </div>
     </body>
     </html>
+
+    
     
 
 {% endblock body %} 
