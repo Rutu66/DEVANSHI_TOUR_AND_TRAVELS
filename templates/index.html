@@ -6,10 +6,6 @@
 
 
 
-
-
-
-
 <!-- end header section -->
 
 <!DOCTYPE html>
@@ -23,17 +19,18 @@
     <!-- Custom CSS -->
     <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <!-- jQuery UI -->
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
 
-      <style>
-          /* General Body Styling */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f8f9fa;
-}
+
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+<style>
+
+  /* General Body Styling */
 
 /* Slider Section */
 .slider_section {
@@ -45,6 +42,7 @@ body {
   border-radius: 15px;
   padding: 30px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  color: #fff; /* Added to make text white */
 }
 
 .img-fluid {
@@ -52,46 +50,57 @@ body {
   height: auto;
 }
 
-/* Inquiry Button and Phone Display */
-.inquiry-container {
+/* Inquiry Section Styling */
+.inquiry-section {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 15px;
-  padding: 10px;
+  margin-top: 20px;
 }
 
-.inquiry-button {
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-  background-color: #FFA500; /* Updated background color */
-  color: #fff;
+.inquiry-btn {
+  background-color: #FFA500; /* Orange color */
+  color: black;
   border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-family: inherit;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.inquiry-button:hover {
-  background-color: #e69500; /* Darker shade for hover */
+.inquiry-btn:hover {
+  background-color: #e69500;
   transform: scale(1.05);
 }
 
-.phone-icon {
-  margin-right: 12px;
-  font-size: 20px;
+.phone-box {
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  margin-left: 10px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  font-family: inherit;
 }
 
-.phone-number {
-  color: #fff;
-  text-decoration: none;
-  font-size: 18px;
+.phone-box:hover {
+  background-color: #000000;
+  color: #f7c621;
+  border-color: #000000;
+  cursor: pointer;
 }
 
-.phone-number:hover {
-  text-decoration: underline;
+.phone-box i {
+  margin-right: 10px;
+}
+
+.phone-box:hover,
+.phone-box:focus,
+.phone-box:active,
+.phone-box:visited {
+  background-color: black; /* Ensure background color remains black */
+  color: white; /* Ensure font color remains white */
 }
 
 /* Card and Form Styling */
@@ -138,254 +147,444 @@ body {
 /* Responsive Design */
 @media (max-width: 768px) {
   .slider_section {
-      padding: 50px 0; /* Reset padding for smaller screens */
-  }
-
-  .inquiry-container {
-      flex-direction: column;
-      gap: 10px;
-  }
-
-  .inquiry-button {
-      width: 100%;
-      text-align: center;
-      padding: 10px; /* Adjusted padding for smaller screens */
-  }
-
-  .phone-icon {
-      margin-right: 8px;
-  }
-
-  .phone-number {
-      font-size: 16px;
+    padding: 50px 0; /* Reset padding for smaller screens */
   }
 }
 
-@media (max-width: 480px) {
-  .inquiry-button {
-      font-size: 16px;
-      padding: 10px 20px; /* Adjusted padding for smaller screens */
-  }
-
-  .phone-icon {
-      font-size: 18px;
-      margin-right: 6px;
-  }
-}
-
-/* Default styles for larger screens */
-#pickup_date::placeholder,
-#pickup_time::placeholder {
-  color: #6c757d; /* Default placeholder color */
-}
-
-/* Styles for smaller screens */
+/* Stack buttons vertically on small screens */
 @media (max-width: 768px) {
-  #pickup_date::placeholder,
-  #pickup_time::placeholder {
-      color: transparent; /* Hide placeholder text on smaller screens */
+  .inquiry-section {
+    flex-direction: column;
+    align-items: stretch;
+    align-items: center;
+    margin-right: 40px;
   }
+
+  .phone-box {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .slider_section {
+    padding: 50px 0; /* Reset padding for smaller screens */
+  }
+}
+.autocomplete-container {
+  position: relative;
+}
+
+.autocomplete-suggestions {
+  position: absolute;
+  z-index: 1000;
+  width: calc(100% - 2px);
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px; /* Increased border radius for a smoother, rounded appearance */
+}
+
+.autocomplete-item {
+  cursor: pointer;
+  padding: 12px 16px; /* Increased padding for better spacing */
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.3s;
+  color: #000; /* Black font color */
+  border-radius: 8px; /* Match border radius of suggestions box */
+}
+
+.autocomplete-item:last-child {
+  border-bottom: none;
+}
+
+.autocomplete-item:hover,
+.autocomplete-item:focus {
+  background-color: #f0f0f0; /* Light gray background on hover/focus */
+}
+
+.autocomplete-item.active {
+  background-color: #007bff; /* Blue highlight for active item */
+  color: #fff; /* White font color for active item */
+}
+
+.input-icon {
+  position: relative;
+}
+
+.input-icon .form-control {
+  padding-left: 30px; /* Adjust based on the icon size */
+}
+
+.input-icon .icon {
+  position: absolute;
+  left: 10px; /* Adjust based on your design */
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* Prevents the icon from blocking input field */
 }
 
 
- 
-      </style>
+
+
+</style>
 </head>
 
 <body>
-    <section class="slider_section">
+  <section class="slider_section">
         <div class="container-fluid">
             <div class="row">
                 <!-- Main Box Section -->
                 <div class="col-md-7 custom-col">
-                    <div class="box">
-                      <h4 style="color: #4a4a4a; font-weight: bold;">
-                        <span style="font-size: 1.8em; color: #f7c621;">Devanshi</span><br>
-                        <span style="font-size: 1.2em; color: #000000;">Tour And Travels</span>
-                    </h4>
+                  <div class="box" style="background-image: url('/static/images/125.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
                     
-                        <br>
-                        <div class="detail-box">
-                            <h1>Enjoy Your Trip.</h1>
-                        </div>
-                        <!-- Inquiry Button and Phone Display -->
-                        <div class="inquiry-container" style="width: 85%;">
-                            <div class="inquiry-button">INQUIRY NOW<br>
-                              <span class="phone-icon">📞</span>
-                                <a href="tel:+919727238220" class="phone-number">+91 82388 00034</a>
-                            </div>
-                            
-                        </div>
-
-                        <!-- Carousel -->
-                        <div id="carouselExampleIndicators" class="carousel slide mt-4" data-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <div class="img-box">
-                                        <img src="{% static 'images/b.png' %}" class="img-fluid" alt="Carousel Image" />
-                                    </div>
-                                </div>
-                                <!-- Add more carousel items as needed -->
-                            </div>
-                        </div>
+                    <h4 style="color: #4a4a4a; font-weight: bold;">
+                      <span style="font-size: 1.8em; color: #ffffff">Devanshi</span><br>
+                      <span style="font-size: 1.2em; color: #ffffff;">Tour And Travels</span>
+                    </h4>
+                
+                    <br>
+                    <div class="detail-box" style="color: #f7c621;">
+                      <h1>Enjoy Your Trip.</h1>
+                      
                     </div>
+                
+                    <!-- Inquiry Section -->
+                    <div class="inquiry-section">
+                      <button class="btn btn-warning inquiry-btn">INQUIRY NOW</button>
+                      <a href="tel:+919227091009" class="phone-box">
+                        <i class="fa fa-phone"></i> +91 92270 91009
+                      </a>
+                    </div>
+                    <br>
+                    <br>
+                
+                    <!-- Carousel -->
+                    <div id="carouselExampleIndicators" class="carousel slide mt-4" data-ride="carousel">
+                      <div class="carousel-inner">
+                        <div class="carousel-item active">
+                          <div class="img-box">
+                            <img src="{% static 'images/b.png' %}" class="img-fluid" alt="Carousel Image" />
+                          </div>
+                        </div>
+                        <!-- Add more carousel items as needed -->
+                      </div>
+                    </div>
+                  </div>
                 </div>
+                
 
                 <!-- Form Section -->
 
                 <div class="col-md-5 c-responsive-margin-top">
-    <div class="card shadow-sm">
-        <div class="card-body">
-            <h4 class="card-title text-center mb-4">Search Cab</h4>
-            <form action="{% url 'search_cabs' %}" method="get" id="searchForm">
-                {% csrf_token %}
-                <!-- Travel Type Selection -->
-                <div class="form-group mb-3">
-                    <label class="form-label">Travel Type:</label><br>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="travel_type" id="one_way" value="one_way" checked>
-                        <label class="form-check-label" for="one_way">One Way</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="travel_type" id="round_trip" value="round_trip">
-                        <label class="form-check-label" for="round_trip">Round Trip</label>
-                    </div>
-                </div>
-                <!-- Pickup and Drop Locations -->
-                <div class="form-row mb-3">
-                    <div class="form-group col-md-6">
-                        <label for="pickup" class="form-label">Pickup Location</label>
-                        <input type="text" class="form-control" id="pickup" name="pickup" placeholder="Enter pickup location" value="{{ pickup }}" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="drop" class="form-label">Drop Location</label>
-                        <input type="text" class="form-control" id="drop" name="drop" placeholder="Enter drop location" value="{{ drop }}" required>
-                    </div>
-                </div>
-                <!-- Pickup Date and Time -->
-                <div class="form-row mb-3">
-                    <div class="form-group col-md-6">
-                        <label for="pickup_date" class="form-label">Pickup Date</label>
-                        <input type="date" class="form-control" id="pickup_date" name="pickup_date" placeholder="Pickup Date" value="{{ pickup_date }}" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="pickup_time" class="form-label">Pickup Time</label>
-                        <input type="time" class="form-control" id="pickup_time" name="pickup_time" placeholder="Pickup Time" value="{{ pickup_time }}" required>
-                    </div>
-                </div>
-                <!-- Return Date (hidden by default) -->
-                <div id="return_date_row" style="display: none;">
-                    <div class="form-group mb-3">
-                        <label for="return_date" class="form-label">Return Date</label>
-                        <input type="date" class="form-control" id="return_date" name="return_date" placeholder="Return Date" value="{{ return_date }}">
-                    </div>
-                </div>
-                <!-- Submit Button -->
-                <div class="form-group text-center">
-                    <button type="submit" class="btn btn-warning btn-block">Search Cabs</button>
-                </div>
-            </form>
+                  <div class="card shadow-sm">
+                      <div class="card-body">
+                          <h4 class="card-title text-center mb-4">Search Cab</h4>
+                          <form action="{% url 'search_cabs' %}" method="get" id="searchForm">
+                              {% csrf_token %}
+                              <!-- Travel Type Selection -->
+                              <div class="form-group mb-3">
+                                  <label class="form-label">Travel Type:</label><br>
+                                  <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" name="travel_type" id="one_way" value="one_way" checked>
+                                      <label class="form-check-label" for="one_way">One Way</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" name="travel_type" id="round_trip" value="round_trip">
+                                      <label class="form-check-label" for="round_trip">Round Trip</label>
+                                  </div>
+                              </div>
+                              <!-- Pickup and Drop Locations -->
+                              <div class="form-row mb-3">
+                                <div class="form-group col-md-6 autocomplete-container">
+                                    <label for="pickup" class="form-label">Pickup Location</label>
+                                    <input type="text" class="form-control" id="pickup" name="pickup" placeholder="Enter pickup location" value="{{ pickup }}" required>
+                                    <div class="autocomplete-suggestions"></div> <!-- Container for autocomplete suggestions -->
+                                </div>
+                            
+                                <div class="form-group col-md-6 autocomplete-container">
+                                    <label for="drop" class="form-label">Drop Location</label>
+                                    <input type="text" class="form-control" id="drop" name="drop" placeholder="Enter drop location" value="{{ drop }}" required>
+                                    <div class="autocomplete-suggestions"></div> <!-- Container for autocomplete suggestions -->
+                                </div>
+                            </div>
+                            
+                              <!-- Pickup Date and Time -->
+                              <div class="form-row mb-3">
+                                <div class="form-group col-md-6">
+                                    <label for="pickup_date" class="form-label">Pickup Date</label>
+                                    <div class="input-icon">
+                                        <input type="date" class="form-control" id="pickup_date" name="pickup_date" placeholder="Pickup Date" value="{{ pickup_date }}" required>
+                                        <span class="icon">&#x1F4C5;</span> <!-- Calendar icon -->
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="pickup_time" class="form-label">Pickup Time</label>
+                                    <div class="input-icon">
+                                        <input type="time" class="form-control" id="pickup_time" name="pickup_time" placeholder="Pickup Time" value="{{ pickup_time }}" required>
+                                        <span class="icon">&#x1F551;</span> <!-- Clock icon -->
+                                    </div>
+                                </div>
+                            </div>
+                            
+                              <!-- Return Date (hidden by default) -->
+                              <div id="return_date_row" style="display: none;">
+                                <div class="form-group mb-3">
+                                    <label for="return_date" class="form-label">Return Date</label>
+                                    <div class="input-icon">
+                                        <input type="date" class="form-control" id="return_date" name="return_date" placeholder="Return Date" value="{{ return_date }}">
+                                        <span class="icon">&#x1F4C5;</span> <!-- Custom calendar icon -->
+                                    </div>
+                                </div>
+                            </div>
+                            
+                              <!-- Submit Button -->
+                              <div class="form-group text-center">
+                                  <button type="submit" class="btn btn-warning btn-block">Search Cabs</button>
+                              </div>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+            
+            
+            
+              <script>
+              document.addEventListener('DOMContentLoaded', function() {
+                var pickupInput = document.getElementById('pickup');
+                var dropInput = document.getElementById('drop');
+            
+                // Sample array of Gujarat cities (replace with your actual array)
+                var gujaratCities = [
+                    "Ahmedabad", "Surat", "Vadodara", "Rajkot", "Bhavnagar", "Jamnagar", "Junagadh", "Anand", "Navsari", "Morbi",
+                    "Gandhinagar", "Nadiad", "Bharuch", "Patan", "Porbandar", "Vapi", "Mehsana", "Gandhidham", "Veraval", "Gondal",
+                    "Godhra", "Palanpur", "Surendranagar", "Valsad", "Dahod", "Botad", "Amreli", "Deesa", "Bhuj", "Kadi",
+                    "Modasa", "Jetpur", "Anjar", "Savarkundla", "Mahesana", "Wadhwan", "Kalol", "Khambhat", "Upleta", "Sidhpur",
+                    "Sihor", "Vyara", "Visnagar", "Mandvi", "Unjha", "Dholka", "Keshod", "Lathi", "Mangrol", "Tharad",
+                    "Mansa", "Umreth", "Bardoli", "Ranavav", "Padra", "Lunawada", "Radhanpur", "Rajpipla", "Viramgam", "Kapadvanj",
+                    "Dabhoi", "Mahemdavad", "Petlad", "Chhota Udaipur", "Manavadar", "Vijapur", "Songadh", "Adalaj", "Bhachau", "Bayad",
+                    "Kadi", "Halol", "Mahuva", "Bhanvad", "Sankheda", "Thangadh", "Una", "Talaja", "Siddhpur", "Karjan",
+                    "Savli", "Kanodar", "Visavadar", "Gariadhar", "Sanand", "Bagasara", "Bavla", "Jhalod", "Himatnagar", "Jasdan",
+                    "Kalavad", "Kutiyana", "Limbdi", "Narmada", "Dhoraji", "Morvi", "Jalalpore", "Babra", "Dhrol", "Talala",
+                    "Vadnagar", "Bavla", "Bhuj", "Kutch", "Vapi", "Kheda", "Dandi", "Dehgam", "Himmatnagar", "Idar"
+                    // Add more city names as needed
+                ];
+            
+                // Function to filter cities based on user input
+                function filterCities(input, cityArray) {
+                    var inputValue = input.value.toLowerCase().trim();
+                    if (inputValue === '') {
+                        return [];
+                    }
+                    return cityArray.filter(function(city) {
+                        return city.toLowerCase().startsWith(inputValue);
+                    });
+                }
+            
+                // Function to update autocomplete suggestions
+                function updateAutocomplete(input, cityArray) {
+                    var inputValue = input.value.trim();
+                    var suggestions = filterCities(input, cityArray);
+                    var suggestionsHTML = suggestions.map(function(city, index) {
+                        return '<div class="autocomplete-item' + (index === 0 ? ' active' : '') + '">' + city + '</div>';
+                    }).join('');
+            
+                    // Display suggestions only if there are matches
+                    var autocompleteContainer = input.nextElementSibling; // Assuming you have a container for autocomplete suggestions
+                    if (suggestions.length > 0) {
+                        autocompleteContainer.innerHTML = suggestionsHTML;
+                    } else {
+                        autocompleteContainer.innerHTML = ''; // Clear suggestions if no matches
+                    }
+            
+                    // Add click event listener to select suggestion
+                    var autocompleteItems = autocompleteContainer.querySelectorAll('.autocomplete-item');
+                    autocompleteItems.forEach(function(item, index) {
+                        item.addEventListener('click', function() {
+                            input.value = item.textContent;
+                            autocompleteContainer.innerHTML = ''; // Clear suggestions
+                        });
+            
+                        item.addEventListener('mouseover', function() {
+                            removeActiveClass(autocompleteItems);
+                            item.classList.add('active');
+                        });
+            
+                        item.addEventListener('mouseleave', function() {
+                            item.classList.remove('active');
+                        });
+            
+                        item.addEventListener('mousedown', function() {
+                            input.value = item.textContent;
+                            autocompleteContainer.innerHTML = ''; // Clear suggestions
+                        });
+                    });
+            
+                    // Add keyboard navigation for arrow keys
+                    input.addEventListener('keydown', function(event) {
+                        var selected = autocompleteContainer.querySelector('.autocomplete-item.active');
+                        if (event.key === 'ArrowDown' && suggestions.length > 0) {
+                            event.preventDefault();
+                            if (selected) {
+                                var next = selected.nextElementSibling;
+                                if (next) {
+                                    scrollIntoViewIfNeeded(next, autocompleteContainer);
+                                    removeActiveClass(autocompleteItems);
+                                    next.classList.add('active');
+                                }
+                            } else {
+                                removeActiveClass(autocompleteItems);
+                                autocompleteItems[0].classList.add('active');
+                            }
+                        } else if (event.key === 'ArrowUp' && suggestions.length > 0) {
+                            event.preventDefault();
+                            if (selected) {
+                                var prev = selected.previousElementSibling;
+                                if (prev) {
+                                    scrollIntoViewIfNeeded(prev, autocompleteContainer);
+                                    removeActiveClass(autocompleteItems);
+                                    prev.classList.add('active');
+                                }
+                            } else {
+                                removeActiveClass(autocompleteItems);
+                                autocompleteItems[autocompleteItems.length - 1].classList.add('active');
+                            }
+                        } else if (event.key === 'Enter' && selected) {
+                            event.preventDefault();
+                            input.value = selected.textContent;
+                            autocompleteContainer.innerHTML = ''; // Clear suggestions
+                        }
+                    });
+            
+                    function removeActiveClass(items) {
+                        items.forEach(function(item) {
+                            item.classList.remove('active');
+                        });
+                    }
+            
+                    function scrollIntoViewIfNeeded(element, container) {
+                        var elementRect = element.getBoundingClientRect();
+                        var containerRect = container.getBoundingClientRect();
+            
+                        // Check if element is fully visible
+                        if (elementRect.bottom > containerRect.bottom) {
+                            container.scrollTop += elementRect.bottom - containerRect.bottom;
+                        } else if (elementRect.top < containerRect.top) {
+                            container.scrollTop -= containerRect.top - elementRect.top;
+                        }
+                    }
+                }
+            
+                // Attach input event listeners to pickup and drop inputs
+                pickupInput.addEventListener('input', function() {
+                    updateAutocomplete(this, gujaratCities);
+                    dropInput.nextElementSibling.innerHTML = ''; // Clear drop suggestions when typing in pickup
+                });
+            
+                dropInput.addEventListener('input', function() {
+                    updateAutocomplete(this, gujaratCities);
+                    pickupInput.nextElementSibling.innerHTML = ''; // Clear pickup suggestions when typing in drop
+                });
+            
+                // Hide suggestions when the input field loses focus
+                pickupInput.addEventListener('blur', function() {
+                    setTimeout(function() {
+                        pickupInput.nextElementSibling.innerHTML = ''; // Clear suggestions
+                    }, 200); // Delay to allow click events on suggestions
+                });
+            
+                dropInput.addEventListener('blur', function() {
+                    setTimeout(function() {
+                        dropInput.nextElementSibling.innerHTML = ''; // Clear suggestions
+                    }, 200); // Delay to allow click events on suggestions
+                });
+            
+                // Hide suggestions on clicking outside the input field
+                document.addEventListener('click', function(event) {
+                    if (!event.target.closest('.autocomplete-container')) {
+                        var allAutocompleteContainers = document.querySelectorAll('.autocomplete-suggestions');
+                        allAutocompleteContainers.forEach(function(container) {
+                            container.innerHTML = ''; // Clear all suggestions
+                        });
+                    }
+                });
+            });
+          </script>
+            
+                
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            var pickupDateInput = document.getElementById('pickup_date');
+            var pickupTimeInput = document.getElementById('pickup_time');
+            var returnDateRow = document.getElementById('return_date_row');
+            var returnDateInput = document.getElementById('return_date');
+            var travelTypeRadios = document.querySelectorAll('input[name="travel_type"]');
+            var form = document.getElementById('searchForm');
+        
+            // Set minimum value for pickup date to today
+            pickupDateInput.min = new Date().toISOString().split("T")[0];
+        
+            // Function to handle travel type change and return date visibility
+            function handleTravelTypeChange() {
+                if (this.value === 'round_trip') {
+                    returnDateRow.style.display = 'block';
+                    returnDateInput.required = true; // Make return date required
+                } else {
+                    returnDateRow.style.display = 'none';
+                    returnDateInput.required = false; // Make return date not required
+                }
+            }
+        
+            // Attach change event listener to travel type radios
+            travelTypeRadios.forEach(function(radio) {
+                radio.addEventListener('change', handleTravelTypeChange);
+            });
+        
+            // Initial state based on default selection
+            handleTravelTypeChange.call(document.querySelector('input[name="travel_type"]:checked'));
+        
+            // Function to validate dates on form submission
+            function validateDates(event) {
+                var selectedPickupDate = new Date(pickupDateInput.value + 'T' + pickupTimeInput.value);
+                var currentDate = new Date();
+        
+                // Compare pickup date and time with current date and time
+                if (selectedPickupDate <= currentDate) {
+                    alert('Please select a future date and time for pickup.');
+                    if (event) event.preventDefault(); // Prevent form submission
+                    return false;
+                }
+        
+               
+            }
+        
+            // Attach form submission event listener
+            form.addEventListener('submit', validateDates);
+        
+            // Ensure return date cannot be set to past dates using HTML5 min attribute
+            returnDateInput.min = new Date().toISOString().split("T")[0];
+        
+            // Function to handle pickup date and time change
+            function handlePickupDateTimeChange() {
+                // Validate dates
+                validateDates();
+                // Set the min attribute of the return date to the selected pickup date
+                returnDateInput.min = pickupDateInput.value;
+            }
+        
+            // Attach change event listeners to pickup date and time inputs
+            pickupDateInput.addEventListener('change', handlePickupDateTimeChange);
+            pickupTimeInput.addEventListener('change', handlePickupDateTimeChange);
+        });
+
+      </script>
         </div>
-    </div>
-</div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    var pickupDateInput = document.getElementById('pickup_date');
-    var pickupTimeInput = document.getElementById('pickup_time');
-    var returnDateRow = document.getElementById('return_date_row');
-    var returnDateInput = document.getElementById('return_date');
-    var travelTypeRadios = document.querySelectorAll('input[name="travel_type"]');
-    var form = document.getElementById('searchForm');
-
-    // Set minimum value for pickup date to today
-    pickupDateInput.min = new Date().toISOString().split("T")[0];
-
-    // Function to handle travel type change and return date visibility
-    function handleTravelTypeChange() {
-        if (this.value === 'round_trip') {
-            returnDateRow.style.display = 'block';
-            returnDateInput.required = true; // Make return date required
-        } else {
-            returnDateRow.style.display = 'none';
-            returnDateInput.required = false; // Make return date not required
-        }
-    }
-
-    // Attach change event listener to travel type radios
-    travelTypeRadios.forEach(function(radio) {
-        radio.addEventListener('change', handleTravelTypeChange);
-    });
-
-    // Initial state based on default selection
-    handleTravelTypeChange.call(document.querySelector('input[name="travel_type"]:checked'));
-
-    // Function to validate dates on form submission
-    function validateDates(event) {
-        var selectedPickupDate = new Date(pickupDateInput.value + 'T' + pickupTimeInput.value);
-        var currentDate = new Date();
-
-        // Compare pickup date and time with current date and time
-        if (selectedPickupDate <= currentDate) {
-            alert('Please select a future date and time for pickup.');
-            if (event) event.preventDefault(); // Prevent form submission
-            return false;
-        }
-
-        // Validate return date if Round Trip is selected
-        if (returnDateRow.style.display !== 'none') {
-            var selectedReturnDate = new Date(returnDateInput.value + 'T00:00:00');
-
-            // Compare return date with current date and time
-            if (selectedReturnDate <= currentDate) {
-                alert('Return date must be a future date.');
-                if (event) event.preventDefault(); // Prevent form submission
-                return false;
-            }
-
-            // Compare return date with pickup date
-            if (selectedReturnDate < selectedPickupDate) {
-                alert('Return date cannot be before pickup date.');
-                if (event) event.preventDefault(); // Prevent form submission
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    // Attach form submission event listener
-    form.addEventListener('submit', validateDates);
-
-    // Ensure return date cannot be set to past dates using HTML5 min attribute
-    returnDateInput.min = new Date().toISOString().split("T")[0];
-
-    // Function to handle pickup date and time change
-    function handlePickupDateTimeChange() {
-        // Validate dates
-        validateDates();
-        // Set the min attribute of the return date to the selected pickup date
-        returnDateInput.min = pickupDateInput.value;
-    }
-
-    // Attach change event listeners to pickup date and time inputs
-    pickupDateInput.addEventListener('change', handlePickupDateTimeChange);
-    pickupTimeInput.addEventListener('change', handlePickupDateTimeChange);
-});
-</script>
-
-             
-              
-                
-                
-            </div>
         </div>
     </section>
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-FIflK1xb3DSHvU4fD+1xlK4mXSMzZoY1p6MAp0ua8N8odJ8fpT0FGyFqb5pAriIo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh/jFcNMJNGmZaTKYGj5tc+0hbd2Ousak" crossorigin="anonymous"></script>
+    {% comment %} <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-FIflK1xb3DSHvU4fD+1xlK4mXSMzZoY1p6MAp0ua8N8odJ8fpT0FGyFqb5pAriIo" crossorigin="anonymous"></script> {% endcomment %}
+    {% comment %} <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh/jFcNMJNGmZaTKYGj5tc+0hbd2Ousak" crossorigin="anonymous"></script> {% endcomment %}
 </body>
 </html>
 
@@ -462,16 +661,7 @@ document.getElementById('readMoreLink').addEventListener('mouseout', function() 
     <!-- Your other HTML content goes here -->
 
     <!-- Optional JavaScript and Bootstrap Bundle with Popper -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
-        integrity="sha384-pzjw8f+ua7Kw1TIqDQIGfhUT7yM97wxgAXjDUyY/i3Vyb5X9KT1b7BlLZJLm4XK7"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-        integrity="sha384-B4gt1jrGC7Jh4AgT9GOBmYFf5kR/nBbn4TVsbA68p11Dykp1JTvwFvQzFfymhHln"
-        crossorigin="anonymous"></script>
-</body>
+   
 
 </html>
 
@@ -618,18 +808,21 @@ document.getElementById('readMoreLink').addEventListener('mouseout', function() 
     </style>
 </head>
 <body>
-    <div class="car-slider" style="height: 455px;">
+    <div class="car-slider" style="height: 470px;">
         <div class="car-slider-track">
             {% for car in car_list %}
             <div class="car-card">
                 <img src="{{ car.image.url }}" alt="{{ car.name }}">
                 <h3>{{ car.name }}</h3>
+                <h6>{{ car.car_type }}</h6>
+                <h6>({{ car.capacity }} + 1) Capacity</h6>
                 <div class="review">
                     <div class="stars">⭐⭐⭐⭐☆</div>
                     <p>"Great experience! Will rent again."</p>
                 </div>
                 <p class="price">₹{{ car.rate }} per km</p>
-                <a href="#" class="book-now btn-warning">Book Now</a>
+                <a href="tel:+1234567890" class="book-now btn-warning">Call Now</a>
+
             </div>
             {% endfor %}
             <!-- Duplicate the first set of cars for infinite scrolling -->
@@ -984,6 +1177,7 @@ document.getElementById('readMoreLink').addEventListener('mouseout', function() 
         .a-contact_form {
           max-width: 100%; /* Adjusted for smaller screens */
           overflow: visible; /* Override to ensure content is visible */
+          margin: -6px;
         }
       }
 
@@ -1399,32 +1593,9 @@ document.getElementById('readMoreLink').addEventListener('mouseout', function() 
 
   <!-- footer section -->
 
-  {% comment %} <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
-  <script type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script> {% endcomment %}
 
   <!-- owl carousel script -->
-  <script type="text/javascript">
-    $(".owl-carousel").owlCarousel({
-      loop: true,
-      margin: 20,
-      navText: [],
-      autoplay: true,
-      autoplayHoverPause: true,
-      responsive: {
-        0: {
-          items: 1,
-        },
-        768: {
-          items: 2,
-        },
-        1000: {
-          items: 2,
-        },
-      },
-    });
-  </script>
+
 
 
 

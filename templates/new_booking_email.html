@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Booking Received</title>
+    <style>
+        body {
+            background-color: #f1f2f6;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .success-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 20px auto;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .tick-mark {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+        }
+
+        .tick-circle {
+            stroke: #27ae60;
+            stroke-width: 4;
+            fill: none;
+            stroke-dasharray: 150;
+            stroke-dashoffset: 150;
+            animation: draw-circle 0.8s ease-out forwards;
+        }
+
+        .tick-path {
+            stroke: #27ae60;
+            stroke-width: 4;
+            fill: none;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: draw-check 0.5s 0.8s ease forwards;
+        }
+
+        @keyframes draw-circle {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes draw-check {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .success-message {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .success-message h2 {
+            margin-bottom: 10px;
+            color: #27ae60;
+            font-size: 24px;
+        }
+
+        .success-message p {
+            color: #333;
+            font-size: 16px;
+        }
+
+        .booking-details {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .booking-details table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .booking-details th, .booking-details td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            font-size: 16px;
+        }
+
+        .booking-details th {
+            text-align: left;
+            color: #555;
+            font-weight: bold;
+        }
+
+        .booking-details td {
+            color: #333;
+        }
+
+        .contact-section {
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+            margin-top: 20px;
+            text-align: center;
+            color: #555;
+        }
+
+        .contact-section p {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        .contact-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact-section li {
+            margin: 5px 0;
+        }
+
+        .contact-section a {
+            color: #27ae60;
+            text-decoration: none;
+        }
+
+        .contact-section a:hover {
+            text-decoration: underline;
+        }
+
+        .button {
+            background-color: #27ae60;
+            color: white;
+            padding: 12px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            cursor: pointer;
+            margin-top: 20px;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        .button:hover {
+            background-color: #218c54;
+        }
+
+        @media (max-width: 600px) {
+            .success-container {
+                padding: 20px;
+                margin: 10px;
+            }
+
+            .tick-mark {
+                width: 60px;
+                height: 60px;
+            }
+
+            .success-message h2 {
+                font-size: 20px;
+            }
+
+            .success-message p, .booking-details th, .booking-details td {
+                font-size: 14px;
+            }
+
+            .button {
+                width: 100%;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="success-message">
+            <div class="tick-mark">
+                <svg class="tick-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                    <circle class="tick-circle" cx="26" cy="26" r="25"/>
+                    <path class="tick-path" d="M16 30l10 10L36 20"/>
+                </svg>
+            </div>
+            <h2>New Booking Received!</h2>
+            <p>You have received a new booking. Please find the details below:</p>
+        </div>
+
+        <div class="booking-details">
+            <table>
+                <tr>
+                    <th>Details</th>
+                    <th>Information</th>
+                </tr>
+                <tr>
+                    <td>Username:</td>
+                    <td>{{ username }}</td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>{{ email }}</td>
+                </tr>
+                <tr>
+                    <td>Mobile:</td>
+                    <td>{{ mobile }}</td>
+                </tr>
+                <tr>
+                    <td>Alternate Mobile:</td>
+                    <td>{{ alt_mobile }}</td>
+                </tr>
+                <tr>
+                    <td>Pickup Location:</td>
+                    <td>{{ pickup }}</td>
+                </tr>
+                <tr>
+                    <td>Drop Location:</td>
+                    <td>{{ drop }}</td>
+                </tr>
+                <tr>
+                    <td>Number of Passengers:</td>
+                    <td>{{ num_passengers }}</td>
+                </tr>
+                <tr>
+                    <td>Pickup Date:</td>
+                    <td>{{ pickup_date }}</td>
+                </tr>
+                <tr>
+                    <td>Pickup Time:</td>
+                    <td>{{ pickup_time }}</td>
+                </tr>
+                {% if travel_type %}
+                <tr>
+                    <td>Trip Type:</td>
+                    <td>{{ travel_type }}</td>
+                </tr>
+                {% endif %}
+                {% if return_date %}
+                <tr>
+                    <td>Return Date:</td>
+                    <td>{{ return_date }}</td>
+                </tr>
+                {% endif %}
+                <tr>
+                    <td>Route:</td>
+                    <td>{{ pickup }} -> {{ drop }}</td>
+                </tr>
+            </table>
+        </div>
+
+       
+    </div>
+</body>
+</html>

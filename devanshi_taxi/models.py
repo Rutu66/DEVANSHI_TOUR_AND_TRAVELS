@@ -2,14 +2,25 @@
 from django.db import models
 
 class Car(models.Model):
+    CAR_TYPES = [
+        ('Sedan', 'Sedan'),
+        ('SUV', 'SUV'),
+        ('Hatchback', 'Hatchback'),
+        ('Convertible', 'Convertible'),
+        ('Coupe', 'Coupe'),
+        ('Minivan', 'Minivan'),
+        ('Pickup Truck', 'Pickup Truck'),
+    ]
+
     name = models.CharField(max_length=100)
     image = models.ImageField(upload_to='car_images/')
     rate = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField()
+    car_type = models.CharField(max_length=20, choices=CAR_TYPES)
+    capacity = models.PositiveIntegerField()
 
     def __str__(self):
         return self.name
-
 
 class Route(models.Model):
     pickup = models.CharField(max_length=255)
@@ -42,7 +53,7 @@ class Booking(models.Model):
     pickup_time = models.TimeField()
     return_date = models.DateField(blank=True, null=True)  # New field for return date
     route = models.CharField(max_length=255, blank=True, null=True)  # New field for route
-    full_payable_amount = models.DecimalField(max_digits=10, decimal_places=2)
+    # full_payable_amount = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
         return f"{self.username} - {self.pickup} to {self.drop}"

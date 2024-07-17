@@ -13,10 +13,47 @@ from django.urls import reverse
 from datetime import datetime
 from django.core.mail import send_mail
 from django.conf import settings
+from django.template.loader import render_to_string
+
+
 
 
 from django.shortcuts import render
 from .models import Cost  # Import relevant models
+
+# def search_cabs(request):
+#     if request.method == 'GET':
+#         travel_type = request.GET.get('travel_type')
+#         pickup = request.GET.get('pickup')
+#         drop = request.GET.get('drop')
+#         pickup_date = request.GET.get('pickup_date')
+#         pickup_time = request.GET.get('pickup_time')
+#         return_date = request.GET.get('return_date')
+
+#         # Ensure required fields are filled
+#         if not (travel_type and pickup and drop and pickup_date and pickup_time):
+#             return render(request, 'your_template.html', {'error_message': 'Please fill all required fields.'})
+
+#         # Filter cars based on pickup and drop locations and travel type
+#         cars = Cost.objects.filter(
+#             route__pickup__icontains=pickup,
+#             route__drop__icontains=drop,
+#         )
+
+#         context = {
+#             'cars': cars,
+#             'travel_type': travel_type,
+#             'pickup': pickup,
+#             'drop': drop,
+#             'pickup_date': pickup_date,
+#             'pickup_time': pickup_time,
+#             'return_date': return_date,
+#         }
+
+#         return render(request, 'cars.html', context)
+    
+#     return render(request,'search.html')
+
 
 def search_cabs(request):
     if request.method == 'GET':
@@ -31,11 +68,16 @@ def search_cabs(request):
         if not (travel_type and pickup and drop and pickup_date and pickup_time):
             return render(request, 'your_template.html', {'error_message': 'Please fill all required fields.'})
 
-        # Filter cars based on pickup and drop locations and travel type
-        cars = Cost.objects.filter(
-            route__pickup__icontains=pickup,
-            route__drop__icontains=drop,
-        )
+        # Convert date strings to datetime objects for comparison
+        pickup_datetime = datetime.strptime(pickup_date, '%Y-%m-%d')
+        return_datetime = datetime.strptime(return_date, '%Y-%m-%d') if return_date else None
+
+        # Check if return date is before pickup date for round trip
+        if travel_type == 'round_trip' and return_datetime and return_datetime < pickup_datetime:
+            return render(request, 'your_template.html', {'error_message': 'Return date cannot be before pickup date.'})
+
+        # Retrieve all cars from the Car model
+        cars = Car.objects.all()
 
         context = {
             'cars': cars,
@@ -49,9 +91,14 @@ def search_cabs(request):
 
         return render(request, 'cars.html', context)
     
-    return render(request,'search.html')
-    
+    return render(request, 'search.html')
 
+from django.shortcuts import render, redirect
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.conf import settings
+from datetime import datetime
+from .models import Booking  # Adjust this import as per your app structure
 
 def booking_view(request):
     if request.method == 'POST':
@@ -78,7 +125,7 @@ def booking_view(request):
             return_date = None  # Handle case where return_date is not provided
 
         route = request.POST.get('route')
-        full_payable_amount = request.POST.get('full_payable_amount')
+       
 
         # Create Booking object
         booking = Booking.objects.create(
@@ -94,27 +141,61 @@ def booking_view(request):
             pickup_time=pickup_time,
             return_date=return_date,
             route=route,
-            full_payable_amount=full_payable_amount
+          
         )
+
+        # Render email content from template
+        email_content_customer = render_to_string('booking_confirmation_email.html', {
+            'username': username,
+            'email': email,
+            'mobile': mobile,
+            'alt_mobile': alt_mobile,
+            'pickup': pickup,
+            'drop': drop,
+            'num_passengers': num_passengers,
+            'travel_type': travel_type,
+            'pickup_date': pickup_date,
+            'pickup_time': pickup_time,
+            'return_date': return_date,
+            'route': route,
+           
+            
+        })
 
         # Send email with booking details to recipient (customer)
         subject_customer = 'Booking Confirmation'
-        message_customer = f'Hello {username},\n\nYour booking details:\n\nPickup: {pickup}\nDrop: {drop}\nPickup Date: {pickup_date}\n\nThank you!'
         recipient_customer = [email]  # Use the email entered by the user as recipient for customer
 
-        send_mail(subject_customer, message_customer, settings.DEFAULT_FROM_EMAIL, recipient_customer)
+        send_mail(subject_customer, '', settings.DEFAULT_FROM_EMAIL, recipient_customer, html_message=email_content_customer)
 
-        # Send email with booking details to owner (replace 'owner_email' with actual owner's email)
+        # Render email content for owner from template
+        email_content_owner = render_to_string('new_booking_email.html', {
+            'username': username,
+            'email': email,
+            'mobile': mobile,
+            'alt_mobile': alt_mobile,
+            'pickup': pickup,
+            'drop': drop,
+            'num_passengers': num_passengers,
+            'travel_type': travel_type,
+            'pickup_date': pickup_date,
+            'pickup_time': pickup_time,
+            'return_date': return_date,
+            'route': route,
+            
+        })
+
+        # Send email with booking details to owner
         subject_owner = 'New Booking Received'
-        message_owner = f'Hello,\n\nA new booking has been received:\n\nUsername: {username}\nEmail: {email}\nMobile: {mobile}\nPickup: {pickup}\nDrop: {drop}\nPickup Date: {pickup_date}\n\nPlease take necessary actions.'
         recipient_owner = ['devanshicab99@gmail.com']  # Replace with actual owner's email address
 
-        send_mail(subject_owner, message_owner, settings.DEFAULT_FROM_EMAIL, recipient_owner)
+        send_mail(subject_owner, '', settings.DEFAULT_FROM_EMAIL, recipient_owner, html_message=email_content_owner)
 
         # Redirect to a success URL with pk
         return redirect('success', pk=booking.pk)  # Replace 'success' with your actual success URL name
 
     return render(request, 'booking.html')
+
 
 
 
@@ -152,6 +233,7 @@ def sendmail_contact(request):
 
 def index(request):
     
+
     
     car_list = Car.objects.all()
     
@@ -192,39 +274,71 @@ def cars(request):
     
 
 
-from django.shortcuts import render, get_object_or_404
-from .models import Cost
+# from django.shortcuts import render, get_object_or_404
+# from .models import Cost
+
+# def checkout(request, car_id):
+#     cost_instance = get_object_or_404(Cost, id=car_id)
+#     car = cost_instance.car
+#     route = cost_instance.route
+#     total_fare = cost_instance.total_fare
+#     extra_fare = cost_instance.extra_fare
+
+#     # Fetch additional data from the request.GET
+#     pickup_date = request.GET.get('pickup_date', '')
+#     pickup_time = request.GET.get('pickup_time', '')
+#     travel_type = request.GET.get('trip_type', '')  # Assuming 'trip_type' is passed from the template
+
+#     return_date = None
+#     if travel_type == 'round_trip':
+#         return_date = request.GET.get('return_date', '')
+
+#     # Fetch pickup and drop location details
+#     pickup_location = request.GET.get('pickup_location', '')
+#     drop_location = request.GET.get('drop_location', '')
+
+#     # Print route information for debugging purposes
+#     print(route)
+
+#     return render(request, 'checkout.html', {
+#         'car': car,
+#         'route': route,
+#         'total_fare': total_fare,
+#         'extra_fare': extra_fare,
+#         'pickup_date': pickup_date,
+#         'pickup_time': pickup_time,
+#         'travel_type': travel_type,
+#         'return_date': return_date,
+#         'pickup_location': pickup_location,
+#         'drop_location': drop_location,
+#     })
 
 def checkout(request, car_id):
-    cost_instance = get_object_or_404(Cost, id=car_id)
-    car = cost_instance.car
-    route = cost_instance.route
-    total_fare = cost_instance.total_fare
-    extra_fare = cost_instance.extra_fare
-
-    # Fetch additional data from the request.GET
+    car = get_object_or_404(Car, pk=car_id)
+    
     pickup_date = request.GET.get('pickup_date', '')
     pickup_time = request.GET.get('pickup_time', '')
-    travel_type = request.GET.get('trip_type', '')  # Assuming 'trip_type' is passed from the template
-
+    travel_type = request.GET.get('trip_type', '')
+    
     return_date = None
     if travel_type == 'round_trip':
         return_date = request.GET.get('return_date', '')
+        
+     # Fetch pickup and drop location details
+    pickup_location = request.GET.get('pickup_location', '')
+    drop_location = request.GET.get('drop_location', '')
 
-    # Print route information for debugging purposes
-    print(route)
 
-    return render(request, 'checkout.html', {
+    context = {
         'car': car,
-        'route': route,
-        'total_fare': total_fare,
-        'extra_fare': extra_fare,
         'pickup_date': pickup_date,
-        'pickup_time': pickup_time,
-        'travel_type': travel_type,
-        'return_date': return_date,
-    })
-
+         'pickup_time': pickup_time,
+         'travel_type': travel_type,
+         'return_date': return_date,
+         'pickup_location': pickup_location,
+         'drop_location': drop_location,
+    }
+    return render(request, 'checkout.html', context)
 
 
 

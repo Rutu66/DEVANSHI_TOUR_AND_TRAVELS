@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Success</title>
+    <style>
+
+        .success-container {
+            margin: auto;
+            margin-top: 50px;
+            background-color: #ffffff;
+            padding: 30px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .tick-mark {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+        }
+
+        .tick-circle {
+            stroke: #27ae60;
+            stroke-width: 4;
+            fill: none;
+            stroke-dasharray: 150;
+            stroke-dashoffset: 150;
+            animation: draw-circle 0.8s ease-out forwards;
+        }
+
+        .tick-path {
+            stroke: #27ae60;
+            stroke-width: 4;
+            fill: none;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: draw-check 0.5s 0.8s ease forwards;
+        }
+
+        @keyframes draw-circle {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes draw-check {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .success-message {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .success-message h2 {
+            margin-bottom: 10px;
+            color: #27ae60;
+        }
+
+        .booking-details {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .booking-details table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .booking-details th, .booking-details td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .booking-details th {
+            text-align: left;
+            color: #555;
+        }
+
+        .contact-section {
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+            margin-top: 20px;
+            text-align: center;
+            color: #555;
+        }
+
+        .contact-section p {
+            margin: 10px 0;
+        }
+
+        .contact-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .button {
+            background-color: #27ae60;
+            color: white;
+            padding: 12px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            cursor: pointer;
+            margin-top: 20px;
+            text-transform: uppercase;
+        }
+
+        .button:hover {
+            background-color: #218c54;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                margin: 10px;
+            }
+            .success-container {
+                padding: 20px;
+                margin: 10px;
+            }
+
+            .tick-mark {
+                width: 50px;
+                height: 50px;
+            }
+
+            .button {
+                width: 100%;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="success-message">
+            <div class="tick-mark">
+               
+            </div>
+            <h2>Booking Confirmed!</h2>
+            {% comment %} <p>Your booking ID is: <strong>#123456</strong></p> {% endcomment %}
+            {% comment %} <p>Thank you for booking, {{ booking.username }}!</p> <!-- Example of dynamic data --> {% endcomment %}
+            <p>Thank you for choosing Devanshi Tour and Travels. Our team will contact you as soon as possible.</p>
+
+        </div>
+        
+        <div class="booking-details">
+            <table> 
+                <tr>
+                    <th>Details</th>
+                    <th>Information</th>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>{{ email }}</td>
+                </tr>
+                <tr>
+                    <td>Mobile:</td>
+                    <td>{{ mobile }}</td>
+                </tr>
+                <tr>
+                    <td>Pickup Location:</td>
+                    <td>{{ pickup }}</td>
+                </tr>
+                <tr>
+                    <td>Drop Location:</td>
+                    <td>{{ drop }}</td>
+                </tr>
+                <tr>
+                    <td>Number of Passengers:</td>
+                    <td>{{ num_passengers }}</td>
+                </tr>
+                <tr>
+                    <td>Pickup Date:</td>
+                    <td>{{ pickup_date }}</td>
+                </tr>
+                <tr>
+                    <td>Pickup Time:</td>
+                    <td>{{ pickup_time }}</td>
+                </tr>
+                {% if travel_type %}
+                <tr>
+                    <td>Trip Type:</td>
+                    <td>{{ travel_type }}</td>
+                </tr>
+                {% endif %}
+                {% if return_date %}
+                <tr>
+                    <td>Return Date:</td>
+                    <td>{{ return_date }}</td>
+                </tr>
+                {% endif %}
+                <tr>
+                    <td>Route:</td>
+                    <td>{{ pickup }} -> {{ drop }}</td>
+                </tr>
+                {% comment %} <tr>
+                    <td>Full Payable Amount:</td>
+                    <td>₹{{ booking.full_payable_amount }}</td>
+                </tr> {% endcomment %}
+            </table>
+        </div>
+        
+        
+        <div class="contact-section">
+            <p>If you have any questions or need further assistance, please contact us:</p>
+            <ul>
+                <li>Email: support@carrental.com</li>
+                <li>Phone: <a href="tel:+18001234567">+1-800-123-4567</a></li>
+            </ul>
+           
+        </div>
+    </div>
+</body>
+</html>

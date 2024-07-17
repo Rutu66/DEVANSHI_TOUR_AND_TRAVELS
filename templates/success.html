@@ -9,7 +9,7 @@
     <title>Booking Success</title>
     <style>
         body {
-            background-color: #f1f2f6;
+            background-color: #ffffff;
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -18,7 +18,7 @@
         .success-container {
             margin: auto;
             margin-top: 50px;
-            background-color: #ffffff;
+            background-color: #f1f2f6;
             padding: 30px;
             border: 1px solid #ddd;
             border-radius: 8px;
@@ -111,6 +111,11 @@
             margin: 10px 0;
         }
 
+        .contact-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
         .button {
             background-color: #27ae60;
             color: white;
@@ -130,8 +135,12 @@
         }
 
         @media (max-width: 600px) {
+            body {
+                margin: 10px;
+            }
             .success-container {
                 padding: 20px;
+                margin: 10px;
             }
 
             .tick-mark {
@@ -156,8 +165,10 @@
                 </svg>
             </div>
             <h2>Booking Confirmed!</h2>
-            <p>Your booking ID is: <strong>#123456</strong></p>
-            <p>Thank you for booking, {{ booking.username }}!</p> <!-- Example of dynamic data -->
+            {% comment %} <p>Your booking ID is: <strong>#123456</strong></p> {% endcomment %}
+            {% comment %} <p>Thank you for booking, {{ booking.username }}!</p> <!-- Example of dynamic data --> {% endcomment %}
+            <p>Thank you for choosing Devanshi Tour and Travels. Our team will contact you as soon as possible.</p>
+
         </div>
         
         <div class="booking-details">
@@ -208,12 +219,12 @@
                 {% endif %}
                 <tr>
                     <td>Route:</td>
-                    <td>{{ booking.route }}</td>
+                    <td>{{ booking.pickup }} -> {{ booking.drop }}</td>
                 </tr>
-                <tr>
+                {% comment %} <tr>
                     <td>Full Payable Amount:</td>
                     <td>₹{{ booking.full_payable_amount }}</td>
-                </tr>
+                </tr> {% endcomment %}
             </table>
         </div>
         
