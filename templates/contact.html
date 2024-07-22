@@ -21,39 +21,39 @@
       <!-- Contact Form Section -->
       <div class="row">
         <div class="col-lg-6 d-flex align-items-stretch">
-          <div class="contact-form">
-            <h2 class="mb-4">Get In Touch</h2>
-            <form action="{% url 'sendmail_contact' %}" method="post">
-              {% csrf_token %}
-              <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" placeholder="Your Name" name="name" required>
-              </div>
-            
-              <div class="form-group">
-                  <input type="text" class="form-control form-control-lg"  placeholder="Your Phone Number" name="mobail" required pattern="[0-9]{10}" title="Please enter a 10-digit mobile number"  >
-              </div>
-              <div class="form-group">
-                  <textarea class="form-control form-control-lg" rows="5" placeholder="Your Feedback" name="message" required></textarea>
-              </div>
-              <button type="submit" class="btn btn-orange btn-block btn-lg">Send</button>
-          </form>
-            {% for message in messages %}
-            <div class="alert alert-warning alert-dismissible fade show mt-4" role="alert">
-              <strong>Message:</strong> {{ message }}
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+            <div class="contact-form">
+                <h2 class="mb-4">Get In Touch</h2>
+                <form action="{% url 'sendmail_contact' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" class="form-control form-control-lg" placeholder="Your Name" name="name" required>
+                    </div>
+    
+                    <div class="form-group">
+                        <input type="text" class="form-control form-control-lg" placeholder="Your Phone Number" name="mobile" required pattern="[0-9]{10}" title="Please enter a 10-digit mobile number">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control form-control-lg" rows="5" placeholder="Your Feedback" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-orange btn-block btn-lg">Send</button>
+                </form>
+                {% for message in messages %}
+                <div class="alert alert-warning alert-dismissible fade show mt-4" role="alert">
+                    <strong>Message:</strong> {{ message }}
+                    
+                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
-          </div>
         </div>
         <div class="col-lg-6 d-flex align-items-stretch mt-4 mt-lg-0">
-          <div class="mapouter w-100">
-              <div class="gmap_canvas">
-                  <iframe width="100%" height="100%" id="gmap_canvas" src="https://maps.google.com/maps?q=Rajkot,%20Gujarat,%20India&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-              </div>
-          </div>
-      </div>
+            <div class="mapouter w-100">
+                <div class="gmap_canvas">
+                    <iframe width="100%" height="100%" id="gmap_canvas" src="https://maps.google.com/maps?q=Rajkot,%20Gujarat,%20India&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    
       
       </div>
       <!-- Additional Contact Information Section -->

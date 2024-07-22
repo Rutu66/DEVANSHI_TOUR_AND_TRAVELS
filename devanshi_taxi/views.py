@@ -56,17 +56,17 @@ from .models import Cost  # Import relevant models
 
 
 def search_cabs(request):
-    if request.method == 'GET':
-        travel_type = request.GET.get('travel_type')
-        pickup = request.GET.get('pickup')
-        drop = request.GET.get('drop')
-        pickup_date = request.GET.get('pickup_date')
-        pickup_time = request.GET.get('pickup_time')
-        return_date = request.GET.get('return_date')
+    if request.method == 'POST':
+        travel_type = request.POST.get('travel_type')
+        pickup = request.POST.get('pickup')
+        drop = request.POST.get('drop')
+        pickup_date = request.POST.get('pickup_date')
+        pickup_time = request.POST.get('pickup_time')
+        return_date = request.POST.get('return_date')
 
         # Ensure required fields are filled
         if not (travel_type and pickup and drop and pickup_date and pickup_time):
-            return render(request, 'your_template.html', {'error_message': 'Please fill all required fields.'})
+            return render(request, 'cars.html', {'error_message': 'Please fill all required fields.'})
 
         # Convert date strings to datetime objects for comparison
         pickup_datetime = datetime.strptime(pickup_date, '%Y-%m-%d')
@@ -74,7 +74,7 @@ def search_cabs(request):
 
         # Check if return date is before pickup date for round trip
         if travel_type == 'round_trip' and return_datetime and return_datetime < pickup_datetime:
-            return render(request, 'your_template.html', {'error_message': 'Return date cannot be before pickup date.'})
+            return render(request, 'cars.html', {'error_message': 'Return date cannot be before pickup date.'})
 
         # Retrieve all cars from the Car model
         cars = Car.objects.all()
@@ -158,14 +158,14 @@ def booking_view(request):
             'pickup_time': pickup_time,
             'return_date': return_date,
             'route': route,
-           
-            
+              
         })
 
         # Send email with booking details to recipient (customer)
         subject_customer = 'Booking Confirmation'
         recipient_customer = [email]  # Use the email entered by the user as recipient for customer
-
+        print("==>>", settings.DEFAULT_FROM_EMAIL)
+        print("===>",recipient_customer)
         send_mail(subject_customer, '', settings.DEFAULT_FROM_EMAIL, recipient_customer, html_message=email_content_customer)
 
         # Render email content for owner from template
@@ -187,7 +187,7 @@ def booking_view(request):
 
         # Send email with booking details to owner
         subject_owner = 'New Booking Received'
-        recipient_owner = ['devanshicab99@gmail.com']  # Replace with actual owner's email address
+        recipient_owner = ['no_reply@devanshitours.com']  # Replace with actual owner's email address
 
         send_mail(subject_owner, '', settings.DEFAULT_FROM_EMAIL, recipient_owner, html_message=email_content_owner)
 
@@ -200,34 +200,31 @@ def booking_view(request):
 
 
 def sendmail_contact(request):
-    
     if request.method == "POST":
-       
         name = request.POST.get('name', '')
-        
-        mobile = request.POST.get('mobile', '')  # Use the correct key here
-        message = request   .POST.get('message', '')
-        
-    full_message = f"""
-        Received message below from {name}
-        
-        .....................................
-        
-        massage : {message}
-        mobail no : {mobile}
-    """ 
-    send_mail(
-        "Receve contact details from yashtaxi",
-        full_message,
-        'yashtaxi2000@gmail.com',
-        ['rutukotadiya999@gmail.com'],
-        fail_silently=False,
-          
-    )
-    messages.success(request, " your information send succsessfully ")
-    
+        mobile = request.POST.get('mobile', '')
+        message = request.POST.get('message', '')
+
+        context = {
+            'name': name,
+            'mobile': mobile,
+            'message': message,
+        }
+
+        html_message = render_to_string('email_template.html', context)
+
+        send_mail(
+            "Received contact details",
+            '',
+            'yashtaxi2000@gmail.com',
+            ['no_reply@devanshitours.com'],
+            fail_silently=False,
+            html_message=html_message,
+        )
+
+        messages.success(request, "Your information was sent successfully")
+
     return redirect('contact')
-    
 
 
 
@@ -316,7 +313,7 @@ def cars(request):
 def checkout(request, car_id):
     car = get_object_or_404(Car, pk=car_id)
     
-    pickup_date = request.GET.get('pickup_date', '')
+    pickup_date = request.GET.get('pickup_date', '')    
     pickup_time = request.GET.get('pickup_time', '')
     travel_type = request.GET.get('trip_type', '')
     
@@ -324,19 +321,17 @@ def checkout(request, car_id):
     if travel_type == 'round_trip':
         return_date = request.GET.get('return_date', '')
         
-     # Fetch pickup and drop location details
     pickup_location = request.GET.get('pickup_location', '')
     drop_location = request.GET.get('drop_location', '')
-
 
     context = {
         'car': car,
         'pickup_date': pickup_date,
-         'pickup_time': pickup_time,
-         'travel_type': travel_type,
-         'return_date': return_date,
-         'pickup_location': pickup_location,
-         'drop_location': drop_location,
+        'pickup_time': pickup_time,
+        'travel_type': travel_type,
+        'return_date': return_date,
+        'pickup_location': pickup_location,
+        'drop_location': drop_location,
     }
     return render(request, 'checkout.html', context)
 
@@ -344,15 +339,10 @@ def checkout(request, car_id):
 
 def about(request):
     """ For about page...."""
-    
-    
-    
     return render(request, 'about.html')
 
 def contact(request):
     """ For contact page...."""
-    
-    
     return render(request, 'contact.html')
 
 def service(request):
@@ -387,3 +377,6 @@ def get_fare_summary(request, car_id):
     }
 
     return JsonResponse(data)
+
+
+

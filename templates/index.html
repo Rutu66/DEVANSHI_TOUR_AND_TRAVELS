@@ -251,8 +251,8 @@
                     <!-- Inquiry Section -->
                     <div class="inquiry-section">
                       <button class="btn btn-warning inquiry-btn">INQUIRY NOW</button>
-                      <a href="tel:+919227091009" class="phone-box">
-                        <i class="fa fa-phone"></i> +91 92270 91009
+                      <a href="tel:+9182388 00034" class="phone-box">
+                        <i class="fa fa-phone"></i> +91 82388 00034
                       </a>
                     </div>
                     <br>
@@ -279,7 +279,7 @@
                   <div class="card shadow-sm">
                       <div class="card-body">
                           <h4 class="card-title text-center mb-4">Search Cab</h4>
-                          <form action="{% url 'search_cabs' %}" method="get" id="searchForm">
+                          <form action="{% url 'search_cabs' %}" method="post" id="searchForm">
                               {% csrf_token %}
                               <!-- Travel Type Selection -->
                               <div class="form-group mb-3">
@@ -349,234 +349,277 @@
             
             
               <script>
-              document.addEventListener('DOMContentLoaded', function() {
-                var pickupInput = document.getElementById('pickup');
-                var dropInput = document.getElementById('drop');
-            
-                // Sample array of Gujarat cities (replace with your actual array)
-                var gujaratCities = [
-                    "Ahmedabad", "Surat", "Vadodara", "Rajkot", "Bhavnagar", "Jamnagar", "Junagadh", "Anand", "Navsari", "Morbi",
-                    "Gandhinagar", "Nadiad", "Bharuch", "Patan", "Porbandar", "Vapi", "Mehsana", "Gandhidham", "Veraval", "Gondal",
-                    "Godhra", "Palanpur", "Surendranagar", "Valsad", "Dahod", "Botad", "Amreli", "Deesa", "Bhuj", "Kadi",
-                    "Modasa", "Jetpur", "Anjar", "Savarkundla", "Mahesana", "Wadhwan", "Kalol", "Khambhat", "Upleta", "Sidhpur",
-                    "Sihor", "Vyara", "Visnagar", "Mandvi", "Unjha", "Dholka", "Keshod", "Lathi", "Mangrol", "Tharad",
-                    "Mansa", "Umreth", "Bardoli", "Ranavav", "Padra", "Lunawada", "Radhanpur", "Rajpipla", "Viramgam", "Kapadvanj",
-                    "Dabhoi", "Mahemdavad", "Petlad", "Chhota Udaipur", "Manavadar", "Vijapur", "Songadh", "Adalaj", "Bhachau", "Bayad",
-                    "Kadi", "Halol", "Mahuva", "Bhanvad", "Sankheda", "Thangadh", "Una", "Talaja", "Siddhpur", "Karjan",
-                    "Savli", "Kanodar", "Visavadar", "Gariadhar", "Sanand", "Bagasara", "Bavla", "Jhalod", "Himatnagar", "Jasdan",
-                    "Kalavad", "Kutiyana", "Limbdi", "Narmada", "Dhoraji", "Morvi", "Jalalpore", "Babra", "Dhrol", "Talala",
-                    "Vadnagar", "Bavla", "Bhuj", "Kutch", "Vapi", "Kheda", "Dandi", "Dehgam", "Himmatnagar", "Idar"
-                    // Add more city names as needed
-                ];
-            
-                // Function to filter cities based on user input
-                function filterCities(input, cityArray) {
-                    var inputValue = input.value.toLowerCase().trim();
-                    if (inputValue === '') {
-                        return [];
+                document.addEventListener('DOMContentLoaded', function() {
+                    var pickupInput = document.getElementById('pickup');
+                    var dropInput = document.getElementById('drop');
+                
+                    // Sample array of Gujarat cities (replace with your actual array)
+                    var gujaratCities = [
+                        "Ahmedabad", "Surat", "Vadodara", "Rajkot", "Bhavnagar", "Jamnagar", "Junagadh", "Anand", "Navsari", "Morbi",
+                        "Gandhinagar", "Nadiad", "Bharuch", "Patan", "Porbandar", "Vapi", "Mehsana", "Gandhidham", "Veraval", "Gondal",
+                        "Godhra", "Palanpur", "Surendranagar", "Valsad", "Dahod", "Botad", "Amreli", "Deesa", "Bhuj", "Kadi",
+                        "Modasa", "Jetpur", "Anjar", "Savarkundla", "Mahesana", "Wadhwan", "Kalol", "Khambhat", "Upleta", "Sidhpur",
+                        "Sihor", "Vyara", "Visnagar", "Mandvi", "Unjha", "Dholka", "Keshod", "Lathi", "Mangrol", "Tharad",
+                        "Mansa", "Umreth", "Bardoli", "Ranavav", "Padra", "Lunawada", "Radhanpur", "Rajpipla", "Viramgam", "Kapadvanj",
+                        "Dabhoi", "Mahemdavad", "Petlad", "Chhota Udaipur", "Manavadar", "Vijapur", "Songadh", "Adalaj", "Bhachau", "Bayad",
+                        "Kadi", "Halol", "Mahuva", "Bhanvad", "Sankheda", "Thangadh", "Una", "Talaja", "Siddhpur", "Karjan",
+                        "Savli", "Kanodar", "Visavadar", "Gariadhar", "Sanand", "Bagasara", "Bavla", "Jhalod", "Himatnagar", "Jasdan",
+                        "Kalavad", "Kutiyana", "Limbdi", "Narmada", "Dhoraji", "Morvi", "Jalalpore", "Babra", "Dhrol", "Talala",
+                        "Vadnagar", "Bavla", "Bhuj", "Kutch", "Vapi", "Kheda", "Dandi", "Dehgam", "Himmatnagar", "Idar"
+                        // Add more city names as needed
+                    ];
+                
+                    // Function to filter cities based on user input
+                    function filterCities(input, cityArray) {
+                        var inputValue = input.value.toLowerCase().trim();
+                        if (inputValue === '') {
+                            return [];
+                        }
+                        return cityArray.filter(function(city) {
+                            return city.toLowerCase().startsWith(inputValue);
+                        });
                     }
-                    return cityArray.filter(function(city) {
-                        return city.toLowerCase().startsWith(inputValue);
-                    });
-                }
-            
-                // Function to update autocomplete suggestions
-                function updateAutocomplete(input, cityArray) {
-                    var inputValue = input.value.trim();
-                    var suggestions = filterCities(input, cityArray);
-                    var suggestionsHTML = suggestions.map(function(city, index) {
-                        return '<div class="autocomplete-item' + (index === 0 ? ' active' : '') + '">' + city + '</div>';
-                    }).join('');
-            
-                    // Display suggestions only if there are matches
-                    var autocompleteContainer = input.nextElementSibling; // Assuming you have a container for autocomplete suggestions
-                    if (suggestions.length > 0) {
-                        autocompleteContainer.innerHTML = suggestionsHTML;
-                    } else {
-                        autocompleteContainer.innerHTML = ''; // Clear suggestions if no matches
+                
+                    // Function to update autocomplete suggestions
+                    function updateAutocomplete(input, cityArray) {
+                        var inputValue = input.value.trim();
+                        var suggestions = filterCities(input, cityArray);
+                        var suggestionsHTML = suggestions.map(function(city, index) {
+                            return '<div class="autocomplete-item' + (index === 0 ? ' active' : '') + '">' + city + '</div>';
+                        }).join('');
+                
+                        // Display suggestions only if there are matches
+                        var autocompleteContainer = input.nextElementSibling; // Assuming you have a container for autocomplete suggestions
+                        if (suggestions.length > 0) {
+                            autocompleteContainer.innerHTML = suggestionsHTML;
+                        } else {
+                            autocompleteContainer.innerHTML = ''; // Clear suggestions if no matches
+                        }
+                
+                        // Add click event listener to select suggestion
+                        var autocompleteItems = autocompleteContainer.querySelectorAll('.autocomplete-item');
+                        autocompleteItems.forEach(function(item, index) {
+                            item.addEventListener('click', function() {
+                                input.value = item.textContent;
+                                autocompleteContainer.innerHTML = ''; // Clear suggestions
+                            });
+                
+                            item.addEventListener('mouseover', function() {
+                                removeActiveClass(autocompleteItems);
+                                item.classList.add('active');
+                            });
+                
+                            item.addEventListener('mouseleave', function() {
+                                item.classList.remove('active');
+                            });
+                
+                            item.addEventListener('mousedown', function() {
+                                input.value = item.textContent;
+                                autocompleteContainer.innerHTML = ''; // Clear suggestions
+                            });
+                        });
+                
+                        // Add keyboard navigation for arrow keys
+                        input.addEventListener('keydown', function(event) {
+                            var selected = autocompleteContainer.querySelector('.autocomplete-item.active');
+                            if (event.key === 'ArrowDown' && suggestions.length > 0) {
+                                event.preventDefault();
+                                if (selected) {
+                                    var next = selected.nextElementSibling;
+                                    if (next) {
+                                        scrollIntoViewIfNeeded(next, autocompleteContainer);
+                                        removeActiveClass(autocompleteItems);
+                                        next.classList.add('active');
+                                    }
+                                } else {
+                                    removeActiveClass(autocompleteItems);
+                                    autocompleteItems[0].classList.add('active');
+                                }
+                            } else if (event.key === 'ArrowUp' && suggestions.length > 0) {
+                                event.preventDefault();
+                                if (selected) {
+                                    var prev = selected.previousElementSibling;
+                                    if (prev) {
+                                        scrollIntoViewIfNeeded(prev, autocompleteContainer);
+                                        removeActiveClass(autocompleteItems);
+                                        prev.classList.add('active');
+                                    }
+                                } else {
+                                    removeActiveClass(autocompleteItems);
+                                    autocompleteItems[autocompleteItems.length - 1].classList.add('active');
+                                }
+                            } else if (event.key === 'Enter' && selected) {
+                                event.preventDefault();
+                                input.value = selected.textContent;
+                                autocompleteContainer.innerHTML = ''; // Clear suggestions
+                            }
+                        });
+                
+                        function removeActiveClass(items) {
+                            items.forEach(function(item) {
+                                item.classList.remove('active');
+                            });
+                        }
+                
+                        function scrollIntoViewIfNeeded(element, container) {
+                            var elementRect = element.getBoundingClientRect();
+                            var containerRect = container.getBoundingClientRect();
+                
+                            // Check if element is fully visible
+                            if (elementRect.bottom > containerRect.bottom) {
+                                container.scrollTop += elementRect.bottom - containerRect.bottom;
+                            } else if (elementRect.top < containerRect.top) {
+                                container.scrollTop -= containerRect.top - elementRect.top;
+                            }
+                        }
                     }
-            
-                    // Add click event listener to select suggestion
-                    var autocompleteItems = autocompleteContainer.querySelectorAll('.autocomplete-item');
-                    autocompleteItems.forEach(function(item, index) {
-                        item.addEventListener('click', function() {
-                            input.value = item.textContent;
-                            autocompleteContainer.innerHTML = ''; // Clear suggestions
-                        });
-            
-                        item.addEventListener('mouseover', function() {
-                            removeActiveClass(autocompleteItems);
-                            item.classList.add('active');
-                        });
-            
-                        item.addEventListener('mouseleave', function() {
-                            item.classList.remove('active');
-                        });
-            
-                        item.addEventListener('mousedown', function() {
-                            input.value = item.textContent;
-                            autocompleteContainer.innerHTML = ''; // Clear suggestions
-                        });
+                
+                    // Attach input event listeners to pickup and drop inputs
+                    pickupInput.addEventListener('input', function() {
+                        var inputText = this.value.trim().toLowerCase();
+                        if (gujaratCities.map(city => city.toLowerCase()).includes(inputText)) {
+                            this.nextElementSibling.innerHTML = ''; // Clear suggestions if the input exactly matches a city name
+                        } else {
+                            updateAutocomplete(this, gujaratCities);
+                        }
+                        dropInput.nextElementSibling.innerHTML = ''; // Clear drop suggestions when typing in pickup
                     });
-            
-                    // Add keyboard navigation for arrow keys
-                    input.addEventListener('keydown', function(event) {
-                        var selected = autocompleteContainer.querySelector('.autocomplete-item.active');
-                        if (event.key === 'ArrowDown' && suggestions.length > 0) {
-                            event.preventDefault();
-                            if (selected) {
-                                var next = selected.nextElementSibling;
-                                if (next) {
-                                    scrollIntoViewIfNeeded(next, autocompleteContainer);
-                                    removeActiveClass(autocompleteItems);
-                                    next.classList.add('active');
-                                }
-                            } else {
-                                removeActiveClass(autocompleteItems);
-                                autocompleteItems[0].classList.add('active');
-                            }
-                        } else if (event.key === 'ArrowUp' && suggestions.length > 0) {
-                            event.preventDefault();
-                            if (selected) {
-                                var prev = selected.previousElementSibling;
-                                if (prev) {
-                                    scrollIntoViewIfNeeded(prev, autocompleteContainer);
-                                    removeActiveClass(autocompleteItems);
-                                    prev.classList.add('active');
-                                }
-                            } else {
-                                removeActiveClass(autocompleteItems);
-                                autocompleteItems[autocompleteItems.length - 1].classList.add('active');
-                            }
-                        } else if (event.key === 'Enter' && selected) {
-                            event.preventDefault();
-                            input.value = selected.textContent;
-                            autocompleteContainer.innerHTML = ''; // Clear suggestions
+                
+                    dropInput.addEventListener('input', function() {
+                        var inputText = this.value.trim().toLowerCase();
+                        if (gujaratCities.map(city => city.toLowerCase()).includes(inputText)) {
+                            this.nextElementSibling.innerHTML = ''; // Clear suggestions if the input exactly matches a city name
+                        } else {
+                            updateAutocomplete(this, gujaratCities);
+                        }
+                        pickupInput.nextElementSibling.innerHTML = ''; // Clear pickup suggestions when typing in drop
+                    });
+                
+                    // Check if input manually matches a city name and clear suggestions
+                    pickupInput.addEventListener('blur', function() {
+                        if (!gujaratCities.map(city => city.toLowerCase()).includes(this.value.trim().toLowerCase())) {
+                            this.nextElementSibling.innerHTML = ''; // Clear suggestions
                         }
                     });
-            
-                    function removeActiveClass(items) {
-                        items.forEach(function(item) {
-                            item.classList.remove('active');
-                        });
-                    }
-            
-                    function scrollIntoViewIfNeeded(element, container) {
-                        var elementRect = element.getBoundingClientRect();
-                        var containerRect = container.getBoundingClientRect();
-            
-                        // Check if element is fully visible
-                        if (elementRect.bottom > containerRect.bottom) {
-                            container.scrollTop += elementRect.bottom - containerRect.bottom;
-                        } else if (elementRect.top < containerRect.top) {
-                            container.scrollTop -= containerRect.top - elementRect.top;
+                
+                    dropInput.addEventListener('blur', function() {
+                        if (!gujaratCities.map(city => city.toLowerCase()).includes(this.value.trim().toLowerCase())) {
+                            this.nextElementSibling.innerHTML = ''; // Clear suggestions
                         }
-                    }
-                }
-            
-                // Attach input event listeners to pickup and drop inputs
-                pickupInput.addEventListener('input', function() {
-                    updateAutocomplete(this, gujaratCities);
-                    dropInput.nextElementSibling.innerHTML = ''; // Clear drop suggestions when typing in pickup
+                    });
+                
+                    // Clear suggestions on focus change
+                    pickupInput.addEventListener('focus', function() {
+                        dropInput.nextElementSibling.innerHTML = ''; // Clear drop suggestions when focusing on pickup
+                    });
+                
+                    dropInput.addEventListener('focus', function() {
+                        pickupInput.nextElementSibling.innerHTML = ''; // Clear pickup suggestions when focusing on drop
+                    });
+                
+                    // Hide suggestions on clicking outside the input field
+                    document.addEventListener('click', function(event) {
+                        if (!event.target.closest('.autocomplete-container')) {
+                            var allAutocompleteContainers = document.querySelectorAll('.autocomplete-suggestions');
+                            allAutocompleteContainers.forEach(function(container) {
+                                container.innerHTML = ''; // Clear all suggestions
+                            });
+                        }
+                    });
                 });
-            
-                dropInput.addEventListener('input', function() {
-                    updateAutocomplete(this, gujaratCities);
-                    pickupInput.nextElementSibling.innerHTML = ''; // Clear pickup suggestions when typing in drop
-                });
-            
-                // Hide suggestions when the input field loses focus
-                pickupInput.addEventListener('blur', function() {
-                    setTimeout(function() {
-                        pickupInput.nextElementSibling.innerHTML = ''; // Clear suggestions
-                    }, 200); // Delay to allow click events on suggestions
-                });
-            
-                dropInput.addEventListener('blur', function() {
-                    setTimeout(function() {
-                        dropInput.nextElementSibling.innerHTML = ''; // Clear suggestions
-                    }, 200); // Delay to allow click events on suggestions
-                });
-            
-                // Hide suggestions on clicking outside the input field
-                document.addEventListener('click', function(event) {
-                    if (!event.target.closest('.autocomplete-container')) {
-                        var allAutocompleteContainers = document.querySelectorAll('.autocomplete-suggestions');
-                        allAutocompleteContainers.forEach(function(container) {
-                            container.innerHTML = ''; // Clear all suggestions
-                        });
-                    }
-                });
-            });
-          </script>
+                </script>
+                
+
+                <script>
+                  document.addEventListener('DOMContentLoaded', function() {
+                      var pickupDateInput = document.getElementById('pickup_date');
+                      var pickupTimeInput = document.getElementById('pickup_time');
+                      var returnDateRow = document.getElementById('return_date_row');
+                      var returnDateInput = document.getElementById('return_date');
+                      var travelTypeRadios = document.querySelectorAll('input[name="travel_type"]');
+                      var form = document.getElementById('searchForm');
+                      var pickupLocationInput = document.getElementById('pickup');
+                      var dropLocationInput = document.getElementById('drop');
+                  
+                      // Set minimum value for pickup date to today
+                      pickupDateInput.min = new Date().toISOString().split("T")[0];
+                  
+                      // Function to handle travel type change and return date visibility
+                      function handleTravelTypeChange() {
+                          if (this.value === 'round_trip') {
+                              returnDateRow.style.display = 'block';
+                              returnDateInput.required = true; // Make return date required
+                          } else {
+                              returnDateRow.style.display = 'none';
+                              returnDateInput.required = false; // Make return date not required
+                          }
+                      }
+                  
+                      // Attach change event listener to travel type radios
+                      travelTypeRadios.forEach(function(radio) {
+                          radio.addEventListener('change', handleTravelTypeChange);
+                      });
+                  
+                      // Initial state based on default selection
+                      handleTravelTypeChange.call(document.querySelector('input[name="travel_type"]:checked'));
+                  
+                      // Function to validate dates on form submission
+                      function validateDates(event) {
+                          var selectedPickupDate = new Date(pickupDateInput.value + 'T' + pickupTimeInput.value);
+                          var currentDate = new Date();
+                  
+                          // Compare pickup date and time with current date and time
+                          if (selectedPickupDate <= currentDate) {
+                              alert('Please select a future date and time for pickup.');
+                              if (event) event.preventDefault(); // Prevent form submission
+                              return false;
+                          }
+                  
+                          return true;
+                      }
+                  
+                      // Function to validate locations on form submission
+                      function validateLocations(event) {
+                          if (pickupLocationInput.value.trim().toLowerCase() === dropLocationInput.value.trim().toLowerCase()) {
+                              alert('Pickup and drop locations cannot be the same.');
+                              if (event) event.preventDefault(); // Prevent form submission
+                              return false;
+                          }
+                          return true;
+                      }
+                  
+                      // Function to handle form submission
+                      function handleFormSubmission(event) {
+                          var isDatesValid = validateDates(event);
+                          var isLocationsValid = validateLocations(event);
+                          return isDatesValid && isLocationsValid;
+                      }
+                  
+                      // Attach form submission event listener
+                      form.addEventListener('submit', handleFormSubmission);
+                  
+                      // Ensure return date cannot be set to past dates using HTML5 min attribute
+                      returnDateInput.min = new Date().toISOString().split("T")[0];
+                  
+                      // Function to handle pickup date and time change
+                      function handlePickupDateTimeChange() {
+                          // Validate dates
+                          validateDates();
+                          // Set the min attribute of the return date to the selected pickup date
+                          returnDateInput.min = pickupDateInput.value;
+                      }
+                  
+                      // Attach change event listeners to pickup date and time inputs
+                      pickupDateInput.addEventListener('change', handlePickupDateTimeChange);
+                      pickupTimeInput.addEventListener('change', handlePickupDateTimeChange);
+                  });
+                  </script>
+                  
+                
+                
             
                 
-        <script>
-          document.addEventListener('DOMContentLoaded', function() {
-            var pickupDateInput = document.getElementById('pickup_date');
-            var pickupTimeInput = document.getElementById('pickup_time');
-            var returnDateRow = document.getElementById('return_date_row');
-            var returnDateInput = document.getElementById('return_date');
-            var travelTypeRadios = document.querySelectorAll('input[name="travel_type"]');
-            var form = document.getElementById('searchForm');
         
-            // Set minimum value for pickup date to today
-            pickupDateInput.min = new Date().toISOString().split("T")[0];
-        
-            // Function to handle travel type change and return date visibility
-            function handleTravelTypeChange() {
-                if (this.value === 'round_trip') {
-                    returnDateRow.style.display = 'block';
-                    returnDateInput.required = true; // Make return date required
-                } else {
-                    returnDateRow.style.display = 'none';
-                    returnDateInput.required = false; // Make return date not required
-                }
-            }
-        
-            // Attach change event listener to travel type radios
-            travelTypeRadios.forEach(function(radio) {
-                radio.addEventListener('change', handleTravelTypeChange);
-            });
-        
-            // Initial state based on default selection
-            handleTravelTypeChange.call(document.querySelector('input[name="travel_type"]:checked'));
-        
-            // Function to validate dates on form submission
-            function validateDates(event) {
-                var selectedPickupDate = new Date(pickupDateInput.value + 'T' + pickupTimeInput.value);
-                var currentDate = new Date();
-        
-                // Compare pickup date and time with current date and time
-                if (selectedPickupDate <= currentDate) {
-                    alert('Please select a future date and time for pickup.');
-                    if (event) event.preventDefault(); // Prevent form submission
-                    return false;
-                }
-        
-               
-            }
-        
-            // Attach form submission event listener
-            form.addEventListener('submit', validateDates);
-        
-            // Ensure return date cannot be set to past dates using HTML5 min attribute
-            returnDateInput.min = new Date().toISOString().split("T")[0];
-        
-            // Function to handle pickup date and time change
-            function handlePickupDateTimeChange() {
-                // Validate dates
-                validateDates();
-                // Set the min attribute of the return date to the selected pickup date
-                returnDateInput.min = pickupDateInput.value;
-            }
-        
-            // Attach change event listeners to pickup date and time inputs
-            pickupDateInput.addEventListener('change', handlePickupDateTimeChange);
-            pickupTimeInput.addEventListener('change', handlePickupDateTimeChange);
-        });
-
-      </script>
         </div>
         </div>
     </section>
@@ -1214,35 +1257,36 @@ document.getElementById('readMoreLink').addEventListener('mouseout', function() 
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-5 offset-md-1">
-          <div class="a-contact_form">
-            <h4>Get In Touch</h4>
-            <form action="{% url 'sendmail_contact' %}" method="post">
-              {% csrf_token %}
-              <input type="text" placeholder="Your Name" name="name" required pattern="[a-zA-Z\s]+" title="Please enter valid characters, only letters and spaces">
-              <br>
-              <input type="text" placeholder="Your Phone Number" name="mobail" required pattern="[0-9]{10}" title="Please enter a 10-digit mobile number">
-              <br>
-              <input type="text" placeholder="Your Feedback" class="message_input" name="message" required>
-              <br>
-              <button type="submit" class="btn-warning" style="border-radius: 20px;width: 100%;">Send</button>
-            </form>
-            
-            {% for i in messages %}
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-              <strong>Message:</strong> {{ i }}
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+            <div class="a-contact_form">
+                <h4>Get In Touch</h4>
+                <form action="{% url 'sendmail_contact' %}" method="post">
+                    {% csrf_token %}
+                    <input type="text" placeholder="Your Name" name="name" required pattern="[a-zA-Z\s]+" title="Please enter valid characters, only letters and spaces">
+                    <br>
+                    <input type="text" placeholder="Your Phone Number" name="mobile" required pattern="[0-9]{10}" title="Please enter a 10-digit mobile number">
+                    <br>
+                    <input type="text" placeholder="Your Feedback" class="message_input" name="message" required>
+                    <br>
+                    <button type="submit" class="btn-warning" style="border-radius: 20px;width: 100%;">Send</button>
+                </form>
+                
+                {% for i in messages %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Message:</strong> {{ i }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
-          </div>
         </div>
         <div class="col-md-6 px-0">
-          <div class="img-box">
-            <img src="{% static 'images/f.png' %}" alt="" />
-          </div>
+            <div class="img-box">
+                <img src="{% static 'images/f.png' %}" alt="" />
+            </div>
         </div>
-      </div>
+    </div>
+    
     </div>
   </section>
   

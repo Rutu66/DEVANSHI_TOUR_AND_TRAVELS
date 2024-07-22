@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .header {
+            text-align: center;
+            padding-bottom: 20px;
+        }
+        .header h2 {
+            margin: 0;
+            color: #27ae60;
+        }
+        .content {
+            line-height: 1.6;
+            text-align: left;
+            margin-top: 20px;
+        }
+        .content p {
+            margin: 0;
+            margin-bottom: 10px;
+        }
+        .footer {
+            text-align: center;
+            padding-top: 20px;
+            font-size: 0.9em;
+            color: #555555;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+        @media (max-width: 600px) {
+            body {
+                margin: 10px;
+            }
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Contact Details Received</h2>
+        </div>
+        <div class="content">
+            <p><strong>Name:</strong> {{ name }}</p>
+            <p><strong>Mobile No:</strong> {{ mobile }}</p>
+            <p><strong>Message:</strong></p>
+            <p>{{ message }}</p>
+        </div>
+        <div class="footer">
+            <p>This email was sent from Devanshi Tours website contact form.</p>
+        </div>
+    </div>
+</body>
+</html>
