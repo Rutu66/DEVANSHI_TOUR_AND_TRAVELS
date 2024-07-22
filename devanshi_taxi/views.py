@@ -310,30 +310,37 @@ def cars(request):
 #         'drop_location': drop_location,
 #     })
 
+from django.shortcuts import render, get_object_or_404
+from django.views.decorators.csrf import csrf_protect
+
+@csrf_protect
 def checkout(request, car_id):
     car = get_object_or_404(Car, pk=car_id)
     
-    pickup_date = request.GET.get('pickup_date', '')    
-    pickup_time = request.GET.get('pickup_time', '')
-    travel_type = request.GET.get('trip_type', '')
-    
-    return_date = None
-    if travel_type == 'round_trip':
-        return_date = request.GET.get('return_date', '')
-        
-    pickup_location = request.GET.get('pickup_location', '')
-    drop_location = request.GET.get('drop_location', '')
+    if request.method == 'POST':
+        pickup_date = request.POST.get('pickup_date', '')
+        pickup_time = request.POST.get('pickup_time', '')
+        travel_type = request.POST.get('trip_type', '')
+        return_date = None
+        if travel_type == 'round_trip':
+            return_date = request.POST.get('return_date', '')
+        pickup_location = request.POST.get('pickup_location', '')
+        drop_location = request.POST.get('drop_location', '')
 
-    context = {
-        'car': car,
-        'pickup_date': pickup_date,
-        'pickup_time': pickup_time,
-        'travel_type': travel_type,
-        'return_date': return_date,
-        'pickup_location': pickup_location,
-        'drop_location': drop_location,
-    }
-    return render(request, 'checkout.html', context)
+        context = {
+            'car': car,
+            'pickup_date': pickup_date,
+            'pickup_time': pickup_time,
+            'travel_type': travel_type,
+            'return_date': return_date,
+            'pickup_location': pickup_location,
+            'drop_location': drop_location,
+        }
+        return render(request, 'checkout.html', context)
+
+    # If the request method is not POST, handle it appropriately
+    return render(request, 'error.html', {'message': 'Invalid request method'})
+
 
 
 

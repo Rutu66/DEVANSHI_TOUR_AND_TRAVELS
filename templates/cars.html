@@ -531,47 +531,50 @@
                     });
                     
                    </script>
+                   <div class="booking-car-options">
+                    {% if cars %}
+                    {% for car in cars %}
+                    <div class="booking-car-option">
+                        <div class="car-image">
+                            <img src="{{ car.image.url }}" alt="{{ car.name }}">
+                        </div>
+                        <div class="car-details">
+                            <h3>{{ car.name }}</h3>
+                            <p class="car-type"> {{ car.car.car_type}} </p>
+                            <p class="car-capacity"> ({{ car.capacity }} + 1) Capacity</p>
+                        </div>
+                        <div class="facilities">
+                            <span>Facilities:</span>
+                            <ul>
+                                <li><i class="fa fa-tint"></i> Water Bottle</li>
+                                <li><i class="fa fa-clock"></i> On Time Guarantee</li>
+                                <li><i class="fa fa-car"></i> Sanitized Cab</li>
+                            </ul>
+                        </div>
+                        <div class="book-now">
+                            <form action="{% url 'checkout' car.id %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="trip_type" value="{{ travel_type }}">
+                                <input type="hidden" name="pickup_date" value="{{ pickup_date }}">
+                                <input type="hidden" name="pickup_time" value="{{ pickup_time }}">
+                                {% if travel_type == 'round_trip' %}
+                                    <input type="hidden" name="return_date" value="{{ return_date }}">
+                                {% endif %}
+                                <input type="hidden" name="pickup_location" value="{{ pickup }}">
+                                <input type="hidden" name="drop_location" value="{{ drop }}">
+                                <button type="submit" class="btn btn-primary book-now-btn">BOOK NOW</button>
+                            </form>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <p>No cabs found for the specified criteria.</p>
+                    {% endif %}
+                </div>
+                
                         
                     
     
-
-
-
-
-            <div class="booking-car-options">
-                {% if cars %}
-                {% for car in cars %}
-                <div class="booking-car-option">
-                    <div class="car-image">
-                        <img src="{{ car.image.url }}" alt="{{ car.name }}">
-                    </div>
-                    <div class="car-details">
-                        <h3>{{ car.name }}</h3>
-                        
-                        <p class="car-type"> {{ car.car.car_type}} </p>
-                        <p class="car-capacity"> ({{ car.capacity }} + 1) Capacity</p>
-                        
-                    </div>
-                    <div class="facilities">
-                        <span>Facilities:</span>
-                        <ul>
-                            <li><i class="fa fa-tint"></i> Water Bottle</li>
-                            <li><i class="fa fa-clock"></i> On Time Guarantee</li>
-                            <li><i class="fa fa-car"></i> Sanitized Cab</li>
-                        </ul>
-                    </div>
-                    <div class="book-now">
-                        {% comment %} <p class="total-fare">₹ {{ car.total_fare }}</p> {% endcomment %}
-                        <a href="{% url 'checkout' car.id %}?trip_type={{ travel_type }}&pickup_date={{ pickup_date }}&pickup_time={{ pickup_time }}{% if travel_type == 'round_trip' %}&return_date={{ return_date }}{% endif %}&pickup_location={{ pickup }}&drop_location={{ drop }}" class="btn btn-primary book-now-btn">BOOK NOW</a>
-
-                        {% comment %} <a href="#" class="fare-summary-link" data-car-id="{{ car.id }}">Fare Summary »</a> {% endcomment %}
-                    </div>
-                </div>
-                {% endfor %}
-                {% else %}
-                <p>No cabs found for the specified criteria.</p>
-                {% endif %}
-            </div>
             
             
         </div>
