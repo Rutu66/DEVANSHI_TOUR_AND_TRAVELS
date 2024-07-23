@@ -16,11 +16,6 @@ from django.conf import settings
 from django.template.loader import render_to_string
 
 
-
-
-from django.shortcuts import render
-from .models import Cost  # Import relevant models
-
 # def search_cabs(request):
 #     if request.method == 'GET':
 #         travel_type = request.GET.get('travel_type')
