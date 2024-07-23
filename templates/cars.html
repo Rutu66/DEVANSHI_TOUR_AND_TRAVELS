@@ -12,6 +12,35 @@
 
     
         <style>
+            .facilities ul {
+                list-style-type: none;
+                padding: 0;
+            }
+            
+            .facility-list {
+                display: flex;
+                gap: 15px;
+            }
+            
+            .facility-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .facility-item img {
+                display: block;
+                margin-bottom: 5px;
+                width: 30px;
+                height: 30px;
+            }   
+            
+            .facility-item span {
+                font-size: 12px;
+            }
+            
+           
 
             body.modal-open {
                 overflow: hidden;
@@ -188,7 +217,7 @@
             }
         
             .facilities li {
-                background-color: #e9ecef;
+                background-color: #fffff;
                 padding: 5px 10px;
                 border-radius: 5px;
                 color: #555;
@@ -545,10 +574,23 @@
                         </div>
                         <div class="facilities">
                             <span>Facilities:</span>
-                            <ul>
-                                <li><i class="fa fa-tint"></i> Water Bottle</li>
-                                <li><i class="fa fa-clock"></i> On Time Guarantee</li>
-                                <li><i class="fa fa-car"></i> Sanitized Cab</li>
+                            <ul class="facility-list">
+                                <li class="facility-item">
+                                    <img src="{% static 'images/water-bottle.svg' %}" alt="Water Bottle">
+                                    <span>Water Bottle</span>
+                                </li>
+                                <li class="facility-item">
+                                    <img src="{% static 'images/on-time.svg' %}" alt="On Time Guarantee">
+                                    <span>On Time Guarantee</span>
+                                </li>
+                                <li class="facility-item">
+                                    <img src="{% static 'images/invoice.svg' %}" alt="Invoice Got">
+                                    <span>Invoice Gst</span>
+                                </li>
+                                <li class="facility-item">
+                                    <img src="{% static 'images/sanitized-cab.svg' %}" alt="Sanitized Cab">
+                                    <span>Sanitized Cab</span>
+                                </li>
                             </ul>
                         </div>
                         <div class="book-now">
@@ -568,6 +610,8 @@
                     </div>
                     {% endfor %}
                     {% else %}
+                </div>
+                
                     <p>No cabs found for the specified criteria.</p>
                     {% endif %}
                 </div>
