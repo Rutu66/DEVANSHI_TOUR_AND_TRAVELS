@@ -86,7 +86,7 @@ def search_cabs(request):
 
         return render(request, 'cars.html', context)
     
-    return render(request, 'search.html')
+    return render(request, 'cars.html')
 
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail

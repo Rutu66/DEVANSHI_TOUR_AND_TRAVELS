@@ -345,52 +345,35 @@
                       </div>
                   </div>
               </div>
-            
-            
-            
+
+
               <script>
                 document.addEventListener('DOMContentLoaded', function() {
                     var pickupInput = document.getElementById('pickup');
                     var dropInput = document.getElementById('drop');
+                    var mapboxToken = 'pk.eyJ1IjoicnV0dTY2IiwiYSI6ImNseXp0anRwZjF4MW0ya3MwYTViaWI5cW8ifQ.7yYfVoSwvryukKY-ngQHXw'; // Replace with your Mapbox API key
                 
-                    // Sample array of Gujarat cities (replace with your actual array)
-                    var gujaratCities = [
-                        "Ahmedabad", "Surat", "Vadodara", "Rajkot", "Bhavnagar", "Jamnagar", "Junagadh", "Anand", "Navsari", "Morbi",
-                        "Gandhinagar", "Nadiad", "Bharuch", "Patan", "Porbandar", "Vapi", "Mehsana", "Gandhidham", "Veraval", "Gondal",
-                        "Godhra", "Palanpur", "Surendranagar", "Valsad", "Dahod", "Botad", "Amreli", "Deesa", "Bhuj", "Kadi",
-                        "Modasa", "Jetpur", "Anjar", "Savarkundla", "Mahesana", "Wadhwan", "Kalol", "Khambhat", "Upleta", "Sidhpur",
-                        "Sihor", "Vyara", "Visnagar", "Mandvi", "Unjha", "Dholka", "Keshod", "Lathi", "Mangrol", "Tharad",
-                        "Mansa", "Umreth", "Bardoli", "Ranavav", "Padra", "Lunawada", "Radhanpur", "Rajpipla", "Viramgam", "Kapadvanj",
-                        "Dabhoi", "Mahemdavad", "Petlad", "Chhota Udaipur", "Manavadar", "Vijapur", "Songadh", "Adalaj", "Bhachau", "Bayad",
-                        "Kadi", "Halol", "Mahuva", "Bhanvad", "Sankheda", "Thangadh", "Una", "Talaja", "Siddhpur", "Karjan",
-                        "Savli", "Kanodar", "Visavadar", "Gariadhar", "Sanand", "Bagasara", "Bavla", "Jhalod", "Himatnagar", "Jasdan",
-                        "Kalavad", "Kutiyana", "Limbdi", "Narmada", "Dhoraji", "Morvi", "Jalalpore", "Babra", "Dhrol", "Talala",
-                        "Vadnagar", "Bavla", "Bhuj", "Kutch", "Vapi", "Kheda", "Dandi", "Dehgam", "Himmatnagar", "Idar"
-                        // Add more city names as needed
-                    ];
-                
-                    // Function to filter cities based on user input
-                    function filterCities(input, cityArray) {
-                        var inputValue = input.value.toLowerCase().trim();
-                        if (inputValue === '') {
-                            return [];
-                        }
-                        return cityArray.filter(function(city) {
-                            return city.toLowerCase().startsWith(inputValue);
+                    // Function to fetch city suggestions from Mapbox API
+                    async function fetchCities(query) {
+                        var url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(query)}.json?access_token=${mapboxToken}&types=place&country=IN`;
+                        var response = await fetch(url);
+                        var data = await response.json();
+                        return data.features.map(function(feature) {
+                            return feature.place_name;
                         });
                     }
                 
                     // Function to update autocomplete suggestions
-                    function updateAutocomplete(input, cityArray) {
-                        var inputValue = input.value.trim();
-                        var suggestions = filterCities(input, cityArray);
-                        var suggestionsHTML = suggestions.map(function(city, index) {
+                    async function updateAutocomplete(input) {
+                        var query = input.value.trim();
+                        var cityArray = await fetchCities(query);
+                        var suggestionsHTML = cityArray.map(function(city, index) {
                             return '<div class="autocomplete-item' + (index === 0 ? ' active' : '') + '">' + city + '</div>';
                         }).join('');
                 
                         // Display suggestions only if there are matches
                         var autocompleteContainer = input.nextElementSibling; // Assuming you have a container for autocomplete suggestions
-                        if (suggestions.length > 0) {
+                        if (cityArray.length > 0) {
                             autocompleteContainer.innerHTML = suggestionsHTML;
                         } else {
                             autocompleteContainer.innerHTML = ''; // Clear suggestions if no matches
@@ -398,7 +381,7 @@
                 
                         // Add click event listener to select suggestion
                         var autocompleteItems = autocompleteContainer.querySelectorAll('.autocomplete-item');
-                        autocompleteItems.forEach(function(item, index) {
+                        autocompleteItems.forEach(function(item) {
                             item.addEventListener('click', function() {
                                 input.value = item.textContent;
                                 autocompleteContainer.innerHTML = ''; // Clear suggestions
@@ -422,7 +405,7 @@
                         // Add keyboard navigation for arrow keys
                         input.addEventListener('keydown', function(event) {
                             var selected = autocompleteContainer.querySelector('.autocomplete-item.active');
-                            if (event.key === 'ArrowDown' && suggestions.length > 0) {
+                            if (event.key === 'ArrowDown' && cityArray.length > 0) {
                                 event.preventDefault();
                                 if (selected) {
                                     var next = selected.nextElementSibling;
@@ -435,7 +418,7 @@
                                     removeActiveClass(autocompleteItems);
                                     autocompleteItems[0].classList.add('active');
                                 }
-                            } else if (event.key === 'ArrowUp' && suggestions.length > 0) {
+                            } else if (event.key === 'ArrowUp' && cityArray.length > 0) {
                                 event.preventDefault();
                                 if (selected) {
                                     var prev = selected.previousElementSibling;
@@ -476,36 +459,13 @@
                 
                     // Attach input event listeners to pickup and drop inputs
                     pickupInput.addEventListener('input', function() {
-                        var inputText = this.value.trim().toLowerCase();
-                        if (gujaratCities.map(city => city.toLowerCase()).includes(inputText)) {
-                            this.nextElementSibling.innerHTML = ''; // Clear suggestions if the input exactly matches a city name
-                        } else {
-                            updateAutocomplete(this, gujaratCities);
-                        }
+                        updateAutocomplete(this);
                         dropInput.nextElementSibling.innerHTML = ''; // Clear drop suggestions when typing in pickup
                     });
                 
                     dropInput.addEventListener('input', function() {
-                        var inputText = this.value.trim().toLowerCase();
-                        if (gujaratCities.map(city => city.toLowerCase()).includes(inputText)) {
-                            this.nextElementSibling.innerHTML = ''; // Clear suggestions if the input exactly matches a city name
-                        } else {
-                            updateAutocomplete(this, gujaratCities);
-                        }
+                        updateAutocomplete(this);
                         pickupInput.nextElementSibling.innerHTML = ''; // Clear pickup suggestions when typing in drop
-                    });
-                
-                    // Check if input manually matches a city name and clear suggestions
-                    pickupInput.addEventListener('blur', function() {
-                        if (!gujaratCities.map(city => city.toLowerCase()).includes(this.value.trim().toLowerCase())) {
-                            this.nextElementSibling.innerHTML = ''; // Clear suggestions
-                        }
-                    });
-                
-                    dropInput.addEventListener('blur', function() {
-                        if (!gujaratCities.map(city => city.toLowerCase()).includes(this.value.trim().toLowerCase())) {
-                            this.nextElementSibling.innerHTML = ''; // Clear suggestions
-                        }
                     });
                 
                     // Clear suggestions on focus change
@@ -528,6 +488,15 @@
                     });
                 });
                 </script>
+                
+
+            
+            
+            
+            
+            
+            
+              
                 
 
                 <script>

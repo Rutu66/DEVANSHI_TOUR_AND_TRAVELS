@@ -442,64 +442,65 @@
 
 
             <!-- Modify Form Modal -->
-                    <div id="modifyModal" class="modal">
-                        <div class="modal-content">
-                            <span class="close">&times;</span>
-                            <h4 class="modal-title">Modify Search</h4>
-                            <form id="modifyForm" action="{% url 'search_cabs' %}" method="get">
-                                {% csrf_token %}
-                                <!-- Travel Type Selection -->
-                                <div class="form-group">
-                                    <label>Travel Type:</label><br>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="travel_type" id="modal_one_way" value="one_way" required>
-                                        <label class="form-check-label" for="modal_one_way">One Way</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="travel_type" id="modal_round_trip" value="round_trip" required>
-                                        <label class="form-check-label" for="modal_round_trip">Round Trip</label>
-                                    </div>
-                                </div>
-                                
-                                <!-- Pickup and Drop Locations -->
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="modal_pickup">Pickup Location</label>
-                                        <input type="text" class="form-control" id="modal_pickup" name="pickup" required>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="modal_drop">Drop Location</label>
-                                        <input type="text" class="form-control" id="modal_drop" name="drop" required>
-                                    </div>
-                                </div>
-                                
-                                <!-- Pickup Date and Time -->
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="modal_pickup_date">Pickup Date</label>
-                                        <input type="date" class="form-control" id="modal_pickup_date" name="pickup_date" required>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="modal_pickup_time">Pickup Time</label>
-                                        <input type="time" class="form-control" id="modal_pickup_time" name="pickup_time" required>
-                                    </div>
-                                </div>
-                                
-                                <!-- Return Date (for Round Trip) -->
-                                <div id="modal_return_date_group" style="display: none;">
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="modal_return_date">Return Date</label>
-                                            <input type="date" class="form-control" id="modal_return_date" name="return_date">
-                                        </div>
-                                    </div>
-                                </div>
-                    
-                                <!-- Submit Button -->
-                                <button type="submit" class="btn btn-primary btn-block">Search</button>
-                            </form>
+            <div id="modifyModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h4 class="modal-title">Modify Search</h4>
+                    <form id="modifyForm" action="{% url 'search_cabs' %}" method="post">
+                        {% csrf_token %}
+                        <!-- Travel Type Selection -->
+                        <div class="form-group">
+                            <label>Travel Type:</label><br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="travel_type" id="modal_one_way" value="one_way" required>
+                                <label class="form-check-label" for="modal_one_way">One Way</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="travel_type" id="modal_round_trip" value="round_trip" required>
+                                <label class="form-check-label" for="modal_round_trip">Round Trip</label>
+                            </div>
                         </div>
-                    </div>
+                        
+                        <!-- Pickup and Drop Locations -->
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="modal_pickup">Pickup Location</label>
+                                <input type="text" class="form-control" id="modal_pickup" name="pickup" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="modal_drop">Drop Location</label>
+                                <input type="text" class="form-control" id="modal_drop" name="drop" required>
+                            </div>
+                        </div>
+                        
+                        <!-- Pickup Date and Time -->
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="modal_pickup_date">Pickup Date</label>
+                                <input type="date" class="form-control" id="modal_pickup_date" name="pickup_date" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="modal_pickup_time">Pickup Time</label>
+                                <input type="time" class="form-control" id="modal_pickup_time" name="pickup_time" required>
+                            </div>
+                        </div>
+                        
+                        <!-- Return Date (for Round Trip) -->
+                        <div id="modal_return_date_group" style="display: none;">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="modal_return_date">Return Date</label>
+                                    <input type="date" class="form-control" id="modal_return_date" name="return_date">
+                                </div>
+                            </div>
+                        </div>
+            
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary btn-block">Search</button>
+                    </form>
+                </div>
+            </div>
+            
                     
                    <script>
                     document.addEventListener('DOMContentLoaded', function () {
@@ -779,8 +780,8 @@
                     });
                 });
             });
-            </script>
-            <script>
+        </script>
+        <script>
                 // Get the modal
                 var modal = document.getElementById("myModal");
             
@@ -809,7 +810,7 @@
                         document.body.classList.remove('modal-open'); // Enable body scroll
                     }
                 }
-            </script>
+        </script>
             
             
         
