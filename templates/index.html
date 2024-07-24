@@ -25,7 +25,7 @@
 
 
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+{% comment %} <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> {% endcomment %}
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
 <style>
@@ -732,11 +732,13 @@ document.getElementById('readMoreLink').addEventListener('mouseout', function() 
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
         .car-slider {
-            max-width: 1200px;
-            margin: 40px auto;
-            overflow: hidden;
-            position: relative;
-        }
+          max-width: 1200px;
+          margin: 40px auto;
+          position: relative;
+          padding-top: 20px; /* Adjust the padding as needed */
+          clip-path: inset(-20px 0px 0px 0px); /* Adjust the inset values as needed */
+      }
+      
         .car-slider-track {
             display: flex;
             transition: transform 0.5s ease;
@@ -851,7 +853,7 @@ document.getElementById('readMoreLink').addEventListener('mouseout', function() 
     </style>
 </head>
 <body>
-    <div class="car-slider" style="height: 470px;">
+    <div class="car-slider" style="height: 530px;">
         <div class="car-slider-track">
             {% for car in car_list %}
             <div class="car-card">
@@ -938,6 +940,7 @@ document.getElementById('readMoreLink').addEventListener('mouseout', function() 
     </script>
 </body>
 </html>
+
 
 
 
