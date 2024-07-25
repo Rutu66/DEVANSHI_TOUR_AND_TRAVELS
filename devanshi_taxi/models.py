@@ -15,7 +15,7 @@ class Car(models.Model):
     name = models.CharField(max_length=100)
     image = models.ImageField(upload_to='car_images/')
     rate = models.DecimalField(max_digits=10, decimal_places=2)
-    description = models.TextField()
+    
     car_type = models.CharField(max_length=20, choices=CAR_TYPES)
     capacity = models.PositiveIntegerField()
 

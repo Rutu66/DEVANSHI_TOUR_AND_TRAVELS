@@ -19,6 +19,51 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
+
+        .buffering {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000; /* Ensure it stays on top */
+            text-align: center;
+            background: linear-gradient(45deg, #ffa500, #ff6347); /* Gradient background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow for depth */
+        }
+        .spinner {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 8px solid transparent;
+            border-top-color: #ffffff; /* White color for spinner visibility */
+            animation: spin 1.5s linear infinite;
+        }
+        .email-icon {
+            width: 50px;
+            height: 50px;
+            background-image: url('email-icon.jpeg'); /* Replace with your email icon image */
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin-top: 20px;
+            animation: bounce 1.5s infinite ease-in-out;
+        }
+    
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
         
     
         .container {
@@ -331,50 +376,7 @@
         </div>
     </form>
     <style>
-        .buffering {
-            display: none; /* Hidden by default */
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1000; /* Ensure it stays on top */
-            text-align: center;
-            background: linear-gradient(45deg, #ffa500, #ff6347); /* Gradient background */
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow for depth */
-        }
-        .spinner {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 8px solid transparent;
-            border-top-color: #ffffff; /* White color for spinner visibility */
-            animation: spin 1.5s linear infinite;
-        }
-        .email-icon {
-            width: 50px;
-            height: 50px;
-            background-image: url('email-icon.jpeg'); /* Replace with your email icon image */
-            background-size: cover;
-            background-repeat: no-repeat;
-            margin-top: 20px;
-            animation: bounce 1.5s infinite ease-in-out;
-        }
-    
-        @keyframes spin {
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
+        
     </style>
     <div class="buffering">
         <div class="spinner"></div>
@@ -416,10 +418,7 @@
                 }
             });
         });
-    </script>
-    
 
-    <script>
         document.addEventListener('DOMContentLoaded', function () {
             const form = document.getElementById('bookingForm');
             const bookNowBtn = document.getElementById('bookNowBtn');
@@ -433,9 +432,7 @@
                 }
             });
         });
-    </script>
 
-    <script>
         document.getElementById('payNowBtn').addEventListener('click', function (event) {
             var form = document.getElementById('bookingForm');
             if (form.checkValidity() === false) {
@@ -444,6 +441,7 @@
             }
             form.classList.add('was-validated');
         }, false);
+
     </script>
 
     <!-- Bootstrap JS and dependencies -->

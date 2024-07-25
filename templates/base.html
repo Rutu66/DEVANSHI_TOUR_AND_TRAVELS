@@ -15,11 +15,9 @@
     <meta name="author" content="" />
 
     <title>Devanshi Tour and Travels</title>
-    
 
     <!-- slider stylesheet -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-
 
     <!-- bootstrap core css -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
@@ -42,13 +40,10 @@
                 <nav class="navbar navbar-expand-lg custom_nav-container" style="padding-top: 20px;">
                     <a class="navbar-brand" href="{% url 'index' %}">
                         <span>
-                            <img src="/static/images/DEVANSHI-EPS.png"
-                                alt="" style="height: 174px; margin: -60px; margin-left: -27px;">
+                            <img src="{% static 'images/DEVANSHI-EPS.png' %}" alt="" style="height: 174px; margin: -60px; margin-left: -27px;">
                         </span>
                     </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
@@ -56,8 +51,7 @@
                         <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
                             <ul class="navbar-nav">
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="{% url 'index' %}">Home <span
-                                            class="sr-only">(current)</span></a>
+                                    <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{% url 'about' %}">About Us</a>
@@ -69,48 +63,10 @@
                                     <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
                                 </li>
                                 <li>
-                                <!DOCTYPE html>
-                                <html lang="en">
-                                <head>
-                                    <meta charset="UTF-8">
-                                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                                    <title>Clickable Phone Number</title>
-                                    <style>
-                                        .phone-box {
-                                            display: inline-block;
-                                            padding: 10px 25px;
-                                            border: 2px solid #333;
-                                            border-radius: 10px;
-                                            background-color: #fff;
-                                            color: #333;
-                                            font-size: 18px;
-                                            text-align: center;
-                                            text-decoration: none;
-                                            font-family: Arial, sans-serif;
-                                            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-                                        }
-  
-                                        .phone-box:hover {
-                                            background-color: #d7d7d7;
-                                            color: #000000;
-                                            border-color: #000000;
-                                            cursor: pointer;
-                                        }
-  
-                                        .phone-box .icon {
-                                            margin-right: 10px;
-                                        }
-                                    </style>
-                                </head>
-                                <body>
-  
-                                <a href="tel:+918238800034" class="phone-box">
-                                    <span class="icon">📞</span> +91 82388 00034
-                                </a>
-  
-                                </body>
-                                </html>
-                            </li>
+                                    <a href="tel:+918238800034" class="phone-box">
+                                        <span class="icon">📞</span> +91 82388 00034
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -120,210 +76,50 @@
         <!-- end header section -->
     </div>
 
+    <!-- Main content block -->
     {% block body %}
     {% endblock body %}
-
-    <!-- info section -->
-  
-    <!-- end info section -->
-
-    <!-- footer section -->
     <br>
     <br>
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Modern Responsive Footer</title>
-        <style>
-            /* Basic Reset */
-            body, h1, h2, h3, h4, h5, h6, p, ul, li, a {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
-    
-            /* Footer Styling */
-            .footer {
-                background-color: #f7c621; /* Dark blue-gray background */
-                color: #ffffff; /* White text */
-                padding: 20px 0; /* Added padding for better spacing */
-                box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
-            }
-    
-            .footer-container {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 20px;
-                max-width: 1200px;
-                margin: 0 auto;
-                padding: 0 20px; /* Added padding for better spacing */
-            }
-    
-            .footer-logo {
-                text-align: center;
-            }
-    
-            .footer-logo img {
-                max-width: 150px;
-                margin-bottom: 10px;
-            }
-    
-            .footer-links, .footer-social, .footer-contact {
-                text-align: center;
-            }
-    
-            .footer h3 {
-                font-size: 1.4em;
-                margin-bottom: 15px;
-                color: #000000; /* Orange accent */
-            }
-    
-            .footer-links ul {
-                list-style-type: none;
-                padding: 0;
-            }
-    
-            .footer-links ul li {
-                margin-bottom: 10px;
-            }
-    
-            .footer-links ul li a {
-                color: #000000; /* White links */
-                text-decoration: none;
-                transition: color 0.3s;
-            }
-    
-            .footer-links ul li a:hover {
-                 /* Lighter orange on hover */
-            }
-    
-            .footer-social .social-icons {
-                display: flex;
-                justify-content: center;
-                gap: 20px;
-            }
-    
-            .footer-social .social-icons a {
-                display: inline-block;
-                width: 40px;
-                height: 40px;
-                background-color: #000000; /* Orange */
-                border-radius: 50%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                color: #ffffff; /* White icon color */
-                text-decoration: none;
-                transition: background-color 0.3s, transform 0.3s;
-            }
-    
-            .footer-social .social-icons a:hover {
-                background-color: #e67e22; /* Darker orange on hover */
-                transform: scale(1.1);
-            }
-    
-            .footer-social .social-icons a img {
-                width: 20px;
-                height: 20px;
-                filter: invert(1);
-            }
-    
-            .footer-contact p {
-                margin-bottom: 10px;
-                color: #000000; /* Light grey */
-            }
-    
-            .footer-bottom {
-                margin-top: 30px;
-                border-top: 1px solid #444;
-                padding-top: 20px;
-                text-align: center;
-            }
-    
-            .footer-bottom p {
-                color: #000000; 
-            }
-    
-            .footer-legal {
-                margin-top: 10px;
-            }
-    
-            .footer-legal a {
-                color: #ffffff; 
-                text-decoration: none;
-                margin: 0 10px;
-                transition: color 0.3s;
-            }
-    
-            .footer-legal a:hover {
-                color: #f39c12; /* Orange hover */
-            }
-    
-            /* Responsive Styling */
-            @media (max-width: 768px) {
-                .footer-container {
-                    grid-template-columns: 1fr;
-                    text-align: center;
-                }
-    
-                .footer-logo, .footer-links, .footer-social, .footer-contact {
-                    margin-bottom: 20px;
-                }
-            }
-        </style>
-    </head>
-    <body>
-        <!-- Other content of your website goes here -->
-    
-        <!-- Footer Section -->
-        <footer class="footer">
-            <div class="footer-container">
-                <div class="footer-logo">
-                    <img src="/static/images/devanshi-logo.png" alt="Logo" style="margin-top: -60px;">
-                    <p style="margin-top: -40px;color: black;">At Devanshi Tour And Travels, we are committed to providing reliable, safe, and comfortable transportation solutions.</p>
-                </div>
-                <div class="footer-links">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="{% url 'index' %}">Home</a></li>
-                        <li><a href="{% url 'about' %}">About Us</a></li>
-                        <li><a href="{% url 'service' %}">Services</a></li>
-                        <li><a href="{% url 'contact' %}">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-social">
-                    <h3>Follow Us</h3>
-                    <div class="social-icons">
-                        <a href="#"><img src="{% static 'images/facebook-icon.png' %}" alt="Facebook"></a>
-                        <a href="#"><img src="{% static 'images/twitter-icon.png' %}" alt="Twitter"></a>
-                        <a href="#"><img src="{% static 'images/instagram-icon.png' %}" alt="Instagram"></a>
-                        <a href="#"><img src="{% static 'images/linkedin-icon.png' %}" alt="LinkedIn"></a>
-                    </div>
-                </div>
-                <div class="footer-contact">
-                    <h3>Contact Us</h3>
-                    <p>01, Axar Heights, Panina Tanka ni Same, Pedak Road, Rajkot, Gujrat 360003</p>
-                    <p>Phone: <a href="tel:+918238800034">+91 82388 00034</a></p>
-                    <p>Email: <a href="mailto:booking@devanshitours.com">booking@devanshitours.com</a></p>
-
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Devanshi Tour And Travels. All rights reserved.</p>
-            </div>
-        </footer>
-    </body>
-    </html>
-    
-
-
-
     <!-- footer section -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="{% static 'images/devanshi-logo.png' %}" alt="Logo" style="margin-top: -60px;">
+                <p style="margin-top: -40px; color: black;">At Devanshi Tour And Travels, we are committed to providing reliable, safe, and comfortable transportation solutions.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="{% url 'about' %}">About Us</a></li>
+                    <li><a href="{% url 'service' %}">Services</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#"><img src="{% static 'images/facebook-icon.png' %}" alt="Facebook"></a>
+                    <a href="#"><img src="{% static 'images/twitter-icon.png' %}" alt="Twitter"></a>
+                    <a href="#"><img src="{% static 'images/instagram-icon.png' %}" alt="Instagram"></a>
+                    <a href="#"><img src="{% static 'images/linkedin-icon.png' %}" alt="LinkedIn"></a>
+                </div>
+            </div>
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p>01, Axar Heights, Panina Tanka ni Same, Pedak Road, Rajkot, Gujarat 360003</p>
+                <p>Phone: <a href="tel:+918238800034">+91 82388 00034</a></p>
+                <p>Email: <a href="mailto:booking@devanshitours.com">booking@devanshitours.com</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Devanshi Tour And Travels. All rights reserved.</p>
+        </div>
+    </footer>
+    <!-- end footer section -->
 
-
-
+    <!-- JavaScript files -->
     <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
@@ -351,6 +147,169 @@
     </script>
     <!-- end owl carousel script -->
 
+    <style>
+        /* Phone box styling */
+        .phone-box {
+            display: inline-block;
+            padding: 10px 25px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            background-color: #fff;
+            color: #333;
+            font-size: 18px;
+            text-align: center;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+
+        .phone-box:hover {
+            background-color: #d7d7d7;
+            color: #000000;
+            border-color: #000000;
+            cursor: pointer;
+        }
+
+        .phone-box .icon {
+            margin-right: 10px;
+        }
+
+        /* Basic Reset */
+        body, h1, h2, h3, h4, h5, h6, p, ul, li, a {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Footer Styling */
+        .footer {
+            background-color: #f7c621; /* Dark blue-gray background */
+            color: #ffffff; /* White text */
+            padding: 20px 0; /* Added padding for better spacing */
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px; /* Added padding for better spacing */
+        }
+
+        .footer-logo {
+            text-align: center;
+        }
+
+        .footer-logo img {
+            max-width: 150px;
+            margin-bottom: 10px;
+        }
+
+        .footer-links, .footer-social, .footer-contact {
+            text-align: center;
+        }
+
+        .footer h3 {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            color: #000000; /* Orange accent */
+        }
+
+        .footer-links ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul li a {
+            color: #000000; /* White links */
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links ul li a:hover {
+            color: #e67e22; /* Lighter orange on hover */
+        }
+
+        .footer-social .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .footer-social .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: #000000; /* Orange */
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff; /* White icon color */
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .footer-social .social-icons a:hover {
+            background-color: #e67e22; /* Darker orange on hover */
+            transform: scale(1.1);
+        }
+
+        .footer-social .social-icons a img {
+            width: 20px;
+            height: 20px;
+            filter: invert(1);
+        }
+
+        .footer-contact p {
+            margin-bottom: 10px;
+            color: #000000; /* Light grey */
+        }
+
+        .footer-bottom {
+            margin-top: 30px;
+            border-top: 1px solid #444;
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: #000000; 
+        }
+
+        .footer-legal {
+            margin-top: 10px;
+        }
+
+        .footer-legal a {
+            color: #ffffff; 
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .footer-legal a:hover {
+            color: #f39c12; /* Orange hover */
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-logo, .footer-links, .footer-social, .footer-contact {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
 </body>
 
 </html>
