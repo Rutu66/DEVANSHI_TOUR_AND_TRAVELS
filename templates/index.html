@@ -277,7 +277,7 @@
 
                 <!-- Form Section -->
 
-                <div class="col-md-5 c-responsive-margin-top">
+              <div class="col-md-5 c-responsive-margin-top">
                   <div class="card shadow-sm">
                       <div class="card-body">
                           <h4 class="card-title text-center mb-4">Search Cab</h4>
@@ -299,13 +299,13 @@
                               <div class="form-row mb-3">
                                   <div class="form-group col-md-6 autocomplete-container">
                                       <label for="pickup" class="form-label">Pickup Location</label>
-                                      <input type="text" class="form-control" id="pickup" name="pickup" placeholder="Enter pickup location" value="{{ pickup }}" pattern="[A-Za-z\s,]{3,}" title="Only alphabets, spaces, and commas are allowed">
+                                      <input type="text" class="form-control" id="pickup" name="pickup" placeholder="Enter pickup location" value="{{ pickup }}" required pattern="[A-Za-z\s,]+" title="Only alphabets, spaces, and commas are allowed">
                                       <div class="autocomplete-suggestions"></div> <!-- Container for autocomplete suggestions -->
                                   </div>
               
                                   <div class="form-group col-md-6 autocomplete-container">
                                       <label for="drop" class="form-label">Drop Location</label>
-                                      <input type="text" class="form-control" id="drop" name="drop" placeholder="Enter drop location" value="{{ drop }}" pattern="[A-Za-z\s,]{3,}" title="Only alphabets, spaces, and commas are allowed">
+                                      <input type="text" class="form-control" id="drop" name="drop" placeholder="Enter drop location" value="{{ drop }}" required pattern="[A-Za-z\s,]+" title="Only alphabets, spaces, and commas are allowed">
                                       <div class="autocomplete-suggestions"></div> <!-- Container for autocomplete suggestions -->
                                   </div>
                               </div>
@@ -347,7 +347,8 @@
                       </div>
                   </div>
               </div>
-              <script>
+            <script>
+            
               document.addEventListener('DOMContentLoaded', function() {
                 var pickupInput = document.getElementById('pickup');
                 var dropInput = document.getElementById('drop');
