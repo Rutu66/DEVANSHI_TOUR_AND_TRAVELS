@@ -29,7 +29,6 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
 <style>
-
   /* General Body Styling */
 
 /* Slider Section */
@@ -103,7 +102,6 @@
   color: white; /* Ensure font color remains white */
 }
 
-
 /* Card and Form Styling */
 .card {
   border-radius: 20px;
@@ -150,26 +148,19 @@
   .slider_section {
     padding: 50px 0; /* Reset padding for smaller screens */
   }
-}
 
-/* Stack buttons vertically on small screens */
-@media (max-width: 768px) {
-  .inquiry-section {
-    flex-direction: column;
-    align-items: stretch;
-    align-items: center;
-    margin-right: 40px;
+  .c-inquiry-section {
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: center; /* Center align vertically stacked buttons */
+    margin-left: -30px;
   }
 
-  .phone-box {
-    margin-left: 0;
-    margin-top: 10px;
-  }
-
-  .slider_section {
-    padding: 50px 0; /* Reset padding for smaller screens */
+  .c-phone-box {
+    margin-left: 0; /* Remove left margin */
+    margin-top: 10px; /* Add top margin for spacing */
   }
 }
+
 .autocomplete-container {
   position: relative;
 }
@@ -223,9 +214,6 @@
   transform: translateY(-50%);
   pointer-events: none; /* Prevents the icon from blocking input field */
 }
-
-
-
 
 </style>
 </head>
