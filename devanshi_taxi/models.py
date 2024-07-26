@@ -46,7 +46,7 @@ class Booking(models.Model):
     mobile = models.CharField(max_length=10)
     alt_mobile = models.CharField(max_length=10, blank=True, null=True)
     pickup = models.CharField(max_length=255)
-    
+    drop = models.CharField(max_length=255)
     num_passengers = models.IntegerField()
     travel_type = models.CharField(max_length=20)  # New field for travel type
     pickup_date = models.DateField()
@@ -56,7 +56,7 @@ class Booking(models.Model):
     # full_payable_amount = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
-        return f"{self.username} - {self.pickup}"
+        return f"{self.username} - {self.pickup} to {self.drop}"
 
 
 

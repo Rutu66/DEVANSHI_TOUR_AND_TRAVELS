@@ -103,7 +103,7 @@ def booking_view(request):
         mobile = request.POST.get('mobile')
         alt_mobile = request.POST.get('alt_mobile')
         pickup = request.POST.get('pickup')
-        
+        drop = request.POST.get('drop')
         num_passengers = request.POST.get('num_passengers')
         travel_type = request.POST.get('travel_type')
         pickup_date = request.POST.get('pickup_date')
@@ -129,7 +129,7 @@ def booking_view(request):
             mobile=mobile,
             alt_mobile=alt_mobile,
             pickup=pickup,
-           
+            drop=drop,
             num_passengers=num_passengers,
             travel_type=travel_type,
             pickup_date=pickup_date,
@@ -146,7 +146,7 @@ def booking_view(request):
             'mobile': mobile,
             'alt_mobile': alt_mobile,
             'pickup': pickup,
-           
+            'drop': drop,
             'num_passengers': num_passengers,
             'travel_type': travel_type,
             'pickup_date': pickup_date,
@@ -170,7 +170,7 @@ def booking_view(request):
             'mobile': mobile,
             'alt_mobile': alt_mobile,
             'pickup': pickup,
-            
+            'drop': drop,
             'num_passengers': num_passengers,
             'travel_type': travel_type,
             'pickup_date': pickup_date,

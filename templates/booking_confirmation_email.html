@@ -177,7 +177,10 @@
                     <td>Pickup Location:</td>
                     <td>{{ pickup }}</td>
                 </tr>
-                
+                <tr>
+                    <td>Drop Location:</td>
+                    <td>{{ drop }}</td>
+                </tr>
                 <tr>
                     <td>Number of Passengers:</td>
                     <td>{{ num_passengers }}</td>
@@ -204,7 +207,7 @@
                 {% endif %}
                 <tr>
                     <td>Route:</td>
-                    <td>{{ pickup_location }} -> {{ drop_location }}</td>
+                    <td>{{ pickup }} -> {{ drop }}</td>
                 </tr>
                 {% comment %} <tr>
                     <td>Full Payable Amount:</td>
