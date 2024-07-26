@@ -1,11 +1,14 @@
 from django.contrib import admin
-from .models import *
-# Register your models here.
+from .models import Car, Booking
 
-admin.site.register(Car)
-# admin.site.register(Route)
-# admin.site.register(Cost)
-admin.site.register(Booking)
+@admin.register(Car)
+class CarAdmin(admin.ModelAdmin):
+    list_display = ('name', 'car_type', 'rate', 'capacity')
+    list_filter = ('car_type',)
+    search_fields = ('name',)
 
-
-
+@admin.register(Booking)
+class BookingAdmin(admin.ModelAdmin):
+    list_display = ('username', 'pickup', 'drop', 'pickup_date', 'pickup_time', 'return_date')
+    list_filter = ('pickup_date', 'return_date')
+    search_fields = ('username', 'pickup', 'drop')
