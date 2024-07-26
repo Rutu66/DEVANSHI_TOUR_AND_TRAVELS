@@ -297,48 +297,48 @@
                               </div>
                               <!-- Pickup and Drop Locations -->
                               <div class="form-row mb-3">
-                                <div class="form-group col-md-6 autocomplete-container">
-                                    <label for="pickup" class="form-label">Pickup Location</label>
-                                    <input type="text" class="form-control" id="pickup" name="pickup" placeholder="Enter pickup location" value="{{ pickup }}" required>
-                                    <div class="autocomplete-suggestions"></div> <!-- Container for autocomplete suggestions -->
-                                </div>
-                            
-                                <div class="form-group col-md-6 autocomplete-container">
-                                    <label for="drop" class="form-label">Drop Location</label>
-                                    <input type="text" class="form-control" id="drop" name="drop" placeholder="Enter drop location" value="{{ drop }}" required>
-                                    <div class="autocomplete-suggestions"></div> <!-- Container for autocomplete suggestions -->
-                                </div>
-                            </div>
-                            
+                                  <div class="form-group col-md-6 autocomplete-container">
+                                      <label for="pickup" class="form-label">Pickup Location</label>
+                                      <input type="text" class="form-control" id="pickup" name="pickup" placeholder="Enter pickup location" value="{{ pickup }}" pattern="[A-Za-z\s,]{3,}" title="Only alphabets, spaces, and commas are allowed">
+                                      <div class="autocomplete-suggestions"></div> <!-- Container for autocomplete suggestions -->
+                                  </div>
+              
+                                  <div class="form-group col-md-6 autocomplete-container">
+                                      <label for="drop" class="form-label">Drop Location</label>
+                                      <input type="text" class="form-control" id="drop" name="drop" placeholder="Enter drop location" value="{{ drop }}" pattern="[A-Za-z\s,]{3,}" title="Only alphabets, spaces, and commas are allowed">
+                                      <div class="autocomplete-suggestions"></div> <!-- Container for autocomplete suggestions -->
+                                  </div>
+                              </div>
+              
                               <!-- Pickup Date and Time -->
                               <div class="form-row mb-3">
-                                <div class="form-group col-md-6">
-                                    <label for="pickup_date" class="form-label">Pickup Date</label>
-                                    <div class="input-icon">
-                                        <input type="date" class="form-control" id="pickup_date" name="pickup_date" placeholder="Pickup Date" value="{{ pickup_date }}" required>
-                                        <span class="icon">&#x1F4C5;</span> <!-- Calendar icon -->
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="pickup_time" class="form-label">Pickup Time</label>
-                                    <div class="input-icon">
-                                        <input type="time" class="form-control" id="pickup_time" name="pickup_time" placeholder="Pickup Time" value="{{ pickup_time }}" required>
-                                        <span class="icon">&#x1F551;</span> <!-- Clock icon -->
-                                    </div>
-                                </div>
-                            </div>
-                            
+                                  <div class="form-group col-md-6">
+                                      <label for="pickup_date" class="form-label">Pickup Date</label>
+                                      <div class="input-icon">
+                                          <input type="date" class="form-control" id="pickup_date" name="pickup_date" placeholder="Pickup Date" value="{{ pickup_date }}" required>
+                                          <span class="icon">&#x1F4C5;</span> <!-- Calendar icon -->
+                                      </div>
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                      <label for="pickup_time" class="form-label">Pickup Time</label>
+                                      <div class="input-icon">
+                                          <input type="time" class="form-control" id="pickup_time" name="pickup_time" placeholder="Pickup Time" value="{{ pickup_time }}" required>
+                                          <span class="icon">&#x1F551;</span> <!-- Clock icon -->
+                                      </div>
+                                  </div>
+                              </div>
+              
                               <!-- Return Date (hidden by default) -->
                               <div id="return_date_row" style="display: none;">
-                                <div class="form-group mb-3">
-                                    <label for="return_date" class="form-label">Return Date</label>
-                                    <div class="input-icon">
-                                        <input type="date" class="form-control" id="return_date" name="return_date" placeholder="Return Date" value="{{ return_date }}">
-                                        <span class="icon">&#x1F4C5;</span> <!-- Custom calendar icon -->
-                                    </div>
-                                </div>
-                            </div>
-                            
+                                  <div class="form-group mb-3">
+                                      <label for="return_date" class="form-label">Return Date</label>
+                                      <div class="input-icon">
+                                          <input type="date" class="form-control" id="return_date" name="return_date" placeholder="Return Date" value="{{ return_date }}">
+                                          <span class="icon">&#x1F4C5;</span> <!-- Custom calendar icon -->
+                                      </div>
+                                  </div>
+                              </div>
+              
                               <!-- Submit Button -->
                               <div class="form-group text-center">
                                   <button type="submit" class="btn btn-warning btn-block">Search Cabs</button>
@@ -347,149 +347,147 @@
                       </div>
                   </div>
               </div>
-
-
               <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    var pickupInput = document.getElementById('pickup');
-                    var dropInput = document.getElementById('drop');
-                    var mapboxToken = 'pk.eyJ1IjoicnV0dTY2IiwiYSI6ImNseXp0anRwZjF4MW0ya3MwYTViaWI5cW8ifQ.7yYfVoSwvryukKY-ngQHXw'; // Replace with your Mapbox API key
-                
-                    // Function to fetch city suggestions from Mapbox API
-                    async function fetchCities(query) {
-                        var url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(query)}.json?access_token=${mapboxToken}&types=place&country=IN`;
-                        var response = await fetch(url);
-                        var data = await response.json();
-                        return data.features.map(function(feature) {
-                            return feature.place_name;
-                        });
+              document.addEventListener('DOMContentLoaded', function() {
+                var pickupInput = document.getElementById('pickup');
+                var dropInput = document.getElementById('drop');
+                var mapboxToken = 'pk.eyJ1IjoicnV0dTY2IiwiYSI6ImNseXp0anRwZjF4MW0ya3MwYTViaWI5cW8ifQ.7yYfVoSwvryukKY-ngQHXw'; // Replace with your Mapbox API key
+            
+                // Function to fetch city suggestions from Mapbox API
+                async function fetchCities(query) {
+                    var url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(query)}.json?access_token=${mapboxToken}&types=place&country=IN`;
+                    var response = await fetch(url);
+                    var data = await response.json();
+                    return data.features.map(function(feature) {
+                        return feature.place_name;
+                    });
+                }
+            
+                // Function to update autocomplete suggestions
+                async function updateAutocomplete(input) {
+                    var query = input.value.trim();
+                    var cityArray = await fetchCities(query);
+                    var suggestionsHTML = cityArray.map(function(city, index) {
+                        return '<div class="autocomplete-item' + (index === 0 ? ' active' : '') + '">' + city + '</div>';
+                    }).join('');
+            
+                    // Display suggestions only if there are matches
+                    var autocompleteContainer = input.nextElementSibling; // Assuming you have a container for autocomplete suggestions
+                    if (cityArray.length > 0) {
+                        autocompleteContainer.innerHTML = suggestionsHTML;
+                    } else {
+                        autocompleteContainer.innerHTML = ''; // Clear suggestions if no matches
                     }
-                
-                    // Function to update autocomplete suggestions
-                    async function updateAutocomplete(input) {
-                        var query = input.value.trim();
-                        var cityArray = await fetchCities(query);
-                        var suggestionsHTML = cityArray.map(function(city, index) {
-                            return '<div class="autocomplete-item' + (index === 0 ? ' active' : '') + '">' + city + '</div>';
-                        }).join('');
-                
-                        // Display suggestions only if there are matches
-                        var autocompleteContainer = input.nextElementSibling; // Assuming you have a container for autocomplete suggestions
-                        if (cityArray.length > 0) {
-                            autocompleteContainer.innerHTML = suggestionsHTML;
-                        } else {
-                            autocompleteContainer.innerHTML = ''; // Clear suggestions if no matches
-                        }
-                
-                        // Add click event listener to select suggestion
-                        var autocompleteItems = autocompleteContainer.querySelectorAll('.autocomplete-item');
-                        autocompleteItems.forEach(function(item) {
-                            item.addEventListener('click', function() {
-                                input.value = item.textContent;
-                                autocompleteContainer.innerHTML = ''; // Clear suggestions
-                            });
-                
-                            item.addEventListener('mouseover', function() {
+            
+                    // Add click event listener to select suggestion
+                    var autocompleteItems = autocompleteContainer.querySelectorAll('.autocomplete-item');
+                    autocompleteItems.forEach(function(item) {
+                        item.addEventListener('click', function() {
+                            input.value = item.textContent;
+                            autocompleteContainer.innerHTML = ''; // Clear suggestions
+                        });
+            
+                        item.addEventListener('mouseover', function() {
+                            removeActiveClass(autocompleteItems);
+                            item.classList.add('active');
+                        });
+            
+                        item.addEventListener('mouseleave', function() {
+                            item.classList.remove('active');
+                        });
+            
+                        item.addEventListener('mousedown', function() {
+                            input.value = item.textContent;
+                            autocompleteContainer.innerHTML = ''; // Clear suggestions
+                        });
+                    });
+            
+                    // Add keyboard navigation for arrow keys
+                    input.addEventListener('keydown', function(event) {
+                        var selected = autocompleteContainer.querySelector('.autocomplete-item.active');
+                        if (event.key === 'ArrowDown' && cityArray.length > 0) {
+                            event.preventDefault();
+                            if (selected) {
+                                var next = selected.nextElementSibling;
+                                if (next) {
+                                    scrollIntoViewIfNeeded(next, autocompleteContainer);
+                                    removeActiveClass(autocompleteItems);
+                                    next.classList.add('active');
+                                }
+                            } else {
                                 removeActiveClass(autocompleteItems);
-                                item.classList.add('active');
-                            });
-                
-                            item.addEventListener('mouseleave', function() {
-                                item.classList.remove('active');
-                            });
-                
-                            item.addEventListener('mousedown', function() {
-                                input.value = item.textContent;
-                                autocompleteContainer.innerHTML = ''; // Clear suggestions
-                            });
-                        });
-                
-                        // Add keyboard navigation for arrow keys
-                        input.addEventListener('keydown', function(event) {
-                            var selected = autocompleteContainer.querySelector('.autocomplete-item.active');
-                            if (event.key === 'ArrowDown' && cityArray.length > 0) {
-                                event.preventDefault();
-                                if (selected) {
-                                    var next = selected.nextElementSibling;
-                                    if (next) {
-                                        scrollIntoViewIfNeeded(next, autocompleteContainer);
-                                        removeActiveClass(autocompleteItems);
-                                        next.classList.add('active');
-                                    }
-                                } else {
-                                    removeActiveClass(autocompleteItems);
-                                    autocompleteItems[0].classList.add('active');
-                                }
-                            } else if (event.key === 'ArrowUp' && cityArray.length > 0) {
-                                event.preventDefault();
-                                if (selected) {
-                                    var prev = selected.previousElementSibling;
-                                    if (prev) {
-                                        scrollIntoViewIfNeeded(prev, autocompleteContainer);
-                                        removeActiveClass(autocompleteItems);
-                                        prev.classList.add('active');
-                                    }
-                                } else {
-                                    removeActiveClass(autocompleteItems);
-                                    autocompleteItems[autocompleteItems.length - 1].classList.add('active');
-                                }
-                            } else if (event.key === 'Enter' && selected) {
-                                event.preventDefault();
-                                input.value = selected.textContent;
-                                autocompleteContainer.innerHTML = ''; // Clear suggestions
+                                autocompleteItems[0].classList.add('active');
                             }
-                        });
-                
-                        function removeActiveClass(items) {
-                            items.forEach(function(item) {
-                                item.classList.remove('active');
-                            });
+                        } else if (event.key === 'ArrowUp' && cityArray.length > 0) {
+                            event.preventDefault();
+                            if (selected) {
+                                var prev = selected.previousElementSibling;
+                                if (prev) {
+                                    scrollIntoViewIfNeeded(prev, autocompleteContainer);
+                                    removeActiveClass(autocompleteItems);
+                                    prev.classList.add('active');
+                                }
+                            } else {
+                                removeActiveClass(autocompleteItems);
+                                autocompleteItems[autocompleteItems.length - 1].classList.add('active');
+                            }
+                        } else if (event.key === 'Enter' && selected) {
+                            event.preventDefault();
+                            input.value = selected.textContent;
+                            autocompleteContainer.innerHTML = ''; // Clear suggestions
                         }
-                
-                        function scrollIntoViewIfNeeded(element, container) {
-                            var elementRect = element.getBoundingClientRect();
-                            var containerRect = container.getBoundingClientRect();
-                
-                            // Check if element is fully visible
-                            if (elementRect.bottom > containerRect.bottom) {
-                                container.scrollTop += elementRect.bottom - containerRect.bottom;
-                            } else if (elementRect.top < containerRect.top) {
-                                container.scrollTop -= containerRect.top - elementRect.top;
-                            }
+                    });
+            
+                    function removeActiveClass(items) {
+                        items.forEach(function(item) {
+                            item.classList.remove('active');
+                        });
+                    }
+            
+                    function scrollIntoViewIfNeeded(element, container) {
+                        var elementRect = element.getBoundingClientRect();
+                        var containerRect = container.getBoundingClientRect();
+            
+                        // Check if element is fully visible
+                        if (elementRect.bottom > containerRect.bottom) {
+                            container.scrollTop += elementRect.bottom - containerRect.bottom;
+                        } else if (elementRect.top < containerRect.top) {
+                            container.scrollTop -= containerRect.top - elementRect.top;
                         }
                     }
-                
-                    // Attach input event listeners to pickup and drop inputs
-                    pickupInput.addEventListener('input', function() {
-                        updateAutocomplete(this);
-                        dropInput.nextElementSibling.innerHTML = ''; // Clear drop suggestions when typing in pickup
-                    });
-                
-                    dropInput.addEventListener('input', function() {
-                        updateAutocomplete(this);
-                        pickupInput.nextElementSibling.innerHTML = ''; // Clear pickup suggestions when typing in drop
-                    });
-                
-                    // Clear suggestions on focus change
-                    pickupInput.addEventListener('focus', function() {
-                        dropInput.nextElementSibling.innerHTML = ''; // Clear drop suggestions when focusing on pickup
-                    });
-                
-                    dropInput.addEventListener('focus', function() {
-                        pickupInput.nextElementSibling.innerHTML = ''; // Clear pickup suggestions when focusing on drop
-                    });
-                
-                    // Hide suggestions on clicking outside the input field
-                    document.addEventListener('click', function(event) {
-                        if (!event.target.closest('.autocomplete-container')) {
-                            var allAutocompleteContainers = document.querySelectorAll('.autocomplete-suggestions');
-                            allAutocompleteContainers.forEach(function(container) {
-                                container.innerHTML = ''; // Clear all suggestions
-                            });
-                        }
-                    });
+                }
+            
+                // Attach input event listeners to pickup and drop inputs
+                pickupInput.addEventListener('input', function() {
+                    updateAutocomplete(this);
+                    dropInput.nextElementSibling.innerHTML = ''; // Clear drop suggestions when typing in pickup
                 });
-                </script>
+            
+                dropInput.addEventListener('input', function() {
+                    updateAutocomplete(this);
+                    pickupInput.nextElementSibling.innerHTML = ''; // Clear pickup suggestions when typing in drop
+                });
+            
+                // Clear suggestions on focus change
+                pickupInput.addEventListener('focus', function() {
+                    dropInput.nextElementSibling.innerHTML = ''; // Clear drop suggestions when focusing on pickup
+                });
+            
+                dropInput.addEventListener('focus', function() {
+                    pickupInput.nextElementSibling.innerHTML = ''; // Clear pickup suggestions when focusing on drop
+                });
+            
+                // Hide suggestions on clicking outside the input field
+                document.addEventListener('click', function(event) {
+                    if (!event.target.closest('.autocomplete-container')) {
+                        var allAutocompleteContainers = document.querySelectorAll('.autocomplete-suggestions');
+                        allAutocompleteContainers.forEach(function(container) {
+                            container.innerHTML = ''; // Clear all suggestions
+                        });
+                    }
+                });
+            });
+          </script>
                 
 
             

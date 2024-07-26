@@ -465,11 +465,11 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="modal_pickup">Pickup Location</label>
-                                <input type="text" class="form-control" id="modal_pickup" name="pickup" required>
+                                <input type="text" class="form-control" id="modal_pickup" name="pickup" pattern="[A-Za-z\s,]{3,}" title="Only characters, spaces, and commas are allowed" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="modal_drop">Drop Location</label>
-                                <input type="text" class="form-control" id="modal_drop" name="drop" required>
+                                <input type="text" class="form-control" id="modal_drop" name="drop" pattern="[A-Za-z\s,]{3,}" title="Only characters, spaces, and commas are allowed" required>
                             </div>
                         </div>
                         
@@ -494,73 +494,72 @@
                                 </div>
                             </div>
                         </div>
-            
+                
                         <!-- Submit Button -->
                         <button type="submit" class="btn btn-primary btn-block">Search</button>
                     </form>
                 </div>
             </div>
-            
-                    
-                   <script>
-                    document.addEventListener('DOMContentLoaded', function () {
-                        const pickupDateInput = document.getElementById('modal_pickup_date');
-                        const pickupTimeInput = document.getElementById('modal_pickup_time');
-                        const returnDateInput = document.getElementById('modal_return_date');
-                        const travelTypeInputs = document.querySelectorAll('input[name="travel_type"]');
-                        const returnDateGroup = document.getElementById('modal_return_date_group');
-                    
-                        function setMinDateAndTime() {
-                            const now = new Date();
-                            const year = now.getFullYear();
-                            const month = String(now.getMonth() + 1).padStart(2, '0');
-                            const day = String(now.getDate()).padStart(2, '0');
-                            const hours = String(now.getHours()).padStart(2, '0');
-                            const minutes = String(now.getMinutes()).padStart(2, '0');
-                    
-                            const minDate = `${year}-${month}-${day}`;
-                            const minTime = `${hours}:${minutes}`;
-                    
-                            pickupDateInput.min = minDate;
-                            pickupTimeInput.min = minTime;
-                            returnDateInput.min = minDate;
-                        }
-                    
-                        function updateReturnDateMin() {
-                            const pickupDateValue = pickupDateInput.value;
-                            const pickupDate = new Date(pickupDateValue);
-                            
-                            // Ensure the return date is on or after the pickup date
-                            if (!isNaN(pickupDate.getTime())) {
-                                returnDateInput.min = pickupDateValue;
-                    
-                                if (returnDateInput.value < pickupDateValue) {
-                                    returnDateInput.value = pickupDateValue;
-                                }
+                
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const pickupDateInput = document.getElementById('modal_pickup_date');
+                    const pickupTimeInput = document.getElementById('modal_pickup_time');
+                    const returnDateInput = document.getElementById('modal_return_date');
+                    const travelTypeInputs = document.querySelectorAll('input[name="travel_type"]');
+                    const returnDateGroup = document.getElementById('modal_return_date_group');
+                
+                    function setMinDateAndTime() {
+                        const now = new Date();
+                        const year = now.getFullYear();
+                        const month = String(now.getMonth() + 1).padStart(2, '0');
+                        const day = String(now.getDate()).padStart(2, '0');
+                        const hours = String(now.getHours()).padStart(2, '0');
+                        const minutes = String(now.getMinutes()).padStart(2, '0');
+                
+                        const minDate = `${year}-${month}-${day}`;
+                        const minTime = `${hours}:${minutes}`;
+                
+                        pickupDateInput.min = minDate;
+                        pickupTimeInput.min = minTime;
+                        returnDateInput.min = minDate;
+                    }
+                
+                    function updateReturnDateMin() {
+                        const pickupDateValue = pickupDateInput.value;
+                        const pickupDate = new Date(pickupDateValue);
+                        
+                        // Ensure the return date is on or after the pickup date
+                        if (!isNaN(pickupDate.getTime())) {
+                            returnDateInput.min = pickupDateValue;
+                
+                            if (returnDateInput.value < pickupDateValue) {
+                                returnDateInput.value = pickupDateValue;
                             }
                         }
-                    
-                        function toggleReturnDate() {
-                            if (document.getElementById('modal_round_trip').checked) {
-                                returnDateGroup.style.display = 'block';
-                                returnDateInput.required = true;
-                                updateReturnDateMin();
-                            } else {
-                                returnDateGroup.style.display = 'none';
-                                returnDateInput.required = false;
-                            }
+                    }
+                
+                    function toggleReturnDate() {
+                        if (document.getElementById('modal_round_trip').checked) {
+                            returnDateGroup.style.display = 'block';
+                            returnDateInput.required = true;
+                            updateReturnDateMin();
+                        } else {
+                            returnDateGroup.style.display = 'none';
+                            returnDateInput.required = false;
                         }
-                    
-                        travelTypeInputs.forEach(input => {
-                            input.addEventListener('change', toggleReturnDate);
-                        });
-                    
-                        pickupDateInput.addEventListener('change', updateReturnDateMin);
-                    
-                        setMinDateAndTime();
+                    }
+                
+                    travelTypeInputs.forEach(input => {
+                        input.addEventListener('change', toggleReturnDate);
                     });
-                    
-                   </script>
+                
+                    pickupDateInput.addEventListener('change', updateReturnDateMin);
+                
+                    setMinDateAndTime();
+                });
+            </script>
+            
                    <div class="booking-car-options">
                     {% if cars %}
                     {% for car in cars %}
