@@ -56,7 +56,7 @@ class Booking(models.Model):
     # full_payable_amount = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
-        return f"{self.username} - {self.pickup} to {self.drop}"
+        return f"{self.username} - {self.pickup}"
 
 
 
