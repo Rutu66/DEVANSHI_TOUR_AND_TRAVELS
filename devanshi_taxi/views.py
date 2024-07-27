@@ -95,101 +95,95 @@ from django.conf import settings
 from datetime import datetime
 from .models import Booking  # Adjust this import as per your app structure
 
+from django.http import JsonResponse, HttpResponse
+from django.shortcuts import render, redirect
+from django.core.mail import send_mail
+from datetime import datetime
+
 def booking_view(request):
     if request.method == 'POST':
-        # Retrieve form data
-        username = request.POST.get('username')
-        email = request.POST.get('email')
-        mobile = request.POST.get('mobile')
-        alt_mobile = request.POST.get('alt_mobile')
-        pickup = request.POST.get('pickup')
-        drop = request.POST.get('drop')
-        num_passengers = request.POST.get('num_passengers')
-        travel_type = request.POST.get('travel_type')
-        pickup_date = request.POST.get('pickup_date')
-        pickup_time = request.POST.get('pickup_time')
-        return_date_str = request.POST.get('return_date')  # Get return_date as string
+        try:
+            # Retrieve form data
+            username = request.POST.get('username')
+            email = request.POST.get('email')
+            mobile = request.POST.get('mobile')
+            alt_mobile = request.POST.get('alt_mobile')
+            pickup = request.POST.get('pickup')
+            drop = request.POST.get('drop')
+            num_passengers = request.POST.get('num_passengers')
+            travel_type = request.POST.get('travel_type')
+            pickup_date = request.POST.get('pickup_date')
+            pickup_time = request.POST.get('pickup_time')
+            return_date_str = request.POST.get('return_date')
 
-        # Convert return_date_str to datetime object if not empty
-        if return_date_str:
-            try:
-                return_date = datetime.strptime(return_date_str, '%Y-%m-%d').date()
-            except ValueError:
-                return HttpResponse('Invalid return date format. Must be YYYY-MM-DD.')
-        else:
-            return_date = None  # Handle case where return_date is not provided
+            if return_date_str:
+                try:
+                    return_date = datetime.strptime(return_date_str, '%Y-%m-%d').date()
+                except ValueError:
+                    return HttpResponse('Invalid return date format. Must be YYYY-MM-DD.')
+            else:
+                return_date = None
 
-        route = request.POST.get('route')
-       
+            route = request.POST.get('route')
 
-        # Create Booking object
-        booking = Booking.objects.create(
-            username=username,
-            email=email,
-            mobile=mobile,
-            alt_mobile=alt_mobile,
-            pickup=pickup,
-            drop=drop,
-            num_passengers=num_passengers,
-            travel_type=travel_type,
-            pickup_date=pickup_date,
-            pickup_time=pickup_time,
-            return_date=return_date,
-            route=route,
-          
-        )
+            # Create Booking object
+            booking = Booking.objects.create(
+                username=username,
+                email=email,
+                mobile=mobile,
+                alt_mobile=alt_mobile,
+                pickup=pickup,
+                drop=drop,
+                num_passengers=num_passengers,
+                travel_type=travel_type,
+                pickup_date=pickup_date,
+                pickup_time=pickup_time,
+                return_date=return_date,
+                route=route,
+            )
 
-        # Render email content from template
-        email_content_customer = render_to_string('booking_confirmation_email.html', {
-            'username': username,
-            'email': email,
-            'mobile': mobile,
-            'alt_mobile': alt_mobile,
-            'pickup': pickup,
-            'drop': drop,
-            'num_passengers': num_passengers,
-            'travel_type': travel_type,
-            'pickup_date': pickup_date,
-            'pickup_time': pickup_time,
-            'return_date': return_date,
-            'route': route,
-              
-        })
+            # Send emails
+            email_content_customer = render_to_string('booking_confirmation_email.html', {
+                'username': username,
+                'email': email,
+                'mobile': mobile,
+                'alt_mobile': alt_mobile,
+                'pickup': pickup,
+                'drop': drop,
+                'num_passengers': num_passengers,
+                'travel_type': travel_type,
+                'pickup_date': pickup_date,
+                'pickup_time': pickup_time,
+                'return_date': return_date,
+                'route': route,
+            })
+            send_mail('Booking Confirmation', '', settings.DEFAULT_FROM_EMAIL, [email], html_message=email_content_customer)
 
-        # Send email with booking details to recipient (customer)
-        subject_customer = 'Booking Confirmation'
-        recipient_customer = [email]  # Use the email entered by the user as recipient for customer
-        print("==>>", settings.DEFAULT_FROM_EMAIL)
-        print("===>",recipient_customer)
-        send_mail(subject_customer, '', settings.DEFAULT_FROM_EMAIL, recipient_customer, html_message=email_content_customer)
+            email_content_owner = render_to_string('new_booking_email.html', {
+                'username': username,
+                'email': email,
+                'mobile': mobile,
+                'alt_mobile': alt_mobile,
+                'pickup': pickup,
+                'drop': drop,
+                'num_passengers': num_passengers,
+                'travel_type': travel_type,
+                'pickup_date': pickup_date,
+                'pickup_time': pickup_time,
+                'return_date': return_date,
+                'route': route,
+            })
+            send_mail('New Booking Received', '', settings.DEFAULT_FROM_EMAIL, ['booking@devanshitours.com'], html_message=email_content_owner)
 
-        # Render email content for owner from template
-        email_content_owner = render_to_string('new_booking_email.html', {
-            'username': username,
-            'email': email,
-            'mobile': mobile,
-            'alt_mobile': alt_mobile,
-            'pickup': pickup,
-            'drop': drop,
-            'num_passengers': num_passengers,
-            'travel_type': travel_type,
-            'pickup_date': pickup_date,
-            'pickup_time': pickup_time,
-            'return_date': return_date,
-            'route': route,
-            
-        })
+            # Return JSON response with redirect URL
+            return JsonResponse({'redirect_url': f'/success/{booking.pk}/'})
 
-        # Send email with booking details to owner
-        subject_owner = 'New Booking Received'
-        recipient_owner = ['no_reply@devanshitours.com']  # Replace with actual owner's email address
-
-        send_mail(subject_owner, '', settings.DEFAULT_FROM_EMAIL, recipient_owner, html_message=email_content_owner)
-
-        # Redirect to a success URL with pk
-        return redirect('success', pk=booking.pk)  # Replace 'success' with your actual success URL name
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            return HttpResponse('An error occurred during the booking process.')
 
     return render(request, 'booking.html')
+
 
 
 
@@ -211,8 +205,8 @@ def sendmail_contact(request):
         send_mail(
             "Received contact details",
             '',
-            'yashtaxi2000@gmail.com',
-            ['no_reply@devanshitours.com'],
+            'devanshicab99@gmail.com',
+            ['booking@devanshitours.com'],
             fail_silently=False,
             html_message=html_message,
         )
