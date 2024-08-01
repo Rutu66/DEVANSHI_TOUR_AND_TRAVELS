@@ -1,32 +1,10 @@
 {% extends "base.html" %}
 {% block body %}
 {% load static %}
-
-<!-- header section starts -->  
-
+ 
 
 
-<!-- end header section -->
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Title Here</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <!-- Custom CSS -->
-    <!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-<!-- jQuery UI -->
-
-
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-{% comment %} <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> {% endcomment %}
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    
 
 <style>
   /* General Body Styling */
@@ -216,9 +194,9 @@
 }
 
 </style>
-</head>
 
-<body>
+
+
   <section class="slider_section">
         <div class="container-fluid">
             <div class="row">
@@ -303,14 +281,14 @@
                                   <div class="form-group col-md-6">
                                       <label for="pickup_date" class="form-label">Pickup Date</label>
                                       <div class="input-icon">
-                                          <input type="date" class="form-control" id="pickup_date" name="pickup_date" placeholder="Pickup Date" value="{{ pickup_date }}" required>
+                                          <input type="date" class="form-control" id="pickup_date" name="pickup_date"  value="{{ pickup_date }}" required>
                                           <span class="icon">&#x1F4C5;</span> <!-- Calendar icon -->
                                       </div>
                                   </div>
                                   <div class="form-group col-md-6">
                                       <label for="pickup_time" class="form-label">Pickup Time</label>
                                       <div class="input-icon">
-                                          <input type="time" class="form-control" id="pickup_time" name="pickup_time" placeholder="Pickup Time" value="{{ pickup_time }}" required>
+                                          <input type="time" class="form-control" id="pickup_time" name="pickup_time"  value="{{ pickup_time }}" required>
                                           <span class="icon">&#x1F551;</span> <!-- Clock icon -->
                                       </div>
                                   </div>
@@ -321,7 +299,7 @@
                                   <div class="form-group mb-3">
                                       <label for="return_date" class="form-label">Return Date</label>
                                       <div class="input-icon">
-                                          <input type="date" class="form-control" id="return_date" name="return_date" placeholder="Return Date" value="{{ return_date }}">
+                                          <input type="date" class="form-control" id="return_date" name="return_date"  value="{{ return_date }}">
                                           <span class="icon">&#x1F4C5;</span> <!-- Custom calendar icon -->
                                       </div>
                                   </div>
@@ -580,33 +558,11 @@
         
         </div>
         </div>
-    </section>
-
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    {% comment %} <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-FIflK1xb3DSHvU4fD+1xlK4mXSMzZoY1p6MAp0ua8N8odJ8fpT0FGyFqb5pAriIo" crossorigin="anonymous"></script> {% endcomment %}
-    {% comment %} <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh/jFcNMJNGmZaTKYGj5tc+0hbd2Ousak" crossorigin="anonymous"></script> {% endcomment %}
-</body>
-</html>
-
-
-  
+  </section>
 
 
 
 <!-- about section -->
-  
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scae=1.0">
-    <title>About Taxi Company</title>
-    <style>
-        
-    </style>
-</head>
 
 <div class="container">
   <div class="heading_container">
@@ -616,7 +572,7 @@
     </h2>
   </div>
 </div>
-<body>
+
     <!-- About Section -->
     <section class="about_section">
         <div class="container-fluid">
@@ -659,13 +615,6 @@ document.getElementById('readMoreLink').addEventListener('mouseout', function() 
         </div>
     </section>
 
-    <!-- Your other HTML content goes here -->
-
-    <!-- Optional JavaScript and Bootstrap Bundle with Popper -->
-   
-
-</html>
-
 
 <!-- end about section -->
 
@@ -680,12 +629,6 @@ document.getElementById('readMoreLink').addEventListener('mouseout', function() 
 
 
 
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Car Rental</title>
       <style>
           @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
@@ -847,8 +790,7 @@ document.getElementById('readMoreLink').addEventListener('mouseout', function() 
 
           
       </style>
-  </head>
-  <body>
+ 
       <div class="car-slider" style="height: 530px;">
           <div class="car-slider-track">
               {% for car in car_list %}
@@ -934,8 +876,7 @@ document.getElementById('readMoreLink').addEventListener('mouseout', function() 
           hammer.on('swipeleft', swipeHandler);
           hammer.on('swiperight', swipeHandler);
       </script>
-  </body>
-  </html>
+
 
 
 
@@ -961,12 +902,7 @@ document.getElementById('readMoreLink').addEventListener('mouseout', function() 
 
  <!-- service section -->
 
- <!DOCTYPE html>
- <html lang="en">
- <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Taxi Services Section</title>
+
    <style>
      /* General Styles */
 
@@ -1045,9 +981,7 @@ document.getElementById('readMoreLink').addEventListener('mouseout', function() 
        }
      }
    </style>
- </head>
- <body>
- 
+
  <section class="service_section a_layout_padding">
   
      <div class="a_service_container">
@@ -1107,9 +1041,7 @@ document.getElementById('readMoreLink').addEventListener('mouseout', function() 
    </div>
  </section>
  
- </body>
- </html>
- 
+
  <!-- end service section -->
 
 
@@ -1123,12 +1055,6 @@ document.getElementById('readMoreLink').addEventListener('mouseout', function() 
 
   <!-- contact section -->
 
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
     <style>
       /* General Styles */
       
@@ -1237,8 +1163,7 @@ document.getElementById('readMoreLink').addEventListener('mouseout', function() 
       }
       
     </style>
-  </head>
-  <body>
+
  <br>
  <br>
  <section class="contact_section index_layout_padding-bottom" style="margin-left: 10px;">
@@ -1289,10 +1214,10 @@ document.getElementById('readMoreLink').addEventListener('mouseout', function() 
     </div>
   </section>
   
-  </body>
-  </html>
+
   
   <!-- end contact section -->
+
 {% comment %} <br>
 <br>
 <div class="container">
@@ -1464,13 +1389,7 @@ document.getElementById('readMoreLink').addEventListener('mouseout', function() 
 
   <!-- why section -->
 
-  <!DOCTYPE html>
-  <html lang="en">
-  
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Car Rental Website</title>
+
       <style>
           /* General Styles */
           .a-why_section {
@@ -1566,9 +1485,7 @@ document.getElementById('readMoreLink').addEventListener('mouseout', function() 
               }
           }
       </style>
-  </head>
-  
-  <body>
+
       <section class="a-why_section">
           <div class="a-container">
             <div class="container">
@@ -1616,10 +1533,7 @@ document.getElementById('readMoreLink').addEventListener('mouseout', function() 
               </div>
           </div>
       </section>
-  </body>
-  
-  </html>
-  
+ 
 
 
   <!-- end why section -->
