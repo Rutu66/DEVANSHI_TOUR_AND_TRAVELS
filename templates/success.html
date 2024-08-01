@@ -1,153 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
+
 {% block body %}
-    <style>
-        body {
-            background-color: #ffffff;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+    <link href="{% static 'css/success.css' %}" rel="stylesheet" />
 
-        .success-container {
-            margin: auto;
-            margin-top: 50px;
-            background-color: #f1f2f6;
-            padding: 30px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            animation: fadeIn 0.6s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            0% { opacity: 0; transform: translateY(-20px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        .tick-mark {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 20px;
-        }
-
-        .tick-circle {
-            stroke: #27ae60;
-            stroke-width: 4;
-            fill: none;
-            stroke-dasharray: 160;
-            stroke-dashoffset: 160;
-            animation: draw-circle 0.8s ease-out forwards;
-        }
-
-        .tick-path {
-            stroke: #27ae60;
-            stroke-width: 4;
-            fill: none;
-            stroke-dasharray: 48;
-            stroke-dashoffset: 48;
-            animation: draw-check 0.5s 0.8s ease forwards;
-        }
-
-        @keyframes draw-circle {
-            to {
-                stroke-dashoffset: 0;
-            }
-        }
-
-        @keyframes draw-check {
-            to {
-                stroke-dashoffset: 0;
-            }
-        }
-
-        .success-message {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        .success-message h2 {
-            margin-bottom: 10px;
-            color: #27ae60;
-        }
-
-        .booking-details {
-            text-align: left;
-            margin-top: 20px;
-        }
-
-        .booking-details table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-        }
-
-        .booking-details th, .booking-details td {
-            padding: 8px;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .booking-details th {
-            text-align: left;
-            color: #555;
-        }
-
-        .contact-section {
-            border-top: 1px solid #ddd;
-            padding-top: 20px;
-            margin-top: 20px;
-            text-align: center;
-            color: #555;
-        }
-
-        .contact-section p {
-            margin: 10px 0;
-        }
-
-        .contact-section ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .button {
-            background-color: #27ae60;
-            color: white;
-            padding: 12px 25px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-            cursor: pointer;
-            margin-top: 20px;
-            text-transform: uppercase;
-        }
-
-        .button:hover {
-            background-color: #218c54;
-        }
-
-        @media (max-width: 600px) {
-            body {
-                margin: 10px;
-            }
-            .success-container {
-                padding: 20px;
-                margin: 10px;
-            }
-
-            .tick-mark {
-                width: 50px;
-                height: 50px;
-            }
-
-            .button {
-                width: 100%;
-                padding: 10px;
-            }
-        }
-    </style>
     <div class="success-container">
         <div class="success-message">
             <div class="tick-mark">
@@ -157,10 +13,9 @@
                 </svg>
             </div>
             <h2>Booking Confirmed!</h2>
-            {% comment %} <p>Your booking ID is: <strong>#123456</strong></p> {% endcomment %}
-            {% comment %} <p>Thank you for booking, {{ booking.username }}!</p> <!-- Example of dynamic data --> {% endcomment %}
+            <!-- <p>Your booking ID is: <strong>#123456</strong></p> -->
+            <!-- <p>Thank you for booking, {{ booking.username }}!</p> -->
             <p>Thank you for choosing Devanshi Tour and Travels. Our team will contact you as soon as possible.</p>
-
         </div>
         
         <div class="booking-details">
@@ -213,19 +68,17 @@
                     <td>Route:</td>
                     <td>{{ booking.pickup }} -> {{ booking.drop }}</td>
                 </tr>
-                {% comment %} <tr>
+                <!-- <tr>
                     <td>Full Payable Amount:</td>
                     <td>₹{{ booking.full_payable_amount }}</td>
-                </tr> {% endcomment %}
+                </tr> -->
             </table>
         </div>
-        
         
         <div class="contact-section">
             <p>If you have any questions or need further assistance, please contact us:</p>
             <ul>
-                <p>Email: <a href="mailto:booking@devanshitours.com">booking@devanshitours.com</a></p>
-
+                <li>Email: <a href="mailto:booking@devanshitours.com">booking@devanshitours.com</a></li>
                 <li>Phone: <a href="+91 82388 00034">+91 82388 00034</a></li>
             </ul>
             <a href="/" class="button">Back to Home</a>

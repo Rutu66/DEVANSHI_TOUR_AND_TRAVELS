@@ -1,57 +1,19 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
-from devanshi_taxi.models import *
-from django.http import HttpResponseRedirect
-from django.shortcuts import redirect
-from django.contrib import messages
+from django.http import HttpResponse, JsonResponse
 from django.core.mail import send_mail
-from django.core.mail import EmailMessage, get_connection
-from django.conf import settings
-from django.shortcuts import render, redirect
-from .models import *
-from django.urls import reverse
-from datetime import datetime
-from django.core.mail import send_mail
-from django.conf import settings
 from django.template.loader import render_to_string
-
-
-# def search_cabs(request):
-#     if request.method == 'GET':
-#         travel_type = request.GET.get('travel_type')
-#         pickup = request.GET.get('pickup')
-#         drop = request.GET.get('drop')
-#         pickup_date = request.GET.get('pickup_date')
-#         pickup_time = request.GET.get('pickup_time')
-#         return_date = request.GET.get('return_date')
-
-#         # Ensure required fields are filled
-#         if not (travel_type and pickup and drop and pickup_date and pickup_time):
-#             return render(request, 'your_template.html', {'error_message': 'Please fill all required fields.'})
-
-#         # Filter cars based on pickup and drop locations and travel type
-#         cars = Cost.objects.filter(
-#             route__pickup__icontains=pickup,
-#             route__drop__icontains=drop,
-#         )
-
-#         context = {
-#             'cars': cars,
-#             'travel_type': travel_type,
-#             'pickup': pickup,
-#             'drop': drop,
-#             'pickup_date': pickup_date,
-#             'pickup_time': pickup_time,
-#             'return_date': return_date,
-#         }
-
-#         return render(request, 'cars.html', context)
-    
-#     return render(request,'search.html')
+from django.conf import settings
+from datetime import datetime
+from .models import *  # Adjust imports as per your app structure
 
 
 def search_cabs(request):
+    """
+    View function for searching available cars based on user input.
+    Handles GET and POST requests to display available cars or handle form submissions.
+    """
     if request.method == 'POST':
+        # Retrieve form data
         travel_type = request.POST.get('travel_type')
         pickup = request.POST.get('pickup')
         drop = request.POST.get('drop')
@@ -74,6 +36,7 @@ def search_cabs(request):
         # Retrieve all cars from the Car model
         cars = Car.objects.all()
 
+        # Context to be passed to the template
         context = {
             'cars': cars,
             'travel_type': travel_type,
@@ -85,22 +48,16 @@ def search_cabs(request):
         }
 
         return render(request, 'cars.html', context)
-    
+
+    # For GET requests, just render the search form
     return render(request, 'cars.html')
 
-from django.shortcuts import render, redirect
-from django.core.mail import send_mail
-from django.template.loader import render_to_string
-from django.conf import settings
-from datetime import datetime
-from .models import Booking  # Adjust this import as per your app structure
-
-from django.http import JsonResponse, HttpResponse
-from django.shortcuts import render, redirect
-from django.core.mail import send_mail
-from datetime import datetime
 
 def booking_view(request):
+    """
+    View function for handling booking form submission.
+    Creates a new Booking object and sends confirmation emails.
+    """
     if request.method == 'POST':
         try:
             # Retrieve form data
@@ -116,6 +73,7 @@ def booking_view(request):
             pickup_time = request.POST.get('pickup_time')
             return_date_str = request.POST.get('return_date')
 
+            # Convert return date string to datetime object if provided
             if return_date_str:
                 try:
                     return_date = datetime.strptime(return_date_str, '%Y-%m-%d').date()
@@ -126,7 +84,7 @@ def booking_view(request):
 
             route = request.POST.get('route')
 
-            # Create Booking object
+            # Create Booking object in the database
             booking = Booking.objects.create(
                 username=username,
                 email=email,
@@ -142,7 +100,7 @@ def booking_view(request):
                 route=route,
             )
 
-            # Send emails
+            # Send confirmation emails to customer and owner
             email_content_customer = render_to_string('booking_confirmation_email.html', {
                 'username': username,
                 'email': email,
@@ -185,10 +143,10 @@ def booking_view(request):
     return render(request, 'booking.html')
 
 
-
-
-
 def sendmail_contact(request):
+    """
+    View function for sending contact details via email.
+    """
     if request.method == "POST":
         name = request.POST.get('name', '')
         mobile = request.POST.get('mobile', '')
@@ -216,29 +174,25 @@ def sendmail_contact(request):
     return redirect('contact')
 
 
-
 def index(request):
-    
-
-    
+    """
+    View function for rendering the index page with a list of cars.
+    """
     car_list = Car.objects.all()
-    
+
     data = {
         'car_list': car_list
-       
-        
     }
-    
+
     return render(request, 'index.html', data)
 
 
 def cars(request):
-    """ For cars page...."""
-    car_list = Cars.objects.all()
+    """
+    View function for rendering the cars page with car search parameters.
+    """
+    car_list = Car.objects.all()
 
-
-    # Pass the data to the template
-    # trip_type = request.GET.get('trip_type', '')
     travel_type = request.GET.get('travel_type', '')
     pickup_location = request.GET.get('pickup', '')
     drop_location = request.GET.get('drop', '')
@@ -246,10 +200,8 @@ def cars(request):
     pickup_time = request.GET.get('pickup_time', '')
     return_date = request.GET.get('return_date', '')
 
-    # Pass the data to the template
     return render(request, 'cars.html', {
-        # 'trip_type': trip_type,
-        'travel_type' : travel_type,
+        'travel_type': travel_type,
         'pickup_location': pickup_location,
         'drop_location': drop_location,
         'pickup_date': pickup_date,
@@ -257,62 +209,19 @@ def cars(request):
         'return_date': return_date,
         'car_list': car_list,
     })
-    
 
 
-# from django.shortcuts import render, get_object_or_404
-# from .models import Cost
-
-# def checkout(request, car_id):
-#     cost_instance = get_object_or_404(Cost, id=car_id)
-#     car = cost_instance.car
-#     route = cost_instance.route
-#     total_fare = cost_instance.total_fare
-#     extra_fare = cost_instance.extra_fare
-
-#     # Fetch additional data from the request.GET
-#     pickup_date = request.GET.get('pickup_date', '')
-#     pickup_time = request.GET.get('pickup_time', '')
-#     travel_type = request.GET.get('trip_type', '')  # Assuming 'trip_type' is passed from the template
-
-#     return_date = None
-#     if travel_type == 'round_trip':
-#         return_date = request.GET.get('return_date', '')
-
-#     # Fetch pickup and drop location details
-#     pickup_location = request.GET.get('pickup_location', '')
-#     drop_location = request.GET.get('drop_location', '')
-
-#     # Print route information for debugging purposes
-#     print(route)
-
-#     return render(request, 'checkout.html', {
-#         'car': car,
-#         'route': route,
-#         'total_fare': total_fare,
-#         'extra_fare': extra_fare,
-#         'pickup_date': pickup_date,
-#         'pickup_time': pickup_time,
-#         'travel_type': travel_type,
-#         'return_date': return_date,
-#         'pickup_location': pickup_location,
-#         'drop_location': drop_location,
-#     })
-
-from django.shortcuts import render, get_object_or_404
-from django.views.decorators.csrf import csrf_protect
-
-@csrf_protect
 def checkout(request, car_id):
+    """
+    View function for handling checkout process for car booking.
+    """
     car = get_object_or_404(Car, pk=car_id)
-    
+
     if request.method == 'POST':
         pickup_date = request.POST.get('pickup_date', '')
         pickup_time = request.POST.get('pickup_time', '')
         travel_type = request.POST.get('trip_type', '')
-        return_date = None
-        if travel_type == 'round_trip':
-            return_date = request.POST.get('return_date', '')
+        return_date = request.POST.get('return_date', '')
         pickup_location = request.POST.get('pickup_location', '')
         drop_location = request.POST.get('drop_location', '')
 
@@ -327,39 +236,43 @@ def checkout(request, car_id):
         }
         return render(request, 'checkout.html', context)
 
-    # If the request method is not POST, handle it appropriately
     return render(request, 'error.html', {'message': 'Invalid request method'})
 
 
-
-
 def about(request):
-    """ For about page...."""
+    """
+    View function for rendering the about page.
+    """
     return render(request, 'about.html')
 
+
 def contact(request):
-    """ For contact page...."""
+    """
+    View function for rendering the contact page.
+    """
     return render(request, 'contact.html')
 
+
 def service(request):
-    """ For service page..."""
-    
-   
-    
+    """
+    View function for rendering the service page.
+    """
     return render(request, 'service.html')
 
 
 def success(request, pk):
-    """ For success page..."""
-    
+    """
+    View function for rendering the success page with booking details.
+    """
     booking = Booking.objects.get(pk=pk)
     return render(request, 'success.html', {'booking': booking})
 
 
-from django.http import JsonResponse
-
-
 def get_fare_summary(request, car_id):
+    """
+    View function for retrieving fare summary for a specific car.
+    Returns JSON response with fare details.
+    """
     cost = get_object_or_404(Cost, id=car_id)
     distance = cost.route.distance
     gst = cost.total_fare * 5 / 100
@@ -373,6 +286,3 @@ def get_fare_summary(request, car_id):
     }
     
     return JsonResponse(data)
-
-
-

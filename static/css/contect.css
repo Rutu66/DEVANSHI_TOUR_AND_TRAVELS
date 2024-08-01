@@ -1,0 +1,222 @@
+
+    .contact-form {
+      background-color: #343a40;
+      color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      width: 100%;
+    }
+
+    .contact-form .form-control {
+      border: 2px solid #444;
+      background-color: #555;
+      color: #fff;
+      padding: 20px;
+      font-size: 1.1rem;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .contact-form .form-control:focus {
+      border-color: #ff9800;
+      box-shadow: 0 0 5px rgba(255, 152, 0, 0.5);
+    }
+
+    .contact-form .form-control::placeholder {
+      color: #bbb;
+    }
+
+   
+
+    .btn-orange {
+      background-color: #ffc107;
+      border-color: #ffc107;
+      border-radius: 20px;
+      font-family: inherit;
+      padding: 10px 20px;
+      transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
+      color: #000; /* Default font color */
+    }
+    
+    .btn-orange:hover {
+      background-color: #e0a800; /* Darker shade for hover */
+      color: #fff; /* Font color change on hover */
+      font-weight: bold; /* Font weight change on hover */
+      transform: scale(1.05); /* Slightly increase the size */
+    }
+
+    .alert {
+      border-radius: 10px;
+      border: none;
+      padding: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      font-size: 1.1rem;
+      transition: box-shadow 0.3s ease, background-color 0.3s ease;
+    }
+
+    .alert-dismissible .close {
+      position: relative;
+      top: -2px;
+      right: -21px;
+      color: inherit;
+    }
+
+    .alert-warning {
+      background-color: #ff9800;
+      border-color: #ff9800;
+      color: #fff;
+    }
+
+    .alert-dismissible .close span {
+      color: #fff;
+    }
+
+    .social-icon {
+      font-size: 2rem;
+      color: #333;
+      margin: 0 10px;
+    }
+
+    .social-icon:hover {
+      color: #ff9800;
+    }
+
+    .mapouter {
+      position: relative;
+      text-align: right;
+      width: 100%;
+      border: 2px solid #ff9800;
+      border-radius: 10px;
+      overflow: hidden;
+      height: auto;
+    }
+
+    .gmap_canvas {
+      overflow: hidden;
+      background: none !important;
+      width: 100%;
+      height: 100%;
+    }
+
+    .info-card {
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .info-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .info-card .icon {
+      margin-bottom: 20px;
+    }
+
+    .info-card h4 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .info-card p {
+      font-size: 1rem;
+      color: #fff;
+    }
+
+    .review-section {
+      background-image: url("{% static 'images/f1.jpg' %}"); /* Replace with your actual background image path */
+      background-size: cover;
+      background-position: center;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .review-content {
+      background-color: rgba(211, 211, 211, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+      width:95%; /* Fixed width */
+      height:250px; /* Fixed height */
+      margin:0 auto; /* Center the content */
+    }
+    
+    .review-content:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .review-image {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 15px;
+    }
+
+    .review-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .review-text {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    .review-author {
+      margin-top: 10px;
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    .review-rating {
+      font-size: 1.5rem;
+      color: #ff9800;
+    }
+
+    .review-rating .star {
+      margin-right: 2px;
+    }
+
+    @media (max-width: 767px) {
+      .review-content {
+        margin-bottom: 20px;
+      }
+    }
+
+    .contact-form,
+    .mapouter {
+      height: 100%;
+    }
+
+    @media (max-width: 767px) {
+      .contact-form {
+        margin-bottom: 5px;
+      }
+
+      .info-card {
+        margin-bottom: 30px;
+      }
+
+      .review-card {
+        margin-bottom: 30px;
+      }
+    }
+
+    .btn-orange {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+   
+
+    
