@@ -63,7 +63,7 @@ ROOT_URLCONF = 'devanshi_tour_and_travels.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "templates"],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -71,10 +71,18 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # Add your own context processors here if needed
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
             ],
         },
     },
 ]
+
+# Add custom settings for meta tags
+META_KEYWORDS = "taxi service Gujarat, Gujarat cab booking, affordable taxi Gujarat, reliable taxi service, 24/7 taxi Gujarat, airport transfers Gujarat, local taxi service Gujarat, book taxi online Gujarat, professional cab service Gujarat, comfortable taxi ride Gujarat, taxi fare calculator Gujarat, best cab service Gujarat, taxi for sightseeing Gujarat, corporate taxi service Gujarat, transportation services Gujarat, cab rental Gujarat, car hire Gujarat, city taxi Gujarat, outstation taxi Gujarat, luxury taxi service Gujarat, budget taxi Gujarat, experienced drivers Gujarat, safe taxi service Gujarat, taxi app Gujarat, cab service near me Gujarat"
+
+META_DESCRIPTION = "Discover convenient and reliable taxi services in Gujarat with our professional cab service. Whether you need an airport transfer, local transportation, or a taxi for sightseeing, we offer comfortable journeys with 24/7 availability. Use our online booking system to reserve your taxi in Gujarat today. Explore city tours, corporate travel, airport pickups, and more with our versatile cab services."
 
 WSGI_APPLICATION = 'devanshi_tour_and_travels.wsgi.application'
 

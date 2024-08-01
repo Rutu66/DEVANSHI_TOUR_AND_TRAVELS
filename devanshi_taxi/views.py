@@ -371,7 +371,7 @@ def get_fare_summary(request, car_id):
         'gst': gst,
         'total_cost': cost.total_fare
     }
-
+    
     return JsonResponse(data)
 
 
