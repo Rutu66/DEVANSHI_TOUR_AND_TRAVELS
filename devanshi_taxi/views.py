@@ -5,6 +5,12 @@ from django.template.loader import render_to_string
 from django.conf import settings
 from datetime import datetime
 from .models import *  # Adjust imports as per your app structure
+from django.contrib import messages
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.shortcuts import redirect
+
+
 
 
 def search_cabs(request):

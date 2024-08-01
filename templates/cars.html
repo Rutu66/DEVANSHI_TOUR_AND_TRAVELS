@@ -148,15 +148,6 @@
     {% endif %}
 </div>
 
-<!-- Fare summary modal -->
-<div id="myModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <div id="modalContent">
-            <!-- Fare summary details will be inserted here dynamically -->
-        </div>
-    </div>
-</div>
 
 <!-- Scripts for modifying search, booking, and displaying fare summary -->
 <script>
@@ -165,7 +156,7 @@
         const modifyButton = document.getElementById('modify-btn');
         const modifyModal = document.getElementById('modifyModal');
         const closeModifyModalButton = modifyModal.querySelector('.close');
-
+            
         // Open modify modal on button click
         modifyButton.addEventListener('click', function () {
             modifyModal.style.display = 'block';
