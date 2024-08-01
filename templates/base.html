@@ -4,72 +4,51 @@
 <html lang="en">
 
 <head>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <!-- Custom CSS -->
-    <!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-<!-- jQuery UI -->
-
-
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-{% comment %} <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> {% endcomment %}
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <!-- Basic -->
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
-    <!-- Site Metas -->
-    <meta name="keywords" content="{{ META_KEYWORDS }}" />
-    <meta name="description" content="{{ META_DESCRIPTION }}" />
-    <meta name="author" content="Devanshi Tour and Travels" />
-
+    
+    <!-- Title -->
     <title>{% block title %}Devanshi Tour and Travels{% endblock title %}</title>
-
     <link rel="icon" href="{% static 'images/DEVANSHI-EPS.png' %}" type="image/png">
-
-    <!-- slider stylesheet -->
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}" />
+    
+    <!-- jQuery and jQuery UI -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Slider Stylesheet -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-
-    <!-- bootstrap core css -->
-    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
-
-    <!-- fonts style -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
-    <link href="{% static 'css/index.css' %}" rel="stylesheet" />
-
-    <!-- responsive style -->
-    <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
-
-
-
 </head>
 
 <body class="sub_page">
 
+    <!-- Header Section -->
     <div class="hero_area">
-        <!-- header section starts -->
         <header class="header_section">
             <div class="container-fluid">
                 <nav class="navbar navbar-expand-lg custom_nav-container" style="padding-top: 20px;">
                     <a class="navbar-brand" href="{% url 'index' %}">
-                        <span>
-                            <img src="{% static 'images/DEVANSHI-EPS.png' %}" alt="" style="height: 60px; margin: -60px; margin-left: -27px;">
-                        </span>
+                        <img src="{% static 'images/DEVANSHI-EPS.png' %}" alt="" style="height: 60px; margin: -60px; margin-left: -27px;">
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
                             <ul class="navbar-nav">
@@ -96,16 +75,15 @@
                 </nav>
             </div>
         </header>
-        <!-- end header section -->
     </div>
 
-    <!-- Main content block -->
+    <!-- Main Content Block -->
     {% block body %}
     {% endblock body %}
 
-    <br>
-    <br>
-    <!-- footer section -->
+    <br><br>
+
+    <!-- Footer Section -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-logo">
@@ -137,20 +115,17 @@
                 <p>Email: <a href="mailto:booking@devanshitours.com">booking@devanshitours.com</a></p>
             </div>
         </div>
-        <div class="footer-bottom" style="
-    margin-bottom: -20px;
-">
+        <div class="footer-bottom" style="margin-bottom: -20px;">
             <p>&copy; 2024 Devanshi Tour And Travels. All rights reserved.</p>
         </div>
     </footer>
-    <!-- end footer section -->
 
-    <!-- JavaScript files -->
+    <!-- JavaScript Files -->
     <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-
-    <!-- owl carousel script -->
+    
+    <!-- Owl Carousel Script -->
     <script type="text/javascript">
         $(".owl-carousel").owlCarousel({
             loop: true,
@@ -171,8 +146,8 @@
             }
         });
     </script>
-    <!-- end owl carousel script -->
 
+    <!-- Inline CSS -->
     <style>
         /* Phone box styling */
         .phone-box {
@@ -209,9 +184,9 @@
 
         /* Footer Styling */
         .footer {
-            background-color: #f7c621; /* Dark blue-gray background */
-            color: #000000; /* White text */
-            padding: 20px 0; /* Added padding for better spacing */
+            background-color: #f7c621;
+            color: #000000;
+            padding: 20px 0;
             box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
         }
 
@@ -221,7 +196,7 @@
             gap: 20px;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px; /* Added padding for better spacing */
+            padding: 0 20px;
         }
 
         .footer-logo {
@@ -285,7 +260,7 @@
             }
         }
     </style>
-
 </body>
 
 </html>
+    
