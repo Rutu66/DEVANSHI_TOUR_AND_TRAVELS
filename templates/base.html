@@ -14,6 +14,24 @@
     <!-- Title -->
     <title>{% block title %}Devanshi Tour and Travels{% endblock title %}</title>
     <link rel="icon" href="{% static 'images/DEVANSHI-EPS.png' %}" type="image/png">
+
+    <!-- Meta Tags for Taxi Services -->
+    <meta name="description" content="Devanshi Tour and Travels offers reliable and comfortable taxi services across various cities. Book your ride now for a safe and enjoyable travel experience." />
+    <meta name="keywords" content="taxi services, car rental, travel services, taxi booking, airport transfer, city transport, Devanshi Tour and Travels" />
+    <meta name="author" content="Devanshi Tour and Travels" />
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Devanshi Tour and Travels - Taxi Services" />
+    <meta property="og:description" content="Reliable and comfortable taxi services for all your travel needs. Book your ride with Devanshi Tour and Travels today!" />
+    <meta property="og:image" content="{% static 'images/DEVANSHI-EPS.png' %}" />
+    <meta property="og:url" content="{% url 'index' %}" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Devanshi Tour and Travels - Taxi Services" />
+    <meta name="twitter:description" content="Book reliable and comfortable taxi services with Devanshi Tour and Travels. Your trusted travel partner for safe journeys." />
+    <meta name="twitter:image" content="{% static 'images/DEVANSHI-EPS.png' %}" />
     
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -36,6 +54,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
 </head>
 
+
 <body class="sub_page">
 
     <!-- Header Section -->
@@ -44,7 +63,7 @@
             <div class="container-fluid">
                 <nav class="navbar navbar-expand-lg custom_nav-container" style="padding-top: 20px;">
                     <a class="navbar-brand" href="{% url 'index' %}">
-                        <img src="{% static 'images/DEVANSHI-EPS.png' %}" alt="" width="120" height="60" style="height: 60px; margin: -50px; margin-left: -27px;">
+                        <img src="/static/images/DEVANSHI-EPS.png" alt="" width="120" height="60" style="height: 55px;width: 150px;">
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -87,8 +106,8 @@
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-logo">
-                <img src="{% static 'images/devanshi-logo.png' %}" alt="Logo" width="200" height="100" style="margin-top: -60px;">
-                <p style="margin-top: -40px; color: black;">At Devanshi Tour And Travels, we are committed to providing reliable, safe, and comfortable transportation solutions.</p>
+                <img src="/static/images/DEVANSHI-EPS.png" alt="" width="120" height="60" style="height: 55px;width: 150px;">
+                <p style="color: black;">At Devanshi Tour And Travels, we are committed to providing reliable, safe, and comfortable transportation solutions.</p>
             </div>
             <div class="footer-links">
                 <h3>Quick Links</h3>
