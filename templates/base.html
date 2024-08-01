@@ -4,6 +4,8 @@
 <html lang="en">
 
 <head>
+    <link rel="canonical" href="https://www.devanshitours.com/" />
+
     <!-- Basic -->
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -14,6 +16,24 @@
     <!-- Title -->
     <title>{% block title %}Devanshi Tour and Travels{% endblock title %}</title>
     <link rel="icon" href="{% static 'images/DEVANSHI-EPS.png' %}" type="image/png">
+
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "TravelAgency",
+          "name": "Devanshi Tour and Travels",
+          "url": "https://www.devanshitours.com/",
+          "logo": "https://www.devanshitours.com/path-to-your-logo.png",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+1-800-555-5555",
+            "contactType": "Customer Service",
+            "areaServed": "Worldwide",
+            "availableLanguage": "English"
+          }
+        }
+        </script>
+        
 
     <!-- Meta Tags for Taxi Services -->
     <meta name="description" content="Devanshi Tour and Travels offers reliable and comfortable taxi services across various cities. Book your ride now for a safe and enjoyable travel experience." />
