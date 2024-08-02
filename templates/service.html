@@ -3,6 +3,78 @@
 {% load static %}
 
 <link href="{% static 'css/service.css' %}" rel="stylesheet" />
+<style>
+  /* General Styles */
+  .a_service_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+    
+    }
+    
+    .a_box {
+    background: linear-gradient(135deg, #000000, #000000);
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    flex: 1 1 300px;
+    max-width: 300px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .a_box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    }
+    
+    .a_img-box {
+    text-align: center;
+    padding: 20px;
+    background-color: #ffc107;
+    }
+    
+    .a_img-box img {
+    max-width: 20%;
+    height: auto;
+    }
+    
+    .a_detail-box {
+    padding: 20px;
+    text-align: center;
+    background-color: #fff;
+    text-align: left;
+    }
+    
+    .a_detail-box h5 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 15px;
+    }
+    
+    .a_detail-box p {
+    font-size: 1em;
+    line-height: 1.8;
+    color: #666;
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+    .a_service_container {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .a_box {
+      max-width: 100%; /* Allow box to take full width of the viewport */
+    }
+    
+    .a_detail-box {
+      max-width: 100%; /* Ensure detail-box can expand to full width */
+      overflow: visible; /* Override overflow:hidden to allow content to be visible */
+    }
+    }
+</style>
 <br>
 <br>
 <br>
@@ -15,42 +87,56 @@
   </div>
 </div>
 
-<div class="service_container">
-  <!-- Service Box 1: Private Driver -->
-  <div class="box">
-    <div class="img-box">
-      <div class="icon delivery-man-black1"></div>
+<div class="a_service_container">
+  <div class="a_box">
+    <div class="a_img-box">
+      <img src="{% static 'images/delivery-man-black1.png' %}" alt="delivery man" width="100" height="100">
     </div>
-    <div class="detail-box">
+    <div class="a_detail-box">
       <h5>Private Driver</h5>
       <p>
-        The primary function of a Personal Driver is to provide transportation for passengers from one location to another. It is essential that they drive their passengers in a safe, comfortable, and professional manner while simultaneously keeping track of navigation, traffic, and timing.
+        The primary function of a Personal
+        Driver is to provide transportation 
+        for passengers from one location to 
+        another. It is essential that they 
+        drive their passengers in a safe, 
+        comfortable and professional manner 
+        while simultaneously keeping track 
+        of navigation, traffic and timing.
       </p>
     </div>
   </div>
-
-  <!-- Service Box 2: City Tour -->
-  <div class="box">
-    <div class="img-box">
-      <div class="icon City"></div>
+  <div class="a_box">
+    <div class="a_img-box">
+      <img src="{% static 'images/City.png' %}" alt="city png" width="100" height="100">
     </div>
-    <div class="detail-box">
+    <div class="a_detail-box">
       <h5>City Tour</h5>
       <p>
-        We specialize in providing Taxi service, Car Rental Service, and Tour Package service from city to city routes for business travelers and local tourists. We are committed to offering the best hassle-free Taxi services, Cab services, and Car hire services in major cities across Gujarat.
+        We are a specialist in providing Taxi service,
+        Car Rental Service and Tour Package service from 
+        city to city routes for business travelers and 
+        local tourist. We are committed to serve the best 
+        hassle-free Taxi services, Cab services, Car hire
+        services in the major cities across Gujarat.
       </p>
     </div>
   </div>
-
-  <!-- Service Box 3: Luggage Transfer -->
-  <div class="box">
-    <div class="img-box">
-      <div class="icon backpack-black"></div>
+  <div class="a_box">
+    <div class="a_img-box">
+      <img src="{% static 'images/backpack-black.png' %}" alt="backpack-image" width="100" height="100">
     </div>
-    <div class="detail-box">
+    <div class="a_detail-box">
       <h5>Luggage Transfer</h5>
       <p>
-        Luggage delivery services provide door-to-door luggage delivery, where your luggage or sports equipment is picked up from your home, office, or any physical address and delivered to your hotel, resort, or any other location. With decreasing luggage allowances and increasing excess luggage fees, our service ensures convenient and stress-free travel.
+        Luggage delivery services provide
+        a door-to-door luggage delivery service,
+        where your luggage or sports equipment
+        is picked-up from your home, office or
+        any physical address and delivered to
+        your hotel, resort or any other physical
+        address. Luggage allowances are decreasing 
+        and excess luggage fees increasing.
       </p>
     </div>
   </div>
