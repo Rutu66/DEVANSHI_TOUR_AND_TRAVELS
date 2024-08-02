@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+from .views import robots_txt
+
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -19,6 +21,7 @@ urlpatterns = [
     
     path('sendmail_contact/', views.sendmail_contact, name='sendmail_contact'),
     path('get_fare_summary/<int:car_id>/', views.get_fare_summary, name='get_fare_summary'),
+    path("robots.txt", views.robots_txt, name="robots_txt"),
     
     
     
