@@ -18,6 +18,16 @@
     <title>{% block title %}Devanshi Tour and Travels{% endblock title %}</title>
     <link rel="icon" href="{% static 'images/DEVANSHI-EPS.png' %}" type="image/png">
 
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2WYV3MD5WM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-2WYV3MD5WM');
+</script>
+
     <link rel="sitemap" type="application/xml" title="Sitemap" href="{% url 'django.contrib.sitemaps.views.sitemap' %}" />
 
     <script type="application/ld+json">
