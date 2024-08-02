@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 from .views import robots_txt
+from .views import BingSiteAuth_xml
 
 
 urlpatterns = [
@@ -22,6 +23,9 @@ urlpatterns = [
     path('sendmail_contact/', views.sendmail_contact, name='sendmail_contact'),
     path('get_fare_summary/<int:car_id>/', views.get_fare_summary, name='get_fare_summary'),
     path("robots.txt", views.robots_txt, name="robots_txt"),
+    path("BingSiteAuth.xml", views.BingSiteAuth_xml, name="BingSiteAuth.xml"),
+    
+    
     
     
     
