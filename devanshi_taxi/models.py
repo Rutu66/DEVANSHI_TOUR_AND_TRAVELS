@@ -1,5 +1,9 @@
 # models.py
 from django.db import models
+from django.urls import reverse
+from django.utils import timezone
+
+
 
 class Car(models.Model):
     CAR_TYPES = [
@@ -18,9 +22,14 @@ class Car(models.Model):
     
     car_type = models.CharField(max_length=20, choices=CAR_TYPES)
     capacity = models.PositiveIntegerField()
+    updated_at = models.DateTimeField(auto_now=True)  # Add this field
+
 
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse('car_detail', args=[str(self.id)])
 
 # class Route(models.Model):
 #     pickup = models.CharField(max_length=255)
@@ -54,9 +63,14 @@ class Booking(models.Model):
     return_date = models.DateField(blank=True, null=True)  # New field for return date
     route = models.CharField(max_length=255, blank=True, null=True)  # New field for route
     # full_payable_amount = models.DecimalField(max_digits=10, decimal_places=2)
+    updated_at = models.DateTimeField(auto_now=True)  # Added this line
+
 
     def __str__(self):
         return f"{self.username} - {self.pickup} to {self.drop}"
+    
+    def get_absolute_url(self):
+        return reverse('booking_detail', args=[str(self.id)])
 
 
 

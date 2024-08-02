@@ -301,3 +301,11 @@ def robots_txt(request):
 
 def BingSiteAuth_xml(request):
     return render(request, 'BingSiteAuth.xml', content_type="text/plain")
+
+def car_detail(request, id):
+    car = get_object_or_404(Car, pk=id)
+    return render(request, 'car_detail.html', {'car': car})
+
+def booking_detail(request, pk):
+    booking = get_object_or_404(Booking, pk=pk)
+    return render(request, 'booking_detail.html', {'booking': booking})

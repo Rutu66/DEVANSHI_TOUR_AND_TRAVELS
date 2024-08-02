@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'devanshi_taxi',
     'grappelli',
+    'django.contrib.sitemaps',
 ]
 
 MIDDLEWARE = [

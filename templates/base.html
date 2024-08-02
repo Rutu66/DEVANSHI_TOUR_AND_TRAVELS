@@ -18,6 +18,8 @@
     <title>{% block title %}Devanshi Tour and Travels{% endblock title %}</title>
     <link rel="icon" href="{% static 'images/DEVANSHI-EPS.png' %}" type="image/png">
 
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="{% url 'django.contrib.sitemaps.views.sitemap' %}" />
+
     <script type="application/ld+json">
         {
           "@context": "https://schema.org",
@@ -33,7 +35,7 @@
             "availableLanguage": "English"
           }
         }
-        </script>
+    </script>
         
 
     <!-- Meta Tags for Taxi Services -->
@@ -74,6 +76,7 @@
     <!-- Slider Stylesheet -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
 </head>
+
 
 
 <body class="sub_page">
